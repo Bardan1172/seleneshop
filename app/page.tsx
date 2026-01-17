@@ -6,7 +6,7 @@ import { Sparkles, Hammer, Brush, Camera, Sticker, Box } from "lucide-react";
 const products = [
   {
     title: "Cosmetica Face Minecraft",
-    icon: <Sparkles />,
+    icon: <Sparkles className="w-6 h-6" />,
     items: [
       "Custom wajah (mata, alis, mulut)",
       "Bisa request ekspresi",
@@ -17,7 +17,7 @@ const products = [
   },
   {
     title: "Minecraft Skin",
-    icon: <Box />,
+    icon: <Box className="w-6 h-6" />,
     items: [
       "Skin full body custom",
       "Request tema (anime, fantasy, casual, dll)",
@@ -28,7 +28,7 @@ const products = [
   },
   {
     title: "Art / Illustration",
-    icon: <Brush />,
+    icon: <Brush className="w-6 h-6" />,
     items: [
       "Fanart / OC",
       "Style sesuai request",
@@ -39,18 +39,17 @@ const products = [
   },
   {
     title: "Minecraft Build",
-    icon: <Hammer />,
+    icon: <Hammer className="w-6 h-6" />,
     items: [
-      "Basic Class – Rp75.000 – Rp75.000",
-      "Advanced Class – Rp75.000 – Rp300.000",
-      "Elite Class – Rp450.000 – Rp1.500.000",
+      "Basic Class – Rp75.000",
+      "Advanced Class – Rp75.000 - Rp300.000",
+      "Elite Class – Rp450.000 - Rp1.500.000",
       "Origin Class – Rp2.250.000+",
     ],
-    expandable: true,
   },
   {
     title: "Minecraft Photoshoot",
-    icon: <Camera />,
+    icon: <Camera className="w-6 h-6" />,
     items: [
       "Single / Couple / Group (3–5 karakter)",
       "Custom background (Village, Nether, End, dll)",
@@ -59,7 +58,7 @@ const products = [
   },
   {
     title: "Custom Sticker Chibi",
-    icon: <Sticker />,
+    icon: <Sticker className="w-6 h-6" />,
     items: [
       "Bust-up / Head Only – Rp10.000",
       "Sticker Pack 6 – Rp50.000",
@@ -68,7 +67,7 @@ const products = [
   },
   {
     title: "PNGtuber",
-    icon: <Sparkles />,
+    icon: <Sparkles className="w-6 h-6" />,
     items: [
       "Simple Chibi PNGtuber – Rp25.000 (2 ekspresi)",
       "Simple PNGtuber – Rp30.000 (2 ekspresi)",
@@ -83,7 +82,7 @@ export default function HomePage() {
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl md:text-5xl font-title text-center mb-12"
+          className="text-4xl md:text-5xl font-bold text-center mb-12"
         >
           Produk Selene Shop
         </motion.h1>
