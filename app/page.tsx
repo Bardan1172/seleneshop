@@ -1,191 +1,212 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Sparkles, Hammer, Brush, Camera, Sticker, Box, DollarSign, CheckCircle2 } from "lucide-react";
-
-const products = [
-  {
-    title: "Cosmetica Face Minecraft",
-    icon: <Sparkles className="w-6 h-6" />,
-    note: "Harus MC Premium",
-    items: [
-      "Custom wajah (mata, alis, mulut)",
-      "Bisa request ekspresi",
-      "Cocok untuk skin personal / roleplay",
-    ],
-    pricing: [
-      { label: "Only Face", price: "Rp30.000" },
-      { label: "Face + Rambut HD", price: "Rp50.000" }
-    ],
-    details: "Face + Rambut HD memiliki detail lebih halus & tajam."
-  },
-  {
-    title: "Minecraft Skin",
-    icon: <Box className="w-6 h-6" />,
-    items: [
-      "Skin full body custom",
-      "Request tema (anime, fantasy, casual, dll)",
-      "Support Java & Bedrock",
-    ],
-    pricing: [
-      { label: "Simple", price: "Rp10.000" },
-      { label: "Full Detail", price: "Rp15.000" }
-    ]
-  },
-  {
-    title: "Art / Illustration",
-    icon: <Brush className="w-6 h-6" />,
-    items: [
-      "Fanart / OC",
-      "Style sesuai request",
-      "Cocok untuk profil, banner, atau hadiah",
-    ],
-    pricing: [
-      { label: "Simple Shade", price: "Rp25.000" },
-      { label: "Full Rendering (Close Up)", price: "Request / DM" }
-    ]
-  },
-  {
-    title: "Minecraft Build",
-    icon: <Hammer className="w-6 h-6" />,
-    isSpecial: true,
-    items: [
-      "Build rumah / base / map",
-      "Detail rapi & sesuai tema",
-      "Custom ukuran dan konsep",
-    ],
-    classes: [
-      { name: "Basic", price: "$1 – $5", desc: "Small builds, houses, shops" },
-      { name: "Advanced", price: "$5 – $20", desc: "Fantasy bases, landmarks" },
-      { name: "Elite", price: "$30 – $100", desc: "Large castles, detailed cities" },
-      { name: "Origin", price: "$150+", desc: "Mega builds, exclusive quality" }
-    ]
-  },
-  {
-    title: "Photoshoot Minecraft",
-    icon: <Camera className="w-6 h-6" />,
-    items: [
-      "Single / Couple / Group (3-5 karakter)",
-      "Custom Background (Village, Forest, End, dll)",
-      "HD / Cinematic Render",
-      "Pencahayaan realistis & kualitas tinggi",
-    ],
-    pricing: [{ label: "Start from", price: "DM for detail" }]
-  },
-  {
-    title: "Custom Sticker Chibi",
-    icon: <Sticker className="w-6 h-6" />,
-    items: [
-      "Bust-up / Head Only",
-      "Custom Expression (Marah, Senang, dll)",
-    ],
-    pricing: [
-      { label: "Unit", price: "Rp10.000" },
-      { label: "Pack (6 Sticker)", price: "Rp50.000" },
-      { label: "Pack (12 Sticker)", price: "Rp100.000" }
-    ]
-  },
-  {
-    title: "PNGtuber",
-    icon: <Sparkles className="w-6 h-6" />,
-    items: [
-      "Simple Chibi / Simple Style",
-      "2 Ekspresi & Bebas Request",
-    ],
-    pricing: [
-      { label: "Simple Chibi", price: "Rp25.000" },
-      { label: "Simple Normal", price: "Rp30.000" }
-    ]
-  }
-];
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-black via-[#120018] to-black text-white px-4 py-20">
-      <section className="max-w-6xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-            Selene Shop
-          </h1>
-          <p className="text-white/60 text-lg">Premium Minecraft Services & Digital Art</p>
-        </motion.div>
+    <>
+      {/* NAVBAR */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur border-b border-purple-500/10">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <span className="text-purple-200 font-title font-semibold text-lg">
+            Selene Shop 🌙
+          </span>
 
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative rounded-3xl p-8 bg-white/5 border border-purple-500/10 backdrop-blur-xl hover:border-purple-500/40 hover:shadow-[0_0_40px_rgba(168,85,247,0.15)] transition-all"
+          <div className="flex gap-6 text-sm">
+            <a href="#beranda" className="text-purple-100 hover:text-purple-300">
+              Beranda
+            </a>
+            <a href="#produk" className="text-purple-100 hover:text-purple-300">
+              Produk
+            </a>
+            <a
+              href="https://discord.gg/muH44HDrea"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-purple-300 hover:text-purple-200"
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 rounded-2xl bg-purple-500/20 text-purple-300">
-                  {product.icon}
+              Discord
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <main className="pt-16 min-h-screen text-white bg-black">
+
+        {/* BERANDA */}
+        <section
+          id="beranda"
+          className="min-h-screen bg-gradient-to-b from-[#0b0b2e] to-black flex items-center justify-center"
+        >
+          <div className="text-center max-w-2xl px-6">
+            <h1 className="text-5xl md:text-6xl font-title font-bold text-purple-200 mb-6">
+              Selene Shop 🌙
+            </h1>
+
+            <p className="text-purple-100 mb-8 leading-relaxed">
+              Moonlit Minecraft Skin, Cosmetica Face, Art Commission,
+              dan Build aesthetic dengan sentuhan fantasy & night theme.
+            </p>
+
+            <div className="flex justify-center gap-4">
+              <a
+                href="#produk"
+                className="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-700 transition"
+              >
+                Lihat Produk
+              </a>
+
+              <a
+                href="https://discord.gg/muH44HDrea"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 rounded-full border border-purple-400 hover:bg-purple-400/10 transition"
+              >
+                Order via Discord
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* TENTANG */}
+        <section id="tentang" className="bg-black px-6 py-24">
+          <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-8">
+            Tentang Selene Shop
+          </h2>
+
+          <p className="max-w-3xl mx-auto text-center text-purple-100/80 leading-relaxed">
+            Selene Shop adalah studio kreatif bertema bulan dan malam
+            yang menyediakan layanan custom Minecraft dan art commission
+            dengan sentuhan fantasy, aesthetic, dan detail tinggi.
+            <br /><br />
+            Fokus kami adalah menghadirkan hasil yang personal, rapi,
+            dan sesuai karakter klien.
+          </p>
+        </section>
+
+        {/* ALASAN */}
+        <section id="alasan" className="bg-[#0b0b2e] px-6 py-24">
+          <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-12">
+            Mengapa Harus Beli di Selene Shop?
+          </h2>
+
+          <div className="grid gap-6 max-w-5xl mx-auto grid-cols-1 md:grid-cols-2">
+            {[
+              "Custom sesuai request & referensi",
+              "Tema aesthetic, fantasy, dan night-style",
+              "Komunikasi jelas & ramah via Discord",
+              "Hasil rapi, detail, dan original",
+            ].map((reason) => (
+              <div
+                key={reason}
+                className="bg-black/40 border border-purple-500/20 rounded-xl p-6 text-purple-100/90"
+              >
+                ✨ {reason}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* PRODUK */}
+        <section id="produk" className="bg-black px-6 py-24">
+          <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-12">
+            Produk Selene Shop
+          </h2>
+
+          <div className="grid gap-8 max-w-6xl mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                name: "Cosmetica Face MC",
+                desc: "Custom wajah Minecraft (mata, alis, mulut), bisa request ekspresi.",
+                price: "Mulai 15K",
+                time: "1–2 hari",
+              },
+              {
+                name: "Skin Minecraft",
+                desc: "Skin full body custom, support Java & Bedrock.",
+                price: "Mulai 25K",
+                time: "2–4 hari",
+              },
+              {
+                name: "Art / Commission",
+                desc: "Fanart / OC sesuai style dan request.",
+                price: "Mulai 30K",
+                time: "3–7 hari",
+              },
+              {
+                name: "Minecraft Build",
+                desc: "Build rumah, base, atau map sesuai konsep.",
+                price: "Mulai 50K",
+                time: "By request",
+              },
+            ].map((item) => (
+              <div
+                key={item.name}
+                className="bg-[#0b0b2e]/60 border border-purple-500/20 rounded-2xl overflow-hidden transition hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]"
+              >
+                <div className="h-40 bg-gradient-to-br from-purple-500/20 to-purple-900/40 flex items-center justify-center text-purple-200/40 text-xs tracking-widest">
+                  IMAGE PREVIEW
                 </div>
-                <div>
-                  <h2 className="text-xl font-bold tracking-tight">{product.title}</h2>
-                  {product.note && <span className="text-[10px] text-pink-400 uppercase font-bold tracking-widest">{product.note}</span>}
+
+                <div className="p-6 space-y-2">
+                  <h3 className="text-purple-200 font-semibold">
+                    {item.name}
+                  </h3>
+
+                  <p className="text-sm text-purple-100/80">
+                    {item.desc}
+                  </p>
+
+                  <p className="text-sm text-purple-300">
+                    💰 {item.price}
+                  </p>
+
+                  <p className="text-xs text-purple-100/60">
+                    ⏱ Estimasi: {item.time}
+                  </p>
+
+                  <a
+                    href="https://discord.gg/muH44HDrea"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block text-sm text-purple-300 hover:underline mt-2"
+                  >
+                    Order →
+                  </a>
                 </div>
               </div>
+            ))}
+          </div>
+        </section>
 
-              <ul className="space-y-3 mb-8">
-                {product.items.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm text-white/70 leading-relaxed">
-                    <CheckCircle2 className="w-4 h-4 mt-0.5 text-purple-500 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+        {/* CARA ORDER */}
+        <section id="cara-order" className="bg-[#0b0b2e] px-6 py-24">
+          <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-12">
+            Cara Order
+          </h2>
 
-              {/* Tampilan khusus untuk Build Price List */}
-              {product.isSpecial ? (
-                <div className="space-y-3 border-t border-white/10 pt-6">
-                  {product.classes?.map((cls, idx) => (
-                    <div key={idx} className="flex justify-between items-center bg-white/5 p-3 rounded-xl border border-white/5">
-                      <div>
-                        <p className="text-xs font-bold text-purple-300 uppercase tracking-tighter">{cls.name}</p>
-                        <p className="text-[10px] text-white/40">{cls.desc}</p>
-                      </div>
-                      <span className="font-mono text-sm text-green-400 font-bold">{cls.price}</span>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="space-y-2 border-t border-white/10 pt-6">
-                  {product.pricing?.map((p, idx) => (
-                    <div key={idx} className="flex justify-between text-sm">
-                      <span className="text-white/50">{p.label}</span>
-                      <span className="font-bold text-purple-300">{p.price}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </motion.div>
-          ))}
-        </div>
+          <ol className="max-w-3xl mx-auto space-y-4 text-purple-100/90">
+            <li>1️⃣ Join Discord Selene Shop</li>
+            <li>2️⃣ Pilih produk yang ingin dipesan</li>
+            <li>3️⃣ Kirim detail & request ke admin</li>
+            <li>4️⃣ Admin konfirmasi harga & estimasi</li>
+            <li>5️⃣ Lakukan pembayaran</li>
+            <li>6️⃣ Proses dikerjakan & hasil dikirim</li>
+          </ol>
 
-        {/* Footer Info */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="mt-20 p-8 rounded-3xl bg-purple-900/10 border border-purple-500/20 text-center"
-        >
-          <h3 className="text-xl font-bold mb-4">Butuh Custom Build Besar?</h3>
-          <p className="text-white/60 text-sm max-w-2xl mx-auto mb-6">
-            Harga build dapat berubah tergantung tingkat kerumitan, ukuran, dan deadline. 
-            Format pengiriman bisa berupa .world atau .schematic.
-          </p>
-          <button className="px-8 py-3 bg-purple-600 hover:bg-purple-500 rounded-full font-bold transition-colors">
-            Order Via WhatsApp / Discord
-          </button>
-        </motion.div>
-      </section>
-    </main>
+          <div className="text-center mt-10">
+            <a
+              href="https://discord.gg/muH44HDrea"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 rounded-full bg-purple-600 hover:bg-purple-700 transition"
+            >
+              Join Discord & Order
+            </a>
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <footer className="text-center text-purple-300/60 text-sm py-6 border-t border-purple-500/10">
+          © {new Date().getFullYear()} Selene Shop • Moonlit Creations
+        </footer>
+      </main>
+    </>
   );
 }
