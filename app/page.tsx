@@ -55,7 +55,7 @@ export default function Home() {
         className="min-h-screen bg-gradient-to-t from-[#0b0b2e] to-black flex items-center justify-center"
       >
         <a
-          href="https://discord.gg/ISI_DISCORD_KAMU"
+          href="https://discord.gg/muH44HDrea"
           className="px-8 py-4 rounded-full bg-purple-600 hover:bg-purple-700 transition"
         >
           Order via Discord
