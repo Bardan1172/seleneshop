@@ -4,15 +4,21 @@ export default function Home() {
       {/* NAVBAR */}
       <nav className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur border-b border-purple-500/10">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="text-purple-200 font-semibold">
+          <span className="text-purple-200 font-title font-semibold text-lg">
             Selene Shop 🌙
           </span>
 
           <div className="flex gap-6 text-sm">
-            <a href="#beranda" className="text-purple-100 hover:text-purple-300">
+            <a
+              href="#beranda"
+              className="relative text-purple-100 hover:text-purple-300 after:absolute after:-bottom-1 after:left-0 after:h-[1px] after:w-0 after:bg-purple-400 hover:after:w-full after:transition-all"
+            >
               Beranda
             </a>
-            <a href="#produk" className="text-purple-100 hover:text-purple-300">
+            <a
+              href="#produk"
+              className="relative text-purple-100 hover:text-purple-300 after:absolute after:-bottom-1 after:left-0 after:h-[1px] after:w-0 after:bg-purple-400 hover:after:w-full after:transition-all"
+            >
               Produk
             </a>
             <a
@@ -35,7 +41,7 @@ export default function Home() {
           className="min-h-screen bg-gradient-to-b from-[#0b0b2e] to-black flex items-center justify-center"
         >
           <div className="text-center max-w-2xl px-6">
-            <h1 className="text-5xl md:text-6xl font-bold text-purple-200 mb-6">
+            <h1 className="text-5xl md:text-6xl font-title font-bold text-purple-200 mb-6">
               Selene Shop 🌙
             </h1>
 
@@ -66,7 +72,7 @@ export default function Home() {
 
         {/* PRODUK */}
         <section id="produk" className="bg-black px-6 py-24">
-          <h2 className="text-3xl font-semibold text-purple-200 text-center mb-12">
+          <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-12">
             Produk Selene Shop
           </h2>
 
@@ -99,10 +105,10 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item.name}
-                className="bg-[#0b0b2e]/60 border border-purple-500/20 rounded-2xl overflow-hidden"
+                className="bg-[#0b0b2e]/60 border border-purple-500/20 rounded-2xl overflow-hidden transition hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]"
               >
-                <div className="h-40 bg-gradient-to-br from-purple-500/20 to-purple-900/40 flex items-center justify-center text-purple-200/60 text-sm">
-                  Preview
+                <div className="h-40 bg-gradient-to-br from-purple-500/20 to-purple-900/40 flex items-center justify-center text-purple-200/40 text-xs tracking-widest">
+                  IMAGE PREVIEW
                 </div>
 
                 <div className="p-6 space-y-2">
@@ -125,6 +131,7 @@ export default function Home() {
                   <a
                     href="https://discord.gg/muH44HDrea"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-block text-sm text-purple-300 hover:underline mt-2"
                   >
                     Order →
@@ -137,7 +144,7 @@ export default function Home() {
 
         {/* CARA ORDER */}
         <section id="cara-order" className="bg-[#0b0b2e] px-6 py-24">
-          <h2 className="text-3xl font-semibold text-purple-200 text-center mb-12">
+          <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-12">
             Cara Order
           </h2>
 
@@ -165,6 +172,16 @@ export default function Home() {
         {/* FOOTER */}
         <footer className="text-center text-purple-300/60 text-sm py-6 border-t border-purple-500/10">
           © {new Date().getFullYear()} Selene Shop • Moonlit Creations
+          <div className="mt-2">
+            <a
+              href="https://discord.gg/muH44HDrea"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-purple-300 hover:underline"
+            >
+              Join Discord
+            </a>
+          </div>
         </footer>
       </main>
     </>
