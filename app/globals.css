@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* ===== DEFAULT (JANGAN DIHAPUS) ===== */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -23,4 +24,43 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== 🌙 TAMBAHAN SELENE (DI BAWAH) ===== */
+
+/* Moon floating */
+@keyframes moon-float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-moon {
+  animation: moon-float 6s ease-in-out infinite;
+}
+
+/* Sparkle */
+.sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 9999px;
+  opacity: 0.8;
+  animation: sparkle 3s infinite ease-in-out;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
 }
