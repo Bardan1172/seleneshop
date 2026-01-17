@@ -39,28 +39,31 @@ body {
   animation: moon-float 6s ease-in-out infinite;
 }
 
-/* Sparkle */
+/* ✨ Sparkle (Random & Dynamic) */
 .sparkle {
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: white;
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, #ffffff, rgba(255,255,255,0.2));
   border-radius: 9999px;
-  opacity: 0.8;
-  animation: sparkle 3s infinite ease-in-out;
+  opacity: 0;
+  animation-name: sparkle-fade;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
-@keyframes sparkle {
+@keyframes sparkle-fade {
   0% {
     opacity: 0;
     transform: scale(0.5);
   }
   50% {
     opacity: 1;
-    transform: scale(1.2);
+    transform: scale(1.4);
   }
   100% {
     opacity: 0;
     transform: scale(0.5);
   }
 }
+
