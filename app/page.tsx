@@ -107,35 +107,101 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PRODUK */}
+        {/* PRODUK LIST - SELENE SHOP */}
         <section id="produk" className="bg-black px-6 py-24">
-          <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-12">
-            Produk Selene Shop
-          </h2>
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-12">
+              Layanan Kreatif Kami
+            </h2>
 
-          <div className="grid gap-8 max-w-6xl mx-auto grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              { name: "Cosmetica Face MC", desc: "Custom wajah Minecraft (mata, alis, mulut).", price: "Mulai 15K", time: "1–2 hari" },
-              { name: "Skin Minecraft", desc: "Skin full body custom, Java & Bedrock.", price: "Mulai 25K", time: "2–4 hari" },
-              { name: "Art / Commission", desc: "Fanart / OC sesuai style dan request.", price: "Mulai 30K", time: "3–7 hari" },
-              { name: "Minecraft Build", desc: "Build rumah atau base sesuai konsep.", price: "Mulai 50K", time: "By request" },
-            ].map((item) => (
-              <div
-                key={item.name}
-                className="bg-[#0b0b2e]/60 border border-purple-500/20 rounded-2xl overflow-hidden transition hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)]"
-              >
-                <div className="h-40 bg-gradient-to-br from-purple-500/20 to-purple-900/40 flex items-center justify-center text-purple-200/40 text-xs tracking-widest">
-                  IMAGE PREVIEW
-                </div>
-                <div className="p-6 space-y-2">
-                  <h3 className="text-purple-200 font-semibold">{item.name}</h3>
-                  <p className="text-sm text-purple-100/80">{item.desc}</p>
-                  <p className="text-sm text-purple-300 font-bold">💰 {item.price}</p>
-                  <p className="text-xs text-purple-100/60">⏱ {item.time}</p>
-                  <a href="https://discord.gg/muH44HDrea" className="inline-block text-sm text-purple-300 hover:underline mt-2">Order →</a>
-                </div>
+            <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              
+              {/* 1. Cosmetica Face */}
+              <div className="bg-[#0b0b2e]/60 border border-purple-500/20 rounded-2xl p-6 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] transition">
+                <h3 className="text-xl font-bold text-purple-300 mb-2">🌙 Cosmetica Face</h3>
+                <p className="text-xs text-purple-100/60 mb-4">*Khusus Minecraft Premium</p>
+                <ul className="text-sm text-purple-100/80 space-y-1 mb-6">
+                  <li>• Custom wajah (mata, alis, mulut)</li>
+                  <li>• Bisa request ekspresi & personal</li>
+                  <li className="pt-2 font-bold text-purple-200">💰 Only Face: 30K</li>
+                  <li className="font-bold text-purple-200">💰 Face + Rambut HD: 50K</li>
+                </ul>
+                <a href="https://discord.gg/muH44HDrea" className="block text-center py-2 bg-purple-600/20 border border-purple-500/40 rounded-lg text-purple-200 hover:bg-purple-600 transition">Order Face</a>
               </div>
-            ))}
+
+              {/* 2. Minecraft Skin */}
+              <div className="bg-[#0b0b2e]/60 border border-purple-500/20 rounded-2xl p-6 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] transition">
+                <h3 className="text-xl font-bold text-purple-300 mb-4">🎮 Minecraft Skin</h3>
+                <ul className="text-sm text-purple-100/80 space-y-1 mb-6">
+                  <li>• Support Java & Bedrock</li>
+                  <li>• Tema: Anime, Fantasy, Casual, dll.</li>
+                  <li className="pt-2 font-bold text-purple-200">💰 Simple: 10K</li>
+                  <li className="font-bold text-purple-200">💰 Full Detail: 15K</li>
+                </ul>
+                <a href="https://discord.gg/muH44HDrea" className="block text-center py-2 bg-purple-600/20 border border-purple-500/40 rounded-lg text-purple-200 hover:bg-purple-600 transition">Order Skin</a>
+              </div>
+
+              {/* 3. Art / Illustration */}
+              <div className="bg-[#0b0b2e]/60 border border-purple-500/20 rounded-2xl p-6 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] transition">
+                <h3 className="text-xl font-bold text-purple-300 mb-4">🎨 Art & Illustration</h3>
+                <ul className="text-sm text-purple-100/80 space-y-1 mb-6">
+                  <li>• Fanart / Original Character (OC)</li>
+                  <li>• Simple Shade: <span className="text-purple-200 font-bold">25K</span></li>
+                  <li>• Simple Chibi PNGtuber: <span className="text-purple-200 font-bold">25K</span></li>
+                  <li>• Simple PNGtuber: <span className="text-purple-200 font-bold">30K</span></li>
+                  <li className="pt-2 text-xs italic text-purple-300">Full Render (Close Up): Request/DM</li>
+                </ul>
+                <a href="https://discord.gg/muH44HDrea" className="block text-center py-2 bg-purple-600/20 border border-purple-500/40 rounded-lg text-purple-200 hover:bg-purple-600 transition">Order Art</a>
+              </div>
+
+              {/* 4. Photoshoot & Render */}
+              <div className="bg-[#0b0b2e]/60 border border-purple-500/20 rounded-2xl p-6 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] transition">
+                <h3 className="text-xl font-bold text-purple-300 mb-4">📸 MC Photoshoot</h3>
+                <ul className="text-sm text-purple-100/80 space-y-1 mb-4">
+                  <li>• Single / Couple / Group (3-5)</li>
+                  <li>• HD / Cinematic Render</li>
+                  <li>• Custom Background (Nether, End, dll)</li>
+                </ul>
+                <p className="text-xs text-purple-300 mb-6">Harga disesuaikan jumlah karakter & kerumitan.</p>
+                <a href="https://discord.gg/muH44HDrea" className="block text-center py-2 bg-purple-600/20 border border-purple-500/40 rounded-lg text-purple-200 hover:bg-purple-600 transition">Booking Session</a>
+              </div>
+
+              {/* 5. Custom Sticker Chibi */}
+              <div className="bg-[#0b0b2e]/60 border border-purple-500/20 rounded-2xl p-6 hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] transition">
+                <h3 className="text-xl font-bold text-purple-300 mb-4">😆 Custom Sticker</h3>
+                <ul className="text-sm text-purple-100/80 space-y-1 mb-6">
+                  <li>• 😊 Bust-up / Head Only: <span className="text-purple-200 font-bold">10K</span></li>
+                  <li>• 🧩 Pack (6 Sticker): <span className="text-purple-200 font-bold">50K</span></li>
+                  <li>• 🧩 Pack (12 Sticker): <span className="text-purple-200 font-bold">100K</span></li>
+                </ul>
+                <a href="https://discord.gg/muH44HDrea" className="block text-center py-2 bg-purple-600/20 border border-purple-500/40 rounded-lg text-purple-200 hover:bg-purple-600 transition">Order Sticker</a>
+              </div>
+
+              {/* 6. Minecraft Build */}
+              <div className="bg-[#0b0b2e]/60 border border-purple-400 rounded-2xl p-6 shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+                <h3 className="text-xl font-bold text-purple-300 mb-4">🏗️ Minecraft Build</h3>
+                <div className="space-y-4 text-xs text-purple-100/80 mb-6">
+                  <div className="border-l-2 border-green-500 pl-2">
+                    <p className="font-bold text-green-400">BASIC: $1 – $5</p>
+                    <p>Small structures & simple detail.</p>
+                  </div>
+                  <div className="border-l-2 border-blue-500 pl-2">
+                    <p className="font-bold text-blue-400">ADVANCED: $5 – $20</p>
+                    <p>Fantasy base, mini villages, themes.</p>
+                  </div>
+                  <div className="border-l-2 border-purple-500 pl-2">
+                    <p className="font-bold text-purple-400">ELITE: $30 – $100</p>
+                    <p>Complex cities & large castles.</p>
+                  </div>
+                  <div className="border-l-2 border-red-500 pl-2">
+                    <p className="font-bold text-red-400">ORIGIN: $150+</p>
+                    <p>Mega projects & exclusive quality.</p>
+                  </div>
+                </div>
+                <a href="https://discord.gg/muH44HDrea" className="block text-center py-2 bg-purple-600 text-white rounded-lg font-bold hover:bg-purple-700 transition">Custom Build</a>
+              </div>
+
+            </div>
           </div>
         </section>
 
