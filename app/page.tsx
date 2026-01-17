@@ -30,7 +30,7 @@ export default function Home() {
             </a>
 
             <a
-              href="https://discord.gg/ISI_DISCORD_KAMU"
+              href="https://discord.gg/muH44HDrea"
               className="px-6 py-3 rounded-full border border-purple-400 hover:bg-purple-400/10 transition"
             >
               Order via Discord
