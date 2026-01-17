@@ -90,10 +90,10 @@ Selene Shop adalah tempat di mana kreativitas bertemu dengan cahaya bulan. Kami 
 
           <div className="grid gap-6 max-w-5xl mx-auto grid-cols-1 md:grid-cols-2">
             {[
-              "Custom sesuai request & referensi",
-              "Tema aesthetic, fantasy, dan night-style",
-              "Komunikasi jelas & ramah via Discord",
-              "Hasil rapi, detail, dan original",
+              "ustom Sesuai Request & Referensi Kami sangat menghargai ide dan visi kamu. Selene Shop memberikan kebebasan penuh bagi pelanggan untuk mengajukan konsep sendiri atau memberikan referensi gambar tertentu. Kami akan menerjemahkan imajinasi tersebut ke dalam desain yang presisi agar hasilnya benar-benar merepresentasikan identitas unik kamu.",
+              "ema Aesthetic, Fantasy, dan Night-Style Sesuai dengan nama kami, spesialisasi Selene Shop terletak pada estetika yang elegan. Kami ahli dalam memadukan nuansa fantasi yang ajaib dengan gaya malam yang lembut namun ikonik. Jika kamu mencari tampilan yang dreamy, misterius, atau artistik, gaya desain kami adalah pilihan yang paling tepat.",
+              "Komunikasi Jelas & Ramah via Discord Kami percaya bahwa hasil yang bagus berawal dari komunikasi yang baik. Melalui Discord, kami menyediakan wadah diskusi yang responsif dan transparan. Kamu akan mendapatkan pembaruan berkala mengenai progres pesanan, sehingga kamu merasa tenang dan terlibat dalam proses kreatifnya.",
+              "Hasil Rapi, Detail, dan Original Kualitas adalah prioritas utama kami. Setiap piksel pada skin Minecraft maupun setiap garis pada art commission dikerjakan dengan tingkat ketelitian tinggi. Kami menjamin keaslian karya (originalitas), memastikan bahwa apa yang kamu terima memiliki standar profesional dan tidak pasaran.",
             ].map((reason) => (
               <div
                 key={reason}
