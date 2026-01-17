@@ -9,16 +9,10 @@ export default function Home() {
           </span>
 
           <div className="flex gap-6 text-sm">
-            <a
-              href="#beranda"
-              className="relative text-purple-100 hover:text-purple-300 after:absolute after:-bottom-1 after:left-0 after:h-[1px] after:w-0 after:bg-purple-400 hover:after:w-full after:transition-all"
-            >
+            <a href="#beranda" className="text-purple-100 hover:text-purple-300">
               Beranda
             </a>
-            <a
-              href="#produk"
-              className="relative text-purple-100 hover:text-purple-300 after:absolute after:-bottom-1 after:left-0 after:h-[1px] after:w-0 after:bg-purple-400 hover:after:w-full after:transition-all"
-            >
+            <a href="#produk" className="text-purple-100 hover:text-purple-300">
               Produk
             </a>
             <a
@@ -67,6 +61,45 @@ export default function Home() {
                 Order via Discord
               </a>
             </div>
+          </div>
+        </section>
+
+        {/* TENTANG */}
+        <section id="tentang" className="bg-black px-6 py-24">
+          <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-8">
+            Tentang Selene Shop
+          </h2>
+
+          <p className="max-w-3xl mx-auto text-center text-purple-100/80 leading-relaxed">
+            Selene Shop adalah studio kreatif bertema bulan dan malam
+            yang menyediakan layanan custom Minecraft dan art commission
+            dengan sentuhan fantasy, aesthetic, dan detail tinggi.
+            <br /><br />
+            Fokus kami adalah menghadirkan hasil yang personal, rapi,
+            dan sesuai karakter klien.
+          </p>
+        </section>
+
+        {/* ALASAN */}
+        <section id="alasan" className="bg-[#0b0b2e] px-6 py-24">
+          <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-12">
+            Mengapa Harus Beli di Selene Shop?
+          </h2>
+
+          <div className="grid gap-6 max-w-5xl mx-auto grid-cols-1 md:grid-cols-2">
+            {[
+              "Custom sesuai request & referensi",
+              "Tema aesthetic, fantasy, dan night-style",
+              "Komunikasi jelas & ramah via Discord",
+              "Hasil rapi, detail, dan original",
+            ].map((reason) => (
+              <div
+                key={reason}
+                className="bg-black/40 border border-purple-500/20 rounded-xl p-6 text-purple-100/90"
+              >
+                ✨ {reason}
+              </div>
+            ))}
           </div>
         </section>
 
@@ -172,16 +205,6 @@ export default function Home() {
         {/* FOOTER */}
         <footer className="text-center text-purple-300/60 text-sm py-6 border-t border-purple-500/10">
           © {new Date().getFullYear()} Selene Shop • Moonlit Creations
-          <div className="mt-2">
-            <a
-              href="https://discord.gg/muH44HDrea"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-purple-300 hover:underline"
-            >
-              Join Discord
-            </a>
-          </div>
         </footer>
       </main>
     </>
