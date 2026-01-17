@@ -1,8 +1,25 @@
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import type { Metadata } from "next";
+import { Playfair_Display, Poppins } from "next/font/google";
 
-export const metadata = {
-  title: "Selene Shop",
+/* ===== FONT SETUP ===== */
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
+/* ===== METADATA ===== */
+export const metadata: Metadata = {
+  title: "Selene Shop 🌙",
   description: "Moonlit Minecraft & Art Commission Shop",
 };
 
@@ -13,11 +30,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <body className="bg-black">
+      <body
+        className={`
+          ${playfair.variable}
+          ${poppins.variable}
+          bg-black text-white antialiased
+        `}
+      >
         <Navbar />
         {children}
       </body>
     </html>
   );
 }
-
