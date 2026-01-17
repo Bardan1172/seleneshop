@@ -71,9 +71,11 @@ export default function Home() {
           </h2>
 
           <p className="max-w-3xl mx-auto text-center text-purple-100/80 leading-relaxed">
-            Selene Shop adalah studio kreatif bertema bulan dan malam
-            yang menyediakan layanan custom Minecraft dan art commission
-            dengan sentuhan fantasy, aesthetic, dan detail tinggi.
+            Selene Shop adalah studio kreatif digital bertema bulan yang menghadirkan layanan khusus Minecraft dan commission art. Kami berfokus pada detail, estetika, dan kualitas tinggi untuk menciptakan karakter yang unik dan berkarakter, mulai dari pembuatan Cosmetica Face, kustomisasi Skin Minecraft, hingga karya seni digital sesuai permintaan.
+
+Terinspirasi dari keindahan malam yang elegan dan lembut, kami berkomitmen memberikan hasil desain yang rapi dan konsisten melalui proses yang transparan. Kami mengutamakan kepuasan pelanggan dengan komunikasi yang ramah, di mana setiap pesanan dikerjakan secara profesional sesuai antrean setelah pembayaran dikonfirmasi.
+
+Selene Shop adalah tempat di mana kreativitas bertemu dengan cahaya bulan. Kami siap membantu kamu tampil beda dan estetik di dunia digital.
             <br /><br />
             Fokus kami adalah menghadirkan hasil yang personal, rapi,
             dan sesuai karakter klien.
