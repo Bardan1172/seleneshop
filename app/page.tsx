@@ -1,4 +1,4 @@
-"use client"; // Tambahkan ini di baris paling atas
+"use client";
 
 export default function Home() {
   return (
@@ -9,153 +9,125 @@ export default function Home() {
           <span className="text-purple-200 font-semibold text-lg">
             Selene Shop 🌙
           </span>
-
           <div className="flex gap-6 text-sm">
-            <a href="#beranda" className="text-purple-100 hover:text-purple-300 transition">
-              Beranda
-            </a>
-            <a href="#produk" className="text-purple-100 hover:text-purple-300 transition">
-              Produk
-            </a>
-            <a
-              href="https://discord.gg/muH44HDrea"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-purple-300 hover:text-purple-200 transition"
-            >
-              Discord
-            </a>
+            <a href="#beranda" className="text-purple-100 hover:text-purple-300 transition">Beranda</a>
+            <a href="#produk" className="text-purple-100 hover:text-purple-300 transition">Produk</a>
+            <a href="https://discord.gg/muH44HDrea" target="_blank" className="text-purple-300 hover:text-purple-200 transition">Discord</a>
           </div>
         </div>
       </nav>
 
-      <main className="pt-16 min-h-screen text-white bg-black">
-
-        {/* BERANDA / HERO */}
-        <section
-          id="beranda"
-          className="min-h-[80vh] bg-gradient-to-b from-[#0b0b2e] to-black flex items-center justify-center border-b border-purple-500/10"
-        >
+      <main className="min-h-screen text-white bg-black">
+        
+        {/* 1. BERANDA / HERO */}
+        <section id="beranda" className="pt-32 pb-20 bg-gradient-to-b from-[#0b0b2e] to-black flex items-center justify-center border-b border-purple-500/10">
           <div className="text-center max-w-2xl px-6">
-            <h1 className="text-5xl md:text-6xl font-bold text-purple-200 mb-6 tracking-tighter">
-              Selene Shop 🌙
-            </h1>
-
+            <h1 className="text-5xl md:text-6xl font-bold text-purple-200 mb-6">Selene Shop 🌙</h1>
             <p className="text-purple-100 mb-8 leading-relaxed">
-              Moonlit Minecraft Skin, Cosmetica Face, Art Commission,
-              dan Build aesthetic dengan sentuhan fantasy & night theme.
+              Moonlit Minecraft Skin, Cosmetica Face, Art Commission, dan Build aesthetic dengan sentuhan fantasy & night theme.
             </p>
-
             <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href="#produk"
-                className="px-8 py-3 rounded-full bg-purple-600 hover:bg-purple-700 transition font-bold"
-              >
-                Lihat Produk
-              </a>
-
-              <a
-                href="https://discord.gg/muH44HDrea"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-3 rounded-full border border-purple-400 hover:bg-purple-400/10 transition font-bold"
-              >
-                Order via Discord
-              </a>
+              <a href="#produk" className="px-6 py-3 rounded-full bg-purple-600 hover:bg-purple-700 transition">Lihat Produk</a>
+              <a href="https://discord.gg/muH44HDrea" target="_blank" className="px-6 py-3 rounded-full border border-purple-400 hover:bg-purple-400/10 transition">Order via Discord</a>
             </div>
           </div>
         </section>
 
-        {/* TENTANG */}
-<section id="tentang" className="bg-[#05051a] px-6 py-32 relative overflow-hidden">
-  {/* Aksen Partikel/Cahaya di Latar Belakang */}
-  <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-purple-600/5 blur-[100px] rounded-full"></div>
-  <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-600/5 blur-[100px] rounded-full"></div>
-
-  <div className="max-w-4xl mx-auto relative group">
-    {/* Outer Glow Decor */}
-    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-[40px] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
-    
-    <div className="relative bg-[#0b0b2e]/40 border border-purple-500/10 backdrop-blur-xl p-12 md:p-16 rounded-[40px] shadow-2xl">
-      <div className="flex flex-col items-center">
-        
-        {/* Header Section */}
-        <h2 className="text-4xl font-title font-bold text-transparent bg-clip-text bg-gradient-to-b from-purple-100 to-purple-300 text-center mb-4 tracking-tight">
-          Tentang Selene Shop
-        </h2>
-        
-        {/* Slogan dengan gaya lebih puitis */}
-        <div className="flex items-center gap-4 mb-10">
-          <div className="h-[1px] w-8 bg-purple-500/30"></div>
-          <p className="text-purple-300/90 font-light tracking-[0.2em] uppercase text-[10px] sm:text-xs">
-            "Where creativity meets the moonlight"
-          </p>
-          <div className="h-[1px] w-8 bg-purple-500/30"></div>
-        </div>
-
-        {/* Content Body */}
-        <div className="space-y-6 text-center max-w-2xl">
-          <p className="text-purple-100/80 leading-relaxed text-lg font-light">
-            Selene Shop adalah <span className="text-purple-200 font-medium">studio kreatif digital</span> bertema bulan yang menghadirkan layanan khusus <span className="text-purple-200 font-medium">Minecraft</span> dan <span className="text-purple-200 font-medium">commission art</span>. 
-          </p>
-          
-          <p className="text-purple-100/60 leading-relaxed text-sm md:text-base italic border-t border-purple-500/10 pt-6">
-            Terinspirasi dari keindahan malam yang elegan dan lembut, kami berkomitmen memberikan hasil desain yang rapi dan konsisten melalui proses yang transparan. Kami siap membantu kamu tampil beda dan estetik di dunia digital.
-          </p>
-        </div>
-
-        {/* Moon Icon / Ornament */}
-        <div className="mt-10 text-purple-400/30 text-2xl">
-          ✦
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-        {/* PRODUK LIST (Sama seperti kodemu, sudah sangat bagus) */}
-        <section id="produk" className="bg-black px-6 py-24">
-          <div className="max-w-7xl mx-auto text-center mb-16">
-            <h2 className="text-4xl font-bold text-purple-200 mb-4">Layanan Kreatif Kami</h2>
-            <div className="h-1 w-20 bg-purple-600 mx-auto"></div>
-          </div>
-          
-          <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-            {/* Pakai layout card yang kamu buat, sudah oke! */}
-            {/* ... bagian ini tetap sama dengan kodemu ... */}
+        {/* 2. TENTANG */}
+        <section id="tentang" className="bg-[#05051a] px-6 py-24 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-purple-600/5 blur-[100px] rounded-full"></div>
+          <div className="max-w-4xl mx-auto relative bg-[#0b0b2e]/40 border border-purple-500/10 backdrop-blur-xl p-12 rounded-[40px]">
+            <div className="flex flex-col items-center text-center">
+              <h2 className="text-3xl font-bold text-purple-100 mb-4">Tentang Selene Shop</h2>
+              <p className="text-purple-100/80 text-lg font-light mb-6">
+                Selene Shop adalah <span className="text-purple-200 font-medium">studio kreatif digital</span> bertema bulan khusus Minecraft dan commission art.
+              </p>
+              <p className="text-purple-100/60 italic border-t border-purple-500/10 pt-6">
+                Terinspirasi dari keindahan malam yang elegan, kami berkomitmen memberikan hasil desain yang rapi dan konsisten.
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* PEMBAYARAN */}
-        <section id="pembayaran" className="bg-black px-6 py-24">
-          <div className="max-w-5xl mx-auto bg-[#0b0b2e]/60 border border-purple-500/20 rounded-[40px] p-8 md:p-12 shadow-[0_0_50px_rgba(168,85,247,0.1)] text-center">
-            <h2 className="text-3xl font-bold text-purple-200 mb-2">Metode Pembayaran</h2>
-            <div className="h-1 w-20 bg-purple-500 mx-auto mb-10"></div>
-            
-            <a 
-              href="https://sociabuzz.com/seleneshop/tribe" 
-              target="_blank" 
-              className="inline-flex items-center gap-4 bg-purple-600 hover:bg-purple-500 px-8 py-4 rounded-2xl transition shadow-lg shadow-purple-600/20"
-            >
-              <span className="text-2xl">🛡️</span>
-              <span className="font-bold text-lg">Bayar Otomatis via Sociabuzz</span>
-            </a>
-            
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 opacity-70">
-              {['OVO', 'DANA', 'ShopeePay', 'QRIS'].map((pay) => (
-                <div key={pay} className="bg-white/5 border border-white/10 py-4 rounded-xl">
-                  <span className="font-bold text-sm tracking-widest">{pay}</span>
+        {/* 3. ALASAN */}
+        <section id="alasan" className="bg-black px-6 py-24 border-y border-purple-500/10">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-purple-200 text-center mb-16">Mengapa Memilih Kami?</h2>
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="p-6 bg-white/5 rounded-2xl border border-purple-500/10 hover:border-purple-500/30 transition">
+                <h4 className="font-bold text-purple-200 mb-2">✨ Custom Request</h4>
+                <p className="text-sm text-purple-100/60">Desain presisi sesuai identitas unik kamu.</p>
+              </div>
+              <div className="p-6 bg-white/5 rounded-2xl border border-purple-500/10 hover:border-purple-500/30 transition">
+                <h4 className="font-bold text-purple-200 mb-2">✨ Tema Aesthetic</h4>
+                <p className="text-sm text-purple-100/60">Perpaduan nuansa fantasi dan gaya malam yang lembut.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. PRODUK LIST */}
+        <section id="produk" className="bg-[#05051a] px-6 py-24">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold text-purple-200 text-center mb-12">Layanan Kreatif Kami</h2>
+            <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              
+              {/* Card Cosmetica */}
+              <div className="bg-[#0b0b2e]/60 border border-purple-400/30 rounded-2xl p-6 flex flex-col hover:border-purple-400 transition">
+                <h3 className="text-xl font-bold text-purple-300 mb-2">🌙 Cosmetica Face</h3>
+                <p className="text-xs text-purple-100/60 mb-4">*Minecraft Premium Only</p>
+                <div className="space-y-3 mb-6">
+                   <p className="text-sm font-bold text-purple-400">ONLY FACE: 30K</p>
+                   <p className="text-sm font-bold text-blue-400">FACE + RAMBUT HD: 50K</p>
                 </div>
-              ))}
+                <a href="https://discord.gg/muH44HDrea" className="mt-auto block text-center py-2 bg-purple-600 rounded-lg font-bold">Order Face</a>
+              </div>
+
+              {/* Card Skin */}
+              <div className="bg-[#0b0b2e]/60 border border-purple-400/30 rounded-2xl p-6 flex flex-col hover:border-purple-400 transition">
+                <h3 className="text-xl font-bold text-purple-300 mb-2">🎮 Minecraft Skin</h3>
+                <p className="text-xs text-purple-100/60 mb-4">Custom skin high quality</p>
+                <div className="space-y-3 mb-6">
+                   <p className="text-sm font-bold text-green-400">SIMPLE: 10K</p>
+                   <p className="text-sm font-bold text-purple-400">FULL DETAIL: 15K</p>
+                </div>
+                <a href="https://discord.gg/muH44HDrea" className="mt-auto block text-center py-2 bg-purple-600 rounded-lg font-bold">Order Skin</a>
+              </div>
+
+              {/* Card Build */}
+              <div className="bg-[#0b0b2e]/60 border border-purple-400/30 rounded-2xl p-6 flex flex-col hover:border-purple-400 transition">
+                <h3 className="text-xl font-bold text-purple-300 mb-2">🏗️ Minecraft Build</h3>
+                <p className="text-xs text-purple-100/60 mb-4">Mega Project & Aesthetic Build</p>
+                <div className="space-y-2 mb-6 text-[10px]">
+                   <p className="font-bold text-blue-400">ADVANCED: 75K - 300K</p>
+                   <p className="font-bold text-purple-400">ELITE: 450K - 1.5JT</p>
+                </div>
+                <a href="https://discord.gg/muH44HDrea" className="mt-auto block text-center py-2 bg-purple-600 rounded-lg font-bold">Order Build</a>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* 5. PEMBAYARAN */}
+        <section id="pembayaran" className="bg-black px-6 py-24">
+          <div className="max-w-4xl mx-auto bg-[#0b0b2e]/60 border border-purple-500/20 rounded-[40px] p-10 text-center">
+            <h2 className="text-3xl font-bold text-purple-200 mb-8">Metode Pembayaran</h2>
+            <a href="https://sociabuzz.com/seleneshop/tribe" target="_blank" className="inline-block bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-2xl font-bold transition mb-8">
+              Bayar via Sociabuzz (QRIS/Bank)
+            </a>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 opacity-60">
+              <div className="border border-white/10 py-2 rounded-lg">OVO</div>
+              <div className="border border-white/10 py-2 rounded-lg">DANA</div>
+              <div className="border border-white/10 py-2 rounded-lg">SPay</div>
+              <div className="border border-white/10 py-2 rounded-lg">QRIS</div>
             </div>
           </div>
         </section>
 
         {/* FOOTER */}
-        <footer className="text-center text-purple-300/60 text-sm py-12 border-t border-purple-500/10 bg-black">
+        <footer className="text-center text-purple-300/40 text-xs py-12 bg-black border-t border-purple-500/10">
           © {new Date().getFullYear()} Selene Shop • Moonlit Creations
-          <br />
-          <span className="text-[10px] opacity-50 uppercase tracking-[0.2em]">Crafted for the Minecraft Community</span>
         </footer>
       </main>
     </>
