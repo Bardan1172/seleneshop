@@ -289,35 +289,70 @@ export default function Home() {
           </div>
         </section>
         
-        {/* METODE PEMBAYARAN - Layout Card Putih */}
+       {/* METODE PEMBAYARAN - Elegant Dark Theme with Link */}
         <section id="pembayaran" className="bg-black px-6 py-24">
-          <div className="max-w-4xl mx-auto bg-[#0b0b2e]/40 border border-purple-500/10 rounded-[40px] p-12">
-            <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-4">
+          <div className="max-w-5xl mx-auto bg-[#0b0b2e]/60 border border-purple-500/20 rounded-[40px] p-8 md:p-12 shadow-[0_0_50px_rgba(168,85,247,0.1)]">
+            <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-2">
               Metode Pembayaran
             </h2>
-            <p className="text-purple-100/60 text-center mb-12">
-              Kami menerima pembayaran melalui dompet digital populer.
+            <div className="h-1 w-20 bg-purple-500 mx-auto mb-6"></div>
+            <p className="text-purple-100/60 text-center mb-10 max-w-md mx-auto">
+              Gunakan Sociabuzz untuk pembayaran otomatis via QRIS & Bank, atau pilih metode manual lainnya.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-800">
-              <div className="bg-white rounded-2xl p-6 flex flex-col items-center shadow-lg transition-transform hover:scale-105">
-                <div className="text-purple-600 text-4xl mb-3">💜</div>
-                <span className="font-bold">OVO</span>
-                <p className="text-[10px] text-gray-400 uppercase">Transfer Langsung</p>
-              </div>
+            <div className="flex flex-col gap-6">
+              {/* Tombol Utama Sociabuzz */}
+              <a 
+                href="https://sociabuzz.com/seleneshop/tribe" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group relative overflow-hidden bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl p-[2px] transition-transform hover:scale-[1.02] active:scale-95"
+              >
+                <div className="bg-[#0b0b2e] rounded-2xl p-6 flex items-center justify-between group-hover:bg-transparent transition-colors">
+                  <div className="flex items-center gap-4 text-left">
+                    <span className="text-4xl">🛡️</span>
+                    <div>
+                      <span className="block font-bold text-white text-xl">Sociabuzz (Bayar Otomatis)</span>
+                      <p className="text-xs text-purple-200/70">Mendukung QRIS, GoPay, Dana, OVO, & Semua Bank Transfer.</p>
+                    </div>
+                  </div>
+                  <div className="hidden sm:block bg-white/10 px-4 py-2 rounded-lg border border-white/20 text-white font-semibold group-hover:bg-white group-hover:text-purple-600 transition">
+                    Klik di Sini
+                  </div>
+                </div>
+              </a>
 
-              <div className="bg-white rounded-2xl p-6 flex flex-col items-center shadow-lg transition-transform hover:scale-105">
-                <div className="text-blue-500 text-4xl mb-3">💙</div>
-                <span className="font-bold">DANA</span>
-                <p className="text-[10px] text-gray-400 uppercase">Bayar Cepat</p>
-              </div>
+              {/* Grid untuk E-Wallets Lainnya */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-[#0b0b2e]/80 border border-purple-500/10 rounded-2xl p-6 flex flex-col items-center transition hover:border-purple-500/40">
+                  <div className="text-3xl mb-3 drop-shadow-[0_0_10px_rgba(168,85,247,0.4)]">💜</div>
+                  <span className="font-bold text-purple-100">OVO</span>
+                  <p className="text-[10px] text-purple-100/40 uppercase mt-1">Manual</p>
+                </div>
 
-              <div className="bg-white rounded-2xl p-6 flex flex-col items-center shadow-lg transition-transform hover:scale-105">
-                <div className="text-orange-500 text-4xl mb-3">🧡</div>
-                <span className="font-bold">ShopeePay</span>
-                <p className="text-[10px] text-gray-400 uppercase">Transfer Saldo</p>
+                <div className="bg-[#0b0b2e]/80 border border-purple-500/10 rounded-2xl p-6 flex flex-col items-center transition hover:border-purple-500/40">
+                  <div className="text-3xl mb-3 drop-shadow-[0_0_10px_rgba(59,130,246,0.4)]">💙</div>
+                  <span className="font-bold text-purple-100">DANA</span>
+                  <p className="text-[10px] text-purple-100/40 uppercase mt-1">Manual</p>
+                </div>
+
+                <div className="bg-[#0b0b2e]/80 border border-purple-500/10 rounded-2xl p-6 flex flex-col items-center transition hover:border-purple-500/40">
+                  <div className="text-3xl mb-3 drop-shadow-[0_0_10px_rgba(249,115,22,0.4)]">🧡</div>
+                  <span className="font-bold text-purple-100">ShopeePay</span>
+                  <p className="text-[10px] text-purple-100/40 uppercase mt-1">Manual</p>
+                </div>
+
+                <div className="bg-[#0b0b2e]/80 border border-purple-500/10 rounded-2xl p-6 flex flex-col items-center transition hover:border-purple-500/40">
+                  <div className="text-3xl mb-3 drop-shadow-[0_0_10px_rgba(34,197,94,0.4)]">💹</div>
+                  <span className="font-bold text-purple-100">QRIS</span>
+                  <p className="text-[10px] text-purple-100/40 uppercase mt-1">Scan & Pay</p>
+                </div>
               </div>
             </div>
+            
+            <p className="text-center text-[11px] text-purple-100/30 mt-8 italic">
+              *Setelah membayar via Sociabuzz, jangan lupa kirim bukti pembayarannya di room tiket Discord ya!
+            </p>
           </div>
         </section>
 
