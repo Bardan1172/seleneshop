@@ -67,45 +67,16 @@ export default function Home() {
         </section>
 
         {/* BRAND PARTNERS SECTION */}
-        <section className="bg-black border-y border-purple-500/10 py-20">
+        <section className="bg-black border-y border-purple-500/10 py-8">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-col items-center justify-center gap-14">
-              
-              {/* Official Partners - Sangat Jelas & Besar */}
-              <div className="text-center relative">
-                <span className="text-purple-200 text-xl md:text-3xl uppercase tracking-[0.7em] font-black drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">
-                  Official Partners
-                </span>
-                <div className="h-[3px] w-48 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto mt-4"></div>
-              </div>
-              
-              <div className="flex flex-wrap items-center justify-center gap-10 md:gap-20">
-                
-                {/* SELENE SHOP - Hover: Ungu Langit Malam */}
-                <div className="group cursor-default">
-                  <span className="text-3xl md:text-5xl font-bold tracking-tighter text-white/10 group-hover:text-transparent bg-clip-text group-hover:bg-gradient-to-b group-hover:from-[#e0e7ff] group-hover:via-[#818cf8] group-hover:to-[#4338ca] transition-all duration-700 group-hover:drop-shadow-[0_0_20px_rgba(129,140,248,0.6)]">
-                    SELENE SHOP
-                  </span>
-                </div>
-
-                <span className="text-purple-500/20 text-3xl font-light hidden lg:block">✕</span>
-
-                {/* HEPPYCLOUD - Hover: Ungu ke Magenta */}
-                <div className="group cursor-default">
-                  <span className="text-3xl md:text-5xl font-bold tracking-tighter text-white/10 group-hover:text-transparent bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#a855f7] group-hover:to-[#d946ef] transition-all duration-700 group-hover:drop-shadow-[0_0_25px_rgba(217,70,239,0.7)]">
-                    HEPPYCLOUD
-                  </span>
-                </div>
-
-                <span className="text-purple-500/20 text-3xl font-light hidden lg:block">✕</span>
-
-                {/* BANGBLAZE - Hover: Orange Kemerahan */}
-                <div className="group cursor-default">
-                  <span className="text-3xl md:text-5xl font-bold tracking-tighter text-white/10 group-hover:text-transparent bg-clip-text group-hover:bg-gradient-to-br group-hover:from-[#fb923c] group-hover:via-[#f97316] group-hover:to-[#dc2626] transition-all duration-700 group-hover:drop-shadow-[0_0_20px_rgba(249,115,22,0.6)]">
-                    BANGBLAZE
-                  </span>
-                </div>
-
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+              <span className="text-purple-400/40 text-[10px] uppercase tracking-[0.3em] font-medium">Official Partners</span>
+              <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+                <span className="text-lg md:text-xl font-bold tracking-tighter text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">SELENE SHOP</span>
+                <span className="text-purple-500 text-xl">✕</span>
+                <span className="text-lg md:text-xl font-bold tracking-tighter text-blue-300 drop-shadow-[0_0_10px_rgba(147,197,253,0.3)]">HEPPYCLOUD</span>
+                <span className="text-purple-500 text-xl">✕</span>
+                <span className="text-lg md:text-xl font-bold tracking-tighter text-orange-400 drop-shadow-[0_0_10px_rgba(251,146,60,0.3)]">BANGBLAZE</span>
               </div>
             </div>
           </div>
