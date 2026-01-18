@@ -5,13 +5,16 @@ import { Playfair_Display, Poppins } from "next/font/google";
 /* ===== FONT SETUP ===== */
 const playfair = Playfair_Display({
   subsets: ["latin"],
+  // Menambahkan varian Italic untuk kesan puitis
+  style: ['normal', 'italic'],
   variable: "--font-playfair",
   display: "swap",
 });
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  // Menambah weight 200 (Extra Light) untuk kesan premium
+  weight: ["200", "300", "400", "500", "600"], 
   variable: "--font-poppins",
   display: "swap",
 });
@@ -31,12 +34,11 @@ export default function RootLayout({
     <html lang="id" className="scroll-smooth">
       <body
         className={`
-          ${playfair.variable}
-          ${poppins.variable}
+          ${playfair.variable} 
+          ${poppins.variable} 
           font-sans bg-black text-white antialiased
         `}
       >
-        {/* Navbar TIDAK dipanggil di sini karena kamu sudah menaruhnya di page.tsx */}
         {children}
       </body>
     </html>
