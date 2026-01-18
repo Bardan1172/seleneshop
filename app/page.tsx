@@ -66,30 +66,32 @@ export default function Home() {
           </div>
         </section>
 
-        {{/* BRAND PARTNERS SECTION */}
-<section className="bg-black border-y border-purple-500/10 py-10">
+        {/* BRAND PARTNERS SECTION */}
+<section className="bg-black border-y border-purple-500/10 py-12">
   <div className="max-w-7xl mx-auto px-6">
-    <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-      <span className="text-purple-400/40 text-[10px] uppercase tracking-[0.3em] font-medium">Official Partners</span>
+    <div className="flex flex-col items-center justify-center gap-8">
+      {/* Tulisan Official Partners di tengah atas */}
+      <span className="text-purple-400/50 text-[10px] uppercase tracking-[0.4em] font-semibold border-b border-purple-500/20 pb-2">
+        Official Partners
+      </span>
       
-      <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
+      <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
         {/* SELENE SHOP */}
-        <span className="text-xl md:text-2xl font-bold tracking-tighter text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+        <span className="text-xl md:text-2xl font-bold tracking-tighter text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
           SELENE SHOP
         </span>
 
         <span className="text-purple-500/30 text-xl font-light">✕</span>
 
-        {/* HEPPYCLOUD - Ungu Gradasi Magenta */}
-        <span className="text-xl md:text-2xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-magenta-500 to-pink-500 drop-shadow-[0_0_15px_rgba(217,70,239,0.4)]" 
-              style={{ backgroundImage: 'linear-gradient(to right, #a855f7, #d946ef)' }}>
+        {/* HEPPYCLOUD - Ungu ke Magenta Gradient */}
+        <span className="text-xl md:text-3xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] to-[#d946ef] drop-shadow-[0_0_20px_rgba(217,70,239,0.4)]">
           HEPPYCLOUD
         </span>
 
         <span className="text-purple-500/30 text-xl font-light">✕</span>
 
         {/* BANGBLAZE */}
-        <span className="text-xl md:text-2xl font-bold tracking-tighter text-orange-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.4)]">
+        <span className="text-xl md:text-2xl font-bold tracking-tighter text-orange-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.3)]">
           BANGBLAZE
         </span>
       </div>
