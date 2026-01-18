@@ -28,15 +28,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id">
+    <html lang="id" className="scroll-smooth">
       <body
         className={`
           ${playfair.variable}
           ${poppins.variable}
-          bg-black text-white antialiased
+          font-sans bg-black text-white antialiased
         `}
       >
-        {/* Navbar dihapus supaya tidak bikin error 'Module Not Found' */}
+        {/* Navbar TIDAK dipanggil di sini karena kamu sudah menaruhnya di page.tsx */}
         {children}
       </body>
     </html>
