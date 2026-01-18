@@ -1,13 +1,7 @@
 export default function Home() {
   return (
     <>
-      {/* NAVBAR */}
-      <nav className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur border-b border-purple-500/10">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="text-purple-200 font-title font-semibold text-lg">
-            Selene Shop 🌙
-          </span>
-
+      
           <div className="flex gap-6 text-sm">
             <a href="#beranda" className="text-purple-100 hover:text-purple-300">
               Beranda
