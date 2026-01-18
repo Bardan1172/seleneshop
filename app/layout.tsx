@@ -1,5 +1,4 @@
 import "./globals.css";
-import Navbar from "./components/Navbar";
 import type { Metadata } from "next";
 import { Playfair_Display, Poppins } from "next/font/google";
 
@@ -37,7 +36,7 @@ export default function RootLayout({
           bg-black text-white antialiased
         `}
       >
-        <Navbar />
+        {/* Navbar dihapus supaya tidak bikin error 'Module Not Found' */}
         {children}
       </body>
     </html>
