@@ -1,23 +1,16 @@
 @import "tailwindcss";
 
-/* ===== DEFAULT (JANGAN DIHAPUS) ===== */
+/* ===== DEFAULT ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #05051a; /* Navy gelap khas Selene */
+  --foreground: #ededed;
 }
 
 @theme inline {
+  --font-sans: var(--font-poppins);
+  --font-title: var(--font-playfair);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-poppins);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 /* ===== BODY ===== */
@@ -25,11 +18,33 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-poppins), system-ui, sans-serif;
+  font-weight: 300; /* Membuat teks default lebih elegan/tipis */
 }
 
 /* ===== FONT UTILITIES ===== */
 .font-title {
   font-family: var(--font-playfair), serif;
+  letter-spacing: 0.03em;
+}
+
+/* Judul Hero Besar */
+.heading-premium {
+  font-family: var(--font-playfair), serif;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* Slogan/Sub-text Luxury */
+.slogan-text {
+  font-family: var(--font-poppins), sans-serif;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 200;
+}
+
+/* Efek Cahaya Teks Bulan */
+.text-moonlight {
+  text-shadow: 0 0 15px rgba(191, 123, 255, 0.4);
 }
 
 /* ===== 🌙 SELENE EFFECTS ===== */
@@ -37,12 +52,12 @@ body {
 /* Moon floating */
 @keyframes moon-float {
   0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
+  50% { transform: translateY(-10px); }
   100% { transform: translateY(0px); }
 }
 
 .animate-moon {
-  animation: moon-float 6s ease-in-out infinite;
+  animation: moon-float 5s ease-in-out infinite;
 }
 
 /* ✨ Sparkle (Random & Dynamic) */
