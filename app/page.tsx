@@ -67,33 +67,39 @@ export default function Home() {
         </section>
 
         {/* BRAND PARTNERS SECTION */}
-<section className="bg-black border-y border-purple-500/10 py-12">
+<section className="bg-black border-y border-purple-500/10 py-16">
   <div className="max-w-7xl mx-auto px-6">
-    <div className="flex flex-col items-center justify-center gap-8">
-      {/* Tulisan Official Partners di tengah atas */}
-      <span className="text-purple-400/50 text-[10px] uppercase tracking-[0.4em] font-semibold border-b border-purple-500/20 pb-2">
-        Official Partners
-      </span>
+    <div className="flex flex-col items-center justify-center gap-12">
+      
+      {/* Official Partners - Diperbesar & Sangat Jelas */}
+      <div className="text-center">
+        <span className="text-purple-300/80 text-sm md:text-base uppercase tracking-[0.5em] font-bold">
+          Official Partners
+        </span>
+        <div className="h-[2px] w-24 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto mt-2"></div>
+      </div>
       
       <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
-        {/* SELENE SHOP */}
-        <span className="text-xl md:text-2xl font-bold tracking-tighter text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+        
+        {/* SELENE SHOP - Ungu Langit Malam */}
+        <span className="text-2xl md:text-4xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-[#e0e7ff] via-[#818cf8] to-[#4338ca] drop-shadow-[0_0_15px_rgba(129,140,248,0.4)]">
           SELENE SHOP
         </span>
 
-        <span className="text-purple-500/30 text-xl font-light">✕</span>
+        <span className="text-purple-500/30 text-2xl font-light hidden md:block">✕</span>
 
-        {/* HEPPYCLOUD - Ungu ke Magenta Gradient */}
-        <span className="text-xl md:text-3xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] to-[#d946ef] drop-shadow-[0_0_20px_rgba(217,70,239,0.4)]">
+        {/* HEPPYCLOUD - Ungu ke Magenta */}
+        <span className="text-2xl md:text-4xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] to-[#d946ef] drop-shadow-[0_0_20px_rgba(217,70,239,0.5)]">
           HEPPYCLOUD
         </span>
 
-        <span className="text-purple-500/30 text-xl font-light">✕</span>
+        <span className="text-purple-500/30 text-2xl font-light hidden md:block">✕</span>
 
-        {/* BANGBLAZE */}
-        <span className="text-xl md:text-2xl font-bold tracking-tighter text-orange-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.3)]">
+        {/* BANGBLAZE - Orange Kemerahan */}
+        <span className="text-2xl md:text-4xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-[#fb923c] via-[#f97316] to-[#dc2626] drop-shadow-[0_0_15px_rgba(249,115,22,0.4)]">
           BANGBLAZE
         </span>
+
       </div>
     </div>
   </div>
