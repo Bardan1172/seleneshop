@@ -110,7 +110,7 @@ export default function Home() {
     </div>
   </div>
 </section>
-
+        
         {/* ALASAN / KEUNGGULAN */}
 <section id="alasan" className="bg-[#05051a] px-6 py-28 relative overflow-hidden">
   {/* Efek Cahaya Latar Belakang (Ambient Glow) */}
