@@ -162,8 +162,8 @@ export default function Home() {
           title: "🌙 Cosmetica Face",
           tag: "*Khusus Minecraft Premium",
           items: [
-            { label: "ONLY FACE", price: "30K", desc: "Custom mata, alis, dan mulut." },
-            { label: "FACE + RAMBUT HD", price: "50K", desc: "Shading rambut detail & ekspresi." }
+            { label: "ONLY FACE: 30K", desc: "Custom mata, alis, dan mulut sesuai request." },
+            { label: "FACE + RAMBUT HD: 50K", desc: "Termasuk shading rambut detail dan ekspresi." }
           ],
           btn: "Order Face"
         },
@@ -171,8 +171,8 @@ export default function Home() {
           title: "🎮 Minecraft Skin",
           tag: "Classic / Slim Model",
           items: [
-            { label: "SIMPLE", price: "10K", desc: "Desain minimalis, shading standar." },
-            { label: "FULL DETAIL", price: "15K", desc: "Shading kompleks Anime/Fantasy." }
+            { label: "SIMPLE: 10K", desc: "Desain minimalis dengan shading standar." },
+            { label: "FULL DETAIL: 15K", desc: "Shading kompleks untuk Anime atau Fantasy." }
           ],
           btn: "Order Skin"
         },
@@ -180,8 +180,9 @@ export default function Home() {
           title: "🎨 Art & Illustration",
           tag: "Digital Hand-Drawn",
           items: [
-            { label: "SIMPLE SHADE", price: "25K", desc: "Fanart atau Original Character (OC)." },
-            { label: "PNGTUBER", price: "30K+", desc: "Model karakter untuk streaming." }
+            { label: "SIMPLE SHADE: 25K", desc: "Fanart atau Original Character (OC)." },
+            { label: "CHIBI PNGTUBER: 25K", desc: "Karakter mungil untuk streaming/konten." },
+            { label: "PNGTUBER: 30K", desc: "Model PNGtuber standar (Bust-up)." }
           ],
           btn: "Order Art"
         },
@@ -189,8 +190,9 @@ export default function Home() {
           title: "📸 MC Photoshoot",
           tag: "Cinematic Renders",
           items: [
-            { label: "SINGLE / COUPLE", price: "Varies", desc: "Render karakter dengan shader premium." },
-            { label: "CUSTOM SCENE", price: "Varies", desc: "Background Nether, End, atau build." }
+            { label: "CINEMATIC RENDER", desc: "Single, Couple, atau Group (3-5 orang)." },
+            { label: "CUSTOM SCENE", desc: "Background Nether, End, atau build milikmu." },
+            { label: "INFO", desc: "Harga disesuaikan jumlah karakter & kerumitan.", isItalic: true }
           ],
           btn: "Booking Session"
         },
@@ -198,8 +200,9 @@ export default function Home() {
           title: "😆 Custom Sticker",
           tag: "Discord & WhatsApp",
           items: [
-            { label: "PER PCS", price: "10K", desc: "Bust-up atau Head Only." },
-            { label: "PACK (6-12)", price: "50K-100K", desc: "Lebih hemat untuk koleksi ekspresi." }
+            { label: "PER PCS: 10K", desc: "Bust-up atau Head Only." },
+            { label: "PACK (6 STICKER): 50K", desc: "Lebih hemat untuk koleksi ekspresi." },
+            { label: "PACK (12 STICKER): 100K", desc: "Paket lengkap untuk komunitas/Discord." }
           ],
           btn: "Order Sticker"
         },
@@ -207,8 +210,10 @@ export default function Home() {
           title: "🏗️ Minecraft Build",
           tag: "Structural & Aesthetic",
           items: [
-            { label: "BASIC", price: "15K+", desc: "Struktur kecil & detail simpel." },
-            { label: "ELITE / MEGA", price: "450K+", desc: "Kota kompleks & proyek besar." }
+            { label: "BASIC: 15K – 75K", desc: "Small structures & simple detail." },
+            { label: "ADVANCED: 75K – 300K", desc: "Fantasy base, mini villages, themes." },
+            { label: "ELITE: 450K – 1.5JT", desc: "Complex cities & large castles." },
+            { label: "ORIGIN: 2.2JT+", desc: "Mega projects & exclusive quality." }
           ],
           btn: "Custom Build"
         }
@@ -226,11 +231,12 @@ export default function Home() {
             <div className="space-y-4 text-sm text-purple-100/80 mb-8">
               {service.items.map((item, i) => (
                 <div key={i} className="border-l-2 border-purple-500/50 pl-4 group-hover:border-purple-400 transition-colors">
-                  <div className="flex justify-between items-center">
-                    <p className="font-bold text-purple-200 uppercase text-xs">{item.label}</p>
-                    <p className="font-bold text-purple-400">{item.price}</p>
-                  </div>
-                  <p className="text-[11px] text-purple-100/60 mt-1">{item.desc}</p>
+                  <p className={`font-bold text-purple-200 uppercase text-xs tracking-wider ${item.isItalic ? 'italic opacity-70' : ''}`}>
+                    {item.label}
+                  </p>
+                  <p className="text-[11px] text-purple-100/60 mt-1 leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
