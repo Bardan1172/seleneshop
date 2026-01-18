@@ -246,39 +246,49 @@ export default function Home() {
           </div>
         </section>
         
-        {/* CARA ORDER - Layout Kartu Horizontal */}
+       {/* CARA ORDER - Layout Kartu Horizontal */}
         <section id="cara-order" className="bg-[#0b0b2e] px-6 py-24 border-y border-purple-500/10">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-2">
               Cara Order Mudah
             </h2>
             <div className="h-1 w-20 bg-purple-500 mx-auto mb-6"></div>
             <p className="text-purple-100/60 text-center mb-12 max-w-lg mx-auto">
-              Hanya 3 langkah sederhana untuk mendapatkan produk kreatifmu.
+              Hanya 4 langkah sederhana untuk mendapatkan produk kreatifmu.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Langkah 1: Discord */}
               <div className="bg-black/40 border border-purple-500/20 p-8 rounded-3xl text-center group">
                 <div className="bg-purple-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">1</div>
-                <h3 className="text-xl font-bold text-purple-200 mb-4">Pilih Produk</h3>
-                <p className="text-purple-100/70 text-sm">Pilih layanan Minecraft atau Art. Siapkan referensi custom kamu.</p>
+                <h3 className="text-xl font-bold text-purple-200 mb-4">Join Discord</h3>
+                <p className="text-purple-100/70 text-sm">Masuk ke server kami, pergi ke channel <span className="text-purple-400 font-mono">#create-ticket</span> dan buka tiket baru.</p>
               </div>
 
+              {/* Langkah 2: Pilih Produk */}
               <div className="bg-black/40 border border-purple-500/20 p-8 rounded-3xl text-center group">
                 <div className="bg-purple-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">2</div>
-                <h3 className="text-xl font-bold text-purple-200 mb-4">Bayar & Konfirmasi</h3>
-                <p className="text-purple-100/70 text-sm">Lakukan pembayaran via E-Wallet. Kirim bukti transfer untuk konfirmasi.</p>
+                <h3 className="text-xl font-bold text-purple-200 mb-4">Pilih Produk</h3>
+                <p className="text-purple-100/70 text-sm">Pilih layanan Minecraft atau Art di dalam tiket. Siapkan referensi custom kamu.</p>
               </div>
 
+              {/* Langkah 3: Bayar & Konfirmasi */}
               <div className="bg-black/40 border border-purple-500/20 p-8 rounded-3xl text-center group">
                 <div className="bg-purple-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">3</div>
+                <h3 className="text-xl font-bold text-purple-200 mb-4">Bayar & Konfirmasi</h3>
+                <p className="text-purple-100/70 text-sm">Lakukan pembayaran via E-Wallet. Kirim bukti transfer di dalam tiket untuk konfirmasi.</p>
+              </div>
+
+              {/* Langkah 4: Terima Produk */}
+              <div className="bg-black/40 border border-purple-500/20 p-8 rounded-3xl text-center group">
+                <div className="bg-purple-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6">4</div>
                 <h3 className="text-xl font-bold text-purple-200 mb-4">Terima Produk</h3>
-                <p className="text-purple-100/70 text-sm">Pesanan dikerjakan sesuai antrean. Hasil dikirim langsung via Discord.</p>
+                <p className="text-purple-100/70 text-sm">Pesanan dikerjakan sesuai antrean. Hasil final akan dikirim langsung melalui room tiket Discord.</p>
               </div>
             </div>
           </div>
         </section>
-
+        
         {/* METODE PEMBAYARAN - Layout Card Putih */}
         <section id="pembayaran" className="bg-black px-6 py-24">
           <div className="max-w-4xl mx-auto bg-[#0b0b2e]/40 border border-purple-500/10 rounded-[40px] p-12">
