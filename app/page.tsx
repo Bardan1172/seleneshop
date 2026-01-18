@@ -84,28 +84,40 @@ export default function Home() {
         </section>
 
         {/* ALASAN / KEUNGGULAN */}
-        <section id="alasan" className="bg-[#0b0b2e] px-6 py-24">
-          <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-12">
-            Mengapa Harus Beli di Selene Shop?
-          </h2>
+<section id="alasan" className="bg-[#05051a] px-6 py-28 relative overflow-hidden">
+  {/* Efek Cahaya Latar Belakang (Ambient Glow) */}
+  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-900/10 blur-[120px] rounded-full -z-0"></div>
 
-          <div className="grid gap-6 max-w-5xl mx-auto grid-cols-1 md:grid-cols-2">
-            {[
-              { title: "Custom Sesuai Request", desc: "Kami menerjemahkan imajinasi kamu ke dalam desain yang presisi agar merepresentasikan identitas unik kamu." },
-              { title: "Tema Aesthetic & Fantasy", desc: "Spesialisasi kami terletak pada perpaduan nuansa fantasi yang ajaib dengan gaya malam yang lembut." },
-              { title: "Komunikasi Jelas via Discord", desc: "Wadah diskusi yang responsif dan transparan. Kamu akan mendapatkan update berkala mengenai progres pesanan." },
-              { title: "Hasil Rapi & Original", desc: "Setiap piksel dikerjakan dengan tingkat ketelitian tinggi. Kami menjamin keaslian karya yang profesional." },
-            ].map((reason) => (
-              <div
-                key={reason.title}
-                className="bg-black/40 border border-purple-500/20 rounded-xl p-6 text-purple-100/90"
-              >
-                <h4 className="font-bold text-purple-300 mb-2">✨ {reason.title}</h4>
-                <p className="text-sm text-purple-100/70">{reason.desc}</p>
-              </div>
-            ))}
+  <div className="relative z-10">
+    <h2 className="text-4xl font-title font-bold text-transparent bg-clip-text bg-gradient-to-b from-purple-100 to-purple-400 text-center mb-16 tracking-wide">
+      Mengapa Harus Memilih Selene?
+    </h2>
+
+    <div className="grid gap-8 max-w-6xl mx-auto grid-cols-1 md:grid-cols-2">
+      {[
+        { title: "Custom Sesuai Request", desc: "Kami menerjemahkan imajinasi kamu ke dalam desain yang presisi agar merepresentasikan identitas unik kamu." },
+        { title: "Tema Aesthetic & Fantasy", desc: "Spesialisasi kami terletak pada perpaduan nuansa fantasi yang ajaib dengan gaya malam yang lembut." },
+        { title: "Komunikasi Jelas via Discord", desc: "Wadah diskusi yang responsif dan transparan. Kamu akan mendapatkan update berkala mengenai progres pesanan." },
+        { title: "Hasil Rapi & Original", desc: "Setiap piksel dikerjakan dengan tingkat ketelitian tinggi. Kami menjamin keaslian karya yang profesional." },
+      ].map((reason) => (
+        <div
+          key={reason.title}
+          className="group bg-gradient-to-br from-white/[0.05] to-transparent border border-purple-500/10 backdrop-blur-md rounded-2xl p-8 transition-all duration-500 hover:border-purple-500/40 hover:-translate-y-1 hover:shadow-[0_0_30px_-10px_rgba(168,85,247,0.3)]"
+        >
+          <div className="flex items-center gap-3 mb-4">
+            <span className="text-xl group-hover:animate-pulse">✨</span>
+            <h4 className="font-semibold text-lg text-purple-200 tracking-tight group-hover:text-white transition-colors">
+              {reason.title}
+            </h4>
           </div>
-        </section>
+          <p className="text-purple-100/60 leading-relaxed text-sm group-hover:text-purple-100/80 transition-colors">
+            {reason.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
         {/* PRODUK LIST */}
         <section id="produk" className="bg-black px-6 py-24">
