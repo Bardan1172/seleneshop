@@ -64,7 +64,7 @@ export default function Home() {
           </div>
         </section>
 
-       {/* TENTANG */}
+      {/* TENTANG */}
 <section id="tentang" className="bg-[#05051a] px-6 py-32 relative overflow-hidden">
   {/* Aksen Partikel/Cahaya di Latar Belakang */}
   <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-purple-600/5 blur-[100px] rounded-full"></div>
