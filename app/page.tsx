@@ -66,21 +66,36 @@ export default function Home() {
           </div>
         </section>
 
-        {/* BRAND PARTNERS SECTION */}
-        <section className="bg-black border-y border-purple-500/10 py-8">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-              <span className="text-purple-400/40 text-[10px] uppercase tracking-[0.3em] font-medium">Official Partners</span>
-              <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
-                <span className="text-lg md:text-xl font-bold tracking-tighter text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">SELENE SHOP</span>
-                <span className="text-purple-500 text-xl">✕</span>
-                <span className="text-lg md:text-xl font-bold tracking-tighter text-blue-300 drop-shadow-[0_0_10px_rgba(147,197,253,0.3)]">HEPPYCLOUD</span>
-                <span className="text-purple-500 text-xl">✕</span>
-                <span className="text-lg md:text-xl font-bold tracking-tighter text-orange-400 drop-shadow-[0_0_10px_rgba(251,146,60,0.3)]">BANGBLAZE</span>
-              </div>
-            </div>
-          </div>
-        </section>
+        {{/* BRAND PARTNERS SECTION */}
+<section className="bg-black border-y border-purple-500/10 py-10">
+  <div className="max-w-7xl mx-auto px-6">
+    <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+      <span className="text-purple-400/40 text-[10px] uppercase tracking-[0.3em] font-medium">Official Partners</span>
+      
+      <div className="flex flex-wrap items-center justify-center gap-8 md:gap-14">
+        {/* SELENE SHOP */}
+        <span className="text-xl md:text-2xl font-bold tracking-tighter text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+          SELENE SHOP
+        </span>
+
+        <span className="text-purple-500/30 text-xl font-light">✕</span>
+
+        {/* HEPPYCLOUD - Ungu Gradasi Magenta */}
+        <span className="text-xl md:text-2xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-magenta-500 to-pink-500 drop-shadow-[0_0_15px_rgba(217,70,239,0.4)]" 
+              style={{ backgroundImage: 'linear-gradient(to right, #a855f7, #d946ef)' }}>
+          HEPPYCLOUD
+        </span>
+
+        <span className="text-purple-500/30 text-xl font-light">✕</span>
+
+        {/* BANGBLAZE */}
+        <span className="text-xl md:text-2xl font-bold tracking-tighter text-orange-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.4)]">
+          BANGBLAZE
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
 
         {/* TENTANG */}
         <section id="tentang" className="bg-[#05051a] px-6 py-32 relative overflow-hidden">
