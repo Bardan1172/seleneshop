@@ -151,18 +151,12 @@ export default function Home() {
 
         {/* PRODUK LIST */}
 <section id="produk" className="bg-black px-6 py-24 relative overflow-hidden">
-  {/* Ambient Background Glow */}
-  <div className="absolute top-1/4 -right-20 w-96 h-96 bg-purple-900/10 blur-[120px] rounded-full"></div>
-  <div className="absolute bottom-1/4 -left-20 w-96 h-96 bg-blue-900/10 blur-[120px] rounded-full"></div>
-  
   <div className="max-w-7xl mx-auto relative z-10">
     <h2 className="text-4xl font-title font-bold text-transparent bg-clip-text bg-gradient-to-b from-purple-100 to-purple-400 text-center mb-16 tracking-wide text-moonlight">
       Layanan Kreatif Kami
     </h2>
 
     <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      
-      {/* MAPPING SEMUA LAYANAN AGAR EFEKNYA SERAGAM */}
       {[
         {
           title: "🌙 Cosmetica Face",
@@ -221,57 +215,35 @@ export default function Home() {
       ].map((service, index) => (
         <div 
           key={index}
-          className="group relative p-[1px] rounded-[32px] overflow-hidden transition-all duration-500 hover:-translate-y-2"
+          className="group relative bg-[#0b0b2e]/60 border border-purple-400/40 rounded-2xl p-6 flex flex-col transition-all duration-500 hover:-translate-y-2 hover:border-purple-400 hover:shadow-[0_0_30px_rgba(168,85,247,0.3)]"
         >
-          {/* Efek Border Gradient Tipis (Selalu Muncul) */}
-          <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 to-transparent group-hover:from-purple-500/50 group-hover:to-blue-500/30 transition-all duration-500"></div>
-
-          {/* Isi Card */}
-          <div className="relative bg-[#0b0b2e]/90 backdrop-blur-xl rounded-[31px] p-8 h-full flex flex-col border border-white/[0.03]">
+          <div className="flex-grow">
+            <h3 className="text-xl font-bold text-purple-300 mb-1 group-hover:text-white transition-colors">
+              {service.title}
+            </h3>
+            <p className="text-[10px] text-purple-100/60 mb-6 italic">{service.tag}</p>
             
-            {/* Background Glow Internal (Hanya Muncul saat Hover) */}
-            <div className="absolute inset-0 bg-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[31px]"></div>
-
-            <div className="relative z-10 flex-grow">
-              <h3 className="text-2xl font-title font-bold text-purple-100 mb-1 group-hover:text-white transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-purple-400/60 mb-6 font-light">
-                {service.tag}
-              </p>
-
-              <div className="space-y-6 mb-8">
-                {service.items.map((item, i) => (
-                  <div key={i} className="group/item">
-                    <div className="flex justify-between items-baseline mb-1">
-                      <span className="text-xs font-semibold text-purple-200/80 group-hover/item:text-purple-100 transition-colors uppercase tracking-wider">
-                        {item.label}
-                      </span>
-                      <span className="text-sm font-bold text-purple-400">
-                        {item.price}
-                      </span>
-                    </div>
-                    <p className="text-[11px] text-purple-100/40 leading-relaxed font-light">
-                      {item.desc}
-                    </p>
-                    {/* Divider Tipis */}
-                    <div className="h-[1px] w-full bg-gradient-to-r from-purple-500/10 to-transparent mt-3"></div>
+            <div className="space-y-4 text-sm text-purple-100/80 mb-8">
+              {service.items.map((item, i) => (
+                <div key={i} className="border-l-2 border-purple-500/50 pl-4 group-hover:border-purple-400 transition-colors">
+                  <div className="flex justify-between items-center">
+                    <p className="font-bold text-purple-200 uppercase text-xs">{item.label}</p>
+                    <p className="font-bold text-purple-400">{item.price}</p>
                   </div>
-                ))}
-              </div>
+                  <p className="text-[11px] text-purple-100/60 mt-1">{item.desc}</p>
+                </div>
+              ))}
             </div>
-
-            {/* Button dengan efek glow saat hover */}
-            <a 
-              href="https://discord.gg/muH44HDrea" 
-              className="relative z-10 block text-center py-3 bg-white/[0.03] border border-purple-500/30 text-purple-200 rounded-xl font-bold hover:bg-purple-600 hover:text-white hover:border-purple-600 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all duration-300 text-sm"
-            >
-              {service.btn}
-            </a>
           </div>
+
+          <a 
+            href="https://discord.gg/muH44HDrea" 
+            className="block text-center py-2.5 bg-purple-600 text-white rounded-xl font-bold hover:bg-purple-700 transition-all shadow-[0_4px_15px_rgba(168,85,247,0.2)]"
+          >
+            {service.btn}
+          </a>
         </div>
       ))}
-
     </div>
   </div>
 </section>
