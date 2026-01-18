@@ -150,84 +150,145 @@ export default function Home() {
         </section>
 
         {/* PRODUK LIST */}
-<section id="produk" className="bg-black px-6 py-24 relative">
+<section id="produk" className="bg-black px-6 py-24 relative overflow-hidden">
+  {/* Aksen cahaya tambahan di background */}
+  <div className="absolute top-1/4 -right-20 w-96 h-96 bg-purple-600/10 blur-[120px] rounded-full"></div>
+  
   <div className="max-w-7xl mx-auto relative z-10">
     <h2 className="text-4xl font-title font-bold text-transparent bg-clip-text bg-gradient-to-b from-purple-100 to-purple-400 text-center mb-16 tracking-wide text-moonlight">
       Layanan Kreatif Kami
     </h2>
 
     <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      {[
-        {
-          title: "🌙 Cosmetica Face",
-          subtitle: "*Khusus Minecraft Premium",
-          items: [
-            { label: "ONLY FACE", price: "30K", desc: "Custom mata, alis, dan mulut." },
-            { label: "FACE + RAMBUT HD", price: "50K", desc: "Shading rambut detail & ekspresi." }
-          ],
-          btnText: "Order Face",
-          color: "border-purple-500/30"
-        },
-        {
-          title: "🎮 Minecraft Skin",
-          subtitle: "Classic / Slim Model",
-          items: [
-            { label: "SIMPLE", price: "10K", desc: "Desain minimalis, shading standar." },
-            { label: "FULL DETAIL", price: "15K", desc: "Shading kompleks Anime/Fantasy." }
-          ],
-          btnText: "Order Skin",
-          color: "border-blue-500/30"
-        },
-        {
-          title: "🎨 Art & Illustration",
-          subtitle: "Digital Hand-drawn",
-          items: [
-            { label: "SIMPLE SHADE", price: "25K", desc: "Fanart atau Original Character." },
-            { label: "PNGTUBER", price: "30K+", desc: "Model karakter untuk streaming." }
-          ],
-          btnText: "Order Art",
-          color: "border-pink-500/30"
-        },
-        // Tambahkan item lain jika perlu (MC Photoshoot, Sticker, Build) sesuai pola di atas
-      ].map((prod, idx) => (
-        <div 
-          key={idx}
-          className={`group relative bg-gradient-to-b from-white/[0.05] to-transparent border ${prod.color} backdrop-blur-xl rounded-[32px] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(168,85,247,0.25)] hover:border-purple-400/50 flex flex-col`}
-        >
-          {/* Efek Inner Glow saat Hover */}
-          <div className="absolute inset-0 bg-purple-500/5 opacity-0 group-hover:opacity-100 rounded-[32px] transition-opacity duration-500"></div>
-
-          <div className="relative z-10 flex-grow">
-            <h3 className="text-2xl font-title font-bold text-purple-200 mb-1 group-hover:text-white transition-colors">
-              {prod.title}
-            </h3>
-            <p className="text-[10px] uppercase tracking-widest text-purple-400/60 mb-6">{prod.subtitle}</p>
-            
-            <div className="space-y-5 mb-8">
-              {prod.items.map((item, i) => (
-                <div key={i} className="group/item">
-                  <div className="flex justify-between items-end mb-1">
-                    <span className="text-xs font-medium text-purple-100/70 group-hover/item:text-purple-200 transition-colors">{item.label}</span>
-                    <span className="text-sm font-bold text-purple-300">IDR {item.price}</span>
-                  </div>
-                  <p className="text-[11px] text-purple-100/40 leading-relaxed">{item.desc}</p>
-                  <div className="h-[1px] w-full bg-gradient-to-r from-purple-500/20 to-transparent mt-2"></div>
-                </div>
-              ))}
+      
+      {/* 1. Cosmetica Face */}
+      <div className="group relative bg-gradient-to-b from-white/[0.05] to-transparent border border-purple-500/20 backdrop-blur-xl rounded-[32px] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(168,85,247,0.3)] hover:border-purple-400/50 flex flex-col">
+        <div className="flex-grow">
+          <h3 className="text-2xl font-title font-bold text-purple-200 mb-1 group-hover:text-white transition-colors">🌙 Cosmetica Face</h3>
+          <p className="text-[10px] uppercase tracking-widest text-purple-400/60 mb-6">*Khusus Minecraft Premium</p>
+          <div className="space-y-5 mb-8 text-sm">
+            <div className="border-l-2 border-purple-500/40 pl-4 transition-all group-hover:border-purple-400">
+              <p className="font-bold text-purple-300">ONLY FACE: 30K</p>
+              <p className="text-xs text-purple-100/60">Custom mata, alis, dan mulut sesuai request.</p>
+            </div>
+            <div className="border-l-2 border-blue-500/40 pl-4 transition-all group-hover:border-blue-400">
+              <p className="font-bold text-blue-300">FACE + RAMBUT HD: 50K</p>
+              <p className="text-xs text-purple-100/60">Termasuk shading rambut detail dan ekspresi.</p>
             </div>
           </div>
-
-          <a 
-            href="https://discord.gg/muH44HDrea" 
-            className="relative z-10 block text-center py-3 bg-purple-600/20 border border-purple-500/40 text-purple-100 rounded-xl font-bold hover:bg-purple-600 hover:text-white hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] transition-all duration-300"
-          >
-            {prod.btnText}
-          </a>
         </div>
-      ))}
+        <a href="https://discord.gg/muH44HDrea" className="block text-center py-3 bg-purple-600/20 border border-purple-500/40 text-purple-100 rounded-xl font-bold hover:bg-purple-600 hover:text-white transition-all duration-300">Order Face</a>
+      </div>
+
+      {/* 2. Minecraft Skin */}
+      <div className="group relative bg-gradient-to-b from-white/[0.05] to-transparent border border-purple-500/20 backdrop-blur-xl rounded-[32px] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(168,85,247,0.3)] hover:border-purple-400/50 flex flex-col">
+        <div className="flex-grow">
+          <h3 className="text-2xl font-title font-bold text-purple-200 mb-1 group-hover:text-white transition-colors">🎮 Minecraft Skin</h3>
+          <p className="text-[10px] uppercase tracking-widest text-purple-400/60 mb-6">Classic / Slim Model</p>
+          <div className="space-y-5 mb-8 text-sm">
+            <div className="border-l-2 border-green-500/40 pl-4 transition-all group-hover:border-green-400">
+              <p className="font-bold text-green-300">SIMPLE: 10K</p>
+              <p className="text-xs text-purple-100/60">Desain minimalis dengan shading standar.</p>
+            </div>
+            <div className="border-l-2 border-purple-500/40 pl-4 transition-all group-hover:border-purple-400">
+              <p className="font-bold text-purple-300">FULL DETAIL: 15K</p>
+              <p className="text-xs text-purple-100/60">Shading kompleks untuk Anime atau Fantasy.</p>
+            </div>
+          </div>
+        </div>
+        <a href="https://discord.gg/muH44HDrea" className="block text-center py-3 bg-purple-600/20 border border-purple-500/40 text-purple-100 rounded-xl font-bold hover:bg-purple-600 hover:text-white transition-all duration-300">Order Skin</a>
+      </div>
+
+      {/* 3. Art & Illustration */}
+      <div className="group relative bg-gradient-to-b from-white/[0.05] to-transparent border border-purple-500/20 backdrop-blur-xl rounded-[32px] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(168,85,247,0.3)] hover:border-purple-400/50 flex flex-col">
+        <div className="flex-grow">
+          <h3 className="text-2xl font-title font-bold text-purple-200 mb-1 group-hover:text-white transition-colors">🎨 Art & Illustration</h3>
+          <p className="text-[10px] uppercase tracking-widest text-purple-400/60 mb-6">Digital Hand-Drawn</p>
+          <div className="space-y-4 mb-8 text-[11px]">
+            <div className="border-l-2 border-yellow-500/40 pl-4">
+              <p className="font-bold text-yellow-400 text-sm">SIMPLE SHADE: 25K</p>
+              <p className="text-purple-100/60">Fanart atau Original Character (OC).</p>
+            </div>
+            <div className="border-l-2 border-pink-500/40 pl-4">
+              <p className="font-bold text-pink-400 text-sm">CHIBI PNGTUBER: 25K</p>
+              <p className="text-purple-100/60">Karakter mungil untuk streaming/konten.</p>
+            </div>
+            <div className="border-l-2 border-purple-500/40 pl-4">
+              <p className="font-bold text-purple-300 text-sm">PNGTUBER: 30K</p>
+              <p className="text-purple-100/60">Model PNGtuber standar (Bust-up).</p>
+            </div>
+          </div>
+        </div>
+        <a href="https://discord.gg/muH44HDrea" className="block text-center py-3 bg-purple-600/20 border border-purple-500/40 text-purple-100 rounded-xl font-bold hover:bg-purple-600 hover:text-white transition-all duration-300">Order Art</a>
+      </div>
+
+      {/* 4. MC Photoshoot */}
+      <div className="group relative bg-gradient-to-b from-white/[0.05] to-transparent border border-purple-500/20 backdrop-blur-xl rounded-[32px] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(168,85,247,0.3)] hover:border-purple-400/50 flex flex-col">
+        <div className="flex-grow">
+          <h3 className="text-2xl font-title font-bold text-purple-200 mb-1 group-hover:text-white transition-colors">📸 MC Photoshoot</h3>
+          <p className="text-[10px] uppercase tracking-widest text-purple-400/60 mb-6">Cinematic Renders</p>
+          <div className="space-y-5 mb-8 text-xs">
+            <div className="border-l-2 border-blue-400/40 pl-4">
+              <p className="font-bold text-blue-300 text-sm">CINEMATIC RENDER</p>
+              <p className="text-purple-100/60">Single, Couple, atau Group (3-5 orang).</p>
+            </div>
+            <div className="border-l-2 border-orange-400/40 pl-4">
+              <p className="font-bold text-orange-300 text-sm">CUSTOM SCENE</p>
+              <p className="text-purple-100/60">Background Nether, End, atau build milikmu.</p>
+            </div>
+            <p className="italic text-purple-400/60 pt-2 font-light">*Harga sesuai kerumitan</p>
+          </div>
+        </div>
+        <a href="https://discord.gg/muH44HDrea" className="block text-center py-3 bg-purple-600/20 border border-purple-500/40 text-purple-100 rounded-xl font-bold hover:bg-purple-600 hover:text-white transition-all duration-300">Booking Session</a>
+      </div>
+
+      {/* 5. Custom Sticker */}
+      <div className="group relative bg-gradient-to-b from-white/[0.05] to-transparent border border-purple-500/20 backdrop-blur-xl rounded-[32px] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(168,85,247,0.3)] hover:border-purple-400/50 flex flex-col">
+        <div className="flex-grow">
+          <h3 className="text-2xl font-title font-bold text-purple-200 mb-1 group-hover:text-white transition-colors">😆 Custom Sticker</h3>
+          <p className="text-[10px] uppercase tracking-widest text-purple-400/60 mb-6">Discord & WhatsApp</p>
+          <div className="space-y-4 mb-8 text-sm">
+            <div className="border-l-2 border-green-400/40 pl-4">
+              <p className="font-bold text-green-300 uppercase text-xs tracking-wider font-sans">PER PCS: 10K</p>
+            </div>
+            <div className="border-l-2 border-blue-400/40 pl-4">
+              <p className="font-bold text-blue-300 uppercase text-xs tracking-wider font-sans">PACK (6 STICKER): 50K</p>
+            </div>
+            <div className="border-l-2 border-purple-500/40 pl-4">
+              <p className="font-bold text-purple-300 uppercase text-xs tracking-wider font-sans">PACK (12 STICKER): 100K</p>
+            </div>
+          </div>
+        </div>
+        <a href="https://discord.gg/muH44HDrea" className="block text-center py-3 bg-purple-600/20 border border-purple-500/40 text-purple-100 rounded-xl font-bold hover:bg-purple-600 hover:text-white transition-all duration-300">Order Sticker</a>
+      </div>
+
+      {/* 6. Minecraft Build */}
+      <div className="group relative bg-gradient-to-b from-white/[0.05] to-transparent border border-purple-500/20 backdrop-blur-xl rounded-[32px] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(168,85,247,0.3)] hover:border-purple-400/50 flex flex-col">
+        <div className="flex-grow">
+          <h3 className="text-2xl font-title font-bold text-purple-200 mb-1 group-hover:text-white transition-colors">🏗️ Minecraft Build</h3>
+          <p className="text-[10px] uppercase tracking-widest text-purple-400/60 mb-6">Structural & Aesthetic</p>
+          <div className="space-y-3 mb-8 text-[11px]">
+            <div className="border-l-2 border-green-500/40 pl-4">
+              <p className="font-bold text-green-300 text-xs">BASIC: 15K – 75K</p>
+              <p className="text-purple-100/60 italic">Small structures.</p>
+            </div>
+            <div className="border-l-2 border-blue-500/40 pl-4">
+              <p className="font-bold text-blue-300 text-xs">ADVANCED: 75K – 300K</p>
+              <p className="text-purple-100/60 italic">Fantasy base / Villages.</p>
+            </div>
+            <div className="border-l-2 border-purple-500/40 pl-4">
+              <p className="font-bold text-purple-300 text-xs">ELITE: 450K – 1.5JT</p>
+              <p className="text-purple-100/60 italic">Complex cities / Castles.</p>
+            </div>
+          </div>
+        </div>
+        <a href="https://discord.gg/muH44HDrea" className="block text-center py-3 bg-purple-600/20 border border-purple-500/40 text-purple-100 rounded-xl font-bold hover:bg-purple-600 hover:text-white transition-all duration-300">Custom Build</a>
+      </div>
+
     </div>
   </div>
 </section>
+        
         {/* CARA ORDER */}
 <section id="cara-order" className="bg-[#05051a] px-6 py-28 relative">
   <div className="max-w-7xl mx-auto relative z-10">
