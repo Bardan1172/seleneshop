@@ -67,50 +67,38 @@ export default function Home() {
         </section>
 
         {/* BRAND PARTNERS SECTION */}
-<section className="bg-black border-y border-purple-500/10 py-16">
+<section className="bg-black border-y border-purple-500/10 py-12">
   <div className="max-w-7xl mx-auto px-6">
-    <div className="flex flex-col items-center justify-center gap-12">
-      
-      {/* Official Partners - Sangat Jelas & Besar */}
-      <div className="text-center">
-        <span className="text-purple-200 text-lg md:text-2xl uppercase tracking-[0.6em] font-black drop-shadow-[0_0_10px_rgba(168,85,247,0.3)]">
-          Official Partners
-        </span>
-        <div className="h-[3px] w-40 bg-gradient-to-r from-transparent via-purple-500 to-transparent mx-auto mt-3"></div>
-      </div>
+    <div className="flex flex-col items-center justify-center gap-8">
+      {/* Tulisan Official Partners di tengah atas */}
+      <span className="text-purple-400/50 text-[10px] uppercase tracking-[0.4em] font-semibold border-b border-purple-500/20 pb-2">
+        Official Partners
+      </span>
       
       <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
-        
-        {/* SELENE SHOP - Hover: Ungu Langit Malam */}
-        <div className="group transition-all duration-500">
-          <span className="text-2xl md:text-4xl font-bold tracking-tighter text-white/20 group-hover:text-transparent bg-clip-text group-hover:bg-gradient-to-b from-[#e0e7ff] via-[#818cf8] to-[#4338ca] transition-all duration-500 group-hover:drop-shadow-[0_0_15px_rgba(129,140,248,0.6)] cursor-default">
-            SELENE SHOP
-          </span>
-        </div>
+        {/* SELENE SHOP */}
+        <span className="text-xl md:text-2xl font-bold tracking-tighter text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+          SELENE SHOP
+        </span>
 
-        <span className="text-purple-500/20 text-2xl font-light hidden md:block">✕</span>
+        <span className="text-purple-500/30 text-xl font-light">✕</span>
 
-        {/* HEPPYCLOUD - Hover: Ungu ke Magenta */}
-        <div className="group transition-all duration-500">
-          <span className="text-2xl md:text-4xl font-bold tracking-tighter text-white/20 group-hover:text-transparent bg-clip-text group-hover:bg-gradient-to-r from-[#a855f7] to-[#d946ef] transition-all duration-500 group-hover:drop-shadow-[0_0_20px_rgba(217,70,239,0.7)] cursor-default">
-            HEPPYCLOUD
-          </span>
-        </div>
+        {/* HEPPYCLOUD - Ungu ke Magenta Gradient */}
+        <span className="text-xl md:text-3xl font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-[#a855f7] to-[#d946ef] drop-shadow-[0_0_20px_rgba(217,70,239,0.4)]">
+          HEPPYCLOUD
+        </span>
 
-        <span className="text-purple-500/20 text-2xl font-light hidden md:block">✕</span>
+        <span className="text-purple-500/30 text-xl font-light">✕</span>
 
-        {/* BANGBLAZE - Hover: Orange Kemerahan */}
-        <div className="group transition-all duration-500">
-          <span className="text-2xl md:text-4xl font-bold tracking-tighter text-white/20 group-hover:text-transparent bg-clip-text group-hover:bg-gradient-to-br from-[#fb923c] via-[#f97316] to-[#dc2626] transition-all duration-500 group-hover:drop-shadow-[0_0_15px_rgba(249,115,22,0.6)] cursor-default">
-            BANGBLAZE
-          </span>
-        </div>
-
+        {/* BANGBLAZE */}
+        <span className="text-xl md:text-2xl font-bold tracking-tighter text-orange-500 drop-shadow-[0_0_15px_rgba(249,115,22,0.3)]">
+          BANGBLAZE
+        </span>
       </div>
     </div>
   </div>
 </section>
-        
+
         {/* TENTANG */}
         <section id="tentang" className="bg-[#05051a] px-6 py-32 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-purple-600/5 blur-[100px] rounded-full"></div>
