@@ -64,24 +64,52 @@ export default function Home() {
           </div>
         </section>
 
-        {/* TENTANG */}
-        <section id="tentang" className="bg-black px-6 py-24">
-          <div className="max-w-4xl mx-auto bg-[#0b0b2e]/30 border border-purple-500/10 p-10 rounded-[40px]">
-            <h2 className="text-3xl font-title font-semibold text-purple-200 text-center mb-8">
-              Tentang Selene Shop
-            </h2>
+       {/* TENTANG */}
+<section id="tentang" className="bg-[#05051a] px-6 py-32 relative overflow-hidden">
+  {/* Aksen Partikel/Cahaya di Latar Belakang */}
+  <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-purple-600/5 blur-[100px] rounded-full"></div>
+  <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-600/5 blur-[100px] rounded-full"></div>
 
-            <p className="text-center text-purple-100/80 leading-relaxed italic mb-6">
-              "Where creativity meets the moonlight"
-            </p>
-            
-            <p className="text-center text-purple-100/80 leading-relaxed">
-              Selene Shop adalah studio kreatif digital bertema bulan yang menghadirkan layanan khusus Minecraft dan commission art. Kami berfokus pada detail, estetika, dan kualitas tinggi untuk menciptakan karakter yang unik.
-              <br /><br />
-              Terinspirasi dari keindahan malam yang elegan dan lembut, kami berkomitmen memberikan hasil desain yang rapi dan konsisten melalui proses yang transparan. Kami siap membantu kamu tampil beda dan estetik di dunia digital.
-            </p>
-          </div>
-        </section>
+  <div className="max-w-4xl mx-auto relative group">
+    {/* Outer Glow Decor */}
+    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-[40px] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+    
+    <div className="relative bg-[#0b0b2e]/40 border border-purple-500/10 backdrop-blur-xl p-12 md:p-16 rounded-[40px] shadow-2xl">
+      <div className="flex flex-col items-center">
+        
+        {/* Header Section */}
+        <h2 className="text-4xl font-title font-bold text-transparent bg-clip-text bg-gradient-to-b from-purple-100 to-purple-300 text-center mb-4 tracking-tight">
+          Tentang Selene Shop
+        </h2>
+        
+        {/* Slogan dengan gaya lebih puitis */}
+        <div className="flex items-center gap-4 mb-10">
+          <div className="h-[1px] w-8 bg-purple-500/30"></div>
+          <p className="text-purple-300/90 font-light tracking-[0.2em] uppercase text-[10px] sm:text-xs">
+            "Where creativity meets the moonlight"
+          </p>
+          <div className="h-[1px] w-8 bg-purple-500/30"></div>
+        </div>
+
+        {/* Content Body */}
+        <div className="space-y-6 text-center max-w-2xl">
+          <p className="text-purple-100/80 leading-relaxed text-lg font-light">
+            Selene Shop adalah <span className="text-purple-200 font-medium">studio kreatif digital</span> bertema bulan yang menghadirkan layanan khusus <span className="text-purple-200 font-medium">Minecraft</span> dan <span className="text-purple-200 font-medium">commission art</span>. 
+          </p>
+          
+          <p className="text-purple-100/60 leading-relaxed text-sm md:text-base italic border-t border-purple-500/10 pt-6">
+            Terinspirasi dari keindahan malam yang elegan dan lembut, kami berkomitmen memberikan hasil desain yang rapi dan konsisten melalui proses yang transparan. Kami siap membantu kamu tampil beda dan estetik di dunia digital.
+          </p>
+        </div>
+
+        {/* Moon Icon / Ornament */}
+        <div className="mt-10 text-purple-400/30 text-2xl">
+          ✦
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
         {/* ALASAN / KEUNGGULAN */}
 <section id="alasan" className="bg-[#05051a] px-6 py-28 relative overflow-hidden">
