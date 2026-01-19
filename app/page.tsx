@@ -1,32 +1,85 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 function MoonBackground() {
-  const [sparkles, setSparkles] = useState<{id: number, top: string, left: string, delay: string, duration: string}[]>([]);
+  const [sparkles, setSparkles] = useState<{id: number, top: string, left: string, delay: string, duration: string, size: string}[]>([]);
+  const moonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const generated = Array.from({ length: 40 }).map((_, i) => ({
+    // Generate bintang/sparkle yang lebih bervariasi ukurannya
+    const generated = Array.from({ length: 50 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
       delay: `${Math.random() * 5}s`,
       duration: `${3 + Math.random() * 4}s`,
+      size: `${Math.random() * 2 + 1}px`,
     }));
     setSparkles(generated);
+
+    // Efek Mouse Parallax sederhana untuk Bulan
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!moonRef.current) return;
+      const x = (e.clientX - window.innerWidth / 2) / 50;
+      const y = (e.clientY - window.innerHeight / 2) / 50;
+      moonRef.current.style.transform = `translate(${x}px, ${y}px)`;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-      <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-purple-900/20 blur-[120px] rounded-full" />
-      <div className="absolute bottom-[10%] right-[-10%] w-[400px] h-[400px] bg-blue-900/10 blur-[100px] rounded-full" />
-      <div className="absolute top-20 right-[10%] md:right-[15%] w-32 h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-purple-100 to-purple-300 opacity-70 blur-[2px] shadow-[0_0_80px_rgba(192,132,252,0.4)]" />
-      <div className="absolute top-20 right-[10%] md:right-[15%] w-40 h-40 md:w-60 md:h-60 rounded-full bg-purple-500/20 blur-3xl animate-pulse" />
+      {/* 1. LAYER ATMOSFER (Deep Glow) */}
+      <div className="absolute top-[5%] left-[-5%] w-[600px] h-[600px] bg-purple-900/10 blur-[150px] rounded-full animate-pulse" />
+      <div className="absolute bottom-[5%] right-[-5%] w-[500px] h-[500px] bg-blue-900/10 blur-[130px] rounded-full" />
+
+      {/* 2. GROUP BULAN (DENGAN REFRENCE PARALLAX) */}
+      <div 
+        ref={moonRef}
+        className="absolute top-24 right-[8%] md:right-[12%] transition-transform duration-300 ease-out"
+      >
+        {/* Outer Glow (Halo) */}
+        <div className="absolute inset-0 rounded-full bg-purple-400/20 blur-[60px] animate-pulse" />
+        
+        {/* Body Bulan */}
+        <div className="relative w-36 h-36 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-white via-purple-100 to-purple-300 shadow-[inset_-10px_-10px_30px_rgba(0,0,0,0.2),0_0_50px_rgba(192,132,252,0.3)] overflow-hidden">
+          
+          {/* Tekstur Kawah (Crater Effects) */}
+          <div className="absolute top-8 left-10 w-8 h-8 bg-purple-900/5 rounded-full blur-[4px]" />
+          <div className="absolute bottom-12 right-16 w-12 h-12 bg-purple-900/5 rounded-full blur-[6px]" />
+          <div className="absolute top-20 right-8 w-6 h-6 bg-purple-900/10 rounded-full blur-[3px]" />
+          
+          {/* Overlay Shading agar lebih 3D */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/20 via-transparent to-white/40" />
+        </div>
+
+        {/* Orbit Light (Efek cahaya menyisir tepi bulan) */}
+        <div className="absolute -inset-2 rounded-full border border-purple-200/10 scale-110" />
+        <div className="absolute -inset-4 rounded-full border border-purple-200/5 scale-125" />
+      </div>
+
+      {/* 3. STARS / SPARKLES LAYER */}
       {sparkles.map((s) => (
-        <span key={s.id} className="absolute w-1 h-1 bg-white rounded-full opacity-0 animate-pulse"
-          style={{ top: s.top, left: s.left, animationDelay: s.delay, animationDuration: s.duration, boxShadow: '0 0 10px white' }}
+        <span
+          key={s.id}
+          className="absolute bg-white rounded-full opacity-0 animate-pulse"
+          style={{
+            top: s.top,
+            left: s.left,
+            width: s.size,
+            height: s.size,
+            animationDelay: s.delay,
+            animationDuration: s.duration,
+            boxShadow: `0 0 ${parseInt(s.size) * 3}px white`,
+          }}
         />
       ))}
+
+      {/* 4. MIST / NEBULA (Efek kabut tipis) */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-[0.03] mix-blend-overlay" />
     </div>
   );
 }
