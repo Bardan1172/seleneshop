@@ -4,25 +4,36 @@ import { useEffect, useState, useRef } from "react";
 
 function MoonBackground() {
   const [sparkles, setSparkles] = useState<{id: number, top: string, left: string, delay: string, duration: string, size: string}[]>([]);
+  const [shootingStars, setShootingStars] = useState<{id: number, top: string, left: string, delay: string, duration: string}[]>([]);
   const moonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Generate bintang/sparkle yang lebih bervariasi ukurannya
-    const generated = Array.from({ length: 50 }).map((_, i) => ({
+    // 1. Generate Static Stars
+    const generatedStars = Array.from({ length: 60 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
       delay: `${Math.random() * 5}s`,
       duration: `${3 + Math.random() * 4}s`,
-      size: `${Math.random() * 2 + 1}px`,
+      size: `${Math.random() * 2 + 0.5}px`,
     }));
-    setSparkles(generated);
+    setSparkles(generatedStars);
 
-    // Efek Mouse Parallax sederhana untuk Bulan
+    // 2. Generate Shooting Stars (Star Rain)
+    const generatedMeteors = Array.from({ length: 6 }).map((_, i) => ({
+      id: i,
+      top: `${Math.random() * 40}%`,
+      left: `${Math.random() * 80}%`,
+      delay: `${Math.random() * 20}s`,
+      duration: `${2 + Math.random() * 3}s`,
+    }));
+    setShootingStars(generatedMeteors);
+
+    // 3. Mouse Parallax Effect
     const handleMouseMove = (e: MouseEvent) => {
       if (!moonRef.current) return;
-      const x = (e.clientX - window.innerWidth / 2) / 50;
-      const y = (e.clientY - window.innerHeight / 2) / 50;
+      const x = (e.clientX - window.innerWidth / 2) / 60;
+      const y = (e.clientY - window.innerHeight / 2) / 60;
       moonRef.current.style.transform = `translate(${x}px, ${y}px)`;
     };
 
@@ -31,37 +42,50 @@ function MoonBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-      {/* 1. LAYER ATMOSFER (Deep Glow) */}
-      <div className="absolute top-[5%] left-[-5%] w-[600px] h-[600px] bg-purple-900/10 blur-[150px] rounded-full animate-pulse" />
-      <div className="absolute bottom-[5%] right-[-5%] w-[500px] h-[500px] bg-blue-900/10 blur-[130px] rounded-full" />
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#02020a]">
+      {/* ATMOSPHERIC GLOW */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(76,29,149,0.05),transparent_70%)]" />
 
-      {/* 2. GROUP BULAN (DENGAN REFRENCE PARALLAX) */}
+      {/* STAR RAIN (SHOOTING STARS) */}
+      {shootingStars.map((star) => (
+        <div
+          key={star.id}
+          className="absolute w-[2px] h-[2px] bg-gradient-to-r from-white to-transparent rounded-full animate-shooting-star"
+          style={{
+            top: star.top,
+            left: star.left,
+            animationDelay: star.delay,
+            animationDuration: star.duration,
+            transform: "rotate(-45deg)",
+          }}
+        />
+      ))}
+
+      {/* ADDITIONAL SMALL MOONS (SATELLITES) */}
+      <div className="absolute top-[60%] left-[10%] w-12 h-12 rounded-full bg-purple-200/10 blur-[1px] shadow-[inset_-4px_-4px_8px_rgba(0,0,0,0.4)] opacity-40 animate-pulse" />
+      <div className="absolute top-[20%] left-[70%] w-6 h-6 rounded-full bg-blue-200/10 blur-[1px] shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.4)] opacity-30" />
+      <div className="absolute bottom-[15%] right-[25%] w-8 h-8 rounded-full bg-purple-300/5 blur-[1px] opacity-20 animate-bounce" style={{ animationDuration: '8s' }} />
+
+      {/* MAIN MOON (WITH PARALLAX) */}
       <div 
         ref={moonRef}
-        className="absolute top-24 right-[8%] md:right-[12%] transition-transform duration-300 ease-out"
+        className="absolute top-24 right-[8%] md:right-[12%] transition-transform duration-500 ease-out z-10"
       >
-        {/* Outer Glow (Halo) */}
-        <div className="absolute inset-0 rounded-full bg-purple-400/20 blur-[60px] animate-pulse" />
+        {/* Halo Glow */}
+        <div className="absolute inset-[-20px] rounded-full bg-purple-500/15 blur-[50px] animate-pulse" />
         
-        {/* Body Bulan */}
-        <div className="relative w-36 h-36 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-white via-purple-100 to-purple-300 shadow-[inset_-10px_-10px_30px_rgba(0,0,0,0.2),0_0_50px_rgba(192,132,252,0.3)] overflow-hidden">
-          
-          {/* Tekstur Kawah (Crater Effects) */}
-          <div className="absolute top-8 left-10 w-8 h-8 bg-purple-900/5 rounded-full blur-[4px]" />
-          <div className="absolute bottom-12 right-16 w-12 h-12 bg-purple-900/5 rounded-full blur-[6px]" />
-          <div className="absolute top-20 right-8 w-6 h-6 bg-purple-900/10 rounded-full blur-[3px]" />
-          
-          {/* Overlay Shading agar lebih 3D */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/20 via-transparent to-white/40" />
+        {/* Moon Body */}
+        <div className="relative w-32 h-32 md:w-52 md:h-52 rounded-full bg-gradient-to-br from-[#f8f7ff] via-[#dcd9ff] to-[#b3a9ff] shadow-[inset_-12px_-12px_40px_rgba(0,0,0,0.3),0_0_60px_rgba(168,85,247,0.2)] overflow-hidden border border-white/10">
+          {/* Craters */}
+          <div className="absolute top-[20%] left-[30%] w-6 h-6 bg-black/5 rounded-full blur-[2px]" />
+          <div className="absolute top-[50%] left-[15%] w-10 h-10 bg-black/5 rounded-full blur-[3px]" />
+          <div className="absolute bottom-[25%] right-[20%] w-8 h-8 bg-black/5 rounded-full blur-[2px]" />
+          {/* Shine Overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.4),transparent_60%)]" />
         </div>
-
-        {/* Orbit Light (Efek cahaya menyisir tepi bulan) */}
-        <div className="absolute -inset-2 rounded-full border border-purple-200/10 scale-110" />
-        <div className="absolute -inset-4 rounded-full border border-purple-200/5 scale-125" />
       </div>
 
-      {/* 3. STARS / SPARKLES LAYER */}
+      {/* SPARKLES (STATIC STARS) */}
       {sparkles.map((s) => (
         <span
           key={s.id}
@@ -73,17 +97,30 @@ function MoonBackground() {
             height: s.size,
             animationDelay: s.delay,
             animationDuration: s.duration,
-            boxShadow: `0 0 ${parseInt(s.size) * 3}px white`,
+            boxShadow: `0 0 4px white`,
           }}
         />
       ))}
 
-      {/* 4. MIST / NEBULA (Efek kabut tipis) */}
-      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-[0.03] mix-blend-overlay" />
+      {/* CSS ANIMATION FOR SHOOTING STAR */}
+      <style jsx>{`
+        @keyframes shooting-star {
+          0% { transform: translateX(0) translateY(0) rotate(-45deg) scale(0); opacity: 0; }
+          10% { opacity: 1; scale(1); }
+          20% { transform: translateX(200px) translateY(200px) rotate(-45deg) scale(1); opacity: 0; }
+          100% { transform: translateX(200px) translateY(200px) rotate(-45deg) scale(0); opacity: 0; }
+        }
+        .animate-shooting-star {
+          animation-name: shooting-star;
+          animation-iteration-count: infinite;
+          animation-timing-function: ease-in;
+          width: 100px;
+          height: 1px;
+        }
+      `}</style>
     </div>
   );
 }
-
 export default function Home() {
   const fantasyFont = "font-serif italic tracking-wider uppercase";
 
