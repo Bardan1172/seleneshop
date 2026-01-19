@@ -129,8 +129,6 @@ function MoonBackground() {
   );
 }
 
-export default MoonBackground;
-
 export default function Home() {
   const fantasyFont = "font-serif italic tracking-wider uppercase";
 
