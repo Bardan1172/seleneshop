@@ -20,7 +20,7 @@ function MoonBackground() {
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
       <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-purple-900/20 blur-[120px] rounded-full" />
       <div className="absolute bottom-[10%] right-[-10%] w-[400px] h-[400px] bg-blue-900/10 blur-[100px] rounded-full" />
-      <div className="absolute top-20 right-[10%] md:right-[15%] w-32 h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-purple-100 to-purple-300 opacity-70 blur-[2px] animate-moon shadow-[0_0_80px_rgba(192,132,252,0.4)]" />
+      <div className="absolute top-20 right-[10%] md:right-[15%] w-32 h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-purple-100 to-purple-300 opacity-70 blur-[2px] shadow-[0_0_80px_rgba(192,132,252,0.4)]" />
       <div className="absolute top-20 right-[10%] md:right-[15%] w-40 h-40 md:w-60 md:h-60 rounded-full bg-purple-500/20 blur-3xl animate-pulse" />
       {sparkles.map((s) => (
         <span
@@ -99,14 +99,17 @@ export default function Home() {
   ];
 
   return (
-    <div className="bg-[#02020a] min-h-screen text-white selection:bg-purple-500/30 font-sans">
+    <div className="bg-[#02020a] min-h-screen text-white selection:bg-purple-500/30 font-sans scroll-smooth">
+      {/* NAVBAR */}
       <nav className="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-purple-400 font-bold text-xl tracking-tight">Selene Shop 🌙</span>
-          <div className="hidden md:flex gap-8 text-xs font-bold tracking-widest uppercase">
-            <a href="#beranda" className="text-white/50 hover:text-purple-300 transition">Beranda</a>
-            <a href="#produk" className="text-white/50 hover:text-purple-300 transition">Produk</a>
-            <a href="https://discord.gg/muH44HDrea" target="_blank" className="text-purple-400 hover:text-purple-200 transition">Discord</a>
+          <a href="#beranda" className="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-purple-400 font-bold text-xl tracking-tight">Selene Shop 🌙</a>
+          <div className="hidden md:flex gap-6 text-[10px] font-bold tracking-widest uppercase">
+            <a href="#tentang" className="text-white/50 hover:text-purple-300 transition">Tentang</a>
+            <a href="#keunggulan" className="text-white/50 hover:text-purple-300 transition">Keunggulan</a>
+            <a href="#produk" className="text-white/50 hover:text-purple-300 transition">Layanan</a>
+            <a href="#alur" className="text-white/50 hover:text-purple-300 transition">Cara Order</a>
+            <a href="#pembayaran" className="text-purple-400 hover:text-purple-200 transition">Pembayaran</a>
           </div>
         </div>
       </nav>
@@ -115,15 +118,21 @@ export default function Home() {
         <MoonBackground />
 
         {/* HERO */}
-        <section id="beranda" className="relative z-10 min-h-[80vh] flex flex-col items-center justify-center text-center px-6">
+        <section id="beranda" className="relative z-10 min-h-[90vh] flex flex-col items-center justify-center text-center px-6">
           <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tighter">
             Selene <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-200 to-purple-500">Shop</span>
           </h1>
           <p className="text-white/60 max-w-xl text-lg mb-10 leading-relaxed font-light">Eksplorasi estetika malam dalam dunia digital. Kami menghadirkan karya berkualitas tinggi untuk identitas Minecraft Anda.</p>
-          <div className="flex flex-wrap justify-center gap-6">
-            <a href="#produk" className="px-10 py-4 bg-white text-black hover:bg-purple-200 rounded-full transition-all font-bold text-sm shadow-[0_10px_30px_rgba(255,255,255,0.1)]">Mulai Eksplorasi</a>
-            <a href="https://discord.gg/muH44HDrea" target="_blank" className="px-10 py-4 border border-white/10 hover:bg-white/5 rounded-full transition-all font-bold text-sm backdrop-blur-md">Komunitas Discord</a>
+          
+          {/* NAVIGATION BUTTONS GRID */}
+          <div className="flex flex-wrap justify-center gap-4 max-w-3xl">
+            <a href="#produk" className="px-8 py-4 bg-white text-black hover:bg-purple-200 rounded-full transition-all font-bold text-xs uppercase tracking-widest shadow-[0_10px_30px_rgba(255,255,255,0.1)]">Layanan Kreatif</a>
+            <a href="#tentang" className="px-8 py-4 border border-white/10 hover:bg-white/5 rounded-full transition-all font-bold text-xs uppercase tracking-widest backdrop-blur-md">Tentang Kami</a>
+            <a href="#alur" className="px-8 py-4 border border-white/10 hover:bg-white/5 rounded-full transition-all font-bold text-xs uppercase tracking-widest backdrop-blur-md">Cara Order</a>
+            <a href="#pembayaran" className="px-8 py-4 border border-purple-500/20 bg-purple-500/5 hover:bg-purple-500/10 rounded-full transition-all font-bold text-xs uppercase tracking-widest backdrop-blur-md text-purple-300">Payment Gateway</a>
           </div>
+          
+          <a href="https://discord.gg/muH44HDrea" target="_blank" className="mt-8 text-white/30 hover:text-white/60 text-[10px] font-bold tracking-[0.3em] uppercase transition-all underline underline-offset-8">Masuk ke Community Discord</a>
         </section>
 
         {/* BRAND PARTNERS */}
@@ -140,43 +149,28 @@ export default function Home() {
           </div>
         </section>
 
-        {/* TENTANG KAMI - Enhanced with Hover Effects */}
-        <section className="relative z-10 py-32 px-6">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            <div className="group p-8 rounded-[40px] transition-all duration-500 hover:bg-white/[0.02]">
-              <h2 className="text-4xl font-bold text-white mb-6 group-hover:text-purple-300 transition-colors">Tentang Kami</h2>
-              <p className="text-white/50 leading-relaxed text-lg mb-8">
-                Terinspirasi oleh keindahan Bulan, Selene Shop mengintegrasikan seni digital dengan fungsionalitas game. Kami bukan sekadar toko, kami adalah partner kreatif Anda.
-              </p>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="p-6 rounded-3xl bg-white/[0.03] border border-white/5 hover:border-purple-500/30 hover:bg-purple-500/5 transition-all">
-                  <h4 className="text-purple-300 font-bold mb-1">100+</h4>
-                  <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Project Selesai</p>
-                </div>
-                <div className="p-6 rounded-3xl bg-white/[0.03] border border-white/5 hover:border-purple-500/30 hover:bg-purple-500/5 transition-all">
-                  <h4 className="text-purple-300 font-bold mb-1">Premium</h4>
-                  <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Kualitas Karya</p>
-                </div>
+        {/* TENTANG KAMI */}
+        <section id="tentang" className="relative z-10 pt-32 pb-16 px-6">
+          <div className="max-w-4xl mx-auto text-center group transition-all duration-500">
+            <h2 className="text-4xl font-bold text-white mb-6 group-hover:text-purple-300 transition-colors">Tentang Kami</h2>
+            <p className="text-white/50 leading-relaxed text-lg mb-12">
+              Terinspirasi oleh keindahan Bulan, Selene Shop mengintegrasikan seni digital dengan fungsionalitas game. Kami bukan sekadar toko, kami adalah partner kreatif Anda dalam membangun identitas digital yang ikonik.
+            </p>
+            <div className="grid grid-cols-2 gap-6 max-w-lg mx-auto">
+              <div className="p-8 rounded-[30px] bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all">
+                <h4 className="text-3xl text-purple-300 font-bold mb-1">100+</h4>
+                <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Project Selesai</p>
               </div>
-            </div>
-            {/* Added "Why Us" items directly here for a more compact feel */}
-            <div className="space-y-4">
-              {[
-                { t: "Hasil Presisi", d: "Setiap pixel dihitung untuk hasil maksimal." },
-                { t: "Fast Response", d: "Diskusi aktif setiap hari di Discord." },
-                { t: "Custom Order", d: "Sesuai dengan imajinasi dan keinginan Anda." }
-              ].map((item, idx) => (
-                <div key={idx} className="group p-6 rounded-3xl bg-gradient-to-r from-white/[0.04] to-transparent border-l-2 border-purple-500/20 hover:border-purple-500 hover:from-purple-500/10 transition-all duration-500">
-                  <h4 className="font-bold text-white group-hover:text-purple-200 mb-1 transition-colors">{item.t}</h4>
-                  <p className="text-sm text-white/40 group-hover:text-white/60 transition-colors">{item.d}</p>
-                </div>
-              ))}
+              <div className="p-8 rounded-[30px] bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all">
+                <h4 className="text-3xl text-purple-300 font-bold mb-1">Premium</h4>
+                <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Kualitas Karya</p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* MENGAPA MEMILIH KAMI - Now Below Tentang Kami */}
-        <section className="relative z-10 pb-32 px-6">
+        {/* MENGAPA MEMILIH KAMI */}
+        <section id="keunggulan" className="relative z-10 pb-32 px-6">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
                 <div className="w-12 h-1 bg-purple-500/30 mx-auto mb-6 rounded-full"></div>
@@ -231,7 +225,7 @@ export default function Home() {
         </section>
 
         {/* CARA ORDER */}
-        <section className="relative z-10 py-32 px-6">
+        <section id="alur" className="relative z-10 py-32 px-6">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold text-center text-white mb-20 tracking-widest uppercase">Cara Order</h2>
             <div className="grid md:grid-cols-3 gap-8">
@@ -251,7 +245,7 @@ export default function Home() {
         </section>
 
         {/* SECURED PAYMENT */}
-        <section className="relative z-10 py-32 px-6 bg-gradient-to-t from-purple-900/[0.05] to-transparent">
+        <section id="pembayaran" className="relative z-10 py-32 px-6 bg-gradient-to-t from-purple-900/[0.05] to-transparent">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-xs font-bold tracking-[0.5em] text-white/30 uppercase mb-12 text-center">Secured Payment Gateway</h2>
             <div className="flex flex-wrap justify-center gap-10 mb-20 opacity-20 hover:opacity-40 transition-opacity duration-700">
