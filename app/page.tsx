@@ -252,7 +252,7 @@ export default function Home() {
         <section id="pembayaran" className="relative z-10 py-32 px-6">
           <div className="max-w-4xl mx-auto text-center">
             <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-8 block">Transaction</span>
-            <h2 className="text-3xl font-bold text-white mb-12 text-center uppercase tracking-tighter">Secured Payment Gateway</h2>
+            <h2 className="text-3xl font-bold text-white mb-12 text-center uppercase tracking-tighter">Payment Gateway</h2>
             
             <div className="flex flex-wrap justify-center gap-10 mb-20 opacity-20 hover:opacity-50 transition-opacity duration-700">
               {["DANA", "OVO", "SHOPEEPAY", "QRIS", "GOPAY"].map((m) => (
