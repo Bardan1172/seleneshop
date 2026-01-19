@@ -2,57 +2,134 @@
 
 import { useEffect, useState, useRef } from "react";
 
-// 1. PINDAHKAN KOMPONEN BACKGROUND KE LUAR ATAU PASTIKAN TERTUTUP
 function MoonBackground() {
-  // ... (isi kode MoonBackground yang saya berikan sebelumnya) ...
+  const [stars, setStars] = useState<{id: number, top: string, left: string, size: string, delay: string}[]>([]);
+  const [meteors, setMeteors] = useState<{id: number, top: string, left: string, delay: string, duration: string}[]>([]);
+  const moonRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // 1. Generate Bintang (Twinkling)
+    setStars(Array.from({ length: 100 }).map((_, i) => ({
+      id: i,
+      top: `${Math.random() * 100}%`,
+      left: `${Math.random() * 100}%`,
+      size: `${Math.random() * 2 + 0.5}px`,
+      delay: `${Math.random() * 5}s`,
+    })));
+
+    // 2. Generate Bintang Jatuh - Dibuat delay acak kecil agar sering muncul
+    setMeteors(Array.from({ length: 6 }).map((_, i) => ({
+      id: i,
+      top: `${Math.random() * 50}%`,
+      left: `${Math.random() * 80 + 20}%`,
+      delay: `${Math.random() * 15}s`,
+      duration: `${1.5 + Math.random() * 2}s`,
+    })));
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!moonRef.current) return;
+      const x = (e.clientX - window.innerWidth / 2) / 40;
+      const y = (e.clientY - window.innerHeight / 2) / 40;
+      moonRef.current.style.transform = `translate(${x}px, ${y}px)`;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#02020a]">
-      {/* Semua elemen bintang, bulan, awan */}
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#010105]">
+      
+      {/* 1. LAYER AWAN (Dibuat lebih terlihat dengan Opacity lebih tinggi) */}
+      <div className="absolute inset-0 z-[5]">
+        <div className="absolute top-[10%] -left-[10%] w-[100%] h-[40%] bg-purple-900/20 blur-[120px] rounded-full animate-cloud-drift" />
+        <div className="absolute bottom-[10%] -right-[10%] w-[90%] h-[50%] bg-blue-900/20 blur-[140px] rounded-full animate-cloud-drift-reverse" />
+        {/* Awan kabut menyebar */}
+        <div className="absolute top-1/4 left-0 w-full h-32 bg-white/[0.02] blur-[80px] animate-pulse" />
+      </div>
+
+      {/* 2. BINTANG JATUH (METEOR) - Fix Animasi & Visibility */}
+      <div className="absolute inset-0 z-[10]">
+        {meteors.map((m) => (
+          <div
+            key={m.id}
+            className="absolute w-[200px] h-[2px] bg-gradient-to-r from-transparent via-purple-200 to-white opacity-0 animate-meteor-new"
+            style={{
+              top: m.top,
+              left: m.left,
+              animationDelay: m.delay,
+              animationDuration: m.duration,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* 3. BINTANG BERKELIP */}
+      <div className="absolute inset-0 z-[2]">
+        {stars.map((s) => (
+          <div
+            key={s.id}
+            className="absolute bg-white rounded-full animate-twinkle shadow-[0_0_5px_white]"
+            style={{
+              top: s.top,
+              left: s.left,
+              width: s.size,
+              height: s.size,
+              animationDelay: s.delay,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* 4. BULAN DENGAN TEKSTUR & CAHAYA MENYEBAR */}
+      <div 
+        ref={moonRef}
+        className="absolute top-32 right-[10%] md:right-[15%] transition-transform duration-700 ease-out z-[20]"
+      >
+        {/* Glow menyebar di luar bulan */}
+        <div className="absolute inset-[-60px] rounded-full bg-purple-600/20 blur-[80px] animate-pulse" />
+        <div className="absolute inset-[-120px] rounded-full bg-blue-600/10 blur-[120px]" />
+        
+        {/* Main Moon Body */}
+        <div className="relative w-36 h-36 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-[#f0f0f0] via-[#d1d1d1] to-[#888] shadow-[inset_-15px_-15px_40px_rgba(0,0,0,0.7),0_0_50px_rgba(192,132,252,0.4)] border border-white/20 overflow-hidden">
+          {/* Efek Tekstur Kasar (Kawah) */}
+          <div className="absolute inset-0 opacity-30 mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+          
+          {/* Detail Kawah Manual */}
+          <div className="absolute top-[25%] left-[30%] w-10 h-10 bg-black/10 rounded-full blur-md" />
+          <div className="absolute bottom-[30%] right-[25%] w-16 h-16 bg-black/10 rounded-full blur-lg" />
+          <div className="absolute top-[60%] left-[20%] w-6 h-6 bg-black/10 rounded-full blur-sm" />
+          
+          {/* Highlight Sisi Terang */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_35%,rgba(255,255,255,0.4),transparent_70%)]" />
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.3; transform: scale(0.8); }
+          50% { opacity: 1; transform: scale(1.1); }
+        }
+        @keyframes cloud-drift {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(80px, 40px); }
+        }
+        @keyframes cloud-drift-reverse {
+          0%, 100% { transform: translate(0, 0); }
+          50% { transform: translate(-60px, -20px); }
+        }
+        @keyframes meteor-new {
+          0% { transform: rotate(-35deg) translateX(0) scaleX(0); opacity: 0; }
+          5% { opacity: 1; scaleX(1); }
+          25% { transform: rotate(-35deg) translateX(-800px) scaleX(1); opacity: 0; }
+          100% { transform: rotate(-35deg) translateX(-800px) scaleX(0); opacity: 0; }
+        }
+        .animate-twinkle { animation: twinkle 3s infinite ease-in-out; }
+        .animate-cloud-drift { animation: cloud-drift 20s infinite ease-in-out; }
+        .animate-cloud-drift-reverse { animation: cloud-drift-reverse 25s infinite ease-in-out; }
+        .animate-meteor-new { animation: meteor-new 8s infinite linear; }
+      `}</style>
     </div>
-  );
-} // <--- PASTIKAN ADA PENUTUP INI SEBELUM EXPORT HOME
-
-// 2. EXPORT HOME HARUS BERSIH
-export default function Home() {
-  const fantasyFont = "font-serif italic tracking-wider uppercase";
-
-  const services = [
-    { 
-      title: "✦ COSMETICA FACE", 
-      tag: "*KHUSUS MINECRAFT PREMIUM", 
-      items: [
-        { label: "ONLY FACE: 30K", desc: "Custom mata, alis, dan mulut sesuai request." },
-        { label: "FACE + RAMBUT HD: 50K", desc: "Termasuk shading rambut detail dan ekspresi." }
-      ], 
-      btn: "ORDER FACE" 
-    },
-    { 
-      title: "◈ MINECRAFT SKIN", 
-      tag: "CLASSIC / SLIM MODEL", 
-      items: [
-        { label: "SIMPLE: 10K", desc: "Desain minimalis dengan shading standar." },
-        { label: "FULL DETAIL: 15K", desc: "Shading kompleks untuk Anime atau Fantasy." }
-      ], 
-      btn: "ORDER SKIN" 
-    },
-    // ... sisa jasa lainnya ...
-  ];
-
-  return (
-    <main className="relative min-h-screen bg-[#02020a] overflow-hidden">
-      {/* Masukkan Background di sini */}
-      <MoonBackground />
-
-      {/* Konten Utama Selene Shop */}
-      <nav className="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/5 px-6">
-         {/* Isi Navigasi Anda */}
-      </nav>
-
-      <section className="relative z-10 pt-32 px-6">
-        <h1 className={`${fantasyFont} text-5xl text-center mb-12`}>Selene Shop</h1>
-        {/* Render Services di sini */}
-      </section>
-    </main>
   );
 }
 
