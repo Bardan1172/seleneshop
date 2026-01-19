@@ -8,32 +8,32 @@ function MoonBackground() {
   const moonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // 1. Bintang Berkelip (Saiz dibesarkan sedikit: 2px - 4px)
-    const generatedStars = Array.from({ length: 45 }).map((_, i) => ({
+    // 1. Background Stars (Twinkling)
+    const generatedStars = Array.from({ length: 50 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
       delay: `${Math.random() * 5}s`,
-      duration: `${2 + Math.random() * 3}s`,
-      size: `${Math.random() * 2 + 2}px`, // Saiz lebih besar sedikit
+      duration: `${3 + Math.random() * 2}s`,
+      size: `${Math.random() * 2 + 1}px`,
     }));
     setSparkles(generatedStars);
 
-    // 2. Star Rain / Meteor (Saiz lebih besar & panjang)
-    const generatedMeteors = Array.from({ length: 8 }).map((_, i) => ({
+    // 2. Realistic Shooting Stars (Bervariasi)
+    const generatedMeteors = Array.from({ length: 6 }).map((_, i) => ({
       id: i,
-      top: `${Math.random() * 50}%`,
-      left: `${Math.random() * 90}%`,
-      delay: `${Math.random() * 15}s`,
-      duration: `${1.5 + Math.random() * 2}s`, // Animasi lebih laju dan dramatik
+      // Start position (beberapa dari luar layar atas/kanan)
+      top: `${Math.random() * 40 - 10}%`, 
+      left: `${Math.random() * 50 + 50}%`,
+      delay: `${Math.random() * 20}s`,
+      duration: `${2 + Math.random() * 4}s`,
     }));
     setShootingStars(generatedMeteors);
 
-    // 3. Efek Parallax Bulan
     const handleMouseMove = (e: MouseEvent) => {
       if (!moonRef.current) return;
-      const x = (e.clientX - window.innerWidth / 2) / 40;
-      const y = (e.clientY - window.innerHeight / 2) / 40;
+      const x = (e.clientX - window.innerWidth / 2) / 45;
+      const y = (e.clientY - window.innerHeight / 2) / 45;
       moonRef.current.style.transform = `translate(${x}px, ${y}px)`;
     };
 
@@ -43,51 +43,49 @@ function MoonBackground() {
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#02020a]">
-      {/* 1. EFEK CAHAYA LATAR (NEBULA) */}
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_20%,rgba(120,50,255,0.08),transparent_60%)]" />
+      {/* ATMOSPHERIC GLOW */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_30%,rgba(88,28,135,0.15),transparent_70%)]" />
 
-      {/* 2. STAR RAIN (METEOR) DENGAN EKOR PANJANG */}
+      {/* REALISTIC SHOOTING STARS */}
       {shootingStars.map((star) => (
         <div
           key={star.id}
-          className="absolute bg-gradient-to-r from-transparent via-purple-300 to-white rounded-full animate-meteor"
+          className="absolute bg-gradient-to-l from-white via-purple-400 to-transparent rounded-full animate-meteor-fast"
           style={{
             top: star.top,
             left: star.left,
             animationDelay: star.delay,
             animationDuration: star.duration,
-            width: '150px', // Ekor lebih panjang
-            height: '2px',  // Lebih tebal sedikit
-            transform: "rotate(-45deg)",
-            boxShadow: '0 0 15px rgba(255, 255, 255, 0.5)'
+            width: '200px',
+            height: '2px',
+            transform: "rotate(-35deg)",
+            filter: 'drop-shadow(0 0 8px rgba(192, 132, 252, 0.8))'
           }}
         />
       ))}
 
-      {/* 3. BULAN TAMBAHAN (SATELLITES) */}
-      <div className="absolute top-[55%] left-[15%] w-16 h-16 rounded-full bg-purple-400/10 blur-[2px] shadow-[inset_-6px_-6px_12px_rgba(0,0,0,0.5)] animate-pulse" />
-      <div className="absolute top-[25%] left-[75%] w-8 h-8 rounded-full bg-blue-400/10 blur-[1px] shadow-[inset_-3px_-3px_6px_rgba(0,0,0,0.5)]" />
+      {/* BACKGROUND MOONS */}
+      <div className="absolute top-[60%] left-[10%] w-20 h-20 rounded-full bg-purple-500/5 blur-xl animate-pulse" />
+      <div className="absolute top-[20%] left-[80%] w-12 h-12 rounded-full bg-blue-500/5 blur-lg" />
 
-      {/* 4. BULAN UTAMA (PARALLAX & GLOW) */}
+      {/* MAIN MOON */}
       <div 
         ref={moonRef}
-        className="absolute top-24 right-[10%] md:right-[15%] transition-transform duration-700 ease-out z-10"
+        className="absolute top-24 right-[10%] md:right-[15%] transition-transform duration-1000 ease-out z-10"
       >
-        <div className="absolute inset-[-30px] rounded-full bg-purple-600/20 blur-[60px] animate-pulse" />
-        <div className="relative w-40 h-40 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-[#ffffff] via-[#e5e0ff] to-[#c7bdff] shadow-[inset_-15px_-15px_50px_rgba(0,0,0,0.3),0_0_80px_rgba(168,85,247,0.25)] overflow-hidden border border-white/20">
-          {/* Tekstur Kawah yang lebih jelas */}
-          <div className="absolute top-[25%] left-[35%] w-8 h-8 bg-purple-900/10 rounded-full blur-[3px]" />
-          <div className="absolute top-[55%] left-[20%] w-14 h-14 bg-purple-900/10 rounded-full blur-[4px]" />
-          <div className="absolute bottom-[30%] right-[25%] w-10 h-10 bg-purple-900/10 rounded-full blur-[3px]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_35%,rgba(255,255,255,0.5),transparent_70%)]" />
+        <div className="absolute inset-[-40px] rounded-full bg-purple-600/10 blur-[80px] animate-pulse" />
+        <div className="relative w-44 h-44 md:w-72 md:h-72 rounded-full bg-gradient-to-br from-[#ffffff] via-[#f3f0ff] to-[#d8d2ff] shadow-[inset_-15px_-15px_60px_rgba(0,0,0,0.4),0_0_100px_rgba(168,85,247,0.2)] border border-white/20">
+          <div className="absolute top-[20%] left-[30%] w-10 h-10 bg-purple-900/5 rounded-full blur-[4px]" />
+          <div className="absolute bottom-[35%] right-[25%] w-16 h-16 bg-purple-900/5 rounded-full blur-[6px]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.6),transparent_60%)]" />
         </div>
       </div>
 
-      {/* 5. BINTANG BERKELIP (STAR TWINKLE) */}
+      {/* TWINKLING STARS */}
       {sparkles.map((s) => (
         <span
           key={s.id}
-          className="absolute bg-white rounded-full animate-twinkle shadow-[0_0_10px_white]"
+          className="absolute bg-white rounded-full animate-twinkle shadow-[0_0_8px_white]"
           style={{
             top: s.top,
             left: s.left,
@@ -99,30 +97,39 @@ function MoonBackground() {
         />
       ))}
 
-      {/* ANIMASI CSS */}
       <style jsx>{`
-        @keyframes meteor {
-          0% { transform: translateX(0) translateY(0) rotate(-45deg) scale(0); opacity: 0; }
-          20% { opacity: 1; scale(1); }
-          40% { transform: translateX(-400px) translateY(400px) rotate(-45deg) scale(1); opacity: 0; }
-          100% { transform: translateX(-400px) translateY(400px) rotate(-45deg) scale(0); opacity: 0; }
+        @keyframes meteor-realistic {
+          0% { 
+            transform: rotate(-35deg) translateX(0) scale(0); 
+            opacity: 0; 
+          }
+          10% { 
+            transform: rotate(-35deg) translateX(-100px) scale(1.2); 
+            opacity: 1; 
+          }
+          60% { 
+            opacity: 0.8; 
+          }
+          100% { 
+            transform: rotate(-35deg) translateX(-1200px) scale(0.2); 
+            opacity: 0; 
+          }
         }
 
         @keyframes twinkle {
-          0%, 100% { transform: scale(0.5); opacity: 0.3; }
-          50% { transform: scale(1.2); opacity: 1; shadow: 0 0 15px white; }
+          0%, 100% { transform: scale(0.8); opacity: 0.2; }
+          50% { transform: scale(1.2); opacity: 0.8; }
         }
 
-        .animate-meteor {
-          animation-name: meteor;
+        .animate-meteor-fast {
+          animation-name: meteor-realistic;
           animation-iteration-count: infinite;
-          animation-timing-function: linear;
+          animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .animate-twinkle {
           animation-name: twinkle;
           animation-iteration-count: infinite;
-          animation-timing-function: ease-in-out;
         }
       `}</style>
     </div>
