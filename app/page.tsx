@@ -138,7 +138,7 @@ export default function Home() {
       <nav className="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/5 px-6">
         <div className="max-w-7xl mx-auto h-20 flex items-center justify-between">
           <a href="#beranda" className={`${fantasyFont} text-2xl bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-purple-400 font-bold py-2 inline-block`}>
-            SELENE SHOP ✦
+            SELENE SHOP 🌙
           </a>
           <div className="hidden md:flex gap-6 text-[10px] font-bold tracking-[0.2em]">
             {["TENTANG", "KEUNGGULAN", "LAYANAN", "CARA ORDER", "PEMBAYARAN"].map(s => (
