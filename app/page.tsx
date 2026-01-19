@@ -35,21 +35,20 @@ export default function Home() {
   const fantasyFont = "font-serif italic tracking-wider uppercase";
 
   const services = [
-    { title: "🌙 COSMETICA FACE", tag: "*KHUSUS MINECRAFT PREMIUM", items: [{ label: "ONLY FACE: 30K", desc: "Custom mata, alis, dan mulut sesuai request." }, { label: "FACE + RAMBUT HD: 50K", desc: "Termasuk shading rambut detail dan ekspresi." }], btn: "ORDER FACE" },
-    { title: "🎮 MINECRAFT SKIN", tag: "CLASSIC / SLIM MODEL", items: [{ label: "SIMPLE: 10K", desc: "Desain minimalis dengan shading standar." }, { label: "FULL DETAIL: 15K", desc: "Shading kompleks untuk Anime atau Fantasy." }], btn: "ORDER SKIN" },
-    { title: "🎨 ART & ILLUSTRATION", tag: "DIGITAL HAND-DRAWN", items: [{ label: "SIMPLE SHADE: 25K", desc: "Fanart atau OC." }, { label: "CHIBI PNGTUBER: 25K", desc: "Karakter mungil untuk konten." }, { label: "PNGTUBER: 30K", desc: "Model PNGtuber (Bust-up)." }], btn: "ORDER ART" },
-    { title: "📸 MC PHOTOSHOOT", tag: "CINEMATIC RENDERS", items: [{ label: "CINEMATIC RENDER", desc: "Single, Couple, atau Group." }, { label: "CUSTOM SCENE", desc: "Background Nether, End, atau build milikmu." }], btn: "BOOKING SESSION" },
-    { title: "😆 CUSTOM STICKER", tag: "DISCORD & WHATSAPP", items: [{ label: "PER PCS: 10K", desc: "Bust-up atau Head Only." }, { label: "PACK (6 STICKER): 50K", desc: "Lebih hemat untuk koleksi." }], btn: "ORDER STICKER" },
-    { title: "🏗️ MINECRAFT BUILD", tag: "STRUCTURAL & AESTHETIC", items: [{ label: "BASIC: 15K – 75K", desc: "Small structures." }, { label: "ADVANCED: 75K – 300K", desc: "Fantasy base." }, { label: "ELITE: 450K – 1.5JT", desc: "Complex cities." }], btn: "CUSTOM BUILD" }
+    { title: "✦ COSMETICA FACE", tag: "*KHUSUS MINECRAFT PREMIUM", items: [{ label: "ONLY FACE: 30K", desc: "Custom mata, alis, dan mulut sesuai request." }, { label: "FACE + RAMBUT HD: 50K", desc: "Termasuk shading rambut detail dan ekspresi." }], btn: "ORDER FACE" },
+    { title: "◈ MINECRAFT SKIN", tag: "CLASSIC / SLIM MODEL", items: [{ label: "SIMPLE: 10K", desc: "Desain minimalis dengan shading standar." }, { label: "FULL DETAIL: 15K", desc: "Shading kompleks untuk Anime atau Fantasy." }], btn: "ORDER SKIN" },
+    { title: "✎ ART & ILLUSTRATION", tag: "DIGITAL HAND-DRAWN", items: [{ label: "SIMPLE SHADE: 25K", desc: "Fanart atau OC." }, { label: "CHIBI PNGTUBER: 25K", desc: "Karakter mungil untuk konten." }, { label: "PNGTUBER: 30K", desc: "Model PNGtuber (Bust-up)." }], btn: "ORDER ART" },
+    { title: "▣ MC PHOTOSHOOT", tag: "CINEMATIC RENDERS", items: [{ label: "CINEMATIC RENDER", desc: "Single, Couple, atau Group." }, { label: "CUSTOM SCENE", desc: "Background Nether, End, atau build milikmu." }], btn: "BOOKING SESSION" },
+    { title: "✉ CUSTOM STICKER", tag: "DISCORD & WHATSAPP", items: [{ label: "PER PCS: 10K", desc: "Bust-up atau Head Only." }, { label: "PACK (6 STICKER): 50K", desc: "Lebih hemat untuk koleksi." }], btn: "ORDER STICKER" },
+    { title: "🏛 MINECRAFT BUILD", tag: "STRUCTURAL & AESTHETIC", items: [{ label: "BASIC: 15K – 75K", desc: "Small structures." }, { label: "ADVANCED: 75K – 300K", desc: "Fantasy base." }, { label: "ELITE: 450K – 1.5JT", desc: "Complex cities." }], btn: "CUSTOM BUILD" }
   ];
 
   return (
     <div className="bg-[#02020a] min-h-screen text-white selection:bg-purple-500/30 font-sans scroll-smooth overflow-x-hidden">
-      {/* NAVBAR */}
       <nav className="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/5 px-6">
         <div className="max-w-7xl mx-auto h-20 flex items-center justify-between">
           <a href="#beranda" className={`${fantasyFont} text-2xl bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-purple-400 font-bold py-2 inline-block`}>
-            SELENE SHOP 🌙
+            SELENE SHOP ✦
           </a>
           <div className="hidden md:flex gap-6 text-[10px] font-bold tracking-[0.2em]">
             {["TENTANG", "KEUNGGULAN", "LAYANAN", "CARA ORDER", "PEMBAYARAN"].map(s => (
@@ -62,12 +61,11 @@ export default function Home() {
       <main className="relative">
         <MoonBackground />
 
-        {/* HERO SECTION */}
         <section id="beranda" className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24">
           <h1 className={`${fantasyFont} text-7xl md:text-9xl font-bold text-white mb-10 leading-[1.3] py-8`}>
             SELENE <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-100 via-purple-300 to-purple-600 drop-shadow-2xl">SHOP</span>
           </h1>
-          <p className="text-white/60 max-w-2xl text-sm md:text-lg mb-14 tracking-[0.3em] uppercase font-light leading-relaxed">
+          <p className="text-white/60 max-w-2xl text-sm md:text-lg mb-14 tracking-[0.3em] uppercase font-light leading-relaxed italic">
             Eksplorasi estetika malam dalam dunia digital.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 w-full max-w-5xl px-4">
@@ -79,7 +77,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PARTNERS */}
         <section className="relative z-20 py-20 border-y border-white/5 bg-white/[0.01]">
           <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-10 md:gap-24 opacity-30 hover:opacity-100 transition-opacity duration-1000">
             {["SELENE SHOP", "HEPPYCLOUD", "BANGBLAZE"].map((brand) => (
@@ -90,7 +87,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SECTION: TENTANG KAMI */}
         <section id="tentang" className="relative z-10 py-32 px-6">
           <div className="max-w-4xl mx-auto text-center">
             <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">IDENTITY</span>
@@ -109,7 +105,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SECTION: KEUNGGULAN (MENGAPA MEMILIH KAMI) */}
         <section id="keunggulan" className="relative z-10 py-32 px-6 bg-white/[0.01]">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">
@@ -118,12 +113,12 @@ export default function Home() {
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { t: "HASIL PRESISI", d: "Pixel dan shading dikerjakan secara teliti.", icon: "✨" },
-                { t: "FAST RESPONSE", d: "Update progres berkala melalui Discord.", icon: "💬" },
-                { t: "CUSTOMIZABLE", d: "Dibuat khusus berdasarkan referensi unik.", icon: "🎨" }
+                { t: "HASIL PRESISI", d: "Pixel dan shading dikerjakan secara teliti.", icon: "⌖" },
+                { t: "FAST RESPONSE", d: "Update progres berkala melalui Discord.", icon: "✧" },
+                { t: "CUSTOMIZABLE", d: "Dibuat khusus berdasarkan referensi unik.", icon: "❂" }
               ].map((item, idx) => (
                 <div key={idx} className="group p-10 rounded-[45px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] hover:border-purple-500/30 transition-all duration-500">
-                  <div className="text-4xl mb-6 group-hover:scale-125 transition-transform duration-500">{item.icon}</div>
+                  <div className="text-4xl mb-6 group-hover:scale-125 transition-transform duration-500 text-purple-300">{item.icon}</div>
                   <h4 className={`${fantasyFont} font-bold text-white mb-4 text-xl`}>{item.t}</h4>
                   <p className="text-sm text-white/40 leading-relaxed uppercase tracking-tighter">{item.d}</p>
                 </div>
@@ -132,7 +127,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SECTION: LAYANAN (FULL 6 CARDS) */}
         <section id="layanan" className="relative z-10 py-32 px-6">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-24">
@@ -164,7 +158,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SECTION: CARA ORDER */}
         <section id="caraorder" className="relative z-10 py-32 px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-24">
@@ -173,9 +166,9 @@ export default function Home() {
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { s: "01", t: "JOIN DISCORD", d: "Masuk ke server resmi kami." },
-                { s: "02", t: "CREATE TICKET", d: "Buka tiket sesuai kategori." },
-                { s: "03", t: "PAYMENT", d: "Bayar via QRIS atau E-Wallet." }
+                { s: "I", t: "JOIN DISCORD", d: "Masuk ke server resmi kami." },
+                { s: "II", t: "CREATE TICKET", d: "Buka tiket sesuai kategori." },
+                { s: "III", t: "PAYMENT", d: "Bayar via QRIS atau E-Wallet." }
               ].map((item, idx) => (
                 <div key={idx} className="group relative p-12 rounded-[45px] bg-white/[0.02] border border-white/5 hover:border-purple-500/40 transition-all duration-500 overflow-hidden">
                   <span className={`${fantasyFont} text-7xl font-black text-white/[0.04] absolute top-6 right-8 group-hover:text-purple-500/10`}>{item.s}</span>
@@ -187,25 +180,24 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SECTION: PAYMENT */}
         <section id="pembayaran" className="relative z-10 py-40 px-6">
           <div className="max-w-4xl mx-auto text-center">
             <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-10 block uppercase">TRANSACTION</span>
             <h2 className={`${fantasyFont} text-4xl md:text-5xl font-bold py-6`}>PAYMENT GATEWAY</h2>
             <a href="https://sociabuzz.com/seleneshop/tribe" target="_blank" className="group relative inline-flex flex-col md:flex-row items-center gap-8 bg-white/[0.03] border border-white/10 rounded-[40px] p-10 md:p-14 hover:border-purple-500/50 hover:bg-white/[0.06] transition-all duration-700">
-              <div className="w-20 h-20 bg-purple-500/10 rounded-3xl flex items-center justify-center text-4xl group-hover:rotate-12 transition-all duration-500">🛡️</div>
+              <div className="w-20 h-20 bg-purple-500/10 rounded-3xl flex items-center justify-center text-4xl group-hover:rotate-12 transition-all duration-500 text-purple-200">⧓</div>
               <div className="text-center md:text-left uppercase">
                 <span className={`${fantasyFont} block font-bold text-white text-3xl mb-2`}>SOCIABUZZ GATEWAY</span>
                 <p className="text-[11px] text-white/40 font-bold tracking-[0.3em]">Verifikasi otomatis QRIS & E-Wallet.</p>
               </div>
-              <div className="md:ml-10 w-14 h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-500">→</div>
+              <div className="md:ml-10 w-14 h-14 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-500 text-xl">→</div>
             </a>
           </div>
         </section>
 
         <footer className="relative z-10 py-20 text-center border-t border-white/5 bg-black/60">
           <p className={`${fantasyFont} text-white/30 text-[12px] tracking-[0.8em] mb-6`}>SELENE SHOP • 2024</p>
-          <p className="text-white/10 text-[10px] uppercase tracking-[0.4em] font-black">Premium Digital Services for the Minecraft Community.</p>
+          <p className="text-white/10 text-[10px] uppercase tracking-[0.4em] font-black italic">Premium Digital Services for the Minecraft Community.</p>
         </footer>
       </main>
     </div>
