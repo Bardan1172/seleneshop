@@ -18,15 +18,10 @@ function MoonBackground() {
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-      {/* Glow Orbs - Pemberi warna di latar belakang agar tidak polos */}
       <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-purple-900/20 blur-[120px] rounded-full" />
       <div className="absolute bottom-[10%] right-[-10%] w-[400px] h-[400px] bg-blue-900/10 blur-[100px] rounded-full" />
-      
-      {/* Moon */}
       <div className="absolute top-20 right-[10%] md:right-[15%] w-32 h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-purple-100 to-purple-300 opacity-70 blur-[2px] animate-moon shadow-[0_0_80px_rgba(192,132,252,0.4)]" />
       <div className="absolute top-20 right-[10%] md:right-[15%] w-40 h-40 md:w-60 md:h-60 rounded-full bg-purple-500/20 blur-3xl animate-pulse" />
-      
-      {/* Sparkles */}
       {sparkles.map((s) => (
         <span
           key={s.id}
@@ -119,28 +114,25 @@ export default function Home() {
       <main className="relative pt-16">
         <MoonBackground />
 
-        {/* HERO */}
-        <section id="beranda" className="relative z-10 min-h-[85vh] flex flex-col items-center justify-center text-center px-6">
-          <div className="inline-block px-4 py-1.5 mb-6 rounded-full border border-purple-500/20 bg-purple-500/5 backdrop-blur-md">
-            <span className="text-[10px] font-bold tracking-[0.3em] text-purple-300 uppercase">Premium Studio</span>
-          </div>
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tighter">
+        {/* HERO - Premium Studio Tag Removed */}
+        <section id="beranda" className="relative z-10 min-h-[75vh] flex flex-col items-center justify-center text-center px-6">
+          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tighter animate-fade-in">
             Selene <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-200 to-purple-500">Shop</span>
           </h1>
           <p className="text-white/60 max-w-xl text-lg mb-10 leading-relaxed font-light">Eksplorasi estetika malam dalam dunia digital. Kami menghadirkan karya berkualitas tinggi untuk identitas Minecraft Anda.</p>
           <div className="flex flex-wrap justify-center gap-6">
-            <a href="#produk" className="px-10 py-4 bg-white text-black hover:bg-purple-200 rounded-full transition-all font-bold text-sm shadow-[0_10px_30px_rgba(255,255,255,0.1)]">Mulai Eksplorasi</a>
-            <a href="https://discord.gg/muH44HDrea" target="_blank" className="px-10 py-4 border border-white/10 hover:bg-white/5 rounded-full transition-all font-bold text-sm backdrop-blur-md">Komunitas Discord</a>
+            <a href="#produk" className="px-10 py-4 bg-white text-black hover:bg-purple-200 rounded-full transition-all font-bold text-sm shadow-[0_10px_30px_rgba(255,255,255,0.1)] hover:scale-105 active:scale-95">Mulai Eksplorasi</a>
+            <a href="https://discord.gg/muH44HDrea" target="_blank" className="px-10 py-4 border border-white/10 hover:bg-white/5 rounded-full transition-all font-bold text-sm backdrop-blur-md hover:border-purple-500/50">Komunitas Discord</a>
           </div>
         </section>
 
-        {/* BRAND PARTNERS - LUXURY STYLE */}
-        <section className="relative z-20 py-24 border-y border-white/5 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
+        {/* BRAND PARTNERS - Smaller and refined */}
+        <section className="relative z-20 py-16 border-y border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
           <div className="max-w-7xl mx-auto px-6 text-center">
-            <h2 className="text-purple-200 text-3xl md:text-4xl uppercase tracking-[0.6em] mb-16 font-black opacity-90">Official Partners</h2>
-            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24">
+            <h2 className="text-purple-200 text-lg md:text-xl uppercase tracking-[0.8em] mb-12 font-black opacity-70">Official Partners</h2>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
               {["SELENE SHOP", "HEPPYCLOUD", "BANGBLAZE"].map((brand) => (
-                <span key={brand} className="text-2xl md:text-3xl font-bold text-white/10 hover:text-white/80 transition-all duration-1000 cursor-default hover:tracking-[0.2em]">
+                <span key={brand} className="text-lg md:text-xl font-bold text-white/10 hover:text-purple-300/80 transition-all duration-700 cursor-default hover:tracking-[0.3em]">
                   {brand}
                 </span>
               ))}
@@ -148,55 +140,52 @@ export default function Home() {
           </div>
         </section>
 
-        {/* TENTANG & WHY - GRID LAYOUT */}
+        {/* TENTANG KAMI - Enhanced with Hover Effects */}
         <section className="relative z-10 py-32 px-6">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-            <div>
-              <h2 className="text-4xl font-bold text-white mb-6">Tentang Kami</h2>
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div className="group p-8 rounded-[40px] transition-all duration-500 hover:bg-white/[0.02]">
+              <h2 className="text-4xl font-bold text-white mb-6 group-hover:text-purple-300 transition-colors">Tentang Kami</h2>
               <p className="text-white/50 leading-relaxed text-lg mb-8">
                 Terinspirasi oleh keindahan Bulan, Selene Shop mengintegrasikan seni digital dengan fungsionalitas game. Kami bukan sekadar toko, kami adalah partner kreatif Anda.
               </p>
               <div className="grid grid-cols-2 gap-6">
-                <div className="p-6 rounded-3xl bg-white/[0.03] border border-white/5">
+                <div className="p-6 rounded-3xl bg-white/[0.03] border border-white/5 hover:border-purple-500/30 hover:bg-purple-500/5 transition-all">
                   <h4 className="text-purple-300 font-bold mb-1">100+</h4>
                   <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Project Selesai</p>
                 </div>
-                <div className="p-6 rounded-3xl bg-white/[0.03] border border-white/5">
+                <div className="p-6 rounded-3xl bg-white/[0.03] border border-white/5 hover:border-purple-500/30 hover:bg-purple-500/5 transition-all">
                   <h4 className="text-purple-300 font-bold mb-1">Premium</h4>
                   <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Kualitas Karya</p>
                 </div>
               </div>
             </div>
+            {/* Added "Why Us" items directly here for a more compact feel */}
             <div className="space-y-4">
               {[
                 { t: "Hasil Presisi", d: "Setiap pixel dihitung untuk hasil maksimal." },
                 { t: "Fast Response", d: "Diskusi aktif setiap hari di Discord." },
                 { t: "Custom Order", d: "Sesuai dengan imajinasi dan keinginan Anda." }
               ].map((item, idx) => (
-                <div key={idx} className="p-6 rounded-3xl bg-gradient-to-r from-white/[0.04] to-transparent border-l-2 border-purple-500/40">
-                  <h4 className="font-bold text-white mb-1">{item.t}</h4>
-                  <p className="text-sm text-white/40">{item.d}</p>
+                <div key={idx} className="group p-6 rounded-3xl bg-gradient-to-r from-white/[0.04] to-transparent border-l-2 border-purple-500/20 hover:border-purple-500 hover:from-purple-500/10 transition-all duration-500">
+                  <h4 className="font-bold text-white group-hover:text-purple-200 mb-1 transition-colors">{item.t}</h4>
+                  <p className="text-sm text-white/40 group-hover:text-white/60 transition-colors">{item.d}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* PRODUK - MODERN CARDS */}
-        <section id="produk" className="relative z-10 py-32 px-6 bg-gradient-to-b from-transparent via-purple-900/[0.03] to-transparent">
+        {/* PRODUK */}
+        <section id="produk" className="relative z-10 py-32 px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-6">
-              <div>
-                <span className="text-purple-400 text-xs font-bold tracking-[0.4em] uppercase mb-4 block">Katalog</span>
-                <h2 className="text-5xl font-bold text-white tracking-tighter">Layanan Kreatif</h2>
-              </div>
-              <p className="text-white/40 max-w-xs text-sm">Pilih layanan yang sesuai dengan kebutuhan profil dan dunia Minecraft Anda.</p>
+            <div className="mb-20">
+              <span className="text-purple-400 text-xs font-bold tracking-[0.4em] uppercase mb-4 block">Katalog</span>
+              <h2 className="text-5xl font-bold text-white tracking-tighter">Layanan Kreatif</h2>
             </div>
-            
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((s, i) => (
-                <div key={i} className="group relative bg-white/[0.02] border border-white/5 p-10 rounded-[40px] hover:bg-white/[0.04] hover:border-purple-500/30 transition-all duration-700 flex flex-col h-full overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-purple-600/5 blur-3xl group-hover:bg-purple-600/10 transition-all" />
+                <div key={i} className="group relative bg-white/[0.02] border border-white/5 p-10 rounded-[40px] hover:bg-white/[0.04] hover:border-purple-500/30 transition-all duration-700 flex flex-col h-full overflow-hidden hover:shadow-[0_20px_50px_rgba(168,85,247,0.1)]">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-purple-600/5 blur-3xl group-hover:bg-purple-600/20 transition-all" />
                   <div className="flex-grow">
                     <h3 className="text-2xl font-bold text-white mb-1">{s.title}</h3>
                     <p className="text-[10px] text-purple-400 font-bold mb-10 uppercase tracking-widest">{s.tag}</p>
@@ -209,7 +198,7 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                  <a href="https://discord.gg/muH44HDrea" target="_blank" className="block w-full text-center py-4 bg-white/5 hover:bg-white hover:text-black rounded-2xl font-bold text-xs transition-all duration-500 uppercase tracking-widest mt-auto">
+                  <a href="https://discord.gg/muH44HDrea" target="_blank" className="block w-full text-center py-4 bg-white/5 hover:bg-purple-600 hover:text-white rounded-2xl font-bold text-xs transition-all duration-500 uppercase tracking-widest mt-auto">
                     {s.btn}
                   </a>
                 </div>
@@ -218,19 +207,19 @@ export default function Home() {
           </div>
         </section>
 
-        {/* CARA ORDER - STEP CARDS */}
-        <section className="relative z-10 py-32 px-6">
+        {/* CARA ORDER - Workflow renamed & enhanced */}
+        <section className="relative z-10 py-32 px-6 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-center text-white mb-20 tracking-widest uppercase">Workflow</h2>
-            <div className="grid md:grid-cols-3 gap-12">
+            <h2 className="text-3xl font-bold text-center text-white mb-20 tracking-[0.4em] uppercase">Cara Order</h2>
+            <div className="grid md:grid-cols-3 gap-8">
               {[
                 { step: "01", t: "Join Discord", d: "Masuk ke server kami melalui link undangan." },
                 { step: "02", t: "Create Ticket", d: "Pilih kategori jasa yang Anda inginkan." },
                 { step: "03", t: "Payment", d: "Pembayaran mudah melalui QRIS atau E-Wallet." }
               ].map((item, idx) => (
-                <div key={idx} className="relative p-10 rounded-[35px] bg-white/[0.02] border border-white/5 overflow-hidden">
-                  <span className="text-5xl font-black text-white/[0.03] absolute top-4 right-6">{item.step}</span>
-                  <h4 className="font-bold text-purple-200 text-lg mb-4">{item.t}</h4>
+                <div key={idx} className="group relative p-10 rounded-[35px] bg-white/[0.02] border border-white/5 overflow-hidden hover:border-purple-500/30 hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-2">
+                  <span className="text-5xl font-black text-white/[0.03] absolute top-4 right-6 group-hover:text-purple-500/10 transition-colors">{item.step}</span>
+                  <h4 className="font-bold text-purple-200 text-lg mb-4 group-hover:text-white transition-colors">{item.t}</h4>
                   <p className="text-sm text-white/40 leading-relaxed">{item.d}</p>
                 </div>
               ))}
@@ -238,34 +227,37 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PEMBAYARAN - MINIMALIST LUXE */}
+        {/* SECURED PAYMENT - Refined */}
         <section className="relative z-10 py-32 px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-xs font-bold tracking-[0.5em] text-white/30 uppercase mb-12 text-center">Secured Payment</h2>
-            <div className="flex flex-wrap justify-center gap-10 mb-20 opacity-30 filter grayscale">
+            <div className="inline-block px-6 py-2 mb-12 border border-white/5 rounded-full bg-white/[0.02]">
+               <h2 className="text-[10px] font-bold tracking-[0.5em] text-white/50 uppercase">Secured Payment Gateway</h2>
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-8 md:gap-12 mb-20 opacity-20 hover:opacity-50 transition-opacity duration-1000">
               {["DANA", "OVO", "SHOPEEPAY", "QRIS"].map((m) => (
-                <span key={m} className="text-xs font-black tracking-widest">{m}</span>
+                <span key={m} className="text-xs font-black tracking-[0.2em]">{m}</span>
               ))}
             </div>
             
             <a 
               href="https://sociabuzz.com/seleneshop/tribe" 
               target="_blank" 
-              className="group relative inline-flex items-center gap-6 bg-white/[0.03] border border-white/10 rounded-[30px] p-8 hover:bg-white/[0.05] hover:border-purple-500/40 transition-all"
+              className="group relative inline-flex items-center gap-6 bg-gradient-to-r from-white/[0.03] to-transparent border border-white/10 rounded-[30px] p-8 hover:border-purple-500/40 hover:bg-white/[0.05] transition-all duration-500 hover:scale-[1.02]"
             >
-              <div className="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-2xl">🛡️</div>
+              <div className="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-500">🛡️</div>
               <div className="text-left">
-                <span className="block font-bold text-white text-xl tracking-tight">Sociabuzz Gateway</span>
-                <p className="text-xs text-white/40">Otomatisasi pembayaran QRIS & E-Wallet.</p>
+                <span className="block font-bold text-white text-xl tracking-tight group-hover:text-purple-200 transition-colors">Sociabuzz Gateway</span>
+                <p className="text-xs text-white/40">Sistem pembayaran otomatis yang aman & instan.</p>
               </div>
-              <div className="ml-6 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
-                →
+              <div className="ml-6 w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-purple-500 group-hover:border-purple-500 transition-all duration-500">
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </a>
           </div>
         </section>
 
-        <footer className="relative z-10 py-16 text-center border-t border-white/5">
+        <footer className="relative z-10 py-16 text-center border-t border-white/5 bg-black/20">
           <p className="text-white/20 text-[10px] font-bold tracking-[0.5em] uppercase mb-4">Selene Shop • Established 2024</p>
           <p className="text-white/10 text-[9px]">Crafted for the premium Minecraft community.</p>
         </footer>
