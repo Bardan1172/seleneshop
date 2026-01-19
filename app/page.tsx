@@ -41,75 +41,78 @@ function MoonBackground() {
 export default function Home() {
   const services = [
     {
-      title: "🌙 Cosmetica Face",
-      tag: "*Khusus Minecraft Premium",
+      title: "🌙 COSMETICA FACE",
+      tag: "*KHUSUS MINECRAFT PREMIUM",
       items: [
         { label: "ONLY FACE: 30K", desc: "Custom mata, alis, dan mulut sesuai request." },
         { label: "FACE + RAMBUT HD: 50K", desc: "Termasuk shading rambut detail dan ekspresi." }
       ],
-      btn: "Order Face"
+      btn: "ORDER FACE"
     },
     {
-      title: "🎮 Minecraft Skin",
-      tag: "Classic / Slim Model",
+      title: "🎮 MINECRAFT SKIN",
+      tag: "CLASSIC / SLIM MODEL",
       items: [
         { label: "SIMPLE: 10K", desc: "Desain minimalis dengan shading standar." },
         { label: "FULL DETAIL: 15K", desc: "Shading kompleks untuk Anime atau Fantasy." }
       ],
-      btn: "Order Skin"
+      btn: "ORDER SKIN"
     },
     {
-      title: "🎨 Art & Illustration",
-      tag: "Digital Hand-Drawn",
+      title: "🎨 ART & ILLUSTRATION",
+      tag: "DIGITAL HAND-DRAWN",
       items: [
         { label: "SIMPLE SHADE: 25K", desc: "Fanart atau Original Character (OC)." },
         { label: "CHIBI PNGTUBER: 25K", desc: "Karakter mungil untuk streaming/konten." },
         { label: "PNGTUBER: 30K", desc: "Model PNGtuber standar (Bust-up)." }
       ],
-      btn: "Order Art"
+      btn: "ORDER ART"
     },
     {
-      title: "📸 MC Photoshoot",
-      tag: "Cinematic Renders",
+      title: "📸 MC PHOTOSHOOT",
+      tag: "CINEMATIC RENDERS",
       items: [
         { label: "CINEMATIC RENDER", desc: "Single, Couple, atau Group (3-5 orang)." },
         { label: "CUSTOM SCENE", desc: "Background Nether, End, atau build milikmu." }
       ],
-      btn: "Booking Session"
+      btn: "BOOKING SESSION"
     },
     {
-      title: "😆 Custom Sticker",
-      tag: "Discord & WhatsApp",
+      title: "😆 CUSTOM STICKER",
+      tag: "DISCORD & WHATSAPP",
       items: [
         { label: "PER PCS: 10K", desc: "Bust-up atau Head Only." },
         { label: "PACK (6 STICKER): 50K", desc: "Lebih hemat untuk koleksi ekspresi." }
       ],
-      btn: "Order Sticker"
+      btn: "ORDER STICKER"
     },
     {
-      title: "🏗️ Minecraft Build",
-      tag: "Structural & Aesthetic",
+      title: "🏗️ MINECRAFT BUILD",
+      tag: "STRUCTURAL & AESTHETIC",
       items: [
         { label: "BASIC: 15K – 75K", desc: "Small structures & simple detail." },
         { label: "ADVANCED: 75K – 300K", desc: "Fantasy base, mini villages, themes." },
         { label: "ELITE: 450K – 1.5JT", desc: "Complex cities & large castles." }
       ],
-      btn: "Custom Build"
+      btn: "CUSTOM BUILD"
     }
   ];
+
+  // CSS class for Fantasy Font style
+  const fantasyFont = "font-serif italic tracking-tighter";
 
   return (
     <div className="bg-[#02020a] min-h-screen text-white selection:bg-purple-500/30 font-sans scroll-smooth">
       {/* NAVBAR */}
       <nav className="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#beranda" className="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-purple-400 font-bold text-xl tracking-tight">Selene Shop 🌙</a>
+          <a href="#beranda" className={`${fantasyFont} text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-purple-400 font-bold text-2xl uppercase`}>SELENE SHOP 🌙</a>
           <div className="hidden md:flex gap-6 text-[10px] font-bold tracking-widest uppercase">
-            <a href="#tentang" className="text-white/50 hover:text-purple-300 transition">Tentang</a>
-            <a href="#keunggulan" className="text-white/50 hover:text-purple-300 transition">Kenapa Kami</a>
-            <a href="#produk" className="text-white/50 hover:text-purple-300 transition">Layanan</a>
-            <a href="#alur" className="text-white/50 hover:text-purple-300 transition">Cara Order</a>
-            <a href="#pembayaran" className="text-purple-400 hover:text-purple-200 transition font-black">Bayar</a>
+            <a href="#tentang" className="text-white/50 hover:text-purple-300 transition">TENTANG</a>
+            <a href="#keunggulan" className="text-white/50 hover:text-purple-300 transition">KENAPA KAMI</a>
+            <a href="#produk" className="text-white/50 hover:text-purple-300 transition">LAYANAN</a>
+            <a href="#alur" className="text-white/50 hover:text-purple-300 transition">CARA ORDER</a>
+            <a href="#pembayaran" className="text-purple-400 hover:text-purple-200 transition font-black">BAYAR</a>
           </div>
         </div>
       </nav>
@@ -119,20 +122,23 @@ export default function Home() {
 
         {/* SECTION 1: HERO */}
         <section id="beranda" className="relative z-10 min-h-[90vh] flex flex-col items-center justify-center text-center px-6">
-          <div className="inline-block px-4 py-1.5 mb-6 rounded-full border border-purple-500/20 bg-purple-500/5 backdrop-blur-md">
-            <span className="text-[10px] font-bold tracking-[0.3em] text-purple-300 uppercase">Premium Digital Studio</span>
-          </div>
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tighter">
-            Selene <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-200 to-purple-500">Shop</span>
+          {/* Tagline removed as requested */}
+          <h1 className={`${fantasyFont} text-7xl md:text-9xl font-bold text-white mb-6 tracking-tighter uppercase`}>
+            SELENE <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-200 to-purple-500">SHOP</span>
           </h1>
-          <p className="text-white/60 max-w-xl text-lg mb-12 leading-relaxed font-light">Eksplorasi estetika malam dalam dunia digital. Kami menghadirkan karya berkualitas tinggi untuk identitas Minecraft Anda.</p>
+          <p className="text-white/60 max-w-xl text-lg mb-12 leading-relaxed font-light uppercase tracking-wide">Eksplorasi estetika malam dalam dunia digital. Kami menghadirkan karya berkualitas tinggi untuk identitas Minecraft Anda.</p>
           
-          <div className="flex flex-wrap justify-center gap-4 max-w-4xl">
-            <a href="#tentang" className="px-8 py-4 border border-white/10 hover:bg-white/5 rounded-full transition-all font-bold text-xs uppercase tracking-widest backdrop-blur-md">Tentang</a>
-            <a href="#keunggulan" className="px-8 py-4 border border-white/10 hover:bg-white/5 rounded-full transition-all font-bold text-xs uppercase tracking-widest backdrop-blur-md">Kenapa Kami</a>
-            <a href="#produk" className="px-8 py-4 bg-white text-black hover:bg-purple-200 rounded-full transition-all font-bold text-xs uppercase tracking-widest shadow-[0_10px_30px_rgba(255,255,255,0.1)]">Layanan</a>
-            <a href="#alur" className="px-8 py-4 border border-white/10 hover:bg-white/5 rounded-full transition-all font-bold text-xs uppercase tracking-widest backdrop-blur-md">Cara Order</a>
-            <a href="#pembayaran" className="px-8 py-4 border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 rounded-full transition-all font-bold text-xs uppercase tracking-widest backdrop-blur-md text-purple-200">Payment Gateway</a>
+          {/* UNIFORM SHORTCUT BUTTONS */}
+          <div className="grid grid-cols-2 md:flex md:flex-wrap justify-center gap-3 w-full max-w-3xl px-4">
+            {["TENTANG", "KEUNGGULAN", "LAYANAN", "CARA ORDER", "PEMBAYARAN"].map((label) => (
+              <a 
+                key={label}
+                href={`#${label.toLowerCase().replace(" ", "")}`} 
+                className="flex-1 md:flex-none md:min-w-[160px] text-center px-6 py-4 border border-white/10 hover:border-purple-500/50 hover:bg-purple-500/10 rounded-xl transition-all font-bold text-[10px] uppercase tracking-widest backdrop-blur-md"
+              >
+                {label}
+              </a>
+            ))}
           </div>
         </section>
 
@@ -141,7 +147,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 text-center">
             <div className="flex flex-wrap justify-center items-center gap-10 md:gap-20">
               {["SELENE SHOP", "HEPPYCLOUD", "BANGBLAZE"].map((brand) => (
-                <span key={brand} className="text-lg md:text-xl font-bold text-white/10 hover:text-purple-400 transition-all duration-700 cursor-default hover:tracking-[0.2em]">
+                <span key={brand} className={`${fantasyFont} text-xl md:text-2xl font-bold text-white/10 hover:text-purple-400 transition-all duration-700 cursor-default uppercase`}>
                   {brand}
                 </span>
               ))}
@@ -151,20 +157,20 @@ export default function Home() {
 
         {/* SECTION 2: TENTANG KAMI */}
         <section id="tentang" className="relative z-10 py-32 px-6">
-          <div className="max-w-4xl mx-auto text-center group transition-all duration-500">
-            <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Identity</span>
-            <h2 className="text-4xl font-bold text-white mb-6 transition-colors">Tentang Kami</h2>
-            <p className="text-white/50 leading-relaxed text-lg mb-12">
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">IDENTITY</span>
+            <h2 className={`${fantasyFont} text-5xl font-bold text-white mb-6 uppercase`}>TENTANG KAMI</h2>
+            <p className="text-white/50 leading-relaxed text-lg mb-12 uppercase text-sm tracking-wide">
               Terinspirasi oleh keindahan Bulan, Selene Shop mengintegrasikan seni digital dengan fungsionalitas game. Kami bukan sekadar toko, kami adalah partner kreatif Anda dalam membangun identitas digital yang ikonik.
             </p>
             <div className="grid grid-cols-2 gap-6 max-w-lg mx-auto">
               <div className="p-8 rounded-[30px] bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all group/card">
-                <h4 className="text-3xl text-purple-300 font-bold mb-1 group-hover/card:scale-110 transition-transform">100+</h4>
-                <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Project Selesai</p>
+                <h4 className={`${fantasyFont} text-4xl text-purple-300 font-bold mb-1`}>100+</h4>
+                <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">PROJECT SELESAI</p>
               </div>
               <div className="p-8 rounded-[30px] bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all group/card">
-                <h4 className="text-3xl text-purple-300 font-bold mb-1 group-hover/card:scale-110 transition-transform">Premium</h4>
-                <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Kualitas Karya</p>
+                <h4 className={`${fantasyFont} text-4xl text-purple-300 font-bold mb-1`}>PREMIUM</h4>
+                <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">KUALITAS KARYA</p>
               </div>
             </div>
           </div>
@@ -174,19 +180,19 @@ export default function Home() {
         <section id="keunggulan" className="relative z-10 py-32 px-6 bg-white/[0.01]">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-                <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Advantages</span>
-                <h3 className="text-4xl font-bold text-white">Mengapa Memilih Kami?</h3>
+                <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">ADVANTAGES</span>
+                <h3 className={`${fantasyFont} text-5xl font-bold text-white uppercase`}>MENGAPA MEMILIH KAMI?</h3>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { t: "Hasil Presisi", d: "Setiap detail pixel dan shading dikerjakan secara teliti untuk hasil tajam di dalam game.", icon: "✨" },
-                { t: "Fast Response", d: "Diskusi aktif dan update progres berkala melalui sistem tiket server Discord kami.", icon: "💬" },
-                { t: "Customizable", d: "Setiap karya dibuat khusus berdasarkan referensi dan imajinasi unik pelanggan.", icon: "🎨" }
+                { t: "HASIL PRESISI", d: "Setiap detail pixel dan shading dikerjakan secara teliti untuk hasil tajam di dalam game.", icon: "✨" },
+                { t: "FAST RESPONSE", d: "Diskusi aktif dan update progres berkala melalui sistem tiket server Discord kami.", icon: "💬" },
+                { t: "CUSTOMIZABLE", d: "Setiap karya dibuat khusus berdasarkan referensi dan imajinasi unik pelanggan.", icon: "🎨" }
               ].map((item, idx) => (
                 <div key={idx} className="group p-8 rounded-[35px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-purple-500/30 transition-all duration-500">
                   <div className="text-3xl mb-6 group-hover:scale-110 transition-transform duration-500">{item.icon}</div>
-                  <h4 className="font-bold text-white mb-3 text-lg group-hover:text-purple-200 transition-colors">{item.t}</h4>
-                  <p className="text-sm text-white/40 leading-relaxed group-hover:text-white/60 transition-colors">{item.d}</p>
+                  <h4 className={`${fantasyFont} font-bold text-white mb-3 text-xl uppercase`}>{item.t}</h4>
+                  <p className="text-sm text-white/40 leading-relaxed uppercase tracking-tighter">{item.d}</p>
                 </div>
               ))}
             </div>
@@ -194,29 +200,28 @@ export default function Home() {
         </section>
 
         {/* SECTION 4: LAYANAN KREATIF */}
-        <section id="produk" className="relative z-10 py-32 px-6 bg-gradient-to-b from-transparent via-purple-900/[0.02] to-transparent">
+        <section id="produk" className="relative z-10 py-32 px-6">
           <div className="max-w-7xl mx-auto">
             <div className="mb-20 text-center md:text-left">
-              <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Catalogue</span>
-              <h2 className="text-5xl font-bold text-white tracking-tighter">Layanan Kreatif</h2>
+              <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">CATALOGUE</span>
+              <h2 className={`${fantasyFont} text-6xl font-bold text-white uppercase`}>LAYANAN KREATIF</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((s, i) => (
-                <div key={i} className="group relative bg-white/[0.02] border border-white/5 p-10 rounded-[40px] hover:bg-white/[0.04] hover:border-purple-500/30 transition-all duration-700 flex flex-col h-full overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-purple-600/5 blur-3xl group-hover:bg-purple-600/10 transition-all" />
+                <div key={i} className="group relative bg-white/[0.02] border border-white/5 p-10 rounded-[40px] hover:border-purple-500/30 transition-all flex flex-col h-full overflow-hidden">
                   <div className="flex-grow">
-                    <h3 className="text-2xl font-bold text-white mb-1">{s.title}</h3>
+                    <h3 className={`${fantasyFont} text-2xl font-bold text-white mb-1 uppercase`}>{s.title}</h3>
                     <p className="text-[10px] text-purple-400 font-bold mb-10 uppercase tracking-widest">{s.tag}</p>
                     <div className="space-y-8 mb-12">
                       {s.items.map((item, idx) => (
                         <div key={idx} className="relative">
-                          <p className="text-[11px] font-black text-white tracking-widest mb-1 uppercase group-hover:text-purple-200 transition-colors">{item.label}</p>
-                          <p className="text-xs text-white/40 leading-relaxed font-light">{item.desc}</p>
+                          <p className="text-[11px] font-black text-white tracking-widest mb-1 uppercase">{item.label}</p>
+                          <p className="text-xs text-white/40 leading-relaxed font-light uppercase tracking-tighter">{item.desc}</p>
                         </div>
                       ))}
                     </div>
                   </div>
-                  <a href="https://discord.gg/muH44HDrea" target="_blank" className="block w-full text-center py-4 bg-white/5 hover:bg-white hover:text-black rounded-2xl font-bold text-xs transition-all duration-500 uppercase tracking-widest mt-auto">
+                  <a href="https://discord.gg/muH44HDrea" target="_blank" className="block w-full text-center py-4 bg-purple-500/10 border border-purple-500/20 hover:bg-white hover:text-black rounded-2xl font-bold text-xs transition-all duration-500 uppercase tracking-widest mt-auto">
                     {s.btn}
                   </a>
                 </div>
@@ -226,22 +231,22 @@ export default function Home() {
         </section>
 
         {/* SECTION 5: CARA ORDER */}
-        <section id="alur" className="relative z-10 py-32 px-6 bg-white/[0.01]">
+        <section id="alur" className="relative z-10 py-32 px-6">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-20">
-              <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Process</span>
-              <h2 className="text-4xl font-bold text-white tracking-widest uppercase">Cara Order</h2>
+              <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">PROCESS</span>
+              <h2 className={`${fantasyFont} text-5xl font-bold text-white uppercase`}>CARA ORDER</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { step: "01", t: "Join Discord", d: "Masuk ke server kami melalui link undangan resmi Selene Shop." },
-                { step: "02", t: "Create Ticket", d: "Buka tiket sesuai kategori layanan yang Anda butuhkan." },
-                { step: "03", t: "Payment", d: "Selesaikan pembayaran aman via QRIS atau E-Wallet pilihan Anda." }
+                { step: "01", t: "JOIN DISCORD", d: "Masuk ke server kami melalui link undangan resmi Selene Shop." },
+                { step: "02", t: "CREATE TICKET", d: "Buka tiket sesuai kategori layanan yang Anda butuhkan." },
+                { step: "03", t: "PAYMENT", d: "Selesaikan pembayaran aman via QRIS atau E-Wallet pilihan Anda." }
               ].map((item, idx) => (
                 <div key={idx} className="group relative p-10 rounded-[35px] bg-white/[0.02] border border-white/5 overflow-hidden transition-all duration-500 hover:border-purple-500/30 hover:bg-white/[0.04]">
-                  <span className="text-5xl font-black text-white/[0.03] absolute top-4 right-6 group-hover:text-purple-500/10 transition-colors">{item.step}</span>
-                  <h4 className="font-bold text-purple-200 text-lg mb-4 group-hover:translate-x-1 transition-transform">{item.t}</h4>
-                  <p className="text-sm text-white/40 leading-relaxed group-hover:text-white/60 transition-colors">{item.d}</p>
+                  <span className={`${fantasyFont} text-6xl font-black text-white/[0.03] absolute top-4 right-6 uppercase`}>{item.step}</span>
+                  <h4 className={`${fantasyFont} font-bold text-purple-200 text-2xl mb-4 uppercase`}>{item.t}</h4>
+                  <p className="text-sm text-white/40 leading-relaxed uppercase tracking-tighter">{item.d}</p>
                 </div>
               ))}
             </div>
@@ -251,24 +256,18 @@ export default function Home() {
         {/* SECTION 6: SECURED PAYMENT */}
         <section id="pembayaran" className="relative z-10 py-32 px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-8 block">Transaction</span>
-            <h2 className="text-3xl font-bold text-white mb-12 text-center uppercase tracking-tighter">Payment Gateway</h2>
-            
-            <div className="flex flex-wrap justify-center gap-10 mb-20 opacity-20 hover:opacity-50 transition-opacity duration-700">
-              {["DANA", "OVO", "SHOPEEPAY", "QRIS", "GOPAY"].map((m) => (
-                <span key={m} className="text-xs font-black tracking-widest border-b border-white/20 pb-1">{m}</span>
-              ))}
-            </div>
+            <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-8 block">TRANSACTION</span>
+            <h2 className={`${fantasyFont} text-4xl font-bold text-white mb-12 uppercase`}>PAYMENT GATEWAY</h2>
             
             <a 
               href="https://sociabuzz.com/seleneshop/tribe" 
               target="_blank" 
-              className="group relative inline-flex items-center gap-6 bg-white/[0.03] border border-white/10 rounded-[30px] p-8 hover:bg-white/[0.05] hover:border-purple-500/40 transition-all duration-500 hover:scale-[1.02] shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
+              className="group relative inline-flex items-center gap-6 bg-white/[0.03] border border-white/10 rounded-[30px] p-8 hover:border-purple-500/40 transition-all duration-500"
             >
               <div className="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-2xl group-hover:rotate-12 transition-transform">🛡️</div>
               <div className="text-left">
-                <span className="block font-bold text-white text-xl tracking-tight group-hover:text-purple-200 transition-colors">Sociabuzz Gateway</span>
-                <p className="text-xs text-white/40">Verifikasi otomatis untuk QRIS & semua E-Wallet.</p>
+                <span className={`${fantasyFont} block font-bold text-white text-2xl uppercase`}>SOCIABUZZ GATEWAY</span>
+                <p className="text-[10px] text-white/40 uppercase tracking-widest">Verifikasi otomatis untuk QRIS & semua E-Wallet.</p>
               </div>
               <div className="ml-6 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
                 →
@@ -278,8 +277,8 @@ export default function Home() {
         </section>
 
         <footer className="relative z-10 py-16 text-center border-t border-white/5 bg-black/40">
-          <p className="text-white/20 text-[10px] font-bold tracking-[0.5em] uppercase mb-4">Selene Shop • Established 2024</p>
-          <p className="text-white/10 text-[9px]">Premium Digital Services for the Minecraft Community.</p>
+          <p className="text-white/20 text-[10px] font-bold tracking-[0.5em] uppercase mb-4">SELENE SHOP • ESTABLISHED 2024</p>
+          <p className="text-white/10 text-[9px] uppercase tracking-widest">Premium Digital Services for the Minecraft Community.</p>
         </footer>
       </main>
     </div>
