@@ -1,58 +1,91 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-type Sparkle = {
-  id: number;
-  top: string;
-  left: string;
-  delay: string;
-  duration: string;
-  size: string;
-};
-
-export default function Moon() {
-  const [sparkles, setSparkles] = useState<Sparkle[]>([]);
+function MoonBackground() {
+  const [sparkles, setSparkles] = useState<{id: number, top: string, left: string, delay: string, duration: string, size: string}[]>([]);
+  const [shootingStars, setShootingStars] = useState<{id: number, top: string, left: string, delay: string, duration: string}[]>([]);
+  const moonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Menambah jumlah sparkle menjadi 80 agar lebih "rame"
-    const generated: Sparkle[] = Array.from({ length: 80 }).map((_, i) => ({
+    // 1. Background Stars (Twinkling)
+    const generatedStars = Array.from({ length: 50 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
       delay: `${Math.random() * 5}s`,
-      duration: `${2 + Math.random() * 4}s`,
-      size: `${Math.random() * 3 + 1}px`, // Ukuran bervariasi
+      duration: `${3 + Math.random() * 2}s`,
+      size: `${Math.random() * 2 + 1}px`,
     }));
-    setSparkles(generated);
+    setSparkles(generatedStars);
+
+    // 2. Realistic Shooting Stars (Bervariasi)
+    const generatedMeteors = Array.from({ length: 6 }).map((_, i) => ({
+      id: i,
+      // Start position (beberapa dari luar layar atas/kanan)
+      top: `${Math.random() * 40 - 10}%`, 
+      left: `${Math.random() * 50 + 50}%`,
+      delay: `${Math.random() * 20}s`,
+      duration: `${2 + Math.random() * 4}s`,
+    }));
+    setShootingStars(generatedMeteors);
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!moonRef.current) return;
+      const x = (e.clientX - window.innerWidth / 2) / 45;
+      const y = (e.clientY - window.innerHeight / 2) / 45;
+      moonRef.current.style.transform = `translate(${x}px, ${y}px)`;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-      {/* 🌌 Cosmic Nebula (Kabut warna-warni di latar belakang) */}
-      <div className="absolute top-[-10%] left-[-10%] w-[70%] h-[70%] bg-purple-900/10 blur-[120px] rounded-full animate-pulse" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-blue-900/10 blur-[100px] rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#02020a]">
+      {/* ATMOSPHERIC GLOW */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_30%,rgba(88,28,135,0.15),transparent_70%)]" />
 
-      {/* 🌠 Meteor / Shooting Stars (Efek tambahan agar langit tidak statis) */}
-      <div className="absolute top-0 left-1/4 w-[2px] h-[100px] bg-gradient-to-b from-transparent via-white/50 to-transparent rotate-[45deg] animate-shooting-star" style={{ animationDelay: '1s' }} />
-      <div className="absolute top-1/4 left-1/2 w-[1px] h-[80px] bg-gradient-to-b from-transparent via-purple-300/40 to-transparent rotate-[45deg] animate-shooting-star" style={{ animationDelay: '4s' }} />
-      <div className="absolute top-0 left-[80%] w-[2px] h-[120px] bg-gradient-to-b from-transparent via-blue-300/30 to-transparent rotate-[45deg] animate-shooting-star" style={{ animationDelay: '7s' }} />
+      {/* REALISTIC SHOOTING STARS */}
+      {shootingStars.map((star) => (
+        <div
+          key={star.id}
+          className="absolute bg-gradient-to-l from-white via-purple-400 to-transparent rounded-full animate-meteor-fast"
+          style={{
+            top: star.top,
+            left: star.left,
+            animationDelay: star.delay,
+            animationDuration: star.duration,
+            width: '200px',
+            height: '2px',
+            transform: "rotate(-35deg)",
+            filter: 'drop-shadow(0 0 8px rgba(192, 132, 252, 0.8))'
+          }}
+        />
+      ))}
 
-      {/* 🌙 The Great Moon (Lebih banyak lapisan glow) */}
-      {/* Cahaya inti bulan */}
-      <div className="absolute top-24 right-10 md:right-24 w-40 h-40 rounded-full bg-gradient-to-br from-white via-purple-100 to-purple-300 opacity-90 shadow-[0_0_60px_rgba(192,132,252,0.5)] z-10" />
-      
-      {/* Lapisan Aura Luar 1 */}
-      <div className="absolute top-20 right-6 md:right-20 w-48 h-48 rounded-full bg-purple-500/20 blur-2xl animate-pulse" />
-      
-      {/* Lapisan Aura Luar 2 (Super Blur) */}
-      <div className="absolute top-12 right-0 md:right-12 w-64 h-64 rounded-full bg-indigo-500/10 blur-3xl animate-moon-glow" />
+      {/* BACKGROUND MOONS */}
+      <div className="absolute top-[60%] left-[10%] w-20 h-20 rounded-full bg-purple-500/5 blur-xl animate-pulse" />
+      <div className="absolute top-[20%] left-[80%] w-12 h-12 rounded-full bg-blue-500/5 blur-lg" />
 
-      {/* ✨ Random Sparkles (Bintang-bintang) */}
+      {/* MAIN MOON */}
+      <div 
+        ref={moonRef}
+        className="absolute top-24 right-[10%] md:right-[15%] transition-transform duration-1000 ease-out z-10"
+      >
+        <div className="absolute inset-[-40px] rounded-full bg-purple-600/10 blur-[80px] animate-pulse" />
+        <div className="relative w-44 h-44 md:w-72 md:h-72 rounded-full bg-gradient-to-br from-[#ffffff] via-[#f3f0ff] to-[#d8d2ff] shadow-[inset_-15px_-15px_60px_rgba(0,0,0,0.4),0_0_100px_rgba(168,85,247,0.2)] border border-white/20">
+          <div className="absolute top-[20%] left-[30%] w-10 h-10 bg-purple-900/5 rounded-full blur-[4px]" />
+          <div className="absolute bottom-[35%] right-[25%] w-16 h-16 bg-purple-900/5 rounded-full blur-[6px]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.6),transparent_60%)]" />
+        </div>
+      </div>
+
+      {/* TWINKLING STARS */}
       {sparkles.map((s) => (
         <span
           key={s.id}
-          className="absolute bg-white rounded-full animate-twinkle shadow-[0_0_5px_white]"
+          className="absolute bg-white rounded-full animate-twinkle shadow-[0_0_8px_white]"
           style={{
             top: s.top,
             left: s.left,
@@ -64,25 +97,40 @@ export default function Moon() {
         />
       ))}
 
-      {/* CSS Animasi Khusus (Tambahkan di globals.css jika belum ada) */}
       <style jsx>{`
+        @keyframes meteor-realistic {
+          0% { 
+            transform: rotate(-35deg) translateX(0) scale(0); 
+            opacity: 0; 
+          }
+          10% { 
+            transform: rotate(-35deg) translateX(-100px) scale(1.2); 
+            opacity: 1; 
+          }
+          60% { 
+            opacity: 0.8; 
+          }
+          100% { 
+            transform: rotate(-35deg) translateX(-1200px) scale(0.2); 
+            opacity: 0; 
+          }
+        }
+
         @keyframes twinkle {
-          0%, 100% { opacity: 0.2; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.3); }
+          0%, 100% { transform: scale(0.8); opacity: 0.2; }
+          50% { transform: scale(1.2); opacity: 0.8; }
         }
-        @keyframes moon-glow {
-          0%, 100% { transform: scale(1); opacity: 0.3; }
-          50% { transform: scale(1.1); opacity: 0.5; }
+
+        .animate-meteor-fast {
+          animation-name: meteor-realistic;
+          animation-iteration-count: infinite;
+          animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         }
-        @keyframes shooting-star {
-          0% { transform: translateX(0) translateY(0) rotate(45deg); opacity: 0; }
-          10% { opacity: 1; }
-          20% { transform: translateX(-500px) translateY(500px) rotate(45deg); opacity: 0; }
-          100% { transform: translateX(-500px) translateY(500px) rotate(45deg); opacity: 0; }
+
+        .animate-twinkle {
+          animation-name: twinkle;
+          animation-iteration-count: infinite;
         }
-        .animate-twinkle { animation: twinkle infinite ease-in-out; }
-        .animate-moon-glow { animation: moon-glow 8s infinite ease-in-out; }
-        .animate-shooting-star { animation: shooting-star 10s infinite linear; }
       `}</style>
     </div>
   );
