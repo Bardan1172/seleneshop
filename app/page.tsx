@@ -140,22 +140,37 @@ export default function Home() {
           </div>
         </section>
 
-        {/* TENTANG KAMI */}
-        <section className="relative z-10 pt-32 pb-16 px-6">
-          <div className="max-w-4xl mx-auto text-center group transition-all duration-500">
-            <h2 className="text-4xl font-bold text-white mb-6 group-hover:text-purple-300 transition-colors">Tentang Kami</h2>
-            <p className="text-white/50 leading-relaxed text-lg mb-12">
-              Terinspirasi oleh keindahan Bulan, Selene Shop mengintegrasikan seni digital dengan fungsionalitas game. Kami bukan sekadar toko, kami adalah partner kreatif Anda dalam membangun identitas digital yang ikonik.
-            </p>
-            <div className="grid grid-cols-2 gap-6 max-w-lg mx-auto">
-              <div className="p-8 rounded-[30px] bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all">
-                <h4 className="text-3xl text-purple-300 font-bold mb-1">100+</h4>
-                <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Project Selesai</p>
+        {/* TENTANG KAMI - Enhanced with Hover Effects */}
+        <section className="relative z-10 py-32 px-6">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div className="group p-8 rounded-[40px] transition-all duration-500 hover:bg-white/[0.02]">
+              <h2 className="text-4xl font-bold text-white mb-6 group-hover:text-purple-300 transition-colors">Tentang Kami</h2>
+              <p className="text-white/50 leading-relaxed text-lg mb-8">
+                Terinspirasi oleh keindahan Bulan, Selene Shop mengintegrasikan seni digital dengan fungsionalitas game. Kami bukan sekadar toko, kami adalah partner kreatif Anda.
+              </p>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="p-6 rounded-3xl bg-white/[0.03] border border-white/5 hover:border-purple-500/30 hover:bg-purple-500/5 transition-all">
+                  <h4 className="text-purple-300 font-bold mb-1">100+</h4>
+                  <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Project Selesai</p>
+                </div>
+                <div className="p-6 rounded-3xl bg-white/[0.03] border border-white/5 hover:border-purple-500/30 hover:bg-purple-500/5 transition-all">
+                  <h4 className="text-purple-300 font-bold mb-1">Premium</h4>
+                  <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Kualitas Karya</p>
+                </div>
               </div>
-              <div className="p-8 rounded-[30px] bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all">
-                <h4 className="text-3xl text-purple-300 font-bold mb-1">Premium</h4>
-                <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Kualitas Karya</p>
-              </div>
+            </div>
+            {/* Added "Why Us" items directly here for a more compact feel */}
+            <div className="space-y-4">
+              {[
+                { t: "Hasil Presisi", d: "Setiap pixel dihitung untuk hasil maksimal." },
+                { t: "Fast Response", d: "Diskusi aktif setiap hari di Discord." },
+                { t: "Custom Order", d: "Sesuai dengan imajinasi dan keinginan Anda." }
+              ].map((item, idx) => (
+                <div key={idx} className="group p-6 rounded-3xl bg-gradient-to-r from-white/[0.04] to-transparent border-l-2 border-purple-500/20 hover:border-purple-500 hover:from-purple-500/10 transition-all duration-500">
+                  <h4 className="font-bold text-white group-hover:text-purple-200 mb-1 transition-colors">{item.t}</h4>
+                  <p className="text-sm text-white/40 group-hover:text-white/60 transition-colors">{item.d}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
