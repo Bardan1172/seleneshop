@@ -3,26 +3,24 @@
 import { useEffect, useState, useRef } from "react";
 
 function MoonBackground() {
-  const [stars, setStars] = useState<{id: number, top: string, left: string, size: string, opacity: number, delay: string}[]>([]);
+  const [stars, setStars] = useState<{id: number, top: string, left: string, size: string, delay: string}[]>([]);
   const moonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Generate 150 bintang dengan variasi ukuran dan kejernihan untuk kedalaman (Depth of Field)
-    const generatedStars = Array.from({ length: 150 }).map((_, i) => ({
+    // Generate 100 bintang statis dengan kerlip halus
+    const generatedStars = Array.from({ length: 100 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
-      size: `${Math.random() * 2 + 0.5}px`, // Ada yang sangat kecil (jauh), ada yang agak besar (dekat)
-      opacity: Math.random() * 0.7 + 0.3,
-      delay: `${Math.random() * 10}s`,
+      size: `${Math.random() * 1.5 + 0.5}px`,
+      delay: `${Math.random() * 5}s`,
     }));
     setStars(generatedStars);
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!moonRef.current) return;
-      // Parallax sangat halus (pembagi 80) agar terasa berat dan jauh
-      const x = (e.clientX - window.innerWidth / 2) / 80;
-      const y = (e.clientY - window.innerHeight / 2) / 80;
+      const x = (e.clientX - window.innerWidth / 2) / 60;
+      const y = (e.clientY - window.innerHeight / 2) / 60;
       moonRef.current.style.transform = `translate(${x}px, ${y}px)`;
     };
 
@@ -31,68 +29,73 @@ function MoonBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#010105]">
-      {/* LAYER 1: VAST SPACE NEBULA (Sentuhan warna ungu dan biru gelap) */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(30,20,80,0.4),transparent_50%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,rgba(15,10,40,0.5),transparent_60%)]" />
-      
-      {/* LAYER 2: MILKY WAY DUST (Tekstur debu angkasa tipis) */}
-      <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]" />
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#02020a]">
+      {/* 1. BASE LAYER: BLURRED ATMOSPHERE */}
+      <div className="absolute inset-0 backdrop-blur-[2px] z-10" />
 
-      {/* LAYER 3: THE STARS (Berkelip pelan seperti aslinya) */}
+      {/* 2. NEBULA & CLOUDS (Awan Tipis) */}
+      <div className="absolute top-[20%] left-[-10%] w-[80%] h-[40%] bg-purple-900/10 blur-[120px] rounded-full animate-drift opacity-60" />
+      <div className="absolute bottom-[10%] right-[-5%] w-[60%] h-[30%] bg-blue-900/10 blur-[100px] rounded-full animate-drift-reverse opacity-40" />
+      
+      {/* Awan Putih Tipis (Cirrus Style) */}
+      <div className="absolute top-[40%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent blur-md transform -rotate-12" />
+      <div className="absolute top-[60%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent blur-lg transform rotate-6" />
+
+      {/* 3. TWINKLING STARS */}
       {stars.map((s) => (
         <div
           key={s.id}
-          className="absolute bg-white rounded-full animate-slow-twinkle"
+          className="absolute bg-white rounded-full animate-twinkle shadow-[0_0_3px_rgba(255,255,255,0.8)]"
           style={{
             top: s.top,
             left: s.left,
             width: s.size,
             height: s.size,
-            opacity: s.opacity,
             animationDelay: s.delay,
-            boxShadow: parseInt(s.size) > 1.5 ? '0 0 4px rgba(255,255,255,0.8)' : 'none',
           }}
         />
       ))}
 
-      {/* LAYER 4: THE MOON (Fokus Utama yang Elegan) */}
+      {/* 4. OPTIMIZED MOON (Tanpa Error Transform) */}
       <div 
         ref={moonRef}
-        className="absolute top-24 right-[10%] md:right-[15%] transition-transform duration-1000 ease-out z-10"
+        className="absolute top-24 right-[10%] md:right-[15%] transition-transform duration-1000 ease-out z-20"
       >
-        {/* Soft Moon Halo */}
-        <div className="absolute inset-[-60px] rounded-full bg-purple-500/5 blur-[100px]" />
+        {/* Halo Glow */}
+        <div className="absolute inset-[-50px] rounded-full bg-purple-500/10 blur-[80px]" />
         
-        {/* The Body */}
-        <div className="relative w-40 h-40 md:w-64 md:h-64 rounded-full bg-[#fcfcfc] shadow-[inset_-20px_-20px_60px_rgba(0,0,0,0.4),0_0_80px_rgba(180,160,255,0.15)] overflow-hidden border border-white/10">
-          {/* Subtle Lunar Map Overlay */}
-          <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/p6.png')] contrast-125" />
-          {/* Shading 3D */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,transparent_40%,rgba(0,0,0,0.4)_100%)]" />
+        {/* Moon Body */}
+        <div className="relative w-36 h-36 md:w-56 md:h-56 rounded-full bg-gradient-to-br from-[#f8f8f8] via-[#e2e2e2] to-[#b5b5b5] shadow-[inset_-15px_-15px_40px_rgba(0,0,0,0.4),0_0_50px_rgba(255,255,255,0.1)] overflow-hidden border border-white/5">
+          {/* Subtle Craters */}
+          <div className="absolute top-[20%] left-[30%] w-8 h-8 bg-black/5 rounded-full blur-[4px]" />
+          <div className="absolute bottom-[30%] right-[20%] w-12 h-12 bg-black/5 rounded-full blur-[6px]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.4),transparent_60%)]" />
         </div>
       </div>
 
-      {/* LAYER 5: DISTANT SATELLITE (Opsional: Sangat kecil dan pelan) */}
-      <div className="absolute top-1/2 left-1/4 w-[1px] h-[1px] bg-white opacity-20 animate-satellite" />
-
       <style jsx>{`
-        @keyframes slow-twinkle {
-          0%, 100% { opacity: 0.3; transform: scale(0.9); }
-          50% { opacity: 1; transform: scale(1.1); }
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.2; transform: scale(0.8); }
+          50% { opacity: 0.8; transform: scale(1); }
         }
-
-        @keyframes satellite {
-          from { transform: translateX(-100vw); }
-          to { transform: translateX(100vw); }
+        @keyframes drift {
+          0% { transform: translateX(-50px) translateY(0px); }
+          50% { transform: translateX(50px) translateY(20px); }
+          100% { transform: translateX(-50px) translateY(0px); }
         }
-
-        .animate-slow-twinkle {
-          animation: slow-twinkle 4s infinite ease-in-out;
+        @keyframes drift-reverse {
+          0% { transform: translateX(50px) translateY(0px); }
+          50% { transform: translateX(-50px) translateY(-20px); }
+          100% { transform: translateX(50px) translateY(0px); }
         }
-
-        .animate-satellite {
-          animation: satellite 60s linear infinite;
+        .animate-twinkle {
+          animation: twinkle 4s infinite ease-in-out;
+        }
+        .animate-drift {
+          animation: drift 20s infinite ease-in-out;
+        }
+        .animate-drift-reverse {
+          animation: drift-reverse 25s infinite ease-in-out;
         }
       `}</style>
     </div>
