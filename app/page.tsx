@@ -2,286 +2,226 @@
 
 import { useEffect, useState } from "react";
 
-function MoonBackground() {
-  const [sparkles, setSparkles] = useState<{id: number, top: string, left: string, delay: string, duration: string}[]>([]);
+export default function SeleneShop() {
+  const [sparkles, setSparkles] = useState<{id: number, top: string, left: string, delay: string}[]>([]);
 
   useEffect(() => {
-    const generated = Array.from({ length: 40 }).map((_, i) => ({
+    setSparkles(Array.from({ length: 60 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
-      delay: `${Math.random() * 5}s`,
-      duration: `${3 + Math.random() * 4}s`,
-    }));
-    setSparkles(generated);
+      delay: `${Math.random() * 5}s`
+    })));
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-      <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-purple-900/20 blur-[120px] rounded-full" />
-      <div className="absolute bottom-[10%] right-[-10%] w-[400px] h-[400px] bg-blue-900/10 blur-[100px] rounded-full" />
-      <div className="absolute top-20 right-[10%] md:right-[15%] w-32 h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-purple-100 to-purple-300 opacity-70 blur-[2px] shadow-[0_0_80px_rgba(192,132,252,0.4)]" />
-      <div className="absolute top-20 right-[10%] md:right-[15%] w-40 h-40 md:w-60 md:h-60 rounded-full bg-purple-500/20 blur-3xl animate-pulse" />
-      {sparkles.map((s) => (
-        <span
-          key={s.id}
-          className="sparkle"
-          style={{
-            top: s.top,
-            left: s.left,
-            animationDelay: s.delay,
-            animationDuration: s.duration,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
+    <div className="bg-[#05050a] min-h-screen text-white font-sans selection:bg-purple-500/30 overflow-x-hidden">
+      {/* Background Stars & Moon */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-20 right-[10%] w-32 h-32 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-white/80 via-purple-300/40 to-transparent blur-sm opacity-50 shadow-[0_0_80px_rgba(168,85,247,0.2)]" />
+        {sparkles.map(s => (
+          <div key={s.id} className="absolute w-[2px] h-[2px] bg-white rounded-full animate-pulse opacity-20" 
+               style={{ top: s.top, left: s.left, animationDelay: s.delay }} />
+        ))}
+        {/* Shooting Stars */}
+        <div className="absolute top-[10%] left-[-10%] w-[200px] h-[1px] bg-gradient-to-r from-transparent via-white to-transparent rotate-[35deg] animate-[shooting_10s_linear_infinite]" />
+      </div>
 
-export default function Home() {
-  const services = [
-    {
-      title: "🌙 Cosmetica Face",
-      tag: "*Khusus Minecraft Premium",
-      items: [
-        { label: "ONLY FACE: 30K", desc: "Custom mata, alis, dan mulut sesuai request." },
-        { label: "FACE + RAMBUT HD: 50K", desc: "Termasuk shading rambut detail dan ekspresi." }
-      ],
-      btn: "Order Face"
-    },
-    {
-      title: "🎮 Minecraft Skin",
-      tag: "Classic / Slim Model",
-      items: [
-        { label: "SIMPLE: 10K", desc: "Desain minimalis dengan shading standar." },
-        { label: "FULL DETAIL: 15K", desc: "Shading kompleks untuk Anime atau Fantasy." }
-      ],
-      btn: "Order Skin"
-    },
-    {
-      title: "🎨 Art & Illustration",
-      tag: "Digital Hand-Drawn",
-      items: [
-        { label: "SIMPLE SHADE: 25K", desc: "Fanart atau Original Character (OC)." },
-        { label: "CHIBI PNGTUBER: 25K", desc: "Karakter mungil untuk streaming/konten." },
-        { label: "PNGTUBER: 30K", desc: "Model PNGtuber standar (Bust-up)." }
-      ],
-      btn: "Order Art"
-    },
-    {
-      title: "📸 MC Photoshoot",
-      tag: "Cinematic Renders",
-      items: [
-        { label: "CINEMATIC RENDER", desc: "Single, Couple, atau Group (3-5 orang)." },
-        { label: "CUSTOM SCENE", desc: "Background Nether, End, atau build milikmu." }
-      ],
-      btn: "Booking Session"
-    },
-    {
-      title: "😆 Custom Sticker",
-      tag: "Discord & WhatsApp",
-      items: [
-        { label: "PER PCS: 10K", desc: "Bust-up atau Head Only." },
-        { label: "PACK (6 STICKER): 50K", desc: "Lebih hemat untuk koleksi ekspresi." }
-      ],
-      btn: "Order Sticker"
-    },
-    {
-      title: "🏗️ Minecraft Build",
-      tag: "Structural & Aesthetic",
-      items: [
-        { label: "BASIC: 15K – 75K", desc: "Small structures & simple detail." },
-        { label: "ADVANCED: 75K – 300K", desc: "Fantasy base, mini villages, themes." },
-        { label: "ELITE: 450K – 1.5JT", desc: "Complex cities & large castles." }
-      ],
-      btn: "Custom Build"
-    }
-  ];
+      {/* 1. HERO SECTION */}
+      <section className="relative z-10 min-h-[80vh] flex flex-col items-center justify-center px-6 text-center">
+        <div className="absolute top-20 right-[15%] w-64 h-64 bg-purple-500/10 rounded-full blur-[120px]" />
+        <div className="inline-block px-4 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-[10px] font-bold tracking-widest uppercase mb-6 animate-pulse">Premium Studio</div>
+        <h1 className="text-6xl md:text-9xl font-bold tracking-tighter mb-6 uppercase italic">Selene <span className="text-purple-400 drop-shadow-[0_0_30px_rgba(168,85,247,0.5)]">Shop</span></h1>
+        <p className="max-w-2xl text-white/50 text-xs md:text-sm tracking-[0.2em] uppercase mb-10 leading-relaxed">Eksplorasi estetika malam dalam dunia digital. Kami menghadirkan karya berkualitas tinggi untuk identitas Minecraft Anda.</p>
+        <div className="flex gap-4">
+            <button className="px-8 py-4 bg-white text-black rounded-xl font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-all shadow-xl">Mulai Eksplorasi</button>
+            <button className="px-8 py-4 bg-white/5 border border-white/10 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-white/10 transition-all">Komunitas Discord</button>
+        </div>
+      </section>
 
-  return (
-    <div className="bg-[#02020a] min-h-screen text-white selection:bg-purple-500/30 font-sans scroll-smooth">
-      {/* NAVBAR */}
-      <nav className="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="#beranda" className="text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-purple-400 font-bold text-xl tracking-tight">Selene Shop 🌙</a>
-          <div className="hidden md:flex gap-6 text-[10px] font-bold tracking-widest uppercase">
-            <a href="#tentang" className="text-white/50 hover:text-purple-300 transition">Tentang</a>
-            <a href="#keunggulan" className="text-white/50 hover:text-purple-300 transition">Kenapa Kami</a>
-            <a href="#produk" className="text-white/50 hover:text-purple-300 transition">Layanan</a>
-            <a href="#alur" className="text-white/50 hover:text-purple-300 transition">Cara Order</a>
-            <a href="#pembayaran" className="text-purple-400 hover:text-purple-200 transition font-black">Bayar</a>
+      {/* 2. OFFICIAL PARTNERS */}
+      <section className="relative z-10 py-16 border-y border-white/5 bg-black/40 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <p className="text-[10px] font-black tracking-[1em] text-purple-500/50 uppercase mb-10 italic">Official Strategic Partners</p>
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30">
+            <span className="text-2xl font-bold tracking-tighter italic hover:opacity-100 transition-opacity">SELENE SHOP</span>
+            <span className="text-2xl font-bold tracking-tighter italic hover:opacity-100 transition-opacity">HEPPYCLOUD</span>
+            <span className="text-2xl font-bold tracking-tighter italic hover:opacity-100 transition-opacity">BANGBLAZE</span>
           </div>
         </div>
-      </nav>
+      </section>
 
-      <main className="relative pt-16">
-        <MoonBackground />
-
-        {/* SECTION 1: HERO */}
-        <section id="beranda" className="relative z-10 min-h-[90vh] flex flex-col items-center justify-center text-center px-6">
-          <div className="inline-block px-4 py-1.5 mb-6 rounded-full border border-purple-500/20 bg-purple-500/5 backdrop-blur-md">
-            <span className="text-[10px] font-bold tracking-[0.3em] text-purple-300 uppercase">Premium Digital Studio</span>
+      {/* 3. LAYANAN KREATIF (FULL PRICE LIST) */}
+      <section id="layanan" className="relative z-10 py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-24">
+            <span className="text-purple-500 text-[10px] font-black tracking-[1em] uppercase block mb-4">Commission</span>
+            <h2 className="text-5xl font-black tracking-tighter italic uppercase">Layanan Kreatif</h2>
+            <div className="h-1 w-20 bg-purple-600 mx-auto mt-6 rounded-full shadow-[0_0_20px_#9333ea]"></div>
           </div>
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-tighter">
-            Selene <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-200 to-purple-500">Shop</span>
-          </h1>
-          <p className="text-white/60 max-w-xl text-lg mb-12 leading-relaxed font-light">Eksplorasi estetika malam dalam dunia digital. Kami menghadirkan karya berkualitas tinggi untuk identitas Minecraft Anda.</p>
-          
-          <div className="flex flex-wrap justify-center gap-4 max-w-4xl">
-            <a href="#tentang" className="px-8 py-4 border border-white/10 hover:bg-white/5 rounded-full transition-all font-bold text-xs uppercase tracking-widest backdrop-blur-md">Tentang</a>
-            <a href="#keunggulan" className="px-8 py-4 border border-white/10 hover:bg-white/5 rounded-full transition-all font-bold text-xs uppercase tracking-widest backdrop-blur-md">Kenapa Kami</a>
-            <a href="#produk" className="px-8 py-4 bg-white text-black hover:bg-purple-200 rounded-full transition-all font-bold text-xs uppercase tracking-widest shadow-[0_10px_30px_rgba(255,255,255,0.1)]">Layanan</a>
-            <a href="#alur" className="px-8 py-4 border border-white/10 hover:bg-white/5 rounded-full transition-all font-bold text-xs uppercase tracking-widest backdrop-blur-md">Cara Order</a>
-            <a href="#pembayaran" className="px-8 py-4 border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 rounded-full transition-all font-bold text-xs uppercase tracking-widest backdrop-blur-md text-purple-200">Payment Gateway</a>
-          </div>
-        </section>
 
-        {/* PARTNERS */}
-        <section className="relative z-20 py-16 border-y border-white/5 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
-          <div className="max-w-7xl mx-auto px-6 text-center">
-            <div className="flex flex-wrap justify-center items-center gap-10 md:gap-20">
-              {["SELENE SHOP", "HEPPYCLOUD", "BANGBLAZE"].map((brand) => (
-                <span key={brand} className="text-lg md:text-xl font-bold text-white/10 hover:text-purple-400 transition-all duration-700 cursor-default hover:tracking-[0.2em]">
-                  {brand}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 2: TENTANG KAMI */}
-        <section id="tentang" className="relative z-10 py-32 px-6">
-          <div className="max-w-4xl mx-auto text-center group transition-all duration-500">
-            <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Identity</span>
-            <h2 className="text-4xl font-bold text-white mb-6 transition-colors">Tentang Kami</h2>
-            <p className="text-white/50 leading-relaxed text-lg mb-12">
-              Terinspirasi oleh keindahan Bulan, Selene Shop mengintegrasikan seni digital dengan fungsionalitas game. Kami bukan sekadar toko, kami adalah partner kreatif Anda dalam membangun identitas digital yang ikonik.
-            </p>
-            <div className="grid grid-cols-2 gap-6 max-w-lg mx-auto">
-              <div className="p-8 rounded-[30px] bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all group/card">
-                <h4 className="text-3xl text-purple-300 font-bold mb-1 group-hover/card:scale-110 transition-transform">100+</h4>
-                <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Project Selesai</p>
-              </div>
-              <div className="p-8 rounded-[30px] bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all group/card">
-                <h4 className="text-3xl text-purple-300 font-bold mb-1 group-hover/card:scale-110 transition-transform">Premium</h4>
-                <p className="text-[10px] text-white/40 uppercase tracking-widest font-bold">Kualitas Karya</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 3: MENGAPA MEMILIH KAMI */}
-        <section id="keunggulan" className="relative z-10 py-32 px-6 bg-white/[0.01]">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-16">
-                <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Advantages</span>
-                <h3 className="text-4xl font-bold text-white">Mengapa Memilih Kami?</h3>
-            </div>
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                { t: "Hasil Presisi", d: "Setiap detail pixel dan shading dikerjakan secara teliti untuk hasil tajam di dalam game.", icon: "✨" },
-                { t: "Fast Response", d: "Diskusi aktif dan update progres berkala melalui sistem tiket server Discord kami.", icon: "💬" },
-                { t: "Customizable", d: "Setiap karya dibuat khusus berdasarkan referensi dan imajinasi unik pelanggan.", icon: "🎨" }
-              ].map((item, idx) => (
-                <div key={idx} className="group p-8 rounded-[35px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-purple-500/30 transition-all duration-500">
-                  <div className="text-3xl mb-6 group-hover:scale-110 transition-transform duration-500">{item.icon}</div>
-                  <h4 className="font-bold text-white mb-3 text-lg group-hover:text-purple-200 transition-colors">{item.t}</h4>
-                  <p className="text-sm text-white/40 leading-relaxed group-hover:text-white/60 transition-colors">{item.d}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 4: LAYANAN KREATIF */}
-        <section id="produk" className="relative z-10 py-32 px-6 bg-gradient-to-b from-transparent via-purple-900/[0.02] to-transparent">
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-20 text-center md:text-left">
-              <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Catalogue</span>
-              <h2 className="text-5xl font-bold text-white tracking-tighter">Layanan Kreatif</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((s, i) => (
-                <div key={i} className="group relative bg-white/[0.02] border border-white/5 p-10 rounded-[40px] hover:bg-white/[0.04] hover:border-purple-500/30 transition-all duration-700 flex flex-col h-full overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-purple-600/5 blur-3xl group-hover:bg-purple-600/10 transition-all" />
-                  <div className="flex-grow">
-                    <h3 className="text-2xl font-bold text-white mb-1">{s.title}</h3>
-                    <p className="text-[10px] text-purple-400 font-bold mb-10 uppercase tracking-widest">{s.tag}</p>
-                    <div className="space-y-8 mb-12">
-                      {s.items.map((item, idx) => (
-                        <div key={idx} className="relative">
-                          <p className="text-[11px] font-black text-white tracking-widest mb-1 uppercase group-hover:text-purple-200 transition-colors">{item.label}</p>
-                          <p className="text-xs text-white/40 leading-relaxed font-light">{item.desc}</p>
-                        </div>
-                      ))}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            {/* LEFT COLUMN: BUILDER SERVICES */}
+            <div className="space-y-8">
+              <div className="p-1 w-full bg-gradient-to-r from-purple-900/50 to-transparent rounded-[2.5rem]">
+                <div className="bg-[#0a0a14] p-10 rounded-[2.4rem] border border-white/5 relative overflow-hidden">
+                  <h3 className="text-2xl font-black mb-2 italic">🏗️ MINECRAFT BUILD PRICE</h3>
+                  <p className="text-[10px] text-white/40 mb-8 leading-relaxed">Starting prices vary depending on complexity & size.</p>
+                  
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-green-500/30 transition-all group">
+                      <span className="text-[9px] font-bold text-green-500 uppercase">🟢 BASIC</span>
+                      <p className="font-bold text-sm my-1">Rp 16k - 80k</p>
+                      <ul className="text-[9px] text-white/40 space-y-1 mt-3"><li>▸ 1 main structure</li><li>▸ Light detailing</li><li>▸ Short build time</li></ul>
+                    </div>
+                    <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-blue-500/30 transition-all group">
+                      <span className="text-[9px] font-bold text-blue-500 uppercase">🔵 ADVANCED</span>
+                      <p className="font-bold text-sm my-1">Rp 80k - 320k</p>
+                      <ul className="text-[9px] text-white/40 space-y-1 mt-3"><li>▸ 1–3 structures</li><li>▸ Medium terraforming</li><li>▸ Free revisions</li></ul>
+                    </div>
+                    <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all group">
+                      <span className="text-[9px] font-bold text-purple-500 uppercase">🟣 ELITE</span>
+                      <p className="font-bold text-sm my-1">Rp 480k - 1.6jt</p>
+                      <ul className="text-[9px] text-white/40 space-y-1 mt-3"><li>▸ Large build area</li><li>▸ High detail density</li><li>▸ Visual-focused</li></ul>
+                    </div>
+                    <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-red-500/30 transition-all group">
+                      <span className="text-[9px] font-bold text-red-500 uppercase">🔴 ORIGIN</span>
+                      <p className="font-bold text-sm my-1">Rp 2.4jt++</p>
+                      <ul className="text-[9px] text-white/40 space-y-1 mt-3"><li>▸ Mega builds</li><li>▸ Organic sculptures</li><li>▸ Exclusive license</li></ul>
                     </div>
                   </div>
-                  <a href="https://discord.gg/muH44HDrea" target="_blank" className="block w-full text-center py-4 bg-white/5 hover:bg-white hover:text-black rounded-2xl font-bold text-xs transition-all duration-500 uppercase tracking-widest mt-auto">
-                    {s.btn}
-                  </a>
+
+                  <div className="mt-8 p-6 rounded-2xl bg-purple-500/5 border border-purple-500/10">
+                    <h4 className="text-[10px] font-black uppercase tracking-widest mb-4">🧩 Optional Add-ons</h4>
+                    <div className="grid grid-cols-2 gap-y-3 text-[10px] text-white/60">
+                      <p>Terraforming: <span className="text-white">32k-80k</span></p>
+                      <p>Organic: <span className="text-white">160k-960k</span></p>
+                      <p>Interior: <span className="text-white">80k-400k</span></p>
+                      <p>Extra Revision: <span className="text-white">48k</span></p>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              </div>
 
-        {/* SECTION 5: CARA ORDER */}
-        <section id="alur" className="relative z-10 py-32 px-6 bg-white/[0.01]">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-20">
-              <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Process</span>
-              <h2 className="text-4xl font-bold text-white tracking-widest uppercase">Cara Order</h2>
+              <div className="p-8 rounded-[2rem] bg-white/[0.02] border border-white/5">
+                <h4 className="text-[10px] font-black mb-4">⚠️ IMPORTANT NOTES</h4>
+                <p className="text-[9px] text-white/30 leading-relaxed uppercase tracking-tighter italic">
+                  Prices may change based on build size. All builds are protected under GTMN Studio Usage License. Reselling, redistribution, or claiming ownership of our builds is strictly prohibited.
+                </p>
+              </div>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                { step: "01", t: "Join Discord", d: "Masuk ke server kami melalui link undangan resmi Selene Shop." },
-                { step: "02", t: "Create Ticket", d: "Buka tiket sesuai kategori layanan yang Anda butuhkan." },
-                { step: "03", t: "Payment", d: "Selesaikan pembayaran aman via QRIS atau E-Wallet pilihan Anda." }
-              ].map((item, idx) => (
-                <div key={idx} className="group relative p-10 rounded-[35px] bg-white/[0.02] border border-white/5 overflow-hidden transition-all duration-500 hover:border-purple-500/30 hover:bg-white/[0.04]">
-                  <span className="text-5xl font-black text-white/[0.03] absolute top-4 right-6 group-hover:text-purple-500/10 transition-colors">{item.step}</span>
-                  <h4 className="font-bold text-purple-200 text-lg mb-4 group-hover:translate-x-1 transition-transform">{item.t}</h4>
-                  <p className="text-sm text-white/40 leading-relaxed group-hover:text-white/60 transition-colors">{item.d}</p>
+
+            {/* RIGHT COLUMN: ART & SKINS */}
+            <div className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="p-8 rounded-[2rem] bg-black border border-white/5 hover:border-purple-500 transition-all group">
+                   <h3 className="text-lg font-black mb-4 group-hover:text-purple-400 transition-colors uppercase italic italic">🧸 PNGtuber</h3>
+                   <div className="space-y-4">
+                     <div><p className="text-xs font-bold uppercase tracking-tighter">Simple Chibi: 25k</p><p className="text-[9px] text-white/30 italic">2 ekspresi, bebas request</p></div>
+                     <div><p className="text-xs font-bold uppercase tracking-tighter">Simple Normal: 30k</p><p className="text-[9px] text-white/30 italic">2 ekspresi, bebas request</p></div>
+                   </div>
                 </div>
-              ))}
+                <div className="p-8 rounded-[2rem] bg-black border border-white/5 hover:border-purple-500 transition-all group">
+                   <h3 className="text-lg font-black mb-4 group-hover:text-purple-400 transition-colors uppercase italic">🎨 Illustration</h3>
+                   <div className="space-y-4">
+                     <div><p className="text-xs font-bold uppercase tracking-tighter">Simple Shade: 25k</p></div>
+                     <div><p className="text-xs font-bold uppercase tracking-tighter">Full Rendering: DM First</p><p className="text-[9px] text-white/30 italic">Detail tinggi & full render</p></div>
+                   </div>
+                </div>
+                <div className="p-8 rounded-[2rem] bg-black border border-white/5 hover:border-purple-500 transition-all group">
+                   <h3 className="text-lg font-black mb-4 group-hover:text-purple-400 transition-colors uppercase italic">🎭 Cosmetica Face</h3>
+                   <div className="space-y-4">
+                     <div><p className="text-xs font-bold uppercase tracking-tighter">Only Face: 30k</p></div>
+                     <div><p className="text-xs font-bold uppercase tracking-tighter">Face + Rambut HD: 50k</p><p className="text-[9px] text-white/30 italic">Fokus wajah & detail tajam</p></div>
+                   </div>
+                </div>
+                <div className="p-8 rounded-[2rem] bg-black border border-white/5 hover:border-purple-500 transition-all group">
+                   <h3 className="text-lg font-black mb-4 group-hover:text-purple-400 transition-colors uppercase italic">👕 Minecraft Skin</h3>
+                   <div className="space-y-4">
+                     <div><p className="text-xs font-bold uppercase tracking-tighter">Simple: 10k</p></div>
+                     <div><p className="text-xs font-bold uppercase tracking-tighter">Full Detail: 15k</p></div>
+                   </div>
+                </div>
+              </div>
+
+              {/* STICKERS */}
+              <div className="p-8 rounded-[2rem] bg-gradient-to-br from-purple-900/20 to-black border border-white/10 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-4 text-4xl opacity-10 group-hover:opacity-30 group-hover:rotate-12 transition-all">😊</div>
+                <h3 className="text-lg font-black mb-6 italic uppercase">🎨 Custom Sticker Chibi</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
+                    <p className="text-[10px] font-black text-purple-400 uppercase">Single Head</p>
+                    <p className="text-xs font-bold">Price: 10k</p>
+                  </div>
+                  <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
+                    <p className="text-[10px] font-black text-purple-400 uppercase">Sticker Pack</p>
+                    <p className="text-xs font-bold">6: 50k / 12: 100k</p>
+                  </div>
+                </div>
+              </div>
+
+              <a href="https://discord.gg/muH44HDrea" target="_blank" className="block w-full py-5 bg-white text-black text-center rounded-[1.5rem] font-black text-[11px] uppercase tracking-[0.3em] hover:bg-purple-600 hover:text-white transition-all shadow-[0_10px_30px_rgba(255,255,255,0.1)]">
+                ✨ OPEN COMMISSION - ORDER NOW ✨
+              </a>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* SECTION 6: SECURED PAYMENT */}
-        <section id="pembayaran" className="relative z-10 py-32 px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <span className="text-purple-400 text-[10px] font-bold tracking-[0.4em] uppercase mb-8 block">Transaction</span>
-            <h2 className="text-3xl font-bold text-white mb-12 text-center uppercase tracking-tighter">Payment Gateway</h2>
-            
-            <div className="flex flex-wrap justify-center gap-10 mb-20 opacity-20 hover:opacity-50 transition-opacity duration-700">
-              {["DANA", "OVO", "SHOPEEPAY", "QRIS", "GOPAY"].map((m) => (
-                <span key={m} className="text-xs font-black tracking-widest border-b border-white/20 pb-1">{m}</span>
-              ))}
+      {/* 4. WORKFLOW & STATS */}
+      <section className="relative z-10 py-24 px-6 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-4 gap-4">
+            <div className="p-8 bg-white/[0.03] border border-white/5 rounded-[2rem] relative overflow-hidden group">
+              <span className="absolute -top-4 -right-2 text-6xl font-black text-white/[0.02] group-hover:text-purple-500/10 transition-colors">01</span>
+              <h4 className="text-3xl font-black text-purple-400">100+</h4>
+              <p className="text-[9px] text-white/40 uppercase font-black tracking-widest mt-2">Projects Selesai</p>
             </div>
-            
-            <a 
-              href="https://sociabuzz.com/seleneshop/tribe" 
-              target="_blank" 
-              className="group relative inline-flex items-center gap-6 bg-white/[0.03] border border-white/10 rounded-[30px] p-8 hover:bg-white/[0.05] hover:border-purple-500/40 transition-all duration-500 hover:scale-[1.02] shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
-            >
-              <div className="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center text-2xl group-hover:rotate-12 transition-transform">🛡️</div>
-              <div className="text-left">
-                <span className="block font-bold text-white text-xl tracking-tight group-hover:text-purple-200 transition-colors">Sociabuzz Gateway</span>
-                <p className="text-xs text-white/40">Verifikasi otomatis untuk QRIS & semua E-Wallet.</p>
-              </div>
-              <div className="ml-6 w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
-                →
-              </div>
-            </a>
-          </div>
-        </section>
+            <div className="p-8 bg-white/[0.03] border border-white/5 rounded-[2rem] relative overflow-hidden group">
+              <span className="absolute -top-4 -right-2 text-6xl font-black text-white/[0.02] group-hover:text-purple-500/10 transition-colors">02</span>
+              <h4 className="text-3xl font-black text-purple-400">Premium</h4>
+              <p className="text-[9px] text-white/40 uppercase font-black tracking-widest mt-2">Kualitas Karya</p>
+            </div>
+            <div className="p-8 bg-white/[0.03] border border-white/5 rounded-[2rem] md:col-span-2 flex items-center justify-between relative overflow-hidden group">
+                <span className="absolute -top-4 -right-2 text-6xl font-black text-white/[0.02] group-hover:text-purple-500/10 transition-colors">03</span>
+                <div className="relative z-10">
+                  <h4 className="text-lg font-black italic uppercase">Workflow Utama</h4>
+                  <p className="text-[9px] text-white/30 uppercase mt-1 tracking-tighter font-bold italic">Join Discord → Open Ticket → Payment Easy</p>
+                </div>
+                <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center relative z-10 group-hover:bg-purple-600 transition-colors">→</div>
+            </div>
+        </div>
+      </section>
 
-        <footer className="relative z-10 py-16 text-center border-t border-white/5 bg-black/40">
-          <p className="text-white/20 text-[10px] font-bold tracking-[0.5em] uppercase mb-4">Selene Shop • Established 2024</p>
-          <p className="text-white/10 text-[9px]">Premium Digital Services for the Minecraft Community.</p>
-        </footer>
-      </main>
+      {/* 5. PAYMENT */}
+      <section className="relative z-10 py-24 px-6 text-center border-t border-white/5">
+        <p className="text-[10px] font-black tracking-[1em] text-white/20 uppercase mb-8 italic">Secured Payment Gateway</p>
+        <div className="flex flex-wrap justify-center gap-8 mb-16 opacity-30 text-[10px] font-bold tracking-[0.3em] uppercase">
+          <span>DANA</span><span>OVO</span><span>SHOPEEPAY</span><span>QRIS</span><span>GOPAY</span>
+        </div>
+        <div className="max-w-xl mx-auto p-10 bg-white/[0.02] border border-white/10 rounded-[3rem] group hover:border-purple-500/50 transition-all flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <div className="w-16 h-16 bg-purple-600/10 rounded-3xl flex items-center justify-center text-3xl border border-purple-500/20 shadow-inner">🛡️</div>
+            <div className="text-left">
+              <h4 className="text-xl font-black italic uppercase">Sociabuzz Gateway</h4>
+              <p className="text-[9px] text-white/30 uppercase mt-1 italic tracking-widest">Otomatisasi pembayaran & Instant Approval</p>
+            </div>
+          </div>
+          <div className="w-12 h-12 border border-white/10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all cursor-pointer">→</div>
+        </div>
+      </section>
+
+      <footer className="relative z-10 py-12 text-center opacity-10 text-[8px] font-black tracking-[1.5em] uppercase italic">
+        Selene Shop • Established 2024 • Excellence in Minecraft Digital Art
+      </footer>
+
+      <style jsx>{`
+        @keyframes shooting {
+          0% { transform: translateX(0) rotate(35deg); opacity: 1; }
+          20% { transform: translateX(100vw) rotate(35deg); opacity: 0; }
+          100% { transform: translateX(100vw) rotate(35deg); opacity: 0; }
+        }
+      `}</style>
     </div>
   );
 }
