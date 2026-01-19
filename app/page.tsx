@@ -17,7 +17,7 @@ function MoonBackground() {
       delay: `${Math.random() * 5}s`,
     })));
 
-    // 2. Generate Bintang Jatuh - Dibuat delay acak kecil agar sering muncul
+    // 2. Generate Bintang Jatuh - Muncul berkala
     setMeteors(Array.from({ length: 6 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 50}%`,
@@ -38,22 +38,21 @@ function MoonBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#010105]">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#02020a]">
       
-      {/* 1. LAYER AWAN (Dibuat lebih terlihat dengan Opacity lebih tinggi) */}
+      {/* 1. LAYER AWAN (MISTY ATMOSPHERE) */}
       <div className="absolute inset-0 z-[5]">
-        <div className="absolute top-[10%] -left-[10%] w-[100%] h-[40%] bg-purple-900/20 blur-[120px] rounded-full animate-cloud-drift" />
-        <div className="absolute bottom-[10%] -right-[10%] w-[90%] h-[50%] bg-blue-900/20 blur-[140px] rounded-full animate-cloud-drift-reverse" />
-        {/* Awan kabut menyebar */}
-        <div className="absolute top-1/4 left-0 w-full h-32 bg-white/[0.02] blur-[80px] animate-pulse" />
+        <div className="absolute top-[10%] -left-[10%] w-[100%] h-[40%] bg-purple-900/15 blur-[120px] rounded-full animate-cloud-drift" />
+        <div className="absolute bottom-[10%] -right-[10%] w-[90%] h-[50%] bg-blue-900/15 blur-[140px] rounded-full animate-cloud-drift-reverse" />
+        <div className="absolute top-1/4 left-0 w-full h-32 bg-white/[0.01] blur-[80px] animate-pulse" />
       </div>
 
-      {/* 2. BINTANG JATUH (METEOR) - Fix Animasi & Visibility */}
+      {/* 2. BINTANG JATUH (METEOR) */}
       <div className="absolute inset-0 z-[10]">
         {meteors.map((m) => (
           <div
             key={m.id}
-            className="absolute w-[200px] h-[2px] bg-gradient-to-r from-transparent via-purple-200 to-white opacity-0 animate-meteor-new"
+            className="absolute w-[200px] h-[1px] bg-gradient-to-r from-transparent via-white/50 to-white opacity-0 animate-meteor-new"
             style={{
               top: m.top,
               left: m.left,
@@ -69,7 +68,7 @@ function MoonBackground() {
         {stars.map((s) => (
           <div
             key={s.id}
-            className="absolute bg-white rounded-full animate-twinkle shadow-[0_0_5px_white]"
+            className="absolute bg-white rounded-full animate-twinkle shadow-[0_0_3px_white]"
             style={{
               top: s.top,
               left: s.left,
@@ -81,27 +80,40 @@ function MoonBackground() {
         ))}
       </div>
 
-      {/* 4. BULAN DENGAN TEKSTUR & CAHAYA MENYEBAR */}
+      {/* 4. BULAN SINEMATIK (BUKAN BOLA GOLF) */}
       <div 
         ref={moonRef}
-        className="absolute top-32 right-[10%] md:right-[15%] transition-transform duration-700 ease-out z-[20]"
+        className="absolute top-24 right-[10%] md:right-[15%] transition-transform duration-700 ease-out z-[20]"
       >
-        {/* Glow menyebar di luar bulan */}
-        <div className="absolute inset-[-60px] rounded-full bg-purple-600/20 blur-[80px] animate-pulse" />
-        <div className="absolute inset-[-120px] rounded-full bg-blue-600/10 blur-[120px]" />
+        {/* Cahaya Atmosfer (Glow Luar) */}
+        <div className="absolute inset-[-60px] rounded-full bg-blue-500/10 blur-[80px] animate-pulse" />
+        <div className="absolute inset-[-20px] rounded-full bg-purple-500/5 blur-[40px]" />
         
-        {/* Main Moon Body */}
-        <div className="relative w-36 h-36 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-[#f0f0f0] via-[#d1d1d1] to-[#888] shadow-[inset_-15px_-15px_40px_rgba(0,0,0,0.7),0_0_50px_rgba(192,132,252,0.4)] border border-white/20 overflow-hidden">
-          {/* Efek Tekstur Kasar (Kawah) */}
-          <div className="absolute inset-0 opacity-30 mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+        {/* Badan Utama Bulan */}
+        <div className="relative w-40 h-40 md:w-64 md:h-64 rounded-full bg-[#f4f4f4] shadow-[inset_-35px_-25px_60px_rgba(0,0,0,0.95),0_0_20px_rgba(255,255,255,0.05)] border border-white/10 overflow-hidden">
           
-          {/* Detail Kawah Manual */}
-          <div className="absolute top-[25%] left-[30%] w-10 h-10 bg-black/10 rounded-full blur-md" />
-          <div className="absolute bottom-[30%] right-[25%] w-16 h-16 bg-black/10 rounded-full blur-lg" />
-          <div className="absolute top-[60%] left-[20%] w-6 h-6 bg-black/10 rounded-full blur-sm" />
-          
-          {/* Highlight Sisi Terang */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_35%,rgba(255,255,255,0.4),transparent_70%)]" />
+          {/* Tekstur Permukaan Kasar */}
+          <div className="absolute inset-0 opacity-20 mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+
+          {/* Kawah-Kawah Realistik (Craters) */}
+          <div className="absolute inset-0 opacity-40">
+            {/* Kawah Besar Atas */}
+            <div className="absolute top-[25%] left-[30%] w-14 h-12 bg-black/20 rounded-[50%] blur-md shadow-[inset_4px_4px_10px_rgba(0,0,0,0.4)] rotate-[-15deg]" />
+            
+            {/* Area Mare (Dataran Gelap) */}
+            <div className="absolute bottom-[30%] right-[25%] w-20 h-16 bg-black/15 rounded-[50%] blur-xl" />
+            
+            {/* Kawah-Kawah Kecil Tersebar */}
+            <div className="absolute top-[60%] left-[20%] w-6 h-5 bg-black/20 rounded-full blur-[2px] shadow-[inset_2px_2px_5px_rgba(0,0,0,0.3)]" />
+            <div className="absolute top-[40%] right-[35%] w-4 h-4 bg-black/25 rounded-full blur-[1px]" />
+            <div className="absolute bottom-[15%] left-[40%] w-8 h-7 bg-black/10 rounded-full blur-md" />
+          </div>
+
+          {/* Sisi Gelap Ekstrem (Shadow Terminator) */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,transparent_20%,rgba(0,0,0,0.85)_100%)]" />
+
+          {/* Pantulan Cahaya Matahari (Highlight) */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.4)_0%,transparent_60%)]" />
         </div>
       </div>
 
@@ -112,11 +124,11 @@ function MoonBackground() {
         }
         @keyframes cloud-drift {
           0%, 100% { transform: translate(0, 0); }
-          50% { transform: translate(80px, 40px); }
+          50% { transform: translate(60px, 30px); }
         }
         @keyframes cloud-drift-reverse {
           0%, 100% { transform: translate(0, 0); }
-          50% { transform: translate(-60px, -20px); }
+          50% { transform: translate(-50px, -20px); }
         }
         @keyframes meteor-new {
           0% { transform: rotate(-35deg) translateX(0) scaleX(0); opacity: 0; }
@@ -124,10 +136,10 @@ function MoonBackground() {
           25% { transform: rotate(-35deg) translateX(-800px) scaleX(1); opacity: 0; }
           100% { transform: rotate(-35deg) translateX(-800px) scaleX(0); opacity: 0; }
         }
-        .animate-twinkle { animation: twinkle 3s infinite ease-in-out; }
-        .animate-cloud-drift { animation: cloud-drift 20s infinite ease-in-out; }
-        .animate-cloud-drift-reverse { animation: cloud-drift-reverse 25s infinite ease-in-out; }
-        .animate-meteor-new { animation: meteor-new 8s infinite linear; }
+        .animate-twinkle { animation: twinkle 4s infinite ease-in-out; }
+        .animate-cloud-drift { animation: cloud-drift 25s infinite ease-in-out; }
+        .animate-cloud-drift-reverse { animation: cloud-drift-reverse 30s infinite ease-in-out; }
+        .animate-meteor-new { animation: meteor-new 7s infinite linear; }
       `}</style>
     </div>
   );
