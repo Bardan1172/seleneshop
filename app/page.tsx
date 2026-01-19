@@ -151,27 +151,23 @@ export default function Home() {
           </div>
         </section>
 
-        {/* LAYANAN - EFFECT: NEON CARDS */}
-        <section id="layanan" className="relative z-10 py-24 px-6">
-          <div className="max-w-6xl mx-auto">
-            {sectionHeader("LAYANAN KREATIF", "OUR SERVICES")}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {services.map((s, i) => (
-                <div key={i} className="group relative bg-black/60 border border-white/5 p-8 rounded-[2rem] hover:border-purple-500 transition-all duration-500 shadow-2xl overflow-hidden">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-purple-600/5 blur-3xl group-hover:bg-purple-600/20 transition-all"></div>
-                  <h3 className="text-lg font-black mb-1 tracking-tighter uppercase italic group-hover:text-purple-400 transition-colors">{s.title}</h3>
-                  <p className="text-[9px] text-purple-600 font-black tracking-widest mb-8">{s.tag}</p>
-                  <div className="space-y-4 mb-8">
-                    {s.items.map((item, idx) => (
-                      <div key={idx}><p className="font-black text-xs mb-0.5">{item.label}</p><p className="text-[10px] text-white/30">{item.desc}</p></div>
-                    ))}
+        ext-xs font-bold">Bust-up: 10k</p>
                   </div>
-                  <a href="https://discord.gg/muH44HDrea" target="_blank" className="block w-full text-center py-3 bg-white/5 group-hover:bg-white group-hover:text-black rounded-xl font-black text-[9px] transition-all uppercase tracking-[0.2em]">ORDER NOW</a>
+                  <div className="p-4 bg-white/5 rounded-2xl border border-white/5">
+                    <p className="text-[10px] font-black text-purple-400 uppercase">Packs</p>
+                    <p className="text-xs font-bold">6 Pcs: 50k / 12 Pcs: 100k</p>
+                  </div>
                 </div>
-              ))}
+              </div>
+
+              {/* CTA */}
+              <a href="https://discord.gg/muH44HDrea" target="_blank" className="block w-full py-5 bg-white text-black text-center rounded-[1.5rem] font-black text-[11px] uppercase tracking-[0.3em] hover:bg-purple-600 hover:text-white transition-all shadow-[0_10px_30px_rgba(255,255,255,0.1)]">
+                ✨ OPEN COMMISSION - ORDER NOW ✨
+              </a>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
         {/* CARA ORDER - EFFECT: PROGRESSIVE BOX */}
         <section id="cara" className="relative z-10 py-24 px-6">
