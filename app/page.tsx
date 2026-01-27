@@ -242,7 +242,9 @@ export default function Home() {
         {/* FOOTER */}
         <footer className="relative z-10 py-24 text-center border-t border-white/5 bg-[#010108]">
           <div className={`${fantasyFont} text-xl font-bold mb-10 tracking-[0.5em]`}>SELENE SHOP</div>
-          <p className="text-white/20 text-[9px] uppercase tracking-[0.6em] font-black italic mb-2">© 2024 ALL RIGHTS RESERVED</p>
+          <p className="text-white/20 text-[9px] uppercase tracking-[0.6em] font-black italic mb-2">© 2025 SeleneShop. All rights reserved.
+
+🎨 Bardan1172 Visual Series — Powered by SeleneShop.</p>
           <div className="w-12 h-[1px] bg-purple-500 mx-auto opacity-50" />
         </footer>
       </main>
