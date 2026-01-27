@@ -254,7 +254,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col items-center gap-2 text-center">
               <p className="text-white/40 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-medium">
-                © 2025 <span className="text-white/60">SeleneShop</span>. All rights reserved.
+                © 2026 <span className="text-white/60">SeleneShop</span>. All rights reserved.
               </p>
               <div className="flex items-center gap-2 text-[10px] md:text-[11px] tracking-[0.1em]">
                 <span className="opacity-80">🎨</span>
