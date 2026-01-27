@@ -2,14 +2,13 @@
 
 import { useEffect, useState, useRef } from "react";
 
-// --- KOMPONEN BACKGROUND BULAN & ATMOSFER ---
+// --- KOMPONEN BACKGROUND BULAN ---
 function MoonBackground() {
   const [stars, setStars] = useState<{id: number, top: string, left: string, size: string, delay: string}[]>([]);
   const [meteors, setMeteors] = useState<{id: number, top: string, left: string, delay: string, duration: string}[]>([]);
   const moonRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Generate Bintang
     setStars(Array.from({ length: 120 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
@@ -18,7 +17,6 @@ function MoonBackground() {
       delay: `${Math.random() * 5}s`,
     })));
 
-    // Generate Meteor
     setMeteors(Array.from({ length: 4 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 40}%`,
@@ -40,29 +38,22 @@ function MoonBackground() {
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#010108]">
-      {/* Kabut Kosmik */}
       <div className="absolute inset-0 z-[5] opacity-40">
         <div className="absolute top-[-10%] left-[-10%] w-[120%] h-[120%] bg-[radial-gradient(circle_at_50%_50%,rgba(15,10,60,0.3),transparent_70%)] animate-pulse" />
         <div className="absolute top-[20%] w-full h-[30%] bg-purple-500/5 blur-[120px] animate-cloud-drift" />
       </div>
-
-      {/* Meteor */}
       <div className="absolute inset-0 z-[10]">
         {meteors.map((m) => (
           <div key={m.id} className="absolute h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 animate-meteor-new"
             style={{ top: m.top, left: m.left, width: '250px', animationDelay: m.delay, animationDuration: m.duration }} />
         ))}
       </div>
-
-      {/* Bintang Berkelip */}
       <div className="absolute inset-0 z-[2]">
         {stars.map((s) => (
           <div key={s.id} className="absolute bg-white rounded-full animate-twinkle"
             style={{ top: s.top, left: s.left, width: s.size, height: s.size, animationDelay: s.delay }} />
         ))}
       </div>
-
-      {/* Bulan Parallax */}
       <div ref={moonRef} className="absolute top-24 right-[10%] md:right-[15%] transition-transform duration-700 ease-out z-[20]">
         <div className="absolute inset-[-40px] rounded-full bg-blue-400/10 blur-[60px]" />
         <div className="relative w-40 h-40 md:w-64 md:h-64 rounded-full bg-[#e8e8e8] shadow-[inset_-25px_-15px_60px_rgba(0,0,0,0.9)] border border-white/5 overflow-hidden">
@@ -71,7 +62,6 @@ function MoonBackground() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_35%,rgba(255,255,255,0.3)_0%,transparent_60%)]" />
         </div>
       </div>
-
       <style jsx>{`
         @keyframes twinkle { 0%, 100% { opacity: 0.2; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.1); } }
         @keyframes cloud-drift { 0% { transform: translateX(-100%); } 100% { transform: translateX(150%); } }
@@ -84,7 +74,7 @@ function MoonBackground() {
   );
 }
 
-// --- KOMPONEN UTAMA ---
+// --- HALAMAN UTAMA ---
 export default function Home() {
   const fantasyFont = "font-serif italic tracking-wider uppercase";
 
@@ -99,40 +89,47 @@ export default function Home() {
 
   return (
     <div className="bg-[#010108] text-white selection:bg-purple-500/30 scroll-smooth">
+      {/* --- STICKY NAVBAR (Sesuai Gambar 1 & 2) --- */}
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-full max-w-4xl px-4">
+        <div className="flex justify-center items-center gap-3 bg-black/40 backdrop-blur-md border border-white/10 p-2 rounded-2xl shadow-2xl">
+          {[
+            { label: "TENTANG", href: "#tentang" },
+            { label: "LAYANAN", href: "#layanan" },
+            { label: "CARA ORDER", href: "#caraorder" },
+            { label: "PEMBAYARAN", href: "#pembayaran" },
+            { label: "DISCORD", href: "https://discord.gg/muH44HDrea", isExternal: true },
+          ].map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              target={item.isExternal ? "_blank" : "_self"}
+              rel={item.isExternal ? "noopener noreferrer" : ""}
+              className={`flex-1 text-center py-3 px-2 rounded-xl transition-all duration-300 font-bold text-[9px] md:text-[10px] uppercase tracking-[0.2em] border
+                ${item.label === "DISCORD" 
+                  ? "border-purple-500/40 bg-purple-500/10 hover:bg-purple-500/30 hover:border-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.2)]" 
+                  : "border-transparent hover:border-white/20 hover:bg-white/5"
+                }`}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </nav>
+
       <main className="relative">
         <MoonBackground />
 
-        {/* 1. HERO / BERANDA */}
+        {/* HERO SECTION */}
         <section id="beranda" className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24">
           <h1 className={`${fantasyFont} text-7xl md:text-9xl font-bold text-white mb-10 leading-[1.3] py-8`}>
             SELENE <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-100 via-purple-300 to-purple-600 drop-shadow-2xl">SHOP</span>
           </h1>
-          
           <p className="text-white/60 max-w-2xl text-sm md:text-lg mb-14 tracking-[0.3em] uppercase font-light leading-relaxed italic">
             Eksplorasi estetika malam dalam dunia digital.
           </p>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl px-4">
-            {[
-              { label: "TENTANG", href: "#tentang" },
-              { label: "CARA ORDER", href: "#caraorder" },
-              { label: "PEMBAYARAN", href: "#pembayaran" },
-              { label: "DISCORD", href: "https://discord.gg/muH44HDrea", isExternal: true },
-            ].map((item) => (
-              <a 
-                key={item.label} 
-                href={item.href} 
-                target={item.isExternal ? "_blank" : "_self"}
-                rel={item.isExternal ? "noopener noreferrer" : ""}
-                className="w-full text-center px-4 py-5 border border-white/10 bg-white/5 hover:border-purple-500/50 hover:bg-purple-500/10 rounded-2xl transition-all duration-300 font-bold text-[10px] uppercase tracking-[0.2em] backdrop-blur-sm"
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
         </section>
 
-        {/* 2. BRAND STRIP */}
+        {/* BRAND STRIP */}
         <section className="relative z-20 py-20 border-y border-white/5 bg-white/[0.01]">
           <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-10 md:gap-24 opacity-30 hover:opacity-100 transition-opacity duration-1000">
             {["SELENE SHOP", "HEPPYCLOUD", "BANGBLAZE"].map((brand) => (
@@ -143,7 +140,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3. TENTANG */}
+        {/* TENTANG */}
         <section id="tentang" className="relative z-10 py-32 px-6">
           <div className="max-w-4xl mx-auto text-center">
             <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">IDENTITY</span>
@@ -162,7 +159,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 4. KATALOG LAYANAN */}
+        {/* LAYANAN */}
         <section id="layanan" className="relative z-10 py-32 px-6">
            <div className="max-w-7xl mx-auto">
              <div className="text-center mb-24">
@@ -193,8 +190,8 @@ export default function Home() {
            </div>
         </section>
 
-        {/* 5. CARA ORDER */}
-        <section id="caraorder" className="relative z-10 py-32 px-6 bg-white/[0.01]">
+        {/* CARA ORDER */}
+        <section id="caraorder" className="relative z-10 py-32 px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-24">
               <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">PROCESS</span>
@@ -202,9 +199,9 @@ export default function Home() {
             </div>
             <div className="grid md:grid-cols-3 gap-8">
               {[
-                { s: "I", t: "JOIN DISCORD", d: "Masuk ke server resmi kami melalui tombol navigasi." },
-                { s: "II", t: "CREATE TICKET", d: "Buka tiket di channel order sesuai kategori layanan." },
-                { s: "III", t: "PAYMENT", d: "Selesaikan pembayaran via QRIS atau E-Wallet yang tersedia." }
+                { s: "I", t: "JOIN DISCORD", d: "Masuk ke server resmi kami." },
+                { s: "II", t: "CREATE TICKET", d: "Buka tiket sesuai kategori." },
+                { s: "III", t: "PAYMENT", d: "Bayar via QRIS atau E-Wallet." }
               ].map((item, idx) => (
                 <div key={idx} className="group relative p-12 rounded-[45px] bg-white/[0.02] border border-white/5 hover:border-purple-500/40 transition-all duration-500">
                   <span className={`${fantasyFont} text-7xl font-black text-white/[0.04] absolute top-6 right-8`}>{item.s}</span>
@@ -216,7 +213,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 6. PEMBAYARAN */}
+        {/* PEMBAYARAN */}
         <section id="pembayaran" className="relative z-10 py-40 px-6">
           <div className="max-w-4xl mx-auto text-center">
             <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-10 block uppercase">TRANSACTION</span>
@@ -232,7 +229,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FOOTER */}
         <footer className="relative z-10 py-20 text-center border-t border-white/5 bg-black/60">
           <p className={`${fantasyFont} text-white/30 text-[12px] tracking-[0.8em] mb-6`}>SELENE SHOP • 2024</p>
           <p className="text-white/10 text-[10px] uppercase tracking-[0.4em] font-black italic">Premium Digital Services for the Minecraft Community.</p>
