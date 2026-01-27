@@ -268,3 +268,15 @@ export default function Home() {
             <div className="w-12 h-[1px] bg-purple-500 mt-8 opacity-30" />
           </div>
         </footer>
+      </main>
+
+      <style jsx global>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fade-in 1.5s ease-out forwards; }
+      `}</style>
+    </div>
+  );
+}
