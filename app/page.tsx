@@ -154,21 +154,39 @@ export default function Home() {
     { title: "🏛 MINECRAFT BUILD", tag: "STRUCTURAL & AESTHETIC", items: [{ label: "BASIC: 15K – 75K", desc: "Small structures." }, { label: "ADVANCED: 75K – 300K", desc: "Fantasy base." }, { label: "ELITE: 450K – 1.5JT", desc: "Complex cities." }], btn: "CUSTOM BUILD" }
   ];
 
-  return (
-    <div className="bg-[#02020a] min-h-screen text-white selection:bg-purple-500/30 font-sans scroll-smooth overflow-x-hidden">
-      <nav className="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/5 px-6">
-        <div className="max-w-7xl mx-auto h-20 flex items-center justify-between">
-          <a href="#beranda" className={`${fantasyFont} text-2xl bg-clip-text text-transparent bg-gradient-to-r from-purple-200 to-purple-400 font-bold py-2 inline-block`}>
-            SELENE SHOP 🌙
-          </a>
-          <div className="hidden md:flex gap-6 text-[10px] font-bold tracking-[0.2em]">
-            {["TENTANG", "KEUNGGULAN", "LAYANAN", "CARA ORDER", "PEMBAYARAN"].map(s => (
-              <a key={s} href={`#${s.toLowerCase().replace(" ", "")}`} className="text-white/50 hover:text-purple-300 transition-colors uppercase">{s}</a>
-            ))}
-          </div>
-        </div>
-      </nav>
+  <section id="beranda" className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6 pt-24">
+  <h1 className={`${fantasyFont} text-7xl md:text-9xl font-bold text-white mb-10 leading-[1.3] py-8`}>
+    SELENE <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-100 via-purple-300 to-purple-600 drop-shadow-2xl">SHOP</span>
+  </h1>
+  
+  <p className="text-white/60 max-w-2xl text-sm md:text-lg mb-14 tracking-[0.3em] uppercase font-light leading-relaxed italic">
+    Eksplorasi estetika malam dalam dunia digital.
+  </p>
 
+  {/* Grid disesuaikan menjadi 4 kolom untuk tampilan desktop agar simetris */}
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl px-4">
+    {[
+      { label: "TENTANG", href: "#tentang" },
+      { label: "CARA ORDER", href: "#caraorder" },
+      { label: "PEMBAYARAN", href: "#pembayaran" },
+      { label: "DISCORD", href: "https://discord.gg/your-link", isExternal: true },
+    ].map((item) => (
+      <a 
+        key={item.label} 
+        href={item.href} 
+        target={item.isExternal ? "_blank" : "_self"}
+        rel={item.isExternal ? "noopener noreferrer" : ""}
+        className={`w-full text-center px-4 py-5 border rounded-2xl transition-all duration-300 font-bold text-[10px] uppercase tracking-[0.2em] backdrop-blur-sm 
+          ${item.label === "DISCORD" 
+            ? "border-purple-500/40 bg-purple-500/10 hover:bg-purple-500/30 hover:border-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.2)]" 
+            : "border-white/10 bg-white/5 hover:border-purple-500/50 hover:bg-purple-500/10"
+          }`}
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
+</section>
       <main className="relative">
         <MoonBackground />
 
