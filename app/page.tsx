@@ -77,6 +77,14 @@ function MoonBackground() {
 export default function Home() {
   const fantasyFont = "font-serif italic tracking-wider uppercase";
 
+  // LOGIKA RESET SCROLL KE ATAS SAAT REFRESH
+  useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  }, []);
+
   const services = [
     { title: "✦ COSMETICA FACE", tag: "*KHUSUS MINECRAFT PREMIUM", items: [{ label: "ONLY FACE: 30K", desc: "Custom mata, alis, dan mulut sesuai request." }, { label: "FACE + RAMBUT HD: 50K", desc: "Termasuk shading rambut detail dan ekspresi." }], btn: "ORDER FACE" },
     { title: "◈ MINECRAFT SKIN", tag: "CLASSIC / SLIM MODEL", items: [{ label: "SIMPLE: 10K", desc: "Desain minimalis dengan shading standar." }, { label: "FULL DETAIL: 15K", desc: "Shading kompleks untuk Anime atau Fantasy." }], btn: "ORDER SKIN" },
@@ -109,7 +117,7 @@ export default function Home() {
       <main className="relative">
         <MoonBackground />
 
-        {/* 1. HERO SECTION WITH ADDED BUTTONS */}
+        {/* 1. HERO SECTION */}
         <section id="beranda" className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6">
           <div className="animate-fade-in">
             <h1 className={`${fantasyFont} text-7xl md:text-9xl font-bold text-white mb-6 leading-tight`}>
@@ -119,7 +127,6 @@ export default function Home() {
               Digital Craftsmanship for the Midnight Dreamers
             </p>
             
-            {/* --- BUTTONS DI HOME --- */}
             <div className="flex flex-wrap justify-center gap-4 mb-16">
               {[
                 { label: "TENTANG", href: "#tentang", style: "border-white/10 bg-white/5 hover:bg-white/10" },
@@ -242,18 +249,13 @@ export default function Home() {
         {/* FOOTER */}
         <footer className="relative z-10 py-16 border-t border-white/5 bg-[#010108] px-6">
           <div className="max-w-7xl mx-auto flex flex-col items-center">
-            
-            {/* Logo Brand Footer */}
             <div className={`${fantasyFont} text-xl font-bold mb-8 tracking-[0.5em] opacity-80`}>
               SELENE SHOP
             </div>
-
-            {/* Copyright & Credit Line */}
             <div className="flex flex-col items-center gap-2 text-center">
               <p className="text-white/40 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-medium">
                 © 2025 <span className="text-white/60">SeleneShop</span>. All rights reserved.
               </p>
-              
               <div className="flex items-center gap-2 text-[10px] md:text-[11px] tracking-[0.1em]">
                 <span className="opacity-80">🎨</span>
                 <p className="text-white/40 uppercase">
@@ -263,8 +265,6 @@ export default function Home() {
                 </p>
               </div>
             </div>
-
-            {/* Decorative Line */}
             <div className="w-12 h-[1px] bg-purple-500 mt-8 opacity-30" />
           </div>
         </footer>
