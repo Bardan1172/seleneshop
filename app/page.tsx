@@ -240,22 +240,31 @@ export default function Home() {
         </section>
 
         {/* FOOTER */}
-        <footer className="relative z-10 py-24 text-center border-t border-white/5 bg-[#010108]">
-          <div className={`${fantasyFont} text-xl font-bold mb-10 tracking-[0.5em]`}>SELENE SHOP</div>
-          <p className="text-white/20 text-[9px] uppercase tracking-[0.6em] font-black italic mb-2">© 2025 SeleneShop. All rights reserved.
+        <footer className="relative z-10 py-16 border-t border-white/5 bg-[#010108] px-6">
+          <div className="max-w-7xl mx-auto flex flex-col items-center">
+            
+            {/* Logo Brand Footer */}
+            <div className={`${fantasyFont} text-xl font-bold mb-8 tracking-[0.5em] opacity-80`}>
+              SELENE SHOP
+            </div>
 
-🎨 Bardan1172 Visual Series — Powered by SeleneShop.</p>
-          <div className="w-12 h-[1px] bg-purple-500 mx-auto opacity-50" />
+            {/* Copyright & Credit Line */}
+            <div className="flex flex-col items-center gap-2 text-center">
+              <p className="text-white/40 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-medium">
+                © 2025 <span className="text-white/60">SeleneShop</span>. All rights reserved.
+              </p>
+              
+              <div className="flex items-center gap-2 text-[10px] md:text-[11px] tracking-[0.1em]">
+                <span className="opacity-80">🎨</span>
+                <p className="text-white/40 uppercase">
+                  <span className="text-blue-400 font-bold">Bardan1172</span> Visual Series 
+                  <span className="mx-2 opacity-30">—</span> 
+                  Powered by <span className="text-white/60">SeleneShop.</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Decorative Line */}
+            <div className="w-12 h-[1px] bg-purple-500 mt-8 opacity-30" />
+          </div>
         </footer>
-      </main>
-
-      <style jsx global>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in { animation: fade-in 1.5s ease-out forwards; }
-      `}</style>
-    </div>
-  );
-}
