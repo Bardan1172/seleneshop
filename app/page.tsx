@@ -87,45 +87,21 @@ export default function Home() {
   ];
 
   return (
-    <div className="bg-[#010108] text-white selection:bg-purple-500/30 scroll-smooth min-h-screen">
+    <div className="bg-[#010108] text-white selection:bg-purple-500/30 scroll-smooth min-h-screen font-sans">
       
-      {/* --- NEW ELEGANT NAVBAR --- */}
+      {/* --- NAVBAR --- */}
       <nav className="fixed top-0 left-0 w-full z-[100] px-6 py-6 pointer-events-none">
         <div className="max-w-5xl mx-auto flex justify-between items-center pointer-events-auto bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-2 pl-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-          
-          {/* Logo / Brand Name */}
           <div className={`${fantasyFont} text-sm md:text-lg font-bold tracking-[0.3em]`}>
             SELENE<span className="text-purple-500 ml-1">✦</span>
           </div>
-
-          {/* Nav Items */}
           <div className="hidden md:flex items-center gap-1">
-            {[
-              { label: "BERANDA", href: "#beranda" },
-              { label: "TENTANG", href: "#tentang" },
-              { label: "LAYANAN", href: "#layanan" },
-              { label: "CARA ORDER", href: "#caraorder" },
-            ].map((link) => (
-              <a 
-                key={link.label}
-                href={link.href}
-                className="px-5 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-all duration-300 opacity-60 hover:opacity-100"
-              >
-                {link.label}
-              </a>
+            {[{ label: "BERANDA", href: "#beranda" }, { label: "TENTANG", href: "#tentang" }, { label: "LAYANAN", href: "#layanan" }, { label: "CARA ORDER", href: "#caraorder" }].map((link) => (
+              <a key={link.label} href={link.href} className="px-5 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-all duration-300 opacity-60 hover:opacity-100">{link.label}</a>
             ))}
           </div>
-
-          {/* Action Buttons */}
           <div className="flex items-center gap-2">
-             <a href="#pembayaran" className="hidden sm:block px-5 py-2 text-[10px] font-bold tracking-[0.2em] opacity-60 hover:opacity-100 transition-opacity">PEMBAYARAN</a>
-             <a 
-               href="https://discord.gg/muH44HDrea" 
-               target="_blank"
-               className="bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-2xl text-[10px] font-black tracking-[0.2em] transition-all duration-300 shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-purple-500/50 uppercase"
-             >
-               JOIN DISCORD
-             </a>
+             <a href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-2xl text-[10px] font-black tracking-[0.2em] transition-all duration-300 shadow-[0_0_20px_rgba(147,51,234,0.3)] uppercase">JOIN DISCORD</a>
           </div>
         </div>
       </nav>
@@ -133,7 +109,7 @@ export default function Home() {
       <main className="relative">
         <MoonBackground />
 
-        {/* 1. HERO SECTION */}
+        {/* 1. HERO SECTION WITH ADDED BUTTONS */}
         <section id="beranda" className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6">
           <div className="animate-fade-in">
             <h1 className={`${fantasyFont} text-7xl md:text-9xl font-bold text-white mb-6 leading-tight`}>
@@ -142,8 +118,26 @@ export default function Home() {
             <p className="text-white/40 max-w-2xl mx-auto text-xs md:text-base mb-12 tracking-[0.4em] uppercase font-light italic">
               Digital Craftsmanship for the Midnight Dreamers
             </p>
-            <div className="flex justify-center gap-6">
-              <div className="w-px h-16 bg-gradient-to-b from-transparent via-purple-500 to-transparent" />
+            
+            {/* --- BUTTONS DI HOME --- */}
+            <div className="flex flex-wrap justify-center gap-4 mb-16">
+              {[
+                { label: "TENTANG", href: "#tentang", style: "border-white/10 bg-white/5 hover:bg-white/10" },
+                { label: "LAYANAN", href: "#layanan", style: "border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 text-purple-200" },
+                { label: "CARA ORDER", href: "#caraorder", style: "border-white/10 bg-white/5 hover:bg-white/10" }
+              ].map((btn) => (
+                <a 
+                  key={btn.label} 
+                  href={btn.href} 
+                  className={`px-8 py-4 border rounded-2xl text-[10px] font-black tracking-[0.3em] transition-all duration-500 ${btn.style}`}
+                >
+                  {btn.label}
+                </a>
+              ))}
+            </div>
+
+            <div className="flex justify-center">
+              <div className="w-px h-16 bg-gradient-to-b from-transparent via-purple-500 to-transparent opacity-50" />
             </div>
           </div>
         </section>
@@ -152,9 +146,7 @@ export default function Home() {
         <section className="relative z-20 py-20 border-y border-white/5 bg-white/[0.01]">
           <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-10 md:gap-24 opacity-30 hover:opacity-100 transition-opacity duration-1000">
             {["SELENE SHOP", "HEPPYCLOUD", "BANGBLAZE"].map((brand) => (
-              <span key={brand} className={`${fantasyFont} text-xl md:text-2xl font-bold tracking-[0.3em] cursor-default`}>
-                {brand}
-              </span>
+              <span key={brand} className={`${fantasyFont} text-xl md:text-2xl font-bold tracking-[0.3em] cursor-default`}>{brand}</span>
             ))}
           </div>
         </section>
@@ -164,9 +156,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto text-center">
             <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">THE STORY</span>
             <h2 className={`${fantasyFont} text-5xl md:text-7xl font-bold py-6 leading-tight`}>TENTANG KAMI</h2>
-            <p className="text-white/40 leading-loose text-lg mb-16 uppercase tracking-widest italic font-light">
-              Mewujudkan imajinasi menjadi aset digital berkualitas tinggi sejak 2024.
-            </p>
+            <p className="text-white/40 leading-loose text-lg mb-16 uppercase tracking-widest italic font-light">Mewujudkan imajinasi menjadi aset digital berkualitas tinggi sejak 2024.</p>
             <div className="grid grid-cols-2 gap-8 max-w-xl mx-auto">
               {[{v: "100+", l: "SUCCESS PROJECT"}, {v: "PREMIUM", l: "QUALITY GRADE"}].map((st, i) => (
                 <div key={i} className="p-10 rounded-[40px] bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all duration-700">
