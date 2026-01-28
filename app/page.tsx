@@ -2,9 +2,9 @@
 
 import { useEffect, useState, useRef } from "react";
 
+// --- KOMPONEN BACKGROUND: CARTOON MOON & LUXURY STARS ---
 function MoonBackground() {
   const [stars, setStars] = useState<{id: number, top: string, left: string, size: string, delay: string, depth: number}[]>([]);
-  // Tambahkan properti angle dan scale untuk variasi bintang jatuh
   const [meteors, setMeteors] = useState<{id: number, top: string, left: string, delay: string, duration: string, angle: number}[]>([]);
   const moonRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -20,14 +20,14 @@ function MoonBackground() {
       depth: Math.random() * 15 + 5,
     })));
 
-    // 2. Generate Meteors dengan variasi sudut (angle)
+    // 2. Generate Meteors
     setMeteors(Array.from({ length: 5 }).map((_, i) => ({
       id: i,
-      top: `${Math.random() * 30}%`, // Muncul dari bagian atas
+      top: `${Math.random() * 30}%`,
       left: `${Math.random() * 100}%`,
       delay: `${Math.random() * 25}s`,
       duration: `${1.5 + Math.random() * 2}s`,
-      angle: 15 + Math.random() * 20 // Variasi sudut jatuh
+      angle: 15 + Math.random() * 20 
     })));
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -72,7 +72,7 @@ function MoonBackground() {
               width: '180px', 
               animationDelay: m.delay, 
               animationDuration: m.duration,
-              transform: `rotate(${m.angle}deg)` // Sudut jatuh dinamis
+              transform: `rotate(${m.angle}deg)` 
             }} 
           />
         ))}
@@ -103,35 +103,20 @@ function MoonBackground() {
 
       <style jsx>{`
         @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
-        
         @keyframes shooting-star {
-          0% {
-            transform: translateX(0) scaleX(0);
-            opacity: 0;
-          }
-          5% {
-            opacity: 1;
-            scaleX(1);
-          }
-          20% {
-            transform: translateX(-800px) scaleX(1);
-            opacity: 0;
-          }
-          100% {
-            transform: translateX(-800px) scaleX(1);
-            opacity: 0;
-          }
+          0% { transform: translateX(0) scaleX(0); opacity: 0; }
+          5% { opacity: 1; scaleX(1); }
+          20% { transform: translateX(-800px) scaleX(1); opacity: 0; }
+          100% { transform: translateX(-800px) scaleX(1); opacity: 0; }
         }
-
         .animate-twinkle { animation: twinkle 4s infinite ease-in-out; }
-        .animate-shooting-star { 
-          animation: shooting-star 8s infinite cubic-bezier(0.1, 0.5, 0.2, 1); 
-        }
+        .animate-shooting-star { animation: shooting-star 8s infinite cubic-bezier(0.1, 0.5, 0.2, 1); }
       `}</style>
     </div>
   );
 }
 
+// --- MAIN PAGE ---
 export default function Home() {
   const fantasyFont = "font-serif italic tracking-wider uppercase";
 
@@ -156,18 +141,30 @@ export default function Home() {
       
       {/* --- NAVBAR --- */}
       <nav className="fixed top-0 left-0 w-full z-[100] px-6 py-6 pointer-events-none">
-        <div className="max-w-5xl mx-auto flex justify-between items-center pointer-events-auto bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-2 pl-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-          <div className={`${fantasyFont} text-sm md:text-lg font-bold tracking-[0.3em]`}>
-            SELENE<span className="text-purple-500 ml-1">✦</span>
+        <div className="max-w-5xl mx-auto flex justify-between items-center pointer-events-auto bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-2 pl-4 pr-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+          
+          {/* LOGO AREA */}
+          <div className="flex items-center gap-2 group">
+            <div className="relative">
+              <div className="absolute inset-0 bg-purple-500/30 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+              <img 
+                src="/selene_shop.png" 
+                alt="Logo" 
+                className="relative w-12 h-12 md:w-14 md:h-14 object-contain rounded-full mix-blend-screen transition-transform group-hover:scale-110"
+              />
+            </div>
+            <div className={`${fantasyFont} text-[10px] md:text-sm font-bold tracking-[0.3em] hidden sm:block`}>
+              SELENE<span className="text-purple-500 ml-1">✦</span>
+            </div>
           </div>
+
           <div className="hidden md:flex items-center gap-1">
             {[{ label: "BERANDA", href: "#beranda" }, { label: "TENTANG", href: "#tentang" }, { label: "LAYANAN", href: "#layanan" }, { label: "CARA ORDER", href: "#caraorder" }].map((link) => (
-              <a key={link.label} href={link.href} className="px-5 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-all duration-300 opacity-60 hover:opacity-100">{link.label}</a>
+              <a key={link.label} href={link.href} className="px-5 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-all duration-300 opacity-60 hover:opacity-100 uppercase">{link.label}</a>
             ))}
           </div>
-          <div className="flex items-center gap-2">
-             <a href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-2xl text-[10px] font-black tracking-[0.2em] transition-all duration-300 shadow-[0_0_20px_rgba(147,51,234,0.3)] uppercase">JOIN DISCORD</a>
-          </div>
+
+          <a href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-6 py-3 rounded-2xl text-[10px] font-black tracking-[0.2em] transition-all duration-300 shadow-[0_0_20px_rgba(147,51,234,0.3)] uppercase">JOIN DISCORD</a>
         </div>
       </nav>
 
@@ -176,7 +173,18 @@ export default function Home() {
 
         {/* 1. HERO SECTION */}
         <section id="beranda" className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6">
-          <div className="animate-fade-in">
+          <div className="animate-fade-in flex flex-col items-center">
+            
+            {/* LOGO BESAR DENGAN ANIMASI FLOAT */}
+            <div className="relative mb-8 animate-float">
+              <div className="absolute inset-0 bg-purple-600/20 blur-[100px] rounded-full" />
+              <img 
+                src="/selene_shop.png" 
+                alt="Selene Shop Hero" 
+                className="relative w-48 h-48 md:w-72 md:h-72 object-contain mix-blend-screen drop-shadow-[0_0_30px_rgba(168,85,247,0.4)]"
+              />
+            </div>
+
             <h1 className={`${fantasyFont} text-7xl md:text-9xl font-bold text-white mb-6 leading-tight`}>
               SELENE <span className="text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-200 to-purple-600">SHOP</span>
             </h1>
@@ -186,14 +194,13 @@ export default function Home() {
             
             <div className="flex flex-wrap justify-center gap-4 mb-16">
               {[
-                { label: "TENTANG", href: "#tentang", style: "border-white/10 bg-white/5 hover:bg-white/10" },
-                { label: "LAYANAN", href: "#layanan", style: "border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 text-purple-200" },
-                { label: "CARA ORDER", href: "#caraorder", style: "border-white/10 bg-white/5 hover:bg-white/10" }
+                { label: "EXPLORE SERVICES", href: "#layanan", style: "bg-white text-black hover:scale-105" },
+                { label: "PROCEDURE", href: "#caraorder", style: "border-white/10 bg-white/5 hover:bg-white/10" }
               ].map((btn) => (
                 <a 
                   key={btn.label} 
                   href={btn.href} 
-                  className={`px-8 py-4 border rounded-2xl text-[10px] font-black tracking-[0.3em] transition-all duration-500 ${btn.style}`}
+                  className={`px-10 py-4 border rounded-2xl text-[10px] font-black tracking-[0.3em] transition-all duration-500 uppercase ${btn.style}`}
                 >
                   {btn.label}
                 </a>
@@ -234,7 +241,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* NEW SECTION: MENGAPA MEMILIH KAMI */}
+        {/* 4. PHILOSOPHY */}
         <section className="relative z-10 py-20 px-6">
           <div className="max-w-6xl mx-auto border border-white/5 bg-white/[0.01] rounded-[60px] p-12 md:p-20">
             <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -261,7 +268,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 4. LAYANAN */}
+        {/* 5. LAYANAN */}
         <section id="layanan" className="relative z-10 py-32 px-6">
            <div className="max-w-7xl mx-auto">
              <div className="text-center mb-24">
@@ -270,7 +277,7 @@ export default function Home() {
              </div>
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                {services.map((s, i) => (
-                 <div key={i} className="group relative bg-[#05050a] border border-white/5 p-12 rounded-[50px] hover:border-purple-500/50 hover:-translate-y-3 transition-all duration-700 flex flex-col h-full overflow-hidden">
+                 <div key={i} className="group relative bg-[#05050a] border border-white/5 p-12 rounded-[50px] hover:border-purple-500/50 hover:-translate-y-3 transition-all duration-700 flex flex-col h-full overflow-hidden shadow-2xl">
                    <div className="absolute top-0 right-0 w-32 h-32 bg-purple-600/5 blur-[60px] group-hover:bg-purple-600/20 transition-all" />
                    <div className="flex-grow z-10">
                      <h3 className={`${fantasyFont} text-2xl font-bold text-white mb-2`}>{s.title}</h3>
@@ -293,7 +300,7 @@ export default function Home() {
            </div>
         </section>
 
-        {/* 5. CARA ORDER */}
+        {/* 6. CARA ORDER */}
         <section id="caraorder" className="relative z-10 py-40 px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-24">
@@ -306,7 +313,7 @@ export default function Home() {
                 { s: "02", t: "CREATE TICKET", d: "Pilih kategori layanan dan konsultasikan kebutuhanmu." },
                 { s: "03", t: "SECURE PAYMENT", d: "Lakukan pembayaran aman melalui payment gateway kami." }
               ].map((item, idx) => (
-                <div key={idx} className="relative p-12 rounded-[45px] bg-white/[0.02] border border-white/5 hover:border-white/20 transition-all duration-500">
+                <div key={idx} className="relative p-12 rounded-[45px] bg-white/[0.02] border border-white/5 hover:border-white/20 transition-all duration-500 shadow-xl">
                   <span className={`${fantasyFont} text-6xl font-black text-purple-500/10 absolute top-8 right-10`}>{item.s}</span>
                   <h4 className={`${fantasyFont} font-bold text-white text-2xl mb-6 relative z-10 tracking-widest`}>{item.t}</h4>
                   <p className="text-[11px] text-white/40 leading-relaxed uppercase tracking-widest italic">{item.d}</p>
@@ -316,7 +323,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 6. PEMBAYARAN */}
+        {/* 7. PEMBAYARAN */}
         <section id="pembayaran" className="relative z-10 py-40 px-6 bg-purple-600/[0.02]">
           <div className="max-w-4xl mx-auto text-center">
             <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-10 block uppercase">PAYMENT METHOD</span>
@@ -335,7 +342,7 @@ export default function Home() {
         {/* FOOTER */}
         <footer className="relative z-10 py-16 border-t border-white/5 bg-[#010108] px-6">
           <div className="max-w-7xl mx-auto flex flex-col items-center">
-            <div className={`${fantasyFont} text-xl font-bold mb-8 tracking-[0.5em] opacity-80`}>
+            <div className={`${fantasyFont} text-xl font-bold mb-8 tracking-[0.5em] opacity-80 uppercase`}>
               SELENE SHOP
             </div>
             <div className="flex flex-col items-center gap-2 text-center">
@@ -356,12 +363,18 @@ export default function Home() {
         </footer>
       </main>
 
+      {/* GLOBAL STYLES & ANIMATIONS */}
       <style jsx global>{`
         @keyframes fade-in {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
+        }
         .animate-fade-in { animation: fade-in 1.5s ease-out forwards; }
+        .animate-float { animation: float 6s ease-in-out infinite; }
       `}</style>
     </div>
   );
