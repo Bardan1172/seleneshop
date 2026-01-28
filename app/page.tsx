@@ -163,7 +163,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto text-center">
             <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">THE STORY</span>
             <h2 className={`${fantasyFont} text-5xl md:text-7xl font-bold py-6 leading-tight`}>TENTANG KAMI</h2>
-            <p className="text-white/40 leading-loose text-lg mb-16 uppercase tracking-widest italic font-light">Mewujudkan imajinasi menjadi aset digital berkualitas tinggi sejak 2024.</p>
+            <p className="text-white/40 leading-loose text-lg mb-16 uppercase tracking-widest italic font-light">Sebuah manifestasi kreativitas yang baru saja merekah di tahun ini. Selene Shop hadir bukan sekadar untuk mengikuti tren, melainkan untuk menciptakan standar keanggunan baru di semesta digital.</p>
             <div className="grid grid-cols-2 gap-8 max-w-xl mx-auto">
               {[{v: "100+", l: "SUCCESS PROJECT"}, {v: "PREMIUM", l: "QUALITY GRADE"}].map((st, i) => (
                 <div key={i} className="p-10 rounded-[40px] bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all duration-700">
