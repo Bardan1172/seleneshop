@@ -49,21 +49,24 @@ function MoonBackground() {
   }, []);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#010108]">
+    <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[var(--background)]">
       {/* 1. LAYER NEBULA */}
       <div className="absolute inset-0 z-[1]">
         <div className="absolute top-[-10%] left-[-5%] w-[60%] h-[60%] bg-purple-900/10 blur-[120px] rounded-full" />
         <div className="absolute bottom-[5%] right-[-5%] w-[50%] h-[50%] bg-blue-900/10 blur-[120px] rounded-full" />
       </div>
 
-      {/* 2. LAYER METEOR */}
+      {/* 2. LAYER METEOR (Bintang Jatuh) */}
       <div className="absolute inset-0 z-[10]">
         {meteors.map((m) => (
           <div key={m.id} 
             className="absolute h-[2px] bg-gradient-to-r from-white via-purple-400 to-transparent opacity-0 animate-shooting-star"
             style={{ 
-              top: m.top, left: m.left, width: '180px', 
-              animationDelay: m.delay, animationDuration: m.duration,
+              top: m.top, 
+              left: m.left, 
+              width: '180px', 
+              animationDelay: m.delay, 
+              animationDuration: m.duration,
               transform: `rotate(${m.angle}deg)` 
             }} 
           />
@@ -81,36 +84,20 @@ function MoonBackground() {
         ))}
       </div>
 
-      {/* 4. STYLIZED MOON DENGAN AURA GANDA (STATIS) */}
-      <div className="absolute top-24 right-[4%] md:right-[10%] z-[5]">
-        {/* Aura Gelombang 1 */}
+      {/* 4. ELEGAN MOON (STATIS DENGAN AURA) */}
+      <div className="absolute top-24 right-[5%] md:right-[8%] z-[5] animate-moon">
+        {/* Aura Gelombang */}
         <div className="absolute inset-0 rounded-full bg-yellow-100/20 animate-moon-glow" />
-        {/* Aura Gelombang 2 (Delay) */}
         <div className="absolute inset-0 rounded-full bg-yellow-100/10 animate-moon-glow [animation-delay:2s]" />
-        {/* Pendaran Inti */}
-        <div className="absolute inset-[-20px] rounded-full bg-yellow-100/5 blur-[50px]" />
         
         {/* Objek Bulan Utama */}
-        <div className="relative w-32 h-32 md:w-64 md:h-64 rounded-full bg-[#FFF9E5] shadow-[inset_-15px_-10px_0px_rgba(230,210,150,0.5),0_0_50px_rgba(255,249,229,0.2)] border-2 border-white/10 overflow-hidden">
-          <div className="absolute top-[10%] left-[15%] w-[40%] h-[15%] bg-white/40 rounded-full rotate-[-15deg] blur-[3px]" />
-          <div className="absolute top-[25%] left-[30%] w-8 h-8 md:w-12 md:h-12 bg-[#E6D296]/40 rounded-full shadow-inner" />
-          <div className="absolute bottom-[30%] left-[50%] w-6 h-6 md:w-9 md:h-9 bg-[#E6D296]/30 rounded-full shadow-inner" />
-          <div className="absolute top-[50%] left-[20%] w-4 h-4 md:w-6 md:h-6 bg-[#E6D296]/40 rounded-full" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,transparent_55%,rgba(230,210,150,0.4)_100%)]" />
+        <div className="relative w-32 h-32 md:w-60 md:h-60 rounded-full bg-[#FFF9E5] shadow-[inset_-12px_-8px_0px_rgba(230,210,150,0.5),0_0_60px_rgba(255,249,229,0.2)] border-2 border-white/10 overflow-hidden">
+          <div className="absolute top-4 left-6 w-[35%] h-[15%] bg-white/30 rounded-full rotate-[-15deg] blur-[2px]" />
+          <div className="absolute top-[22%] left-[28%] w-7 h-7 md:w-11 md:h-11 bg-[#E6D296]/40 rounded-full" />
+          <div className="absolute bottom-[28%] left-[48%] w-5 h-5 md:w-8 md:h-8 bg-[#E6D296]/40 rounded-full" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,transparent_50%,rgba(230,210,150,0.3)_100%)]" />
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
-        @keyframes shooting-star {
-          0% { transform: translateX(0) scaleX(0); opacity: 0; }
-          5% { opacity: 1; scaleX(1); }
-          20% { transform: translateX(-800px) scaleX(1); opacity: 0; }
-          100% { transform: translateX(-800px) scaleX(1); opacity: 0; }
-        }
-        .animate-twinkle { animation: twinkle 4s infinite ease-in-out; }
-        .animate-shooting-star { animation: shooting-star 8s infinite cubic-bezier(0.1, 0.5, 0.2, 1); }
-      `}</style>
     </div>
   );
 }
