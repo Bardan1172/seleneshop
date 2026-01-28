@@ -175,25 +175,25 @@ export default function Home() {
 <section id="beranda" className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6">
   <div className="animate-fade-in flex flex-col items-center">
     
-    {/* CONTAINER LOGO DAN NAMA (LOGO DI KIRI, TEKS BERTUMPUK DI KANAN) */}
-    <div className="flex flex-row items-center gap-6 md:gap-10 mb-8">
+    {/* CONTAINER LOGO DAN NAMA */}
+    <div className="flex flex-row items-center gap-4 md:gap-2 mb-8 mr-4 md:mr-12">
       
-      {/* LOGO DENGAN ANIMASI FLOAT */}
-      <div className="relative animate-float">
+      {/* LOGO DI KIRI - UKURAN DIPERBESAR & DIGESER KE KIRI */}
+      <div className="relative animate-float -translate-x-4 md:-translate-x-8">
         <div className="absolute inset-0 bg-purple-600/20 blur-[60px] md:blur-[100px] rounded-full" />
         <img 
           src="/selene_shop.png" 
           alt="Selene Shop Logo" 
-          className="relative w-32 h-32 md:w-56 md:h-56 object-contain mix-blend-screen drop-shadow-[0_0_30px_rgba(168,85,247,0.4)]"
+          className="relative w-40 h-40 md:w-72 md:h-72 object-contain mix-blend-screen drop-shadow-[0_0_30px_rgba(168,85,247,0.4)]"
         />
       </div>
 
       {/* NAMA SELENE SHOP BERTUMPUK */}
-      <div className="flex flex-col items-start text-left">
-        <h1 className={`${fantasyFont} text-5xl md:text-8xl font-bold text-white leading-[0.8]`}>
+      <div className="flex flex-col items-start text-left relative z-[30]">
+        <h1 className={`${fantasyFont} text-5xl md:text-9xl font-bold text-white leading-[0.75]`}>
           SELENE
         </h1>
-        <h1 className={`${fantasyFont} text-5xl md:text-8xl font-bold leading-[0.8] text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-200 to-purple-600`}>
+        <h1 className={`${fantasyFont} text-5xl md:text-9xl font-bold leading-[0.75] text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-200 to-purple-600`}>
           SHOP
         </h1>
       </div>
@@ -204,37 +204,51 @@ export default function Home() {
       Digital Craftsmanship for the Midnight Dreamers
     </p>
     
-    {/* BUTTONS */}
+    {/* BUTTONS - NAVIGASI DIPERBARUI */}
     <div className="flex flex-wrap justify-center gap-4 mb-16">
       {[
-        { label: "EXPLORE SERVICES", href: "#layanan", style: "bg-white text-black hover:scale-105" },
-        { label: "PROCEDURE", href: "#caraorder", style: "border-white/10 bg-white/5 hover:bg-white/10" }
+        { label: "TENTANG KAMI", href: "#tentang", style: "border-white/10 bg-white/5 hover:bg-white/10" },
+        { label: "LAYANAN", href: "#layanan", style: "bg-white text-black hover:scale-105" },
+        { label: "CARA ORDER", href: "#caraorder", style: "border-white/10 bg-white/5 hover:bg-white/10" }
       ].map((btn) => (
         <a 
           key={btn.label} 
           href={btn.href} 
-          className={`px-10 py-4 border rounded-2xl text-[10px] font-black tracking-[0.3em] transition-all duration-500 uppercase ${btn.style}`}
+          className={`px-8 py-4 border rounded-2xl text-[10px] font-black tracking-[0.3em] transition-all duration-500 uppercase ${btn.style}`}
         >
           {btn.label}
         </a>
       ))}
     </div>
 
-    {/* SCROLL INDICATOR LINE */}
+    {/* SCROLL INDICATOR */}
     <div className="flex justify-center">
       <div className="w-px h-16 bg-gradient-to-b from-transparent via-purple-500 to-transparent opacity-50" />
     </div>
   </div>
 </section>
 
-        {/* 2. BRAND STRIP */}
-        <section className="relative z-20 py-20 border-y border-white/5 bg-white/[0.01]">
-          <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-10 md:gap-24 opacity-30 hover:opacity-100 transition-opacity duration-1000">
-            {["SELENE SHOP", "HEPPYCLOUD", "BANGBLAZE"].map((brand) => (
-              <span key={brand} className={`${fantasyFont} text-xl md:text-2xl font-bold tracking-[0.3em] cursor-default`}>{brand}</span>
-            ))}
-          </div>
-        </section>
+{/* 2. BRAND STRIP DENGAN WARNA IKONIK */}
+<section className="relative z-20 py-20 border-y border-white/5 bg-white/[0.01]">
+  <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-10 md:gap-24 opacity-60 hover:opacity-100 transition-opacity duration-1000">
+    
+    {/* Selene Shop: Warna Langit Malam (Deep Blue/Indigo Gradient) */}
+    <span className={`${fantasyFont} text-xl md:text-3xl font-bold tracking-[0.3em] cursor-default text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-900`}>
+      SELENE SHOP
+    </span>
+
+    {/* Heppy Cloud: Magenta ke Violet */}
+    <span className={`${fantasyFont} text-xl md:text-3xl font-bold tracking-[0.3em] cursor-default text-transparent bg-clip-text bg-gradient-to-r from-magenta-500 via-fuchsia-400 to-violet-600`} style={{ backgroundImage: 'linear-gradient(to right, #ff00ff, #a855f7)' }}>
+      HEPPYCLOUD
+    </span>
+
+    {/* BangBlaze: Warna Api (Red/Orange/Yellow) */}
+    <span className={`${fantasyFont} text-xl md:text-3xl font-bold tracking-[0.3em] cursor-default text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400`}>
+      BANGBLAZE
+    </span>
+    
+  </div>
+</section>
 
         {/* 3. TENTANG */}
         <section id="tentang" className="relative z-10 py-40 px-6">
