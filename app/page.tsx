@@ -2,14 +2,14 @@
 
 import { useEffect, useState, useRef } from "react";
 
-// --- KOMPONEN BACKGROUND: CARTOON MOON & LUXURY STARS ---
+// --- KOMPONEN BACKGROUND ---
 function MoonBackground() {
   const [stars, setStars] = useState<{id: number, top: string, left: string, size: string, delay: string, depth: number}[]>([]);
-  const [meteors, setMeteors] = useState<{id: number, top: string, left: string, delay: string, duration: string, angle: number}[]>([]);
+  const [meteors, setMeteors] = useState<{id: number, top: string, left: string, delay: string}[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // 1. Generate Stars
+    // Generate Stars
     setStars(Array.from({ length: 140 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
@@ -19,22 +19,20 @@ function MoonBackground() {
       depth: Math.random() * 15 + 5,
     })));
 
-    // 2. Generate Meteors
-    setMeteors(Array.from({ length: 5 }).map((_, i) => ({
+    // Generate Star Rain (Meteors)
+    setMeteors(Array.from({ length: 6 }).map((_, i) => ({
       id: i,
-      top: `${Math.random() * 30}%`,
-      left: `${Math.random() * 100}%`,
-      delay: `${Math.random() * 25}s`,
-      duration: `${1.5 + Math.random() * 2}s`,
-      angle: 15 + Math.random() * 20 
+      top: `${Math.random() * 40}%`,
+      left: `${60 + Math.random() * 40}%`,
+      delay: `${Math.random() * 20}s`,
     })));
 
+    // Mouse Parallax
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
       const { clientX, clientY } = e;
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
-      
       const starLayers = document.querySelectorAll('.star-layer');
       starLayers.forEach((el: any) => {
         const speed = el.getAttribute('data-speed') || 0;
@@ -56,19 +54,12 @@ function MoonBackground() {
         <div className="absolute bottom-[5%] right-[-5%] w-[50%] h-[50%] bg-blue-900/10 blur-[120px] rounded-full" />
       </div>
 
-      {/* 2. LAYER METEOR (Bintang Jatuh) */}
+      {/* 2. LAYER STAR RAIN */}
       <div className="absolute inset-0 z-[10]">
         {meteors.map((m) => (
           <div key={m.id} 
-            className="absolute h-[2px] bg-gradient-to-r from-white via-purple-400 to-transparent opacity-0 animate-shooting-star"
-            style={{ 
-              top: m.top, 
-              left: m.left, 
-              width: '180px', 
-              animationDelay: m.delay, 
-              animationDuration: m.duration,
-              transform: `rotate(${m.angle}deg)` 
-            }} 
+            className="absolute h-[1px] bg-gradient-to-r from-transparent via-purple-300 to-white opacity-0 animate-star-rain"
+            style={{ top: m.top, left: m.left, width: '220px', animationDelay: m.delay }} 
           />
         ))}
       </div>
@@ -84,24 +75,25 @@ function MoonBackground() {
         ))}
       </div>
 
-      {/* 4. ELEGAN MOON (STATIS DENGAN AURA) */}
-      <div className="absolute top-24 right-[5%] md:right-[8%] z-[5] animate-moon">
-        {/* Aura Gelombang */}
-        <div className="absolute inset-0 rounded-full bg-yellow-100/20 animate-moon-glow" />
-        <div className="absolute inset-0 rounded-full bg-yellow-100/10 animate-moon-glow [animation-delay:2s]" />
+      {/* 4. PREMIUM MOON (Triple Aura Flow) */}
+      <div className="absolute top-24 right-[5%] md:right-[10%] z-[5] animate-moon">
+        {/* Triple Loop Glow - Seamless Animation */}
+        <div className="absolute inset-0 rounded-full bg-yellow-100/20 animate-moon-glow-wave" />
+        <div className="absolute inset-0 rounded-full bg-yellow-100/15 animate-moon-glow-wave [animation-delay:2s]" />
+        <div className="absolute inset-0 rounded-full bg-yellow-100/10 animate-moon-glow-wave [animation-delay:4s]" />
+        <div className="absolute inset-[-10px] rounded-full bg-yellow-100/5 blur-[30px]" />
         
-        {/* Objek Bulan Utama */}
-        <div className="relative w-32 h-32 md:w-60 md:h-60 rounded-full bg-[#FFF9E5] shadow-[inset_-12px_-8px_0px_rgba(230,210,150,0.5),0_0_60px_rgba(255,249,229,0.2)] border-2 border-white/10 overflow-hidden">
-          <div className="absolute top-4 left-6 w-[35%] h-[15%] bg-white/30 rounded-full rotate-[-15deg] blur-[2px]" />
-          <div className="absolute top-[22%] left-[28%] w-7 h-7 md:w-11 md:h-11 bg-[#E6D296]/40 rounded-full" />
-          <div className="absolute bottom-[28%] left-[48%] w-5 h-5 md:w-8 md:h-8 bg-[#E6D296]/40 rounded-full" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,transparent_50%,rgba(230,210,150,0.3)_100%)]" />
+        {/* Moon Body */}
+        <div className="relative w-32 h-32 md:w-64 md:h-64 rounded-full bg-[#FFF9E5] shadow-[inset_-15px_-10px_0px_rgba(230,210,150,0.5),0_0_50px_rgba(255,249,229,0.2)] border-2 border-white/10 overflow-hidden">
+          <div className="absolute top-[15%] left-[20%] w-[30%] h-[12%] bg-white/40 rounded-full rotate-[-15deg] blur-[2px]" />
+          <div className="absolute top-[25%] left-[35%] w-8 h-8 md:w-12 md:h-12 bg-[#E6D296]/40 rounded-full shadow-inner" />
+          <div className="absolute bottom-[30%] left-[50%] w-6 h-6 md:w-9 md:h-9 bg-[#E6D296]/30 rounded-full shadow-inner" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,transparent_55%,rgba(230,210,150,0.4)_100%)]" />
         </div>
       </div>
     </div>
   );
 }
-
 // --- MAIN PAGE ---
 export default function Home() {
   const fantasyFont = "font-serif italic tracking-wider uppercase";
