@@ -6,7 +6,6 @@ import { useEffect, useState, useRef } from "react";
 function MoonBackground() {
   const [stars, setStars] = useState<{id: number, top: string, left: string, size: string, delay: string, depth: number}[]>([]);
   const [meteors, setMeteors] = useState<{id: number, top: string, left: string, delay: string, duration: string, angle: number}[]>([]);
-  const moonRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,14 +30,10 @@ function MoonBackground() {
     })));
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!moonRef.current || !containerRef.current) return;
+      if (!containerRef.current) return;
       const { clientX, clientY } = e;
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
-
-      const moveX = (clientX - centerX) / 60;
-      const moveY = (clientY - centerY) / 60;
-      moonRef.current.style.transform = `translate(${moveX}px, ${moveY}px)`;
       
       const starLayers = document.querySelectorAll('.star-layer');
       starLayers.forEach((el: any) => {
@@ -89,10 +84,14 @@ function MoonBackground() {
         ))}
       </div>
 
-      {/* 4. STYLIZED CARTOON MOON */}
-      <div ref={moonRef} className="absolute top-28 right-[8%] md:right-[15%] transition-transform duration-1000 ease-out z-[20]">
-        <div className="absolute inset-[-40px] rounded-full bg-yellow-100/5 blur-[60px] animate-pulse" />
-        <div className="relative w-32 h-32 md:w-60 md:h-60 rounded-full bg-[#FFF9E5] shadow-[inset_-12px_-8px_0px_rgba(230,210,150,0.5),0_0_40px_rgba(255,249,229,0.1)] border-2 border-white/10 overflow-hidden">
+      {/* 4. STYLIZED MOON DENGAN GELOMBANG CAHAYA (STATIS) */}
+      <div className="absolute top-20 right-[2%] md:right-[5%] z-[5]">
+        {/* Efek Gelombang Cahaya (Waves) */}
+        <div className="absolute inset-0 rounded-full bg-yellow-200/20 animate-ping duration-[3000ms]" />
+        <div className="absolute inset-[-30px] rounded-full bg-yellow-100/10 blur-[50px] animate-pulse" />
+        
+        {/* Objek Bulan Utama */}
+        <div className="relative w-32 h-32 md:w-60 md:h-60 rounded-full bg-[#FFF9E5] shadow-[inset_-12px_-8px_0px_rgba(230,210,150,0.5),0_0_60px_rgba(255,249,229,0.2)] border-2 border-white/10 overflow-hidden">
           <div className="absolute top-4 left-6 w-[35%] h-[15%] bg-white/30 rounded-full rotate-[-15deg] blur-[2px]" />
           <div className="absolute top-[22%] left-[28%] w-7 h-7 md:w-11 md:h-11 bg-[#E6D296]/40 rounded-full shadow-[inset_2px_2px_4px_rgba(0,0,0,0.05)]" />
           <div className="absolute bottom-[28%] left-[48%] w-5 h-5 md:w-8 md:h-8 bg-[#E6D296]/40 rounded-full shadow-[inset_2px_2px_4px_rgba(0,0,0,0.05)]" />
