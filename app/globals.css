@@ -13,12 +13,12 @@
   --color-foreground: var(--foreground);
 }
 
-/* ===== BODY ===== */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-poppins), system-ui, sans-serif;
   font-weight: 300;
+  overflow-x: hidden;
 }
 
 /* ===== FONT UTILITIES ===== */
@@ -30,7 +30,7 @@ body {
 .heading-premium {
   font-family: var(--font-playfair), serif;
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 .slogan-text {
@@ -40,59 +40,59 @@ body {
   font-weight: 200;
 }
 
-/* ===== 🌙 SELENE PREMIUM EFFECTS ===== */
+/* ===== 🌙 SELENE PREMIUM ANIMATIONS ===== */
 
 /* 1. Moon Floating */
 @keyframes moon-float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-15px); }
 }
-.animate-moon {
-  animation: moon-float 6s ease-in-out infinite;
-}
+.animate-moon { animation: moon-float 6s ease-in-out infinite; }
 
 /* 2. Seamless Moon Glow (Triple Wave) */
 @keyframes moon-glow-wave {
   0% { transform: scale(1); opacity: 0.5; }
-  100% { transform: scale(2); opacity: 0; }
+  100% { transform: scale(2.2); opacity: 0; }
 }
 .animate-moon-glow-wave {
   animation: moon-glow-wave 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* 3. Smooth Star Rain (Diagonal) */
+/* 3. Natural Star Rain (Melesat Cepat + Jeda) */
 @keyframes star-rain {
   0% {
-    transform: translate(0, 0) scaleX(0) rotate(15deg);
+    transform: translate(0, 0) scaleX(0) rotate(25deg);
     opacity: 0;
   }
-  10% {
-    opacity: 0.8;
-    transform: translate(-100px, 100px) scaleX(1.5) rotate(15deg);
+  2% {
+    opacity: 1;
+    transform: translate(-20px, 20px) scaleX(1.5) rotate(25deg);
   }
-  30% {
-    transform: translate(-600px, 600px) scaleX(1) rotate(15deg);
+  15% {
+    /* Melesat sangat cepat ke kiri bawah */
+    transform: translate(-800px, 800px) scaleX(1) rotate(25deg);
     opacity: 0;
   }
   100% {
-    transform: translate(-600px, 600px) scaleX(1) rotate(15deg);
+    /* Jeda panjang agar tidak terlihat konstan */
+    transform: translate(-800px, 800px) scaleX(1) rotate(25deg);
     opacity: 0;
   }
 }
 .animate-star-rain {
-  animation: star-rain 10s linear infinite;
+  animation: star-rain 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transform-origin: right;
 }
 
-/* 4. Twinkle */
+/* 4. Twinkle & Logo Float */
 @keyframes twinkle { 
   0%, 100% { opacity: 0.3; transform: scale(1); } 
-  50% { opacity: 1; transform: scale(1.2); } 
+  50% { opacity: 1; transform: scale(1.1); } 
 }
 .animate-twinkle { animation: twinkle 4s infinite ease-in-out; }
 
-/* 5. Float Logo */
-@keyframes float {
+@keyframes logo-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
 }
-.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-logo-float { animation: logo-float 6s ease-in-out infinite; }
