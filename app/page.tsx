@@ -9,25 +9,24 @@ function MoonBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Generate Stars
-    setStars(Array.from({ length: 140 }).map((_, i) => ({
+    // Stars
+    setStars(Array.from({ length: 150 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
-      size: `${Math.random() * 1.5 + 0.3}px`,
+      size: `${Math.random() * 1.8 + 0.3}px`,
       delay: `${Math.random() * 5}s`,
-      depth: Math.random() * 15 + 5,
+      depth: Math.random() * 12 + 4,
     })));
 
-    // Generate Star Rain (Meteors)
-    setMeteors(Array.from({ length: 6 }).map((_, i) => ({
+    // Meteor (Star Rain)
+    setMeteors(Array.from({ length: 5 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 40}%`,
-      left: `${60 + Math.random() * 40}%`,
-      delay: `${Math.random() * 20}s`,
+      left: `${70 + Math.random() * 30}%`,
+      delay: `${Math.random() * 25}s`,
     })));
 
-    // Mouse Parallax
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
       const { clientX, clientY } = e;
@@ -54,46 +53,46 @@ function MoonBackground() {
         <div className="absolute bottom-[5%] right-[-5%] w-[50%] h-[50%] bg-blue-900/10 blur-[120px] rounded-full" />
       </div>
 
-      {/* 2. LAYER STAR RAIN */}
+      {/* 2. LAYER STAR RAIN (Natural Gravity) */}
       <div className="absolute inset-0 z-[10]">
         {meteors.map((m) => (
           <div key={m.id} 
-            className="absolute h-[1px] bg-gradient-to-r from-transparent via-purple-300 to-white opacity-0 animate-star-rain"
-            style={{ top: m.top, left: m.left, width: '220px', animationDelay: m.delay }} 
+            className="absolute h-[1.5px] bg-gradient-to-l from-white via-purple-400 to-transparent opacity-0 animate-star-rain shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+            style={{ top: m.top, left: m.left, width: '120px', animationDelay: m.delay }} 
           />
         ))}
       </div>
 
-      {/* 3. LAYER STARS */}
+      {/* 3. LAYER STARS (Parallax) */}
       <div className="absolute inset-0 z-[2]">
         {stars.map((s) => (
           <div key={s.id} 
-            className="star-layer absolute bg-white rounded-full animate-twinkle shadow-[0_0_2px_white]"
+            className="star-layer absolute bg-white rounded-full animate-twinkle shadow-[0_0_2px_rgba(255,255,255,0.5)]"
             data-speed={s.depth}
             style={{ top: s.top, left: s.left, width: s.size, height: s.size, animationDelay: s.delay }} 
           />
         ))}
       </div>
 
-      {/* 4. PREMIUM MOON (Triple Aura Flow) */}
+      {/* 4. PREMIUM MOON (Triple Aura Loop) */}
       <div className="absolute top-24 right-[5%] md:right-[10%] z-[5] animate-moon">
-        {/* Triple Loop Glow - Seamless Animation */}
         <div className="absolute inset-0 rounded-full bg-yellow-100/20 animate-moon-glow-wave" />
         <div className="absolute inset-0 rounded-full bg-yellow-100/15 animate-moon-glow-wave [animation-delay:2s]" />
         <div className="absolute inset-0 rounded-full bg-yellow-100/10 animate-moon-glow-wave [animation-delay:4s]" />
-        <div className="absolute inset-[-10px] rounded-full bg-yellow-100/5 blur-[30px]" />
+        <div className="absolute inset-[-15px] rounded-full bg-yellow-100/5 blur-[40px]" />
         
         {/* Moon Body */}
         <div className="relative w-32 h-32 md:w-64 md:h-64 rounded-full bg-[#FFF9E5] shadow-[inset_-15px_-10px_0px_rgba(230,210,150,0.5),0_0_50px_rgba(255,249,229,0.2)] border-2 border-white/10 overflow-hidden">
-          <div className="absolute top-[15%] left-[20%] w-[30%] h-[12%] bg-white/40 rounded-full rotate-[-15deg] blur-[2px]" />
+          <div className="absolute top-[15%] left-[20%] w-[30%] h-[12%] bg-white/40 rounded-full rotate-[-15deg] blur-[1px]" />
           <div className="absolute top-[25%] left-[35%] w-8 h-8 md:w-12 md:h-12 bg-[#E6D296]/40 rounded-full shadow-inner" />
-          <div className="absolute bottom-[30%] left-[50%] w-6 h-6 md:w-9 md:h-9 bg-[#E6D296]/30 rounded-full shadow-inner" />
+          <div className="absolute bottom-[30%] left-[52%] w-6 h-6 md:w-10 md:h-10 bg-[#E6D296]/30 rounded-full shadow-inner" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,transparent_55%,rgba(230,210,150,0.4)_100%)]" />
         </div>
       </div>
     </div>
   );
 }
+
 // --- MAIN PAGE ---
 export default function Home() {
   const fantasyFont = "font-serif italic tracking-wider uppercase";
