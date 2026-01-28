@@ -2,34 +2,50 @@
 
 import { useEffect, useState, useRef } from "react";
 
-// --- KOMPONEN BACKGROUND BULAN & ATMOSFER ---
 function MoonBackground() {
-  const [stars, setStars] = useState<{id: number, top: string, left: string, size: string, delay: string}[]>([]);
+  const [stars, setStars] = useState<{id: number, top: string, left: string, size: string, delay: string, depth: number}[]>([]);
   const [meteors, setMeteors] = useState<{id: number, top: string, left: string, delay: string, duration: string}[]>([]);
   const moonRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setStars(Array.from({ length: 120 }).map((_, i) => ({
+    // Generate Stars dengan Depth untuk efek Parallax
+    setStars(Array.from({ length: 150 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
-      size: `${Math.random() * 2 + 0.3}px`,
+      size: `${Math.random() * 1.5 + 0.2}px`,
       delay: `${Math.random() * 5}s`,
+      depth: Math.random() * 20 + 10, // Menentukan seberapa cepat bintang bergerak saat mouse move
     })));
 
     setMeteors(Array.from({ length: 4 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 40}%`,
       left: `${Math.random() * 80 + 20}%`,
-      delay: `${Math.random() * 20}s`,
-      duration: `${1.5 + Math.random() * 2}s`,
+      delay: `${Math.random() * 25}s`,
+      duration: `${2 + Math.random() * 2}s`,
     })));
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!moonRef.current) return;
-      const x = (e.clientX - window.innerWidth / 2) / 45;
-      const y = (e.clientY - window.innerHeight / 2) / 45;
-      moonRef.current.style.transform = `translate(${x}px, ${y}px)`;
+      if (!moonRef.current || !containerRef.current) return;
+      const { clientX, clientY } = e;
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      // Animasi Bulan (Lambat/Elegant)
+      const moveX = (clientX - centerX) / 50;
+      const moveY = (clientY - centerY) / 50;
+      moonRef.current.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      
+      // Parallax Bintang (Opsional: Jika ingin bintang bergerak halus juga)
+      const starElements = document.querySelectorAll('.star-layer');
+      starElements.forEach((el: any) => {
+        const speed = el.getAttribute('data-speed') || 0;
+        const x = (centerX - clientX) * speed / 1000;
+        const y = (centerY - clientY) * speed / 1000;
+        el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -37,38 +53,73 @@ function MoonBackground() {
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#010108]">
-      <div className="absolute inset-0 z-[5] opacity-40">
-        <div className="absolute top-[-10%] left-[-10%] w-[120%] h-[120%] bg-[radial-gradient(circle_at_50%_50%,rgba(15,10,60,0.3),transparent_70%)] animate-pulse" />
-        <div className="absolute top-[20%] w-full h-[30%] bg-purple-500/5 blur-[120px] animate-cloud-drift" />
+    <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#02020a]">
+      {/* 1. LAYER BASE GRADIENT & NEBULA */}
+      <div className="absolute inset-0 z-[1]">
+        {/* Deep Glow Left */}
+        <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] bg-purple-900/10 blur-[150px] rounded-full opacity-60" />
+        {/* Deep Glow Right */}
+        <div className="absolute bottom-[-10%] right-[-5%] w-[60%] h-[60%] bg-blue-900/10 blur-[150px] rounded-full opacity-50" />
+        {/* Film Grain Texture */}
+        <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] mix-blend-overlay" />
       </div>
+
+      {/* 2. LAYER METEOR */}
       <div className="absolute inset-0 z-[10]">
         {meteors.map((m) => (
           <div key={m.id} className="absolute h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 animate-meteor-new"
-            style={{ top: m.top, left: m.left, width: '250px', animationDelay: m.delay, animationDuration: m.duration }} />
+            style={{ top: m.top, left: m.left, width: '300px', animationDelay: m.delay, animationDuration: m.duration }} />
         ))}
       </div>
+
+      {/* 3. LAYER STARS (PARALLAX) */}
       <div className="absolute inset-0 z-[2]">
         {stars.map((s) => (
-          <div key={s.id} className="absolute bg-white rounded-full animate-twinkle"
-            style={{ top: s.top, left: s.left, width: s.size, height: s.size, animationDelay: s.delay }} />
+          <div key={s.id} 
+            className="star-layer absolute bg-white rounded-full animate-twinkle shadow-[0_0_3px_rgba(255,255,255,0.8)]"
+            data-speed={s.depth}
+            style={{ 
+              top: s.top, 
+              left: s.left, 
+              width: s.size, 
+              height: s.size, 
+              animationDelay: s.delay,
+              opacity: Math.random() * 0.7 + 0.3
+            }} 
+          />
         ))}
       </div>
-      <div ref={moonRef} className="absolute top-24 right-[10%] md:right-[15%] transition-transform duration-700 ease-out z-[20]">
-        <div className="absolute inset-[-40px] rounded-full bg-blue-400/10 blur-[60px]" />
-        <div className="relative w-40 h-40 md:w-64 md:h-64 rounded-full bg-[#e8e8e8] shadow-[inset_-25px_-15px_60px_rgba(0,0,0,0.9)] border border-white/5 overflow-hidden">
-          <div className="absolute inset-0 opacity-40 mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/pinstriped-suit.png')]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,transparent_30%,rgba(0,0,0,0.85)_100%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_35%,rgba(255,255,255,0.3)_0%,transparent_60%)]" />
+
+      {/* 4. MOON WITH BLOOM EFFECT */}
+      <div ref={moonRef} className="absolute top-32 right-[10%] md:right-[15%] transition-transform duration-1000 ease-out z-[20]">
+        {/* Moon Halo / Bloom */}
+        <div className="absolute inset-[-60px] rounded-full bg-white/5 blur-[80px] animate-pulse" />
+        <div className="absolute inset-[-20px] rounded-full bg-blue-400/5 blur-[40px]" />
+        
+        {/* Main Moon Body */}
+        <div className="relative w-36 h-36 md:w-72 md:h-72 rounded-full bg-[#f0f0f0] shadow-[inset_-30px_-20px_70px_rgba(0,0,0,0.9),0_0_40px_rgba(255,255,255,0.05)] border border-white/10 overflow-hidden">
+          {/* Surface Texture */}
+          <div className="absolute inset-0 opacity-40 mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre-big.png')]" />
+          {/* Crater Shadows */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,transparent_40%,rgba(0,0,0,0.85)_100%)]" />
+          {/* Subtle Reflection */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_35%_35%,rgba(255,255,255,0.15)_0%,transparent_50%)]" />
         </div>
       </div>
+
       <style jsx>{`
-        @keyframes twinkle { 0%, 100% { opacity: 0.2; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.1); } }
-        @keyframes cloud-drift { 0% { transform: translateX(-100%); } 100% { transform: translateX(150%); } }
-        @keyframes meteor-new { 0% { transform: rotate(-35deg) translateX(0) scaleX(0); opacity: 0; } 10% { opacity: 1; scaleX(1); } 30% { transform: rotate(-35deg) translateX(-1000px); opacity: 0; } }
-        .animate-twinkle { animation: twinkle 4s infinite ease-in-out; }
-        .animate-cloud-drift { animation: cloud-drift 40s infinite linear; }
-        .animate-meteor-new { animation: meteor-new 10s infinite linear; }
+        @keyframes twinkle { 
+          0%, 100% { opacity: 0.3; transform: scale(1); } 
+          50% { opacity: 1; transform: scale(1.2); } 
+        }
+        @keyframes meteor-new { 
+          0% { transform: rotate(-30deg) translateX(0) scaleX(0); opacity: 0; } 
+          5% { opacity: 0.8; scaleX(1); }
+          15% { transform: rotate(-30deg) translateX(-1200px); opacity: 0; } 
+          100% { transform: rotate(-30deg) translateX(-1200px); opacity: 0; }
+        }
+        .animate-twinkle { animation: twinkle 5s infinite ease-in-out; }
+        .animate-meteor-new { animation: meteor-new 15s infinite linear; }
       `}</style>
     </div>
   );
