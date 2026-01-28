@@ -77,7 +77,6 @@ function MoonBackground() {
 export default function Home() {
   const fantasyFont = "font-serif italic tracking-wider uppercase";
 
-  // LOGIKA RESET SCROLL KE ATAS SAAT REFRESH
   useEffect(() => {
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
@@ -163,7 +162,9 @@ export default function Home() {
           <div className="max-w-4xl mx-auto text-center">
             <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">THE STORY</span>
             <h2 className={`${fantasyFont} text-5xl md:text-7xl font-bold py-6 leading-tight`}>TENTANG KAMI</h2>
-            <p className="text-white/40 leading-loose text-lg mb-16 uppercase tracking-widest italic font-light">Sebuah manifestasi kreativitas yang baru saja merekah di tahun ini. Selene Shop hadir bukan sekadar untuk mengikuti tren, melainkan untuk menciptakan standar keanggunan baru di semesta digital.</p>
+            <p className="text-white/40 leading-loose text-lg mb-16 uppercase tracking-widest italic font-light max-w-3xl mx-auto">
+              Sebuah manifestasi kreativitas yang baru saja merekah di tahun ini. Selene Shop hadir bukan sekadar untuk mengikuti tren, melainkan untuk menciptakan standar keanggunan baru di semesta digital.
+            </p>
             <div className="grid grid-cols-2 gap-8 max-w-xl mx-auto">
               {[{v: "100+", l: "SUCCESS PROJECT"}, {v: "PREMIUM", l: "QUALITY GRADE"}].map((st, i) => (
                 <div key={i} className="p-10 rounded-[40px] bg-white/[0.02] border border-white/5 hover:border-purple-500/30 transition-all duration-700">
@@ -171,6 +172,33 @@ export default function Home() {
                   <p className="text-[9px] text-white/30 uppercase font-black tracking-[0.3em]">{st.l}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* NEW SECTION: MENGAPA MEMILIH KAMI */}
+        <section className="relative z-10 py-20 px-6">
+          <div className="max-w-6xl mx-auto border border-white/5 bg-white/[0.01] rounded-[60px] p-12 md:p-20">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div>
+                <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">PHILOSOPHY</span>
+                <h2 className={`${fantasyFont} text-4xl md:text-6xl font-bold mb-8`}>MENGAPA KAMI?</h2>
+                <p className="text-white/40 leading-relaxed tracking-wide uppercase text-xs italic">
+                  Kami percaya bahwa identitas digital adalah refleksi dari jiwa. Itulah sebabnya setiap karya yang kami buat di Selene Shop melewati proses kurasi detail yang mendalam.
+                </p>
+              </div>
+              <div className="space-y-8">
+                {[
+                  { t: "ARTISTIC PRECISION", d: "Setiap pixel diletakkan dengan penuh pertimbangan estetika." },
+                  { t: "EXCLUSIVE DESIGN", d: "Karya unik yang mencerminkan kepribadian eksklusifmu." },
+                  { t: "NIGHTFALL SERVICE", d: "Dukungan layanan yang responsif dan profesional." }
+                ].map((item, i) => (
+                  <div key={i} className="group">
+                    <h4 className={`${fantasyFont} text-white text-lg mb-2 group-hover:text-purple-400 transition-colors`}>✦ {item.t}</h4>
+                    <p className="text-white/30 text-[10px] tracking-widest uppercase">{item.d}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
