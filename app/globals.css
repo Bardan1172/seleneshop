@@ -1,8 +1,7 @@
 @import "tailwindcss";
 
-/* ===== DEFAULT ===== */
 :root {
-  --background: #05051a; /* Navy gelap khas Selene */
+  --background: #010108;
   --foreground: #ededed;
 }
 
@@ -13,97 +12,42 @@
   --color-foreground: var(--foreground);
 }
 
-/* ===== BODY ===== */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-poppins), system-ui, sans-serif;
-  font-weight: 300; /* Membuat teks default lebih elegan/tipis */
 }
 
-/* ===== FONT UTILITIES ===== */
-.font-title {
-  font-family: var(--font-playfair), serif;
-  letter-spacing: 0.03em;
+/* --- SELENE CUSTOM ANIMATIONS --- */
+
+/* Gelombang Cahaya Bulan (Pulsating Glow) */
+@keyframes moon-glow {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.6); opacity: 0; }
 }
 
-/* Judul Hero Besar */
-.heading-premium {
-  font-family: var(--font-playfair), serif;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+.animate-moon-glow {
+  animation: moon-glow 4s infinite ease-out;
 }
 
-/* Slogan/Sub-text Luxury */
-.slogan-text {
-  font-family: var(--font-poppins), sans-serif;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  font-weight: 200;
+/* Animasi Bintang Jatuh */
+@keyframes shooting-star {
+  0% { transform: translateX(0) scaleX(0); opacity: 0; }
+  5% { opacity: 1; scaleX(1); }
+  20% { transform: translateX(-800px) scaleX(1); opacity: 0; }
+  100% { transform: translateX(-800px) scaleX(1); opacity: 0; }
 }
+.animate-shooting-star { animation: shooting-star 8s infinite cubic-bezier(0.1, 0.5, 0.2, 1); }
 
-/* Efek Cahaya Teks Bulan */
-.text-moonlight {
-  text-shadow: 0 0 15px rgba(191, 123, 255, 0.4);
+/* Animasi Bintang Berkedip */
+@keyframes twinkle { 
+  0%, 100% { opacity: 0.3; transform: scale(1); } 
+  50% { opacity: 1; transform: scale(1.2); } 
 }
+.animate-twinkle { animation: twinkle 4s infinite ease-in-out; }
 
-/* ===== 🌙 SELENE EFFECTS ===== */
-
-/* Moon floating */
-@keyframes moon-float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+/* Floating Logo */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
 }
-
-.animate-moon {
-  animation: moon-float 5s ease-in-out infinite;
-}
-
-/* ✨ Sparkle (Random & Dynamic) */
-.sparkle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: radial-gradient(circle, #ffffff, rgba(255,255,255,0.2));
-  border-radius: 9999px;
-  opacity: 0;
-  animation-name: sparkle-fade;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-}
-
-@keyframes sparkle-fade {
-  0% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.4);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-}
-
-@utility sparkle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 9999px;
-  box-shadow: 0 0 10px white;
-  opacity: 0;
-  animation: sparkle-fade infinite ease-in-out;
-}
-
-@keyframes sparkle-fade {
-  0%, 100% { opacity: 0; transform: scale(0.5); }
-  50% { opacity: 1; transform: scale(1.2); }
-}
-
-.text-moonlight {
-  text-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-}
+.animate-float { animation: float 6s ease-in-out infinite; }
