@@ -132,26 +132,39 @@ export default function Home() {
         </section>
 
         {/* 3. TENTANG KAMI */}
-        <ScrollReveal>
-          <section id="tentang" className="relative z-10 py-24 md:py-40 px-6">
-            <div className="max-w-5xl mx-auto bg-white/[0.02] border border-white/5 rounded-[40px] md:rounded-[80px] p-10 md:p-20 backdrop-blur-xl">
-              <div className="grid md:grid-cols-2 gap-16 items-center">
-                <div className="text-center md:text-left">
-                  <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">THE STORY</span>
-                  <h2 className={`${fantasyFont} text-4xl md:text-7xl font-bold leading-tight mb-8`}>TENTANG<br/>KAMI</h2>
-                  <div className="w-20 h-[2px] bg-purple-500 mx-auto md:mx-0 opacity-50" />
-                </div>
-                <div>
-                  <p className="text-white/50 leading-loose text-sm md:text-lg mb-10 uppercase tracking-widest italic font-light">Sebuah manifestasi kreativitas yang baru saja merekah. Selene Shop hadir untuk menciptakan standar keanggunan baru di semesta digital.</p>
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="p-6 rounded-3xl bg-white/5 border border-white/5 text-center"><h4 className={`${fantasyFont} text-2xl text-purple-400 font-bold`}>100+</h4><p className="text-[8px] text-white/30 uppercase tracking-widest">Done</p></div>
-                    <div className="p-6 rounded-3xl bg-white/5 border border-white/5 text-center"><h4 className={`${fantasyFont} text-2xl text-purple-400 font-bold`}>PREMIUM</h4><p className="text-[8px] text-white/30 uppercase tracking-widest">Quality</p></div>
-                  </div>
-                </div>
-              </div>
+<ScrollReveal>
+  <section id="tentang" className="relative z-10 py-24 md:py-40 px-6">
+    <div className="max-w-5xl mx-auto bg-white/[0.02] border border-white/5 rounded-[40px] md:rounded-[80px] p-8 md:p-20 backdrop-blur-xl">
+      <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        {/* Kolom Kiri: Judul */}
+        <div className="text-center md:text-left">
+          <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-4 md:mb-6 block uppercase">THE STORY</span>
+          <h2 className={`${fantasyFont} text-4xl md:text-7xl font-bold leading-tight mb-6 md:mb-8`}>TENTANG<br className="hidden md:block"/>KAMI</h2>
+          <div className="w-16 h-[2px] bg-purple-500 mx-auto md:mx-0 opacity-50" />
+        </div>
+
+        {/* Kolom Kanan: Deskripsi & Stats */}
+        <div className="flex flex-col gap-8 md:gap-10">
+          <p className="text-white/50 leading-loose text-xs md:text-lg uppercase tracking-widest italic font-light text-center md:text-left">
+            Sebuah manifestasi kreativitas yang baru saja merekah. Selene Shop hadir untuk menciptakan standar keanggunan baru di semesta digital.
+          </p>
+          
+          {/* Stats Boxes: Diperbaiki agar tidak offside */}
+          <div className="grid grid-cols-2 gap-4 md:gap-6">
+            <div className="p-4 md:p-6 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col justify-center">
+              <h4 className={`${fantasyFont} text-xl md:text-3xl text-purple-400 font-bold`}>100+</h4>
+              <p className="text-[7px] md:text-[9px] text-white/30 uppercase tracking-[0.2em] mt-1">DONE</p>
             </div>
-          </section>
-        </ScrollReveal>
+            <div className="p-4 md:p-6 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col justify-center overflow-hidden">
+              <h4 className={`${fantasyFont} text-sm md:text-2xl text-purple-400 font-bold leading-none truncate`}>PREMIUM</h4>
+              <p className="text-[7px] md:text-[9px] text-white/30 uppercase tracking-[0.2em] mt-1">QUALITY</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ScrollReveal>
 
         {/* 4. PHILOSOPHY */}
         <ScrollReveal>
