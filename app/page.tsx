@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import WelcomeScreen from "./WelcomeScreen"; 
 import MoonBackground from "./MoonBackground"; 
 import { ScrollReveal } from "./ScrollReveal"; 
-import { motion } from "framer-motion"; // 1. TAMBAHKAN IMPORT MOTION
+import { motion } from "framer-motion";
 
 export default function Home() {
   const fantasyFont = "font-serif italic tracking-wider uppercase";
   const [isLoading, setIsLoading] = useState(true);
 
-  // Variabel transisi agar konsisten
-  const elegantTransition = { duration: 0.5, ease: [0.16, 1, 0.3, 1] };
+  // Konfigurasi animasi spring agar halus (smooth)
+  const smoothSpring = { type: "spring", stiffness: 300, damping: 20 };
 
   const services = [
     { 
@@ -90,11 +90,12 @@ export default function Home() {
             <div className={`${fantasyFont} text-[10px] md:text-sm font-bold tracking-[0.3em] hidden sm:block`}>SELENE<span className="text-purple-500 ml-1">✦</span></div>
           </div>
           <div className="hidden md:flex items-center gap-1">
-            {["BERANDA", "TENTANG", "LAYANAN", "CARA ORDER"].map((item) => (
-              <a key={item} href={`#${item.toLowerCase().replace(" ", "")}`} className="px-4 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-all duration-300 opacity-60 hover:opacity-100 uppercase">{item}</a>
-            ))}
+            <a href="#beranda" className="px-4 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-opacity duration-300 opacity-60 hover:opacity-100 uppercase">BERANDA</a>
+            <a href="#tentang" className="px-4 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-opacity duration-300 opacity-60 hover:opacity-100 uppercase">TENTANG</a>
+            <a href="#layanan" className="px-4 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-opacity duration-300 opacity-60 hover:opacity-100 uppercase">LAYANAN</a>
+            <a href="#caraorder" className="px-4 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-opacity duration-300 opacity-60 hover:opacity-100 uppercase">CARA ORDER</a>
           </div>
-          <a href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] font-black tracking-[0.2em] transition-all duration-300 uppercase shadow-lg active:scale-95">JOIN DISCORD</a>
+          <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] font-black tracking-[0.2em] uppercase shadow-lg">JOIN DISCORD</motion.a>
         </div>
       </nav>
 
@@ -115,9 +116,8 @@ export default function Home() {
               </div>
             </div>
             <p className="text-white/40 max-w-2xl mx-auto text-[9px] md:text-sm mb-12 tracking-[0.4em] uppercase font-light italic px-4 text-center">Digital Craftsmanship for the Midnight Dreamers</p>
-            
             <div className="flex flex-wrap justify-center gap-4">
-               <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href="#layanan" className="px-8 py-4 bg-white text-black rounded-full text-[10px] font-black tracking-widest uppercase shadow-xl">EXPLORE SERVICES</motion.a>
+               <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href="#layanan" className="px-8 py-4 bg-white text-black rounded-full text-[10px] font-black tracking-widest uppercase">EXPLORE SERVICES</motion.a>
                <motion.a whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }} whileTap={{ scale: 0.95 }} href="#tentang" className="px-8 py-4 border border-white/10 bg-white/5 backdrop-blur-md rounded-full text-[10px] font-black tracking-widest uppercase">LEARN MORE</motion.a>
             </div>
           </div>
@@ -147,12 +147,11 @@ export default function Home() {
                     Sebuah manifestasi kreativitas yang baru saja merekah. Selene Shop hadir untuk menciptakan standar keanggunan baru di semesta digital.
                   </p>
                   <div className="grid grid-cols-2 gap-4 md:gap-6">
-                    {/* Stats Box dengan Hover Animasi */}
-                    <motion.div whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.05)" }} className="p-4 md:p-6 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col justify-center transition-colors">
+                    <motion.div whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.05)" }} transition={smoothSpring} className="p-4 md:p-6 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col justify-center">
                       <h4 className={`${fantasyFont} text-xl md:text-3xl text-purple-400 font-bold`}>100+</h4>
                       <p className="text-[7px] md:text-[9px] text-white/30 uppercase tracking-[0.2em] mt-1">DONE</p>
                     </motion.div>
-                    <motion.div whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.05)" }} className="p-4 md:p-6 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col justify-center overflow-hidden transition-colors">
+                    <motion.div whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.05)" }} transition={smoothSpring} className="p-4 md:p-6 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col justify-center overflow-hidden">
                       <h4 className={`${fantasyFont} text-sm md:text-2xl text-purple-400 font-bold leading-none truncate`}>PREMIUM</h4>
                       <p className="text-[7px] md:text-[9px] text-white/30 uppercase tracking-[0.2em] mt-1">QUALITY</p>
                     </motion.div>
@@ -166,7 +165,7 @@ export default function Home() {
         {/* 4. PHILOSOPHY */}
         <ScrollReveal>
           <section className="relative z-10 py-20 px-4 md:px-6">
-            <div className="max-w-6xl mx-auto border border-white/5 bg-white/[0.01] rounded-[40px] md:rounded-[60px] p-8 md:p-20 backdrop-blur-xl group">
+            <div className="max-w-6xl mx-auto border border-white/5 bg-white/[0.01] rounded-[40px] md:rounded-[60px] p-8 md:p-20 backdrop-blur-xl">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
                   <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">PHILOSOPHY</span>
@@ -175,7 +174,7 @@ export default function Home() {
                 </div>
                 <div className="space-y-6 md:space-y-8">
                   {[{ t: "ARTISTIC PRECISION", d: "Setiap pixel diletakkan dengan penuh pertimbangan estetika." }, { t: "EXCLUSIVE DESIGN", d: "Karya unik yang mencerminkan kepribadian eksklusifmu." }, { t: "NIGHTFALL SERVICE", d: "Dukungan layanan yang responsif dan profesional." }].map((item, i) => (
-                    <motion.div key={i} whileHover={{ x: 10 }} transition={elegantTransition} className="border-l border-white/10 pl-6 cursor-default">
+                    <motion.div key={i} whileHover={{ x: 10 }} transition={smoothSpring} className="border-l border-white/10 pl-6 cursor-default">
                       <h4 className={`${fantasyFont} text-white text-base md:text-lg mb-2`}>✦ {item.t}</h4>
                       <p className="text-white/30 text-[9px] md:text-[10px] tracking-widest uppercase">{item.d}</p>
                     </motion.div>
@@ -186,7 +185,7 @@ export default function Home() {
           </section>
         </ScrollReveal>
 
-        {/* 5. LAYANAN - DENGAN HOVER GLOW & LIFT */}
+        {/* 5. LAYANAN */}
         <ScrollReveal>
           <section id="layanan" className="relative z-10 py-20 md:py-32 px-4 md:px-6">
             <div className="max-w-7xl mx-auto text-center mb-16 md:mb-24">
@@ -198,15 +197,15 @@ export default function Home() {
                 <motion.div 
                   key={i} 
                   whileHover={{ 
-                    y: -15, 
+                    y: -12, 
                     borderColor: "rgba(168, 85, 247, 0.4)",
                     backgroundColor: "rgba(255, 255, 255, 0.04)"
                   }}
-                  transition={elegantTransition}
+                  transition={smoothSpring}
                   className="group relative bg-white/[0.02] border border-white/10 p-8 md:p-12 rounded-[40px] flex flex-col h-full overflow-hidden backdrop-blur-md shadow-2xl shadow-transparent hover:shadow-purple-500/10"
                 >
                   <div className="flex-grow z-10">
-                    <h3 className={`${fantasyFont} text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors`}>{s.title}</h3>
+                    <h3 className={`${fantasyFont} text-xl md:text-2xl font-bold text-white mb-2 transition-colors group-hover:text-purple-400`}>{s.title}</h3>
                     <p className="text-[9px] text-purple-400 font-bold mb-8 tracking-[0.2em] uppercase">{s.tag}</p>
                     <div className="space-y-8 mb-10 text-left">
                       {s.items.map((item, idx) => (
@@ -219,9 +218,10 @@ export default function Home() {
                   </div>
                   <motion.a 
                     whileHover={{ scale: 1.02, backgroundColor: "#ffffff", color: "#000000" }}
+                    whileTap={{ scale: 0.98 }}
                     href="https://discord.gg/muH44HDrea" 
                     target="_blank" 
-                    className="relative z-10 block w-full text-center py-4 bg-white/5 border border-white/10 rounded-2xl font-bold text-[9px] transition-all uppercase tracking-[0.2em]"
+                    className="relative z-10 block w-full text-center py-4 bg-white/5 border border-white/10 rounded-2xl font-bold text-[9px] uppercase tracking-[0.2em] transition-all"
                   >
                     {s.btn}
                   </motion.a>
@@ -237,8 +237,8 @@ export default function Home() {
             <h2 className={`${fantasyFont} text-4xl md:text-7xl font-bold mb-16`}>CARA ORDER</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[{ s: "01", t: "JOIN COMMUNITY", d: "Masuk ke server Discord kami." }, { s: "02", t: "CREATE TICKET", d: "Pilih kategori layanan dan konsultasi." }, { s: "03", t: "SECURE PAYMENT", d: "Pembayaran aman melalui gateway." }].map((item, idx) => (
-                <motion.div key={idx} whileHover={{ scale: 1.03 }} className="relative p-10 rounded-[40px] bg-white/[0.02] border border-white/5 backdrop-blur-md overflow-hidden group">
-                  <span className={`${fantasyFont} text-5xl font-black text-purple-500/10 absolute top-8 right-10 group-hover:text-purple-500/20 transition-colors`}>{item.s}</span>
+                <motion.div key={idx} whileHover={{ scale: 1.03 }} transition={smoothSpring} className="relative p-10 rounded-[40px] bg-white/[0.02] border border-white/5 backdrop-blur-md">
+                  <span className={`${fantasyFont} text-5xl font-black text-purple-500/10 absolute top-8 right-10`}>{item.s}</span>
                   <h4 className={`${fantasyFont} font-bold text-white text-xl mb-4 relative z-10`}>{item.t}</h4>
                   <p className="text-[10px] text-white/40 uppercase italic tracking-widest">{item.d}</p>
                 </motion.div>
@@ -247,17 +247,18 @@ export default function Home() {
           </section>
         </ScrollReveal>
 
-        {/* 7. PEMBAYARAN - HOVER GLOW */}
+        {/* 7. PEMBAYARAN */}
         <ScrollReveal>
           <section id="pembayaran" className="relative z-10 py-24 md:py-40 px-4 text-center">
             <h2 className={`${fantasyFont} text-4xl md:text-6xl font-bold mb-10`}>GATEWAY</h2>
             <motion.a 
-              whileHover={{ scale: 1.05, borderColor: "rgba(168, 85, 247, 0.5)" }}
+              whileHover={{ scale: 1.03, borderColor: "rgba(168, 85, 247, 0.4)" }}
+              whileTap={{ scale: 0.98 }}
               href="https://sociabuzz.com/seleneshop/tribe" 
               target="_blank" 
-              className="group relative inline-flex flex-col md:flex-row items-center gap-6 bg-white/[0.02] border border-white/10 rounded-[40px] p-10 md:p-14 backdrop-blur-md transition-all"
+              className="group relative inline-flex flex-col md:flex-row items-center gap-6 bg-white/[0.02] border border-white/10 rounded-[40px] p-10 md:p-14 backdrop-blur-md"
             >
-              <div className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center text-3xl text-purple-400 group-hover:shadow-[0_0_30px_rgba(168,85,247,0.3)] transition-all">✦</div>
+              <div className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center text-3xl text-purple-400 animate-pulse">✦</div>
               <div className="text-left">
                 <span className={`${fantasyFont} block font-bold text-white text-2xl md:text-3xl mb-2 tracking-widest`}>SOCIABUZZ</span>
                 <p className="text-[9px] text-white/30 font-bold tracking-[0.3em]">QRIS • E-WALLET • BANK TRANSFER</p>
