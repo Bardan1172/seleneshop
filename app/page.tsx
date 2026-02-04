@@ -85,10 +85,12 @@ export default function Home() {
             <img src="/selene_shop.png" alt="Logo" className="w-10 h-10 md:w-14 md:h-14 object-contain rounded-full mix-blend-screen transition-transform group-hover:scale-110" />
             <div className={`${fantasyFont} text-[10px] md:text-sm font-bold tracking-[0.3em] hidden sm:block`}>SELENE<span className="text-purple-500 ml-1">✦</span></div>
           </div>
+          {/* Menu Link Navbar */}
           <div className="hidden md:flex items-center gap-1">
-            {[{ label: "BERANDA", href: "#beranda" }, { label: "TENTANG", href: "#tentang" }, { label: "LAYANAN", href: "#layanan" }, { label: "CARA ORDER", href: "#caraorder" }].map((link) => (
-              <a key={link.label} href={link.href} className="px-4 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-all duration-300 opacity-60 hover:opacity-100 uppercase">{link.label}</a>
-            ))}
+            <a href="#beranda" className="px-4 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-all duration-300 opacity-60 hover:opacity-100 uppercase">BERANDA</a>
+            <a href="#tentang" className="px-4 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-all duration-300 opacity-60 hover:opacity-100 uppercase">TENTANG</a>
+            <a href="#layanan" className="px-4 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-all duration-300 opacity-60 hover:opacity-100 uppercase">LAYANAN</a>
+            <a href="#caraorder" className="px-4 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-all duration-300 opacity-60 hover:opacity-100 uppercase">CARA ORDER</a>
           </div>
           <a href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] font-black tracking-[0.2em] transition-all duration-300 uppercase shadow-lg">JOIN DISCORD</a>
         </div>
@@ -111,6 +113,12 @@ export default function Home() {
               </div>
             </div>
             <p className="text-white/40 max-w-2xl mx-auto text-[9px] md:text-sm mb-12 tracking-[0.4em] uppercase font-light italic px-4 text-center">Digital Craftsmanship for the Midnight Dreamers</p>
+            
+            {/* Tombol CTA di Hero */}
+            <div className="flex flex-wrap justify-center gap-4">
+               <a href="#layanan" className="px-8 py-4 bg-white text-black rounded-full text-[10px] font-black tracking-widest uppercase hover:scale-105 transition-transform">EXPLORE SERVICES</a>
+               <a href="#tentang" className="px-8 py-4 border border-white/10 bg-white/5 backdrop-blur-md rounded-full text-[10px] font-black tracking-widest uppercase hover:bg-white/10 transition-all">LEARN MORE</a>
+            </div>
           </div>
         </section>
 
@@ -136,8 +144,8 @@ export default function Home() {
                 <div>
                   <p className="text-white/50 leading-loose text-sm md:text-lg mb-10 uppercase tracking-widest italic font-light">Sebuah manifestasi kreativitas yang baru saja merekah. Selene Shop hadir untuk menciptakan standar keanggunan baru di semesta digital.</p>
                   <div className="grid grid-cols-2 gap-6">
-                    <div className="p-6 rounded-3xl bg-white/5 border border-white/5"><h4 className={`${fantasyFont} text-2xl text-purple-400 font-bold`}>100+</h4><p className="text-[8px] text-white/30 uppercase tracking-widest">Done</p></div>
-                    <div className="p-6 rounded-3xl bg-white/5 border border-white/5"><h4 className={`${fantasyFont} text-2xl text-purple-400 font-bold`}>PREMIUM</h4><p className="text-[8px] text-white/30 uppercase tracking-widest">Quality</p></div>
+                    <div className="p-6 rounded-3xl bg-white/5 border border-white/5 text-center"><h4 className={`${fantasyFont} text-2xl text-purple-400 font-bold`}>100+</h4><p className="text-[8px] text-white/30 uppercase tracking-widest">Done</p></div>
+                    <div className="p-6 rounded-3xl bg-white/5 border border-white/5 text-center"><h4 className={`${fantasyFont} text-2xl text-purple-400 font-bold`}>PREMIUM</h4><p className="text-[8px] text-white/30 uppercase tracking-widest">Quality</p></div>
                   </div>
                 </div>
               </div>
@@ -145,7 +153,7 @@ export default function Home() {
           </section>
         </ScrollReveal>
 
-        {/* 4. PHILOSOPHY (MENGAPA MEMILIH KAMI) */}
+        {/* 4. PHILOSOPHY */}
         <ScrollReveal>
           <section className="relative z-10 py-20 px-4 md:px-6">
             <div className="max-w-6xl mx-auto border border-white/5 bg-white/[0.01] rounded-[40px] md:rounded-[60px] p-8 md:p-20 backdrop-blur-xl">
@@ -177,20 +185,20 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
               {services.map((s, i) => (
-                <div key={i} className="group relative bg-white/[0.02] border border-white/10 p-8 md:p-12 rounded-[40px] flex flex-col h-full overflow-hidden backdrop-blur-md hover:bg-white/[0.05] transition-all">
+                <div key={i} className="group relative bg-white/[0.02] border border-white/10 p-8 md:p-12 rounded-[40px] flex flex-col h-full overflow-hidden backdrop-blur-md hover:border-purple-500/30 transition-all duration-500">
                   <div className="flex-grow z-10">
                     <h3 className={`${fantasyFont} text-xl md:text-2xl font-bold text-white mb-2`}>{s.title}</h3>
                     <p className="text-[9px] text-purple-400 font-bold mb-8 tracking-[0.2em] uppercase">{s.tag}</p>
-                    <div className="space-y-8 mb-10">
+                    <div className="space-y-8 mb-10 text-left">
                       {s.items.map((item, idx) => (
-                        <div key={idx} className="border-l border-white/10 pl-4 text-left">
+                        <div key={idx} className="border-l border-white/10 pl-4">
                           <p className="text-[11px] font-black text-white/90 tracking-[0.1em] mb-1.5 uppercase leading-tight">{item.label}</p>
                           <p className="text-[10px] text-white/30 leading-relaxed uppercase tracking-tighter italic">{item.desc}</p>
                         </div>
                       ))}
                     </div>
                   </div>
-                  <a href="https://discord.gg/muH44HDrea" target="_blank" className="relative z-10 block w-full text-center py-4 bg-white/5 border border-white/10 hover:bg-white hover:text-black rounded-2xl font-bold text-[9px] transition-all uppercase tracking-[0.2em]">
+                  <a href="https://discord.gg/muH44HDrea" target="_blank" className="relative z-10 block w-full text-center py-4 bg-white/5 border border-white/10 hover:bg-white hover:text-black rounded-2xl font-bold text-[9px] transition-all duration-500 uppercase tracking-[0.2em]">
                     {s.btn}
                   </a>
                 </div>
