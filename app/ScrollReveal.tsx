@@ -3,34 +3,56 @@ import { motion } from "framer-motion";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
-  delay?: number; // Tambahkan fitur delay untuk animasi berurutan
-  direction?: "up" | "down"; // Bisa diatur arah munculnya
+  delay?: number;
 }
 
-export const ScrollReveal = ({ children, delay = 0, direction = "up" }: ScrollRevealProps) => {
+export const ScrollReveal = ({ children, delay = 0 }: ScrollRevealProps) => {
   return (
     <motion.div
-      // Arah muncul: kalau 'up' mulai dari bawah ke atas, kalau 'down' mulai dari atas ke bawah
-      initial={{ 
-        opacity: 0, 
-        y: direction === "up" ? 40 : -40,
-        filter: "blur(4px)" // Efek fokus cinematic
-      }}
-      whileInView={{ 
-        opacity: 1, 
-        y: 0,
-        filter: "blur(0px)" 
-      }}
+      // 1. Definisikan State Animasi
+      initial="hidden"
+      whileInView="visible"
+      exit="exit" // Menambahkan state saat keluar dari view
+      
+      // 2. Setting Viewport (once: false agar bisa bolak-balik)
       viewport={{ 
-        once: true, 
-        margin: "-50px",
-        amount: 0.1 
+        once: false, 
+        amount: 0.2,
+        margin: "-10% 0px -10% 0px" // Trigger animasi sebelum benar-benar di ujung layar
       }}
-      transition={{ 
-        duration: 0.8, 
-        delay: delay, // Menunggu giliran muncul
-        ease: [0.16, 1, 0.3, 1] 
+
+      // 3. Konfigurasi Variasi Gerakan
+      variants={{
+        hidden: { 
+          opacity: 0, 
+          y: 50, // Muncul dari bawah saat scroll down
+          scale: 0.95,
+          filter: "blur(10px)"
+        },
+        visible: { 
+          opacity: 1, 
+          y: 0, 
+          scale: 1,
+          filter: "blur(0px)",
+          transition: {
+            duration: 0.8,
+            delay: delay,
+            ease: [0.16, 1, 0.3, 1] // Custom ease agar gerakan terasa premium
+          }
+        },
+        exit: { 
+          opacity: 0, 
+          y: -50, // Menghilang ke atas saat di-scroll terus ke bawah
+          scale: 0.95,
+          filter: "blur(10px)",
+          transition: {
+            duration: 0.5,
+            ease: "easeIn"
+          }
+        }
       }}
+      
+      // Optimasi Performa
       style={{ willChange: "transform, opacity, filter" }}
     >
       {children}
