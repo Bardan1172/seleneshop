@@ -99,21 +99,27 @@ function MoonBackground() {
 export default function Home() {
   const fantasyFont = "font-serif italic tracking-wider uppercase";
   
-  // --- LOGIKA LOADING WELCOME SCREEN ---
+  // --- STATE ---
   const [isLoading, setIsLoading] = useState(true);
+
+  // --- DATA SERVICES ---
+  const services = [
+    { title: "✦ COSMETICA FACE", tag: "*KHUSUS MINECRAFT PREMIUM", items: [{ label: "ONLY FACE: 30K", desc: "Custom mata, alis, dan mulut sesuai request." }, { label: "FACE + RAMBUT HD: 50K", desc: "Termasuk shading rambut detail dan ekspresi." }], btn: "ORDER FACE" },
+    { title: "◈ MINECRAFT SKIN", tag: "CLASSIC / SLIM MODEL", items: [{ label: "SIMPLE: 10K", desc: "Desain minimalis dengan shading standar." }, { label: "FULL DETAIL: 15K", desc: "Shading kompleks untuk Anime atau Fantasy." }], btn: "ORDER SKIN" },
+    { title: "✎ ART & ILLUSTRATION", tag: "DIGITAL HAND-DRAWN", items: [{ label: "SIMPLE SHADE: 25K", desc: "Fanart atau OC." }, { label: "CHIBI PNGTUBER: 25K", desc: "Karakter mungil untuk konten." }, { label: "PNGTUBER: 30K", desc: "Model PNGtuber (Bust-up)." }], btn: "ORDER ART" },
+    { title: "▣ MC PHOTOSHOOT", tag: "CINEMATIC RENDERS", items: [{ label: "CINEMATIC RENDER", desc: "Single, Couple, atau Group." }, { label: "CUSTOM SCENE", desc: "Background Nether, End, atau build milikmu." }], btn: "BOOKING SESSION" },
+    { title: "✉ CUSTOM STICKER", tag: "DISCORD & WHATSAPP", items: [{ label: "PER PCS: 10K", desc: "Bust-up atau Head Only." }, { label: "PACK (6 STICKER): 50K", desc: "Lebih hemat untuk koleksi." }], btn: "ORDER STICKER" },
+    { title: "🏛 MINECRAFT BUILD", tag: "STRUCTURAL & AESTHETIC", items: [{ label: "BASIC: 15K – 75K", desc: "Small structures." }, { label: "ADVANCED: 75K – 300K", desc: "Fantasy base." }, { label: "ELITE: 450K – 1.5JT", desc: "Complex cities." }], btn: "CUSTOM BUILD" }
+  ];
 
   useEffect(() => {
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
     window.scrollTo(0, 0);
-    // Timer di sini dihapus karena kita akan menunggu sinyal dari WelcomeScreen
   }, []);
 
-  // ... (bagian services tetap sama) ...
-
   // --- JIKA LOADING, TAMPILKAN WELCOME SCREEN ---
-  // Kita kirim fungsi untuk mengubah isLoading menjadi false
   if (isLoading) {
     return <WelcomeScreen onLoadingComplete={() => setIsLoading(false)} />;
   }
@@ -200,7 +206,7 @@ export default function Home() {
             <span className={`${fantasyFont} text-xl md:text-3xl font-bold tracking-[0.3em] cursor-default text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-indigo-900`}>
               SELENE SHOP
             </span>
-            <span className={`${fantasyFont} text-xl md:text-3xl font-bold tracking-[0.3em] cursor-default text-transparent bg-clip-text bg-gradient-to-r from-magenta-500 via-fuchsia-400 to-violet-600`} style={{ backgroundImage: 'linear-gradient(to right, #ff00ff, #a855f7)' }}>
+            <span className={`${fantasyFont} text-xl md:text-3xl font-bold tracking-[0.3em] cursor-default text-transparent bg-clip-text bg-gradient-to-r from-[#ff00ff] via-fuchsia-400 to-violet-600`}>
               HEPPYCLOUD
             </span>
             <span className={`${fantasyFont} text-xl md:text-3xl font-bold tracking-[0.3em] cursor-default text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-orange-500 to-yellow-400`}>
