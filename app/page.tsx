@@ -76,7 +76,6 @@ export default function Home() {
     window.scrollTo(0, 0);
   }, []);
 
-  // --- LOADING HANDLER ---
   if (isLoading) {
     return <WelcomeScreen onLoadingComplete={() => setIsLoading(false)} />;
   }
@@ -110,7 +109,6 @@ export default function Home() {
       </nav>
 
       <main className="relative">
-        {/* BACKGROUND DIPISAH KE KOMPONEN SENDIRI */}
         <MoonBackground />
 
         {/* 1. HERO SECTION */}
@@ -133,16 +131,17 @@ export default function Home() {
             <p className="text-white/40 max-w-2xl mx-auto text-[10px] md:text-sm mb-12 tracking-[0.4em] uppercase font-light italic">
               Digital Craftsmanship for the Midnight Dreamers
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-4 mb-16">
               {[
                 { label: "TENTANG KAMI", href: "#tentang", style: "border-white/10 bg-white/5 hover:bg-white/10" },
                 { label: "LAYANAN", href: "#layanan", style: "bg-white text-black hover:scale-105" },
                 { label: "CARA ORDER", href: "#caraorder", style: "border-white/10 bg-white/5 hover:bg-white/10" }
               ].map((btn) => (
-                <a key={btn.label} href={btn.href} className={`px-8 py-4 border rounded-2xl text-[10px] font-black tracking-[0.3em] transition-all duration-500 uppercase ${btn.style}`}>
-                  {btn.label}
-                </a>
+                <a key={btn.label} href={btn.href} className={`px-8 py-4 border rounded-2xl text-[10px] font-black tracking-[0.3em] transition-all duration-500 uppercase ${btn.style}`}>{btn.label}</a>
               ))}
+            </div>
+            <div className="flex justify-center">
+              <div className="w-px h-16 bg-gradient-to-b from-transparent via-purple-500 to-transparent opacity-50" />
             </div>
           </div>
         </section>
@@ -161,8 +160,8 @@ export default function Home() {
           <div className="max-w-4xl mx-auto text-center">
             <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">THE STORY</span>
             <h2 className={`${fantasyFont} text-5xl md:text-7xl font-bold py-6 leading-tight`}>TENTANG KAMI</h2>
-            <p className="text-white/40 leading-loose text-lg mb-16 uppercase tracking-widest italic font-light">
-              Sebuah manifestasi kreativitas yang baru saja merekah. Selene Shop hadir untuk menciptakan standar keanggunan baru di semesta digital.
+            <p className="text-white/40 leading-loose text-lg mb-16 uppercase tracking-widest italic font-light max-w-3xl mx-auto">
+              Sebuah manifestasi kreativitas yang baru saja merekah. Selene Shop hadir bukan sekadar untuk mengikuti tren, melainkan untuk menciptakan standar keanggunan baru di semesta digital.
             </p>
             <div className="grid grid-cols-2 gap-8 max-w-xl mx-auto">
               {[{v: "100+", l: "SUCCESS PROJECT"}, {v: "PREMIUM", l: "QUALITY GRADE"}].map((st, i) => (
@@ -175,7 +174,34 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 4. LAYANAN */}
+        {/* 4. PHILOSOPHY (KEMBALI DISINI) */}
+        <section className="relative z-10 py-20 px-6">
+          <div className="max-w-6xl mx-auto border border-white/5 bg-white/[0.01] rounded-[60px] p-12 md:p-20">
+            <div className="grid md:grid-cols-2 gap-16 items-center">
+              <div>
+                <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">PHILOSOPHY</span>
+                <h2 className={`${fantasyFont} text-4xl md:text-6xl font-bold mb-8`}>MENGAPA KAMI?</h2>
+                <p className="text-white/40 leading-relaxed tracking-wide uppercase text-xs italic">
+                  Kami percaya bahwa identitas digital adalah refleksi dari jiwa. Itulah sebabnya setiap karya melewati proses kurasi detail yang mendalam.
+                </p>
+              </div>
+              <div className="space-y-8">
+                {[
+                  { t: "ARTISTIC PRECISION", d: "Setiap pixel diletakkan dengan penuh pertimbangan estetika." },
+                  { t: "EXCLUSIVE DESIGN", d: "Karya unik yang mencerminkan kepribadian eksklusifmu." },
+                  { t: "NIGHTFALL SERVICE", d: "Dukungan layanan yang responsif dan profesional." }
+                ].map((item, i) => (
+                  <div key={i} className="group">
+                    <h4 className={`${fantasyFont} text-white text-lg mb-2 group-hover:text-purple-400 transition-colors`}>✦ {item.t}</h4>
+                    <p className="text-white/30 text-[10px] tracking-widest uppercase">{item.d}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. LAYANAN */}
         <section id="layanan" className="relative z-10 py-32 px-6">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-24">
@@ -207,7 +233,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 5. CARA ORDER */}
+        {/* 6. CARA ORDER */}
         <section id="caraorder" className="relative z-10 py-40 px-6">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-24">
@@ -230,10 +256,43 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- FOOTER --- */}
-        <footer className="relative z-10 py-16 border-t border-white/5 bg-[#010108] px-6 text-center">
-             <div className={`${fantasyFont} text-xl font-bold mb-8 tracking-[0.5em] opacity-80 uppercase`}>SELENE SHOP</div>
-             <p className="text-white/40 text-[10px] md:text-[11px] uppercase tracking-[0.2em]">© 2026 SeleneShop. All rights reserved.</p>
+        {/* 7. PEMBAYARAN (KEMBALI DISINI) */}
+        <section id="pembayaran" className="relative z-10 py-40 px-6 bg-purple-600/[0.02]">
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-10 block uppercase">PAYMENT METHOD</span>
+            <h2 className={`${fantasyFont} text-4xl md:text-6xl font-bold py-6 mb-10`}>GATEWAY</h2>
+            <a href="https://sociabuzz.com/seleneshop/tribe" target="_blank" className="group relative inline-flex flex-col md:flex-row items-center gap-8 bg-black border border-white/10 rounded-[50px] p-10 md:p-14 hover:border-purple-500/50 transition-all duration-700 shadow-2xl">
+              <div className="w-20 h-20 bg-purple-500/10 rounded-full flex items-center justify-center text-4xl text-purple-400 animate-pulse">✦</div>
+              <div className="text-center md:text-left uppercase">
+                <span className={`${fantasyFont} block font-bold text-white text-3xl mb-2 tracking-widest`}>SOCIABUZZ</span>
+                <p className="text-[10px] text-white/30 font-bold tracking-[0.4em]">QRIS • E-WALLET • BANK TRANSFER</p>
+              </div>
+              <div className="md:ml-10 w-16 h-16 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-purple-600 group-hover:border-transparent transition-all duration-500 text-xl">→</div>
+            </a>
+          </div>
+        </section>
+
+        {/* 8. FOOTER DETAIL (KEMBALI DISINI) */}
+        <footer className="relative z-10 py-16 border-t border-white/5 bg-[#010108] px-6">
+          <div className="max-w-7xl mx-auto flex flex-col items-center">
+            <div className={`${fantasyFont} text-xl font-bold mb-8 tracking-[0.5em] opacity-80 uppercase`}>
+              SELENE SHOP
+            </div>
+            <div className="flex flex-col items-center gap-2 text-center">
+              <p className="text-white/40 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-medium">
+                © 2026 <span className="text-white/60">SeleneShop</span>. All rights reserved.
+              </p>
+              <div className="flex items-center gap-2 text-[10px] md:text-[11px] tracking-[0.1em]">
+                <span className="opacity-80">🎨</span>
+                <p className="text-white/40 uppercase">
+                  <span className="text-blue-400 font-bold">Bardan1172</span> Visual Series 
+                  <span className="mx-2 opacity-30">—</span> 
+                  Powered by <span className="text-white/60">SeleneShop.</span>
+                </p>
+              </div>
+            </div>
+            <div className="w-12 h-[1px] bg-purple-500 mt-8 opacity-30" />
+          </div>
         </footer>
       </main>
 
