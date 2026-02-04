@@ -2,7 +2,7 @@
 
 /* ===== DEFAULT ===== */
 :root {
-  --background: #05051a; 
+  --background: #010108; /* Hitam pekat langit malam */
   --foreground: #ededed;
 }
 
@@ -19,6 +19,7 @@ body {
   font-family: var(--font-poppins), system-ui, sans-serif;
   font-weight: 300;
   overflow-x: hidden;
+  /* Mencegah scroll horizontal akibat elemen animasi yang keluar layar */
 }
 
 /* ===== FONT UTILITIES ===== */
@@ -42,57 +43,91 @@ body {
 
 /* ===== 🌙 SELENE PREMIUM ANIMATIONS ===== */
 
-/* 1. Moon Floating */
+/* 1. Moon Floating - Gerakan naik turun yang halus */
 @keyframes moon-float {
   0%, 100% { transform: translateY(0px); }
   50% { transform: translateY(-15px); }
 }
-.animate-moon { animation: moon-float 6s ease-in-out infinite; }
+.animate-moon { 
+  animation: moon-float 6s ease-in-out infinite; 
+}
 
-/* 2. Seamless Moon Glow (Triple Wave) */
+/* 2. Seamless Moon Glow (Gelombang Cahaya Bulan) */
 @keyframes moon-glow-wave {
   0% { transform: scale(1); opacity: 0.5; }
   100% { transform: scale(2.2); opacity: 0; }
 }
 .animate-moon-glow-wave {
   animation: moon-glow-wave 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  will-change: transform, opacity;
 }
 
-/* 3. Natural Star Rain (Melesat Cepat + Jeda) */
+/* 3. Natural Star Rain (Meteor) */
+/* Dioptimalkan: Melesat cepat lalu hilang (delay panjang) */
 @keyframes star-rain {
   0% {
-    transform: translate(0, 0) scaleX(0) rotate(25deg);
+    transform: translate(0, 0) scaleX(0) rotate(-45deg);
     opacity: 0;
   }
   2% {
     opacity: 1;
-    transform: translate(-20px, 20px) scaleX(1.5) rotate(25deg);
+    transform: translate(-40px, 40px) scaleX(1.5) rotate(-45deg);
   }
-  15% {
-    /* Melesat sangat cepat ke kiri bawah */
-    transform: translate(-800px, 800px) scaleX(1) rotate(25deg);
+  10% {
+    /* Kecepatan cahaya melintasi layar */
+    transform: translate(-1000px, 1000px) scaleX(1) rotate(-45deg);
     opacity: 0;
   }
   100% {
-    /* Jeda panjang agar tidak terlihat konstan */
-    transform: translate(-800px, 800px) scaleX(1) rotate(25deg);
+    /* Jeda statis */
+    transform: translate(-1000px, 1000px) scaleX(1) rotate(-45deg);
     opacity: 0;
   }
 }
 .animate-star-rain {
-  animation: star-rain 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: star-rain 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   transform-origin: right;
+  will-change: transform, opacity;
 }
 
-/* 4. Twinkle & Logo Float */
+/* 4. Twinkle (Bintang Berkedip) */
 @keyframes twinkle { 
   0%, 100% { opacity: 0.3; transform: scale(1); } 
   50% { opacity: 1; transform: scale(1.1); } 
 }
-.animate-twinkle { animation: twinkle 4s infinite ease-in-out; }
+.animate-twinkle { 
+  animation: twinkle 4s infinite ease-in-out; 
+}
 
+/* 5. Logo Floating (Khusus untuk Hero Section) */
 @keyframes logo-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
 }
-.animate-logo-float { animation: logo-float 6s ease-in-out infinite; }
+.animate-logo-float { 
+  animation: logo-float 6s ease-in-out infinite; 
+}
+
+/* 6. Subtle Fade-In */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: fade-in 1.5s ease-out forwards;
+}
+
+/* Custom Scrollbar Premium */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #010108;
+}
+::-webkit-scrollbar-thumb {
+  background: #312e81; /* Indigo gelap */
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5;
+}
