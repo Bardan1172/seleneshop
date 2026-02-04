@@ -2,7 +2,24 @@
 
 import { useEffect, useState, useRef } from "react";
 
-// ... (Interface Star & Meteor tetap sama)
+// --- DEFINISI INTERFACE (Penting agar tidak error saat build Vercel) ---
+interface Star {
+  id: number;
+  top: string;
+  left: string;
+  size: number; // Diubah ke number untuk fleksibilitas style
+  delay: string;
+  opacity: number;
+  color: string;
+  depth: number;
+}
+
+interface Meteor {
+  id: number;
+  top: string;
+  left: string;
+  delay: string;
+}
 
 export default function MoonBackground() {
   const [stars, setStars] = useState<Star[]>([]);
@@ -10,36 +27,44 @@ export default function MoonBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Penyesuaian warna bintang agar lebih variatif (putih, soft pink, pale purple)
-    const colors = ["#ffffff", "#fbcfe8", "#e9d5ff", "#fdf2f8"];
+    // 1. Inisialisasi Bintang (Efek Milky Way: Lebih banyak & padat)
+    // Variasi warna: Putih murni, Pink Magenta, dan Ungu Muda
+    const colors = ["#ffffff", "#ffd6ff", "#e7c6ff", "#ffffff", "#fae8ff"];
     const generatedStars = Array.from({ length: 450 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 100}%`,
       left: `${Math.random() * 100}%`,
-      size: Math.random() * 1.6 + 0.3,
+      size: Math.random() * 1.5 + 0.3,
       delay: `${Math.random() * 5}s`,
       opacity: Math.random() * 0.8 + 0.2,
       color: colors[Math.floor(Math.random() * colors.length)],
-      depth: Math.random() * 12 + 3,
+      depth: Math.random() * 12 + 4,
     }));
     setStars(generatedStars);
 
-    // Meteor tetap meluncur dari kanan-atas
-    setMeteors(Array.from({ length: 4 }).map((_, i) => ({
+    // 2. Inisialisasi Meteor
+    const generatedMeteors = Array.from({ length: 4 }).map((_, i) => ({
       id: i,
       top: `${Math.random() * 35}%`,
-      left: `${65 + Math.random() * 35}%`,
+      left: `${60 + Math.random() * 40}%`,
       delay: `${Math.random() * 25}s`,
-    })));
+    }));
+    setMeteors(generatedMeteors);
 
+    // 3. Efek Parallax Halus
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return;
       const { clientX, clientY } = e;
       const centerX = window.innerWidth / 2;
       const centerY = window.innerHeight / 2;
-      document.querySelectorAll('.star-layer').forEach((el: any) => {
-        const speed = parseFloat(el.getAttribute('data-speed') || "0");
-        el.style.transform = `translate3d(${(centerX - clientX) * speed / 1200}px, ${(centerY - clientY) * speed / 1200}px, 0)`;
+      
+      const starLayers = document.querySelectorAll('.star-layer');
+      starLayers.forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        const speed = parseFloat(htmlEl.getAttribute('data-speed') || "0");
+        const x = (centerX - clientX) * speed / 1500;
+        const y = (centerY - clientY) * speed / 1500;
+        htmlEl.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       });
     };
 
@@ -50,21 +75,20 @@ export default function MoonBackground() {
   return (
     <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-[#02010a]">
       
-      {/* 1. LAYER NEBULA (Magenta & Purple Glow) */}
+      {/* 1. LAYER NEBULA (Magenta & Purple Milky Way) */}
       <div className="absolute inset-0 z-[1] opacity-60">
-        {/* Inti Galaksi - Ungu ke Magenta */}
+        {/* Jalur Galaksi Utama (Diagonal) */}
         <div 
-          className="absolute top-[-25%] left-[-15%] w-[150%] h-[150%] rotate-[-30deg] blur-[120px]"
+          className="absolute top-[-20%] left-[-10%] w-[150%] h-[150%] rotate-[-35deg] blur-[100px]"
           style={{
-            background: `radial-gradient(circle at center, rgba(139, 92, 246, 0.12) 0%, rgba(217, 70, 239, 0.08) 35%, transparent 70%),
-                         linear-gradient(to bottom right, rgba(162, 28, 175, 0.05), transparent, rgba(88, 28, 135, 0.05))`
+            background: `radial-gradient(ellipse at center, rgba(162, 28, 175, 0.15) 0%, rgba(76, 29, 149, 0.1) 40%, transparent 75%)`
           }}
         />
-        {/* Aksen Magenta Tambahan */}
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-magenta-900/10 blur-[130px] rounded-full opacity-40 mix-blend-screen" />
+        {/* Glow Magenta tambahan di sisi bawah */}
+        <div className="absolute bottom-[-5%] right-[-5%] w-[60%] h-[60%] bg-fuchsia-900/10 blur-[130px] rounded-full mix-blend-screen opacity-40" />
       </div>
 
-      {/* 2. LAYER STARS */}
+      {/* 2. LAYER BINTANG (Twinkle & Glow) */}
       <div className="absolute inset-0 z-[2]">
         {stars.map((s) => (
           <div 
@@ -78,30 +102,33 @@ export default function MoonBackground() {
               height: `${s.size}px`, 
               backgroundColor: s.color,
               opacity: s.opacity,
-              boxShadow: s.size > 1.3 ? `0 0 6px ${s.color}` : 'none',
+              boxShadow: s.size > 1.2 ? `0 0 5px ${s.color}` : 'none',
               animationDelay: s.delay 
             }} 
           />
         ))}
       </div>
 
-      {/* 3. PREMIUM MOON */}
+      {/* 3. PREMIUM MOON (Focal Point) */}
       <div className="absolute top-20 right-[10%] z-[5] animate-moon">
         <div className="relative">
-            {/* Glow bulan disesuaikan dengan aura magenta */}
-            <div className="absolute inset-0 rounded-full bg-magenta-200/5 animate-moon-glow-wave scale-125 blur-2xl" />
+            {/* Glow Aura Magenta di sekitar Bulan */}
+            <div className="absolute inset-0 rounded-full bg-fuchsia-500/5 animate-moon-glow-wave scale-125 blur-3xl" />
             
-            <div className="relative w-28 h-28 md:w-52 md:h-52 rounded-full bg-gradient-to-br from-[#fffdf5] via-[#fff9e5] to-[#e6d296] shadow-[inset_-10px_-8px_20px_rgba(184,156,70,0.3),0_0_60px_rgba(255,249,229,0.15)] border border-white/10 overflow-hidden" />
+            <div className="relative w-32 h-32 md:w-52 md:h-52 rounded-full bg-gradient-to-br from-[#FFFDF5] via-[#FFF9E5] to-[#E6D296] shadow-[inset_-12px_-8px_20px_rgba(184,156,70,0.3),0_0_60px_rgba(255,249,229,0.2)] border border-white/20 overflow-hidden">
+              <div className="absolute top-[20%] left-[25%] w-[25%] h-[10%] bg-black/5 rounded-full rotate-[-15deg] blur-[1px]" />
+              <div className="absolute top-[30%] left-[40%] w-10 h-10 bg-[#D9C17E]/20 rounded-full shadow-inner blur-[1px]" />
+            </div>
         </div>
       </div>
 
-      {/* 4. METEORS */}
+      {/* 4. LAYER METEOR (Shooting Stars) */}
       <div className="absolute inset-0 z-[10]">
         {meteors.map((m) => (
           <div 
             key={m.id} 
-            className="absolute h-[1px] bg-gradient-to-r from-white via-magenta-400 to-transparent opacity-0 animate-star-rain"
-            style={{ top: m.top, left: m.left, width: '200px', animationDelay: m.delay }} 
+            className="absolute h-[1px] bg-gradient-to-r from-white via-fuchsia-400 to-transparent opacity-0 animate-star-rain"
+            style={{ top: m.top, left: m.left, width: '220px', animationDelay: m.delay }} 
           />
         ))}
       </div>
