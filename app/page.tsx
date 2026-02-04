@@ -272,28 +272,35 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 8. FOOTER DETAIL (KEMBALI DISINI) */}
-        <footer className="relative z-10 py-16 border-t border-white/5 bg-[#010108] px-6">
-          <div className="max-w-7xl mx-auto flex flex-col items-center">
-            <div className={`${fantasyFont} text-xl font-bold mb-8 tracking-[0.5em] opacity-80 uppercase`}>
-              SELENE SHOP
-            </div>
-            <div className="flex flex-col items-center gap-2 text-center">
-              <p className="text-white/40 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-medium">
-                © 2026 <span className="text-white/60">SeleneShop</span>. All rights reserved.
-              </p>
-              <div className="flex items-center gap-2 text-[10px] md:text-[11px] tracking-[0.1em]">
-                <span className="opacity-80">🎨</span>
-                <p className="text-white/40 uppercase">
-                  <span className="text-blue-400 font-bold">Bardan1172</span> Visual Series 
-                  <span className="mx-2 opacity-30">—</span> 
-                  Powered by <span className="text-white/60">SeleneShop.</span>
-                </p>
-              </div>
-            </div>
-            <div className="w-12 h-[1px] bg-purple-500 mt-8 opacity-30" />
-          </div>
-        </footer>
+        {/* 8. FOOTER DETAIL - Versi Pendek */}
+<footer className="relative z-10 py-8 border-t border-white/5 bg-[#010108] px-6">
+  <div className="max-w-7xl mx-auto flex flex-col items-center">
+    {/* Mengurangi margin bawah dari mb-8 menjadi mb-4 */}
+    <div className={`${fantasyFont} text-lg font-bold mb-4 tracking-[0.5em] opacity-80 uppercase`}>
+      SELENE SHOP
+    </div>
+    
+    <div className="flex flex-col items-center gap-1 text-center">
+      {/* Teks hak cipta */}
+      <p className="text-white/40 text-[10px] md:text-[11px] uppercase tracking-[0.2em] font-medium">
+        © 2026 <span className="text-white/60">SeleneShop</span>. All rights reserved.
+      </p>
+      
+      {/* Visual Series info */}
+      <div className="flex items-center gap-2 text-[10px] md:text-[11px] tracking-[0.1em]">
+        <span className="opacity-80">🎨</span>
+        <p className="text-white/40 uppercase">
+          <span className="text-blue-400 font-bold">Bardan1172</span> Visual Series 
+          <span className="mx-2 opacity-30">—</span> 
+          Powered by <span className="text-white/60">SeleneShop.</span>
+        </p>
+      </div>
+    </div>
+
+    {/* Mengurangi margin atas garis dari mt-8 menjadi mt-4 */}
+    <div className="w-12 h-[1px] bg-purple-500 mt-4 opacity-30" />
+  </div>
+</footer>
       </main>
 
       {/* --- GLOBAL STYLES --- */}
