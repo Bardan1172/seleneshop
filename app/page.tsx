@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// --- IMPORT KOMPONEN EKSTERNAL ---
+// --- IMPORT KOMPONEN ---
 import WelcomeScreen from "./WelcomeScreen"; 
 import MoonBackground from "./MoonBackground"; 
 
@@ -85,7 +85,7 @@ export default function Home() {
       
       {/* --- NAVBAR --- */}
       <nav className="fixed top-0 left-0 w-full z-[100] px-4 md:px-6 py-4 md:py-6 pointer-events-none">
-        <div className="max-w-5xl mx-auto flex justify-between items-center pointer-events-auto bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-2 pl-3 md:pl-4 pr-3 md:pr-6 shadow-2xl">
+        <div className="max-w-5xl mx-auto flex justify-between items-center pointer-events-auto bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-full p-2 pl-3 md:pl-4 pr-3 md:pr-6 shadow-2xl">
           <div className="flex items-center gap-2 group">
             <img 
               src="/selene_shop.png" 
@@ -101,7 +101,7 @@ export default function Home() {
               <a key={link.label} href={link.href} className="px-4 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-all duration-300 opacity-60 hover:opacity-100 uppercase">{link.label}</a>
             ))}
           </div>
-          <a href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] font-black tracking-[0.2em] transition-all duration-300 uppercase shadow-lg">JOIN DISCORD</a>
+          <a href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full text-[9px] md:text-[10px] font-black tracking-[0.2em] transition-all duration-300 uppercase shadow-lg">JOIN DISCORD</a>
         </div>
       </nav>
 
@@ -111,40 +111,33 @@ export default function Home() {
         {/* 1. HERO SECTION */}
         <section id="beranda" className="relative z-10 min-h-screen flex flex-col items-center justify-center text-center px-6">
           <div className="animate-fade-in flex flex-col items-center w-full">
-            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-2 mb-8">
-              <div className="relative animate-float">
-                <div className="absolute inset-0 bg-purple-600/20 blur-[60px] rounded-full" />
-                <img 
-                  src="/selene_shop.png" 
-                  alt="Logo" 
-                  className="relative w-36 h-36 md:w-72 md:h-72 object-contain mix-blend-screen drop-shadow-[0_0_30px_rgba(168,85,247,0.4)]"
-                />
-              </div>
-              <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                <h1 className={`${fantasyFont} text-5xl md:text-9xl font-bold text-white leading-[0.8]`}>SELENE</h1>
-                <h1 className={`${fantasyFont} text-5xl md:text-9xl font-bold leading-[0.8] text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-200 to-purple-600`}>SHOP</h1>
-              </div>
+            <div className="relative animate-float mb-8">
+              <div className="absolute inset-0 bg-purple-600/20 blur-[60px] rounded-full" />
+              <img 
+                src="/selene_shop.png" 
+                alt="Logo" 
+                className="relative w-36 h-36 md:w-72 md:h-72 object-contain mix-blend-screen drop-shadow-[0_0_30px_rgba(168,85,247,0.4)]"
+              />
             </div>
-            <p className="text-white/40 max-w-2xl mx-auto text-[9px] md:text-sm mb-12 tracking-[0.3em] md:tracking-[0.4em] uppercase font-light italic px-4">
+            <div className="flex flex-col items-center text-center">
+              <h1 className={`${fantasyFont} text-5xl md:text-9xl font-bold text-white leading-[0.8]`}>SELENE</h1>
+              <h1 className={`${fantasyFont} text-5xl md:text-9xl font-bold leading-[0.8] text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-200 to-purple-600`}>SHOP</h1>
+            </div>
+            <p className="text-white/40 max-w-2xl mx-auto text-[9px] md:text-sm mt-12 mb-12 tracking-[0.3em] md:tracking-[0.4em] uppercase font-light italic px-4">
               Digital Craftsmanship for the Midnight Dreamers
             </p>
-            <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-16 px-4">
-              {[
-                { label: "TENTANG KAMI", href: "#tentang", style: "border-white/10 bg-white/5" },
-                { label: "LAYANAN", href: "#layanan", style: "bg-white text-black" },
-                { label: "CARA ORDER", href: "#caraorder", style: "border-white/10 bg-white/5" }
-              ].map((btn) => (
-                <a key={btn.label} href={btn.href} className={`px-5 md:px-8 py-3 md:py-4 border rounded-xl md:rounded-2xl text-[9px] md:text-[10px] font-black tracking-[0.2em] transition-all uppercase ${btn.style}`}>{btn.label}</a>
-              ))}
+            <div className="flex flex-wrap justify-center gap-3 md:gap-4 px-4">
+              <a href="#tentang" className="px-6 md:px-8 py-3 md:py-4 border border-white/10 bg-white/5 rounded-full text-[9px] md:text-[10px] font-black tracking-[0.2em] transition-all uppercase">TENTANG KAMI</a>
+              <a href="#layanan" className="px-6 md:px-8 py-3 md:py-4 bg-white text-black rounded-full text-[9px] md:text-[10px] font-black tracking-[0.2em] transition-all uppercase">LAYANAN</a>
             </div>
           </div>
         </section>
 
         {/* 2. BRAND STRIP */}
-        <section className="relative z-20 py-12 md:py-20 border-y border-white/5 bg-white/[0.01]">
+        <section className="relative z-20 py-12 md:py-20 border-y border-white/5 bg-white/[0.01] backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-6 md:gap-24 opacity-60">
             {["SELENE SHOP", "HEPPYCLOUD", "BANGBLAZE"].map((brand) => (
-               <span key={brand} className={`${fantasyFont} text-sm md:text-3xl font-bold tracking-[0.2em] md:tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-600`}>{brand}</span>
+              <span key={brand} className={`${fantasyFont} text-sm md:text-3xl font-bold tracking-[0.2em] md:tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-600`}>{brand}</span>
             ))}
           </div>
         </section>
@@ -159,7 +152,7 @@ export default function Home() {
             </p>
             <div className="grid grid-cols-2 gap-4 md:gap-8 max-w-xl mx-auto">
               {[{v: "100+", l: "SUCCESS"}, {v: "PREMIUM", l: "QUALITY"}].map((st, i) => (
-                <div key={i} className="p-6 md:p-10 rounded-3xl md:rounded-[40px] bg-white/[0.02] border border-white/5">
+                <div key={i} className="p-6 md:p-10 rounded-[40px] bg-white/[0.02] border border-white/5 backdrop-blur-sm">
                   <h4 className={`${fantasyFont} text-2xl md:text-4xl text-purple-400 font-bold mb-2`}>{st.v}</h4>
                   <p className="text-[8px] md:text-[9px] text-white/30 uppercase font-black tracking-[0.2em]">{st.l}</p>
                 </div>
@@ -170,7 +163,7 @@ export default function Home() {
 
         {/* 4. PHILOSOPHY */}
         <section className="relative z-10 py-20 px-4 md:px-6">
-          <div className="max-w-6xl mx-auto border border-white/5 bg-white/[0.01] rounded-[40px] md:rounded-[60px] p-8 md:p-20">
+          <div className="max-w-6xl mx-auto border border-white/5 bg-white/[0.01] rounded-[40px] md:rounded-[60px] p-8 md:p-20 backdrop-blur-sm">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
                 <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">PHILOSOPHY</span>
@@ -195,7 +188,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 5. LAYANAN - FIX Teks Offside */}
+        {/* 5. LAYANAN */}
         <section id="layanan" className="relative z-10 py-20 md:py-32 px-4 md:px-6">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16 md:mb-24">
@@ -204,21 +197,20 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
               {services.map((s, i) => (
-                <div key={i} className="group relative bg-[#05050a] border border-white/5 p-8 md:p-12 rounded-[40px] flex flex-col h-full overflow-hidden shadow-2xl">
+                <div key={i} className="group relative bg-[#05050a]/40 border border-white/5 p-8 md:p-12 rounded-[40px] flex flex-col h-full overflow-hidden backdrop-blur-md hover:border-purple-500/30 transition-all duration-700">
                   <div className="flex-grow z-10">
                     <h3 className={`${fantasyFont} text-xl md:text-2xl font-bold text-white mb-2`}>{s.title}</h3>
-                    {/* Mengurangi ukuran font tag agar tidak offside */}
-                    <p className="text-[9px] md:text-[10px] text-purple-400 font-bold mb-8 tracking-[0.1em] md:tracking-[0.2em] uppercase">{s.tag}</p>
+                    <p className="text-[9px] md:text-[10px] text-purple-400 font-bold mb-8 tracking-[0.2em] uppercase">{s.tag}</p>
                     <div className="space-y-8 mb-10">
                       {s.items.map((item, idx) => (
                         <div key={idx} className="border-l border-white/10 pl-4">
                           <p className="text-[11px] md:text-[12px] font-black text-white/90 tracking-[0.1em] mb-1.5 uppercase leading-tight">{item.label}</p>
-                          <p className="text-[10px] md:text-[11px] text-white/30 leading-relaxed uppercase tracking-tighter">{item.desc}</p>
+                          <p className="text-[10px] md:text-[11px] text-white/30 leading-relaxed uppercase tracking-tighter italic">{item.desc}</p>
                         </div>
                       ))}
                     </div>
                   </div>
-                  <a href="https://discord.gg/muH44HDrea" target="_blank" className="relative z-10 block w-full text-center py-4 bg-white/5 border border-white/10 hover:bg-white hover:text-black rounded-xl font-bold text-[9px] md:text-[10px] transition-all duration-500 uppercase tracking-[0.2em] mt-auto">
+                  <a href="https://discord.gg/muH44HDrea" target="_blank" className="relative z-10 block w-full text-center py-4 bg-white/5 border border-white/10 hover:bg-white hover:text-black rounded-2xl font-bold text-[9px] md:text-[10px] transition-all duration-500 uppercase tracking-[0.2em] mt-auto">
                     {s.btn}
                   </a>
                 </div>
@@ -239,7 +231,7 @@ export default function Home() {
                 { s: "02", t: "CREATE TICKET", d: "Pilih kategori layanan dan konsultasi." },
                 { s: "03", t: "SECURE PAYMENT", d: "Pembayaran aman melalui gateway." }
               ].map((item, idx) => (
-                <div key={idx} className="relative p-10 rounded-[40px] bg-white/[0.02] border border-white/5">
+                <div key={idx} className="relative p-10 rounded-[40px] bg-white/[0.02] border border-white/5 backdrop-blur-sm">
                   <span className={`${fantasyFont} text-5xl font-black text-purple-500/10 absolute top-8 right-10`}>{item.s}</span>
                   <h4 className={`${fantasyFont} font-bold text-white text-xl mb-4 relative z-10`}>{item.t}</h4>
                   <p className="text-[10px] text-white/40 leading-relaxed uppercase italic">{item.d}</p>
@@ -253,7 +245,7 @@ export default function Home() {
         <section id="pembayaran" className="relative z-10 py-24 md:py-40 px-4 md:px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className={`${fantasyFont} text-4xl md:text-6xl font-bold mb-10`}>GATEWAY</h2>
-            <a href="https://sociabuzz.com/seleneshop/tribe" target="_blank" className="group relative inline-flex flex-col md:flex-row items-center gap-6 bg-black border border-white/10 rounded-[40px] p-10 md:p-14 hover:border-purple-500/50 transition-all w-full md:w-auto">
+            <a href="https://sociabuzz.com/seleneshop/tribe" target="_blank" className="group relative inline-flex flex-col md:flex-row items-center gap-6 bg-white/[0.02] border border-white/10 rounded-[40px] p-10 md:p-14 hover:border-purple-500/50 transition-all w-full md:w-auto backdrop-blur-md">
               <div className="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center text-3xl text-purple-400 animate-pulse">✦</div>
               <div className="text-center md:text-left">
                 <span className={`${fantasyFont} block font-bold text-white text-2xl md:text-3xl mb-2 tracking-widest`}>SOCIABUZZ</span>
@@ -263,7 +255,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 8. FOOTER - Fix Text Centering & Spacing */}
+        {/* 8. FOOTER */}
         <footer className="relative z-10 py-10 border-t border-white/5 bg-[#010108] px-6">
           <div className="max-w-7xl mx-auto flex flex-col items-center">
             <div className={`${fantasyFont} text-base md:text-lg font-bold mb-4 tracking-[0.5em] opacity-80 uppercase text-center`}>
@@ -283,16 +275,25 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="w-10 h-[1px] bg-purple-500 mt-6 opacity-30" />
           </div>
         </footer>
       </main>
 
+      {/* --- GLOBAL STYLES --- */}
       <style jsx global>{`
-        @keyframes fade-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fade-in { 
+          from { opacity: 0; transform: translateY(30px) scale(0.98); filter: blur(10px); } 
+          to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } 
+        }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-        .animate-fade-in { animation: fade-in 1.5s ease-out forwards; }
+        .animate-fade-in { animation: fade-in 2s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         .animate-float { animation: float 6s ease-in-out infinite; }
+        
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #010108; }
+        ::-webkit-scrollbar-thumb { background: #1a1a2e; border-radius: 10px; }
+        
+        body { background-color: #010108; }
       `}</style>
     </div>
   );
