@@ -18,8 +18,8 @@ export default function Home() {
       title: "✦ COSMETICA FACE", 
       tag: "*KHUSUS MINECRAFT PREMIUM", 
       items: [
-        { label: "ONLY FACE: 30K", desc: "Custom mata, alis, dan mulut sesuai request." }, 
-        { label: "FACE + RAMBUT HD: 50K", desc: "Termasuk shading rambut detail dan ekspresi." }
+        { label: "FACE 512px: 30K", desc: "Custom mata, alis, dan mulut sesuai request." }, 
+        { label: "FACE 1024px: 50K", desc: "lebih detail dan lebih tajam." }
       ], 
       btn: "ORDER FACE" 
     },
