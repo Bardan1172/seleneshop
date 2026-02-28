@@ -202,22 +202,19 @@ export default function Home() {
   </section>
 </ScrollReveal>
 
-        {/* --- 8. FOOTER --- */}
-        <footer className="relative z-10 py-20 border-t border-white/5 bg-[#010108] px-6">
-          <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-            <div className="flex items-center gap-3 mb-8">
-               <img src="/selene_shop.png" alt="Logo" className="w-12 h-12 md:w-16 md:h-16 object-contain rounded-full mix-blend-screen" />
-               <div className={`${fantasyFont} text-xl md:text-3xl font-bold tracking-[0.3em] text-white`}>SELENE<span className="text-purple-500 ml-1">✦</span></div>
+        {/* 8. FOOTER */}
+        <footer className="relative z-10 py-10 border-t border-white/5 bg-[#010108] px-6">
+          <div className="max-w-7xl mx-auto flex flex-col items-center">
+            <div className={`${fantasyFont} text-base md:text-lg font-bold mb-4 tracking-[0.5em] opacity-80 uppercase text-center`}>SELENE SHOP</div>
+            <div className="flex flex-col items-center gap-2 text-center w-full">
+              <p className="text-white/40 text-[9px] md:text-[11px] uppercase tracking-[0.15em]">© 2026 <span className="text-white/60">SeleneShop</span>. All rights reserved.</p>
+              <div className="flex flex-wrap justify-center items-center gap-x-2 gap-y-1 text-[9px] md:text-[11px] tracking-[0.1em]">
+                <p className="text-white/40 uppercase"><span className="text-blue-400 font-bold">Bardan1172</span> Visual Series</p>
+                <span className="opacity-30 mx-1">—</span> 
+                <p className="text-white/40 uppercase">Powered by <span className="text-white/60">SeleneShop.</span></p>
+              </div>
             </div>
-            <div className="flex gap-8 mb-12">
-               {["INSTAGRAM", "DISCORD", "TIKTOK"].map((social) => (
-                 <a key={social} href="#" className="text-[10px] font-black tracking-[0.3em] text-white/40 hover:text-purple-500 transition-colors uppercase">{social}</a>
-               ))}
-            </div>
-            <div className="h-px w-full max-w-xs bg-gradient-to-r from-transparent via-white/10 to-transparent mb-12" />
-            <p className="text-white/20 text-[9px] md:text-[11px] uppercase tracking-[0.2em] leading-loose max-w-lg">
-              © 2026 SeleneShop. Powered by Bardan1172 Visual Series.
-            </p>
+            <div className="w-10 h-[1px] bg-purple-500 mt-6 opacity-30" />
           </div>
         </footer>
       </main>
