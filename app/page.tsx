@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import WelcomeScreen from "@/components/WelcomeScreen"; 
-import MoonBackground from "@/components/MoonBackground"; 
-import { ScrollReveal } from "@/components/ScrollReveal"; 
-import ServicesSection from "@/components/services"; 
+// Import disesuaikan dengan posisi file di screenshot kamu
+import WelcomeScreen from "./WelcomeScreen"; 
+import MoonBackground from "./MoonBackground"; 
+import { ScrollReveal } from "./ScrollReveal"; 
+import ServicesSection from "./components/services"; 
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -42,7 +43,7 @@ export default function Home() {
 
         {/* --- HERO SECTION --- */}
         <section id="beranda" className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6">
-          <div className="animate-fade-in flex flex-col items-center w-full">
+          <div className="animate-fade-in flex flex-col items-center w-full text-center">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 mb-12">
               <div className="relative animate-float">
                 <div className="absolute inset-0 bg-purple-600/20 blur-[60px] rounded-full" />
@@ -53,20 +54,11 @@ export default function Home() {
                 <h1 className={`${fantasyFont} text-6xl md:text-[10rem] font-bold leading-[0.8] text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-200 to-purple-600`}>SHOP</h1>
               </div>
             </div>
-            <p className="text-white/40 max-w-2xl mx-auto text-[9px] md:text-sm mb-12 tracking-[0.4em] uppercase font-light italic px-4 text-center">Digital Craftsmanship for the Midnight Dreamers</p>
+            <p className="text-white/40 max-w-2xl mx-auto text-[9px] md:text-sm mb-12 tracking-[0.4em] uppercase font-light italic px-4">Digital Craftsmanship for the Midnight Dreamers</p>
             <div className="flex flex-wrap justify-center gap-4">
                <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href="#layanan" className="px-8 py-4 bg-white text-black rounded-full text-[10px] font-black tracking-widest uppercase">EXPLORE SERVICES</motion.a>
                <motion.a whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }} whileTap={{ scale: 0.95 }} href="#tentang" className="px-8 py-4 border border-white/10 bg-white/5 backdrop-blur-md rounded-full text-[10px] font-black tracking-widest uppercase">LEARN MORE</motion.a>
             </div>
-          </div>
-        </section>
-
-        {/* --- BRAND STRIP --- */}
-        <section className="relative z-20 py-12 md:py-20 border-y border-white/5 bg-white/[0.01] backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-6 md:gap-24 opacity-40">
-            {["SELENE SHOP", "HEPPYCLOUD", "BANGBLAZE"].map((brand) => (
-              <span key={brand} className={`${fantasyFont} text-sm md:text-3xl font-bold tracking-[0.3em]`}>{brand}</span>
-            ))}
           </div>
         </section>
 
@@ -78,7 +70,7 @@ export default function Home() {
           <section id="caraorder" className="relative z-10 py-24 md:py-40 px-6 text-center">
             <h2 className={`${fantasyFont} text-4xl md:text-7xl font-bold mb-16 text-white`}>CARA ORDER</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {[{ s: "01", t: "JOIN COMMUNITY", d: "Masuk ke server Discord kami." }, { s: "02", t: "CREATE TICKET", d: "Pilih kategori layanan dan konsultasi." }, { s: "03", t: "SECURE PAYMENT", d: "Pembayaran aman melalui gateway." }].map((item, idx) => (
+              {[{ s: "01", t: "JOIN COMMUNITY", d: "Masuk ke server Discord kami." }, { s: "02", t: "CREATE TICKET", d: "Pilih kategori layanan dan konsultasi." }, { s: "03", t: "SECURE PAYMENT", d: "Scan QRIS yang tersedia di ticket order." }].map((item, idx) => (
                 <motion.div key={idx} whileHover={{ scale: 1.03 }} className="relative p-10 rounded-[40px] bg-white/[0.02] border border-white/5 backdrop-blur-md">
                   <span className={`${fantasyFont} text-5xl font-black text-purple-500/10 absolute top-8 right-10`}>{item.s}</span>
                   <h4 className={`${fantasyFont} font-bold text-white text-xl mb-4 relative z-10`}>{item.t}</h4>
@@ -89,19 +81,36 @@ export default function Home() {
           </section>
         </ScrollReveal>
 
-        {/* --- SECTION METODE PEMBAYARAN (BARU) --- */}
+        {/* --- SECTION QRIS PAYMENT --- */}
         <ScrollReveal>
-          <section className="relative z-10 py-20 px-6 border-t border-white/5">
+          <section className="relative z-10 py-20 px-6 border-y border-white/5 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
             <div className="max-w-4xl mx-auto text-center">
-              <p className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-10 uppercase">ACCEPTED PAYMENTS</p>
-              <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
-                <img src="/payments/qris.png" alt="QRIS" className="h-6 md:h-10 object-contain" />
-                <img src="/payments/dana.png" alt="DANA" className="h-6 md:h-10 object-contain" />
-                <img src="/payments/gopay.png" alt="GOPAY" className="h-6 md:h-10 object-contain" />
-                <img src="/payments/ovo.png" alt="OVO" className="h-5 md:h-8 object-contain" />
-                <img src="/payments/paypal.png" alt="PAYPAL" className="h-6 md:h-10 object-contain" />
+              <p className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-10 uppercase">OFFICIAL PAYMENT</p>
+              
+              <div className="flex flex-col md:flex-row items-center justify-center gap-12 bg-white/[0.02] border border-white/10 p-10 rounded-[50px] backdrop-blur-sm">
+                {/* Bagian Kode QR */}
+                <div className="relative group">
+                  <div className="absolute -inset-4 bg-purple-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="relative bg-white p-4 rounded-3xl shadow-2xl">
+                    {/* Ganti src dengan path file QRIS kamu di folder public */}
+                    <img src="/qris-code.png" alt="QRIS Selene Shop" className="w-48 h-48 md:w-64 md:h-64 object-contain grayscale hover:grayscale-0 transition-all duration-500" />
+                  </div>
+                </div>
+
+                {/* Bagian Informasi */}
+                <div className="text-left space-y-6">
+                  <h3 className={`${fantasyFont} text-3xl md:text-5xl font-bold text-white`}>QRIS <span className="text-purple-500 text-xl block md:inline md:ml-2 tracking-tighter italic">ALL PAYMENT</span></h3>
+                  <div className="space-y-4">
+                    <p className="text-[11px] text-white/60 tracking-widest uppercase">Mendukung Pembayaran Melalui:</p>
+                    <div className="flex flex-wrap gap-4 text-xs font-black tracking-widest text-white/40 italic uppercase">
+                       <span>DANA</span> • <span>GOPAY</span> • <span>OVO</span> • <span>SHOPEEPAY</span> • <span>BANK TRANSFER</span>
+                    </div>
+                  </div>
+                  <p className="text-[10px] text-purple-400 font-bold tracking-[0.2em] border-l-2 border-purple-500 pl-4 uppercase">
+                    Pastikan nominal sesuai dengan instruksi ticket!
+                  </p>
+                </div>
               </div>
-              <p className="mt-10 text-[9px] text-white/20 tracking-[0.2em] uppercase">And many more via Discord Ticket</p>
             </div>
           </section>
         </ScrollReveal>
