@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// Import disesuaikan dengan posisi file di screenshot kamu
+// Import disesuaikan agar Vercel tidak "Module Not Found"
 import WelcomeScreen from "./WelcomeScreen"; 
 import MoonBackground from "./MoonBackground"; 
 import { ScrollReveal } from "./ScrollReveal"; 
@@ -88,26 +88,23 @@ export default function Home() {
               <p className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-10 uppercase">OFFICIAL PAYMENT</p>
               
               <div className="flex flex-col md:flex-row items-center justify-center gap-12 bg-white/[0.02] border border-white/10 p-10 rounded-[50px] backdrop-blur-sm">
-                {/* Bagian Kode QR */}
                 <div className="relative group">
                   <div className="absolute -inset-4 bg-purple-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="relative bg-white p-4 rounded-3xl shadow-2xl">
-                    {/* Ganti src dengan path file QRIS kamu di folder public */}
+                  <div className="relative bg-white p-4 rounded-3xl shadow-2xl overflow-hidden">
                     <img src="/qris-code.png" alt="QRIS Selene Shop" className="w-48 h-48 md:w-64 md:h-64 object-contain grayscale hover:grayscale-0 transition-all duration-500" />
                   </div>
                 </div>
 
-                {/* Bagian Informasi */}
                 <div className="text-left space-y-6">
                   <h3 className={`${fantasyFont} text-3xl md:text-5xl font-bold text-white`}>QRIS <span className="text-purple-500 text-xl block md:inline md:ml-2 tracking-tighter italic">ALL PAYMENT</span></h3>
                   <div className="space-y-4">
                     <p className="text-[11px] text-white/60 tracking-widest uppercase">Mendukung Pembayaran Melalui:</p>
                     <div className="flex flex-wrap gap-4 text-xs font-black tracking-widest text-white/40 italic uppercase">
-                       <span>DANA</span> • <span>GOPAY</span> • <span>OVO</span> • <span>SHOPEEPAY</span> • <span>BANK TRANSFER</span>
+                       <span>DANA</span> • <span>GOPAY</span> • <span>OVO</span> • <span>SHOPEEPAY</span> • <span>BANK</span>
                     </div>
                   </div>
                   <p className="text-[10px] text-purple-400 font-bold tracking-[0.2em] border-l-2 border-purple-500 pl-4 uppercase">
-                    Pastikan nominal sesuai dengan instruksi ticket!
+                    Scan otomatis & Konfirmasi via Ticket
                   </p>
                 </div>
               </div>
@@ -116,10 +113,26 @@ export default function Home() {
         </ScrollReveal>
 
         {/* --- FOOTER --- */}
-        <footer className="relative z-10 py-10 border-t border-white/5 bg-[#010108] px-6 text-center">
-          <div className="max-w-7xl mx-auto">
-            <div className={`${fantasyFont} text-base md:text-lg font-bold mb-4 tracking-[0.5em] opacity-80 uppercase text-white`}>SELENE SHOP</div>
-            <p className="text-white/40 text-[9px] md:text-[11px] uppercase tracking-[0.15em]">© 2026 SeleneShop. Powered by Bardan1172 Visual Series.</p>
+        <footer className="relative z-10 py-20 border-t border-white/5 bg-[#010108] px-6">
+          <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
+            <div className="flex items-center gap-3 mb-8">
+               <img src="/selene_shop.png" alt="Logo" className="w-12 h-12 md:w-16 md:h-16 object-contain rounded-full mix-blend-screen" />
+               <div className={`${fantasyFont} text-xl md:text-3xl font-bold tracking-[0.3em] text-white`}>SELENE<span className="text-purple-500 ml-1">✦</span></div>
+            </div>
+            
+            <div className="flex gap-8 mb-12">
+               {["INSTAGRAM", "DISCORD", "TIKTOK"].map((social) => (
+                 <a key={social} href="#" className="text-[10px] font-black tracking-[0.3em] text-white/40 hover:text-purple-500 transition-colors uppercase">{social}</a>
+               ))}
+            </div>
+
+            <div className="h-px w-full max-w-xs bg-gradient-to-r from-transparent via-white/10 to-transparent mb-12" />
+            
+            <p className="text-white/20 text-[9px] md:text-[11px] uppercase tracking-[0.2em] leading-loose max-w-lg">
+              Crafting premium digital assets for the Minecraft community and beyond. 
+              All rights reserved. © 2026 SeleneShop. 
+              <span className="block mt-2 opacity-50">Powered by Bardan1172 Visual Series.</span>
+            </p>
           </div>
         </footer>
       </main>
