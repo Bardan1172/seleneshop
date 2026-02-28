@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// Import disesuaikan agar Vercel tidak "Module Not Found"
 import WelcomeScreen from "./WelcomeScreen"; 
 import MoonBackground from "./MoonBackground"; 
 import { ScrollReveal } from "./ScrollReveal"; 
@@ -11,6 +10,7 @@ import { motion } from "framer-motion";
 export default function Home() {
   const fantasyFont = "font-serif italic tracking-wider uppercase";
   const [isLoading, setIsLoading] = useState(true);
+  const smoothSpring = { type: "spring", stiffness: 300, damping: 20 };
 
   useEffect(() => {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -41,9 +41,9 @@ export default function Home() {
       <main className="relative">
         <MoonBackground />
 
-        {/* --- HERO SECTION --- */}
+        {/* --- 1. HERO SECTION --- */}
         <section id="beranda" className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6">
-          <div className="animate-fade-in flex flex-col items-center w-full text-center">
+          <div className="animate-fade-in flex flex-col items-center w-full">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 mb-12">
               <div className="relative animate-float">
                 <div className="absolute inset-0 bg-purple-600/20 blur-[60px] rounded-full" />
@@ -54,7 +54,7 @@ export default function Home() {
                 <h1 className={`${fantasyFont} text-6xl md:text-[10rem] font-bold leading-[0.8] text-transparent bg-clip-text bg-gradient-to-b from-white via-purple-200 to-purple-600`}>SHOP</h1>
               </div>
             </div>
-            <p className="text-white/40 max-w-2xl mx-auto text-[9px] md:text-sm mb-12 tracking-[0.4em] uppercase font-light italic px-4">Digital Craftsmanship for the Midnight Dreamers</p>
+            <p className="text-white/40 max-w-2xl mx-auto text-[9px] md:text-sm mb-12 tracking-[0.4em] uppercase font-light italic px-4 text-center">Digital Craftsmanship for the Midnight Dreamers</p>
             <div className="flex flex-wrap justify-center gap-4">
                <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href="#layanan" className="px-8 py-4 bg-white text-black rounded-full text-[10px] font-black tracking-widest uppercase">EXPLORE SERVICES</motion.a>
                <motion.a whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }} whileTap={{ scale: 0.95 }} href="#tentang" className="px-8 py-4 border border-white/10 bg-white/5 backdrop-blur-md rounded-full text-[10px] font-black tracking-widest uppercase">LEARN MORE</motion.a>
@@ -62,13 +62,75 @@ export default function Home() {
           </div>
         </section>
 
-        {/* --- SECTION LAYANAN --- */}
+        {/* --- 2. BRAND STRIP --- */}
+        <section className="relative z-20 py-12 md:py-20 border-y border-white/5 bg-white/[0.01] backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-6 flex flex-wrap justify-center items-center gap-6 md:gap-24 opacity-40">
+            {["SELENE SHOP", "HEPPYCLOUD", "BANGBLAZE"].map((brand) => (
+              <span key={brand} className={`${fantasyFont} text-sm md:text-3xl font-bold tracking-[0.3em]`}>{brand}</span>
+            ))}
+          </div>
+        </section>
+
+        {/* --- 3. TENTANG KAMI --- */}
+        <ScrollReveal>
+          <section id="tentang" className="relative z-10 py-24 md:py-40 px-6">
+            <div className="max-w-5xl mx-auto bg-white/[0.02] border border-white/5 rounded-[40px] md:rounded-[80px] p-8 md:p-20 backdrop-blur-xl">
+              <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+                <div className="text-center md:text-left">
+                  <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-4 md:mb-6 block uppercase">THE STORY</span>
+                  <h2 className={`${fantasyFont} text-4xl md:text-7xl font-bold leading-tight mb-6 md:mb-8`}>TENTANG<br className="hidden md:block"/>KAMI</h2>
+                  <div className="w-16 h-[2px] bg-purple-500 mx-auto md:mx-0 opacity-50" />
+                </div>
+                <div className="flex flex-col gap-8 md:gap-10">
+                  <p className="text-white/50 leading-loose text-xs md:text-lg uppercase tracking-widest italic font-light text-center md:text-left">
+                    Sebuah manifestasi kreativitas yang baru saja merekah. Selene Shop hadir untuk menciptakan standar keanggunan baru di semesta digital.
+                  </p>
+                  <div className="grid grid-cols-2 gap-4 md:gap-6">
+                    <motion.div whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.05)" }} transition={smoothSpring} className="p-4 md:p-6 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col justify-center">
+                      <h4 className={`${fantasyFont} text-xl md:text-3xl text-purple-400 font-bold`}>100+</h4>
+                      <p className="text-[7px] md:text-[9px] text-white/30 uppercase tracking-[0.2em] mt-1">DONE</p>
+                    </motion.div>
+                    <motion.div whileHover={{ y: -5, backgroundColor: "rgba(255,255,255,0.05)" }} transition={smoothSpring} className="p-4 md:p-6 rounded-3xl bg-white/5 border border-white/5 text-center flex flex-col justify-center overflow-hidden">
+                      <h4 className={`${fantasyFont} text-sm md:text-2xl text-purple-400 font-bold leading-none truncate`}>PREMIUM</h4>
+                      <p className="text-[7px] md:text-[9px] text-white/30 uppercase tracking-[0.2em] mt-1">QUALITY</p>
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </ScrollReveal>
+
+        {/* --- 4. PHILOSOPHY --- */}
+        <ScrollReveal>
+          <section className="relative z-10 py-20 px-4 md:px-6">
+            <div className="max-w-6xl mx-auto border border-white/5 bg-white/[0.01] rounded-[40px] md:rounded-[60px] p-8 md:p-20 backdrop-blur-xl">
+              <div className="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                  <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">PHILOSOPHY</span>
+                  <h2 className={`${fantasyFont} text-3xl md:text-6xl font-bold mb-8 uppercase`}>MENGAPA KAMI?</h2>
+                  <p className="text-white/40 leading-relaxed tracking-wide uppercase text-[10px] md:text-xs italic">Kami percaya bahwa identitas digital adalah refleksi dari jiwa. Itulah sebabnya setiap karya melewati proses kurasi detail.</p>
+                </div>
+                <div className="space-y-6 md:space-y-8">
+                  {[{ t: "ARTISTIC PRECISION", d: "Setiap pixel diletakkan dengan penuh pertimbangan estetika." }, { t: "EXCLUSIVE DESIGN", d: "Karya unik yang mencerminkan kepribadian eksklusifmu." }, { t: "NIGHTFALL SERVICE", d: "Dukungan layanan yang responsif dan profesional." }].map((item, i) => (
+                    <motion.div key={i} whileHover={{ x: 10 }} transition={smoothSpring} className="border-l border-white/10 pl-6 cursor-default text-left">
+                      <h4 className={`${fantasyFont} text-white text-base md:text-lg mb-2`}>✦ {item.t}</h4>
+                      <p className="text-white/30 text-[9px] md:text-[10px] tracking-widest uppercase">{item.d}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+        </ScrollReveal>
+
+        {/* --- 5. LAYANAN --- */}
         <ServicesSection fantasyFont={fantasyFont} />
 
-        {/* --- CARA ORDER --- */}
+        {/* --- 6. CARA ORDER --- */}
         <ScrollReveal>
           <section id="caraorder" className="relative z-10 py-24 md:py-40 px-6 text-center">
-            <h2 className={`${fantasyFont} text-4xl md:text-7xl font-bold mb-16 text-white`}>CARA ORDER</h2>
+            <h2 className={`${fantasyFont} text-4xl md:text-7xl font-bold mb-16 text-white uppercase`}>CARA ORDER</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[{ s: "01", t: "JOIN COMMUNITY", d: "Masuk ke server Discord kami." }, { s: "02", t: "CREATE TICKET", d: "Pilih kategori layanan dan konsultasi." }, { s: "03", t: "SECURE PAYMENT", d: "Scan QRIS yang tersedia di ticket order." }].map((item, idx) => (
                 <motion.div key={idx} whileHover={{ scale: 1.03 }} className="relative p-10 rounded-[40px] bg-white/[0.02] border border-white/5 backdrop-blur-md">
@@ -81,20 +143,15 @@ export default function Home() {
           </section>
         </ScrollReveal>
 
-        {/* --- SECTION QRIS PAYMENT --- */}
+        {/* --- 7. QRIS PAYMENT --- */}
         <ScrollReveal>
           <section className="relative z-10 py-20 px-6 border-y border-white/5 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
             <div className="max-w-4xl mx-auto text-center">
               <p className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-10 uppercase">OFFICIAL PAYMENT</p>
-              
               <div className="flex flex-col md:flex-row items-center justify-center gap-12 bg-white/[0.02] border border-white/10 p-10 rounded-[50px] backdrop-blur-sm">
-                <div className="relative group">
-                  <div className="absolute -inset-4 bg-purple-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="relative bg-white p-4 rounded-3xl shadow-2xl overflow-hidden">
+                <div className="relative group bg-white p-4 rounded-3xl shadow-2xl overflow-hidden">
                     <img src="/qris-code.png" alt="QRIS Selene Shop" className="w-48 h-48 md:w-64 md:h-64 object-contain grayscale hover:grayscale-0 transition-all duration-500" />
-                  </div>
                 </div>
-
                 <div className="text-left space-y-6">
                   <h3 className={`${fantasyFont} text-3xl md:text-5xl font-bold text-white`}>QRIS <span className="text-purple-500 text-xl block md:inline md:ml-2 tracking-tighter italic">ALL PAYMENT</span></h3>
                   <div className="space-y-4">
@@ -103,35 +160,27 @@ export default function Home() {
                        <span>DANA</span> • <span>GOPAY</span> • <span>OVO</span> • <span>SHOPEEPAY</span> • <span>BANK</span>
                     </div>
                   </div>
-                  <p className="text-[10px] text-purple-400 font-bold tracking-[0.2em] border-l-2 border-purple-500 pl-4 uppercase">
-                    Scan otomatis & Konfirmasi via Ticket
-                  </p>
                 </div>
               </div>
             </div>
           </section>
         </ScrollReveal>
 
-        {/* --- FOOTER --- */}
+        {/* --- 8. FOOTER --- */}
         <footer className="relative z-10 py-20 border-t border-white/5 bg-[#010108] px-6">
           <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
             <div className="flex items-center gap-3 mb-8">
                <img src="/selene_shop.png" alt="Logo" className="w-12 h-12 md:w-16 md:h-16 object-contain rounded-full mix-blend-screen" />
                <div className={`${fantasyFont} text-xl md:text-3xl font-bold tracking-[0.3em] text-white`}>SELENE<span className="text-purple-500 ml-1">✦</span></div>
             </div>
-            
             <div className="flex gap-8 mb-12">
                {["INSTAGRAM", "DISCORD", "TIKTOK"].map((social) => (
                  <a key={social} href="#" className="text-[10px] font-black tracking-[0.3em] text-white/40 hover:text-purple-500 transition-colors uppercase">{social}</a>
                ))}
             </div>
-
             <div className="h-px w-full max-w-xs bg-gradient-to-r from-transparent via-white/10 to-transparent mb-12" />
-            
             <p className="text-white/20 text-[9px] md:text-[11px] uppercase tracking-[0.2em] leading-loose max-w-lg">
-              Crafting premium digital assets for the Minecraft community and beyond. 
-              All rights reserved. © 2026 SeleneShop. 
-              <span className="block mt-2 opacity-50">Powered by Bardan1172 Visual Series.</span>
+              © 2026 SeleneShop. Powered by Bardan1172 Visual Series.
             </p>
           </div>
         </footer>
