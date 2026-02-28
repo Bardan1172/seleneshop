@@ -148,17 +148,52 @@ export default function Home() {
   <section className="relative z-10 py-20 px-6 border-y border-white/5 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
     <div className="max-w-4xl mx-auto text-center">
       <p className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-10 uppercase">OFFICIAL PAYMENT</p>
-      <div className="flex flex-col md:flex-row items-center justify-center gap-12 bg-white/[0.02] border border-white/10 p-10 rounded-[50px] backdrop-blur-sm">
-        <div className="relative group bg-white p-4 rounded-3xl shadow-2xl overflow-hidden">
-            {/* Nama file sudah diganti menjadi /qris.png */}
-            <img src="/qris.png" alt="QRIS Selene Shop" className="w-48 h-48 md:w-64 md:h-64 object-contain grayscale hover:grayscale-0 transition-all duration-500" />
+      
+      {/* Container Utama Kartu */}
+      <div className="flex flex-col md:flex-row items-center justify-center gap-12 bg-white/[0.02] border border-white/10 p-10 md:p-16 rounded-[50px] backdrop-blur-md shadow-2xl relative overflow-hidden">
+        
+        {/* Dekorasi Cahaya di belakang QR */}
+        <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/20 blur-[100px] rounded-full" />
+
+        {/* Frame Kotak QRIS */}
+        <div className="relative group">
+          <div className="relative bg-white p-3 rounded-2xl shadow-[0_0_50px_rgba(255,255,255,0.1)] transition-transform duration-500 group-hover:scale-105">
+            {/* Image QRIS */}
+            <img 
+              src="/qris.png" 
+              alt="QRIS Selene Shop" 
+              className="w-48 h-48 md:w-56 md:h-56 object-contain rounded-lg"
+            />
+            
+            {/* Overlay Garis Pemindai (Animasi) */}
+            <div className="absolute inset-0 border-2 border-purple-500/0 group-hover:border-purple-500/50 rounded-2xl transition-all duration-500">
+               <div className="absolute top-0 left-0 w-full h-[2px] bg-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.8)] opacity-0 group-hover:opacity-100 group-hover:animate-scan" />
+            </div>
+          </div>
         </div>
-        <div className="text-left space-y-6">
-          <h3 className={`${fantasyFont} text-3xl md:text-5xl font-bold text-white`}>QRIS <span className="text-purple-500 text-xl block md:inline md:ml-2 tracking-tighter italic">ALL PAYMENT</span></h3>
+
+        {/* Deskripsi Pembayaran */}
+        <div className="text-left space-y-6 relative z-10">
+          <h3 className={`${fantasyFont} text-4xl md:text-6xl font-bold text-white tracking-tight`}>
+            QRIS <span className="text-purple-500 italic text-2xl md:text-3xl block md:inline md:ml-2">ALL PAYMENT</span>
+          </h3>
+          
           <div className="space-y-4">
-            <p className="text-[11px] text-white/60 tracking-widest uppercase">Mendukung Pembayaran Melalui:</p>
-            <div className="flex flex-wrap gap-4 text-xs font-black tracking-widest text-white/40 italic uppercase">
-               <span>DANA</span> • <span>GOPAY</span> • <span>OVO</span> • <span>SHOPEEPAY</span> • <span>BANK</span>
+            <p className="text-[11px] text-white/60 tracking-[0.3em] font-bold uppercase">Mendukung Pembayaran:</p>
+            <div className="flex flex-wrap gap-x-4 gap-y-2 text-[10px] md:text-xs font-black tracking-widest text-white/40 italic uppercase">
+               <span className="hover:text-purple-400 transition-colors">DANA</span> • 
+               <span className="hover:text-purple-400 transition-colors">GOPAY</span> • 
+               <span className="hover:text-purple-400 transition-colors">OVO</span> • 
+               <span className="hover:text-purple-400 transition-colors">SHOPEEPAY</span> • 
+               <span className="hover:text-purple-400 transition-colors">BANK</span>
+            </div>
+          </div>
+
+          <div className="pt-4">
+            <div className="inline-block px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full">
+              <p className="text-[9px] text-purple-400 font-bold tracking-widest uppercase italic">
+                Scan & Konfirmasi Otomatis via Ticket
+              </p>
             </div>
           </div>
         </div>
