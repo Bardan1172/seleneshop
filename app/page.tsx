@@ -144,27 +144,28 @@ export default function Home() {
         </ScrollReveal>
 
         {/* --- 7. QRIS PAYMENT --- */}
-        <ScrollReveal>
-          <section className="relative z-10 py-20 px-6 border-y border-white/5 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
-            <div className="max-w-4xl mx-auto text-center">
-              <p className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-10 uppercase">OFFICIAL PAYMENT</p>
-              <div className="flex flex-col md:flex-row items-center justify-center gap-12 bg-white/[0.02] border border-white/10 p-10 rounded-[50px] backdrop-blur-sm">
-                <div className="relative group bg-white p-4 rounded-3xl shadow-2xl overflow-hidden">
-                    <img src="/qris-code.png" alt="QRIS Selene Shop" className="w-48 h-48 md:w-64 md:h-64 object-contain grayscale hover:grayscale-0 transition-all duration-500" />
-                </div>
-                <div className="text-left space-y-6">
-                  <h3 className={`${fantasyFont} text-3xl md:text-5xl font-bold text-white`}>QRIS <span className="text-purple-500 text-xl block md:inline md:ml-2 tracking-tighter italic">ALL PAYMENT</span></h3>
-                  <div className="space-y-4">
-                    <p className="text-[11px] text-white/60 tracking-widest uppercase">Mendukung Pembayaran Melalui:</p>
-                    <div className="flex flex-wrap gap-4 text-xs font-black tracking-widest text-white/40 italic uppercase">
-                       <span>DANA</span> • <span>GOPAY</span> • <span>OVO</span> • <span>SHOPEEPAY</span> • <span>BANK</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+<ScrollReveal>
+  <section className="relative z-10 py-20 px-6 border-y border-white/5 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
+    <div className="max-w-4xl mx-auto text-center">
+      <p className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-10 uppercase">OFFICIAL PAYMENT</p>
+      <div className="flex flex-col md:flex-row items-center justify-center gap-12 bg-white/[0.02] border border-white/10 p-10 rounded-[50px] backdrop-blur-sm">
+        <div className="relative group bg-white p-4 rounded-3xl shadow-2xl overflow-hidden">
+            {/* Nama file sudah diganti menjadi /qris.png */}
+            <img src="/qris.png" alt="QRIS Selene Shop" className="w-48 h-48 md:w-64 md:h-64 object-contain grayscale hover:grayscale-0 transition-all duration-500" />
+        </div>
+        <div className="text-left space-y-6">
+          <h3 className={`${fantasyFont} text-3xl md:text-5xl font-bold text-white`}>QRIS <span className="text-purple-500 text-xl block md:inline md:ml-2 tracking-tighter italic">ALL PAYMENT</span></h3>
+          <div className="space-y-4">
+            <p className="text-[11px] text-white/60 tracking-widest uppercase">Mendukung Pembayaran Melalui:</p>
+            <div className="flex flex-wrap gap-4 text-xs font-black tracking-widest text-white/40 italic uppercase">
+               <span>DANA</span> • <span>GOPAY</span> • <span>OVO</span> • <span>SHOPEEPAY</span> • <span>BANK</span>
             </div>
-          </section>
-        </ScrollReveal>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ScrollReveal>
 
         {/* --- 8. FOOTER --- */}
         <footer className="relative z-10 py-20 border-t border-white/5 bg-[#010108] px-6">
