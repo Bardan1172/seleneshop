@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ScrollReveal } from "../ScrollReveal";
 import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 
-// Struktur Data Baru: Setiap kategori punya sub-item preview
 const MASTER_SERVICES = [
   {
     id: "render",
@@ -82,7 +81,6 @@ export default function ServicesSection({ fantasyFont }: { fantasyFont: string }
   const [activeCategory, setActiveCategory] = useState(0);
   const [activePreview, setActivePreview] = useState(0);
 
-  // Navigasi Kategori (Layanan Utama)
   const nextCat = () => {
     setActiveCategory((prev) => (prev + 1) % MASTER_SERVICES.length);
     setActivePreview(0);
@@ -92,7 +90,6 @@ export default function ServicesSection({ fantasyFont }: { fantasyFont: string }
     setActivePreview(0);
   };
 
-  // Navigasi Preview Gambar (3 Gambar per layanan)
   const nextPrev = () => setActivePreview((prev) => (prev + 1) % 3);
   const prevPrev = () => setActivePreview((prev) => (prev - 1 + 3) % 3);
 
@@ -105,7 +102,7 @@ export default function ServicesSection({ fantasyFont }: { fantasyFont: string }
         <h2 className={`${fantasyFont} text-5xl md:text-8xl font-bold text-white uppercase`}>LAYANAN</h2>
       </div>
 
-      {/* --- MENU NAVIGASI LAYANAN (TOP SLIDE) --- */}
+      {/* --- MENU NAVIGASI LAYANAN --- */}
       <div className="max-w-4xl mx-auto mb-12 flex items-center justify-between bg-white/[0.02] border border-white/10 p-4 rounded-3xl backdrop-blur-xl">
         <button onClick={prevCat} className="p-3 hover:text-purple-500 transition-colors text-white/50"><ChevronLeft /></button>
         <div className="flex flex-col items-center">
@@ -124,23 +121,23 @@ export default function ServicesSection({ fantasyFont }: { fantasyFont: string }
       {/* --- MAIN DISPLAY BOX --- */}
       <ScrollReveal>
         <div className="max-w-6xl mx-auto relative bg-white/[0.03] border border-white/10 rounded-[40px] md:rounded-[60px] overflow-hidden backdrop-blur-2xl shadow-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
+          <div className="grid grid-cols-1 lg:grid-cols-[35%_65%] min-h-[500px]">
             
-            {/* KIRI: INFO HARGA & DETAIL */}
+            {/* KIRI: INFO HARGA & DETAIL (Ramping) */}
             <AnimatePresence mode="wait">
               <motion.div 
                 key={currentData.id}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
-                className="p-8 md:p-16 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10"
+                className="p-8 md:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10"
               >
                 <div>
                   <div className="flex items-center gap-2 mb-4">
-                    <Sparkles className="text-purple-500 w-4 h-4" />
-                    <span className="text-[10px] font-black tracking-[0.3em] text-white/40 uppercase">{currentData.tag}</span>
+                    <Sparkles className="text-purple-500 w-3 h-3" />
+                    <span className="text-[9px] font-black tracking-[0.3em] text-white/40 uppercase">{currentData.tag}</span>
                   </div>
-                  <h3 className={`${fantasyFont} text-4xl md:text-6xl font-bold text-white mb-8 leading-tight`}>
+                  <h3 className={`${fantasyFont} text-3xl md:text-5xl font-bold text-white mb-8 leading-tight uppercase tracking-tighter`}>
                     {currentData.title.split(' ')[0]} <br/> 
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600">
                       {currentData.title.split(' ').slice(1).join(' ')}
@@ -149,9 +146,9 @@ export default function ServicesSection({ fantasyFont }: { fantasyFont: string }
 
                   <div className="space-y-6">
                     {currentData.details.map((detail, idx) => (
-                      <div key={idx} className="group border-l-2 border-white/5 hover:border-purple-500/50 pl-6 transition-all">
-                        <p className="text-[10px] text-white/30 uppercase tracking-widest mb-1 group-hover:text-white/60">{detail.label}</p>
-                        <p className="text-xl font-bold text-white tracking-tighter">{detail.price}</p>
+                      <div key={idx} className="group border-l border-white/10 hover:border-purple-500/50 pl-4 transition-all">
+                        <p className="text-[9px] text-white/30 uppercase tracking-widest mb-1 group-hover:text-white/60">{detail.label}</p>
+                        <p className="text-lg font-bold text-white tracking-tighter">{detail.price}</p>
                       </div>
                     ))}
                   </div>
@@ -162,47 +159,46 @@ export default function ServicesSection({ fantasyFont }: { fantasyFont: string }
                   whileTap={{ scale: 0.98 }}
                   href="https://discord.gg/muH44HDrea" 
                   target="_blank" 
-                  className="mt-12 w-full text-center py-5 bg-white/5 border border-white/10 rounded-2xl font-black text-[11px] text-white uppercase tracking-[0.4em] shadow-lg transition-all"
+                  className="mt-10 w-full text-center py-4 bg-white/5 border border-white/10 rounded-xl font-black text-[10px] text-white uppercase tracking-[0.3em] transition-all"
                 >
                   {currentData.btn}
                 </motion.a>
               </motion.div>
             </AnimatePresence>
 
-            {/* KANAN: PREVIEW PRODUK (SUB-SLIDE) */}
-            <div className="relative group aspect-square lg:aspect-auto bg-black/40 overflow-hidden">
+            {/* KANAN: PREVIEW PRODUK (Landscape) */}
+            <div className="relative group aspect-video lg:aspect-auto bg-black/40 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={`${currentData.id}-${activePreview}`}
                   src={currentData.previews[activePreview]}
-                  initial={{ opacity: 0, scale: 1.1 }}
+                  initial={{ opacity: 0, scale: 1.05 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.6 }}
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                  className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
                   alt="Sample Product"
                 />
               </AnimatePresence>
 
-              {/* Glassmorphism Navigation for Preview */}
+              {/* Navigation for Preview */}
               <div className="absolute inset-x-6 bottom-8 flex items-center justify-between">
                 <div className="flex gap-2">
                   {[0, 1, 2].map((i) => (
                     <div 
                       key={i} 
-                      className={`h-1.5 transition-all duration-300 rounded-full ${i === activePreview ? "w-8 bg-purple-500 shadow-[0_0_10px_#a855f7]" : "w-2 bg-white/20"}`} 
+                      className={`h-1 transition-all duration-300 rounded-full ${i === activePreview ? "w-8 bg-purple-500 shadow-[0_0_10px_#a855f7]" : "w-2 bg-white/20"}`} 
                     />
                   ))}
                 </div>
                 <div className="flex gap-2">
-                  <button onClick={prevPrev} className="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md text-white hover:bg-purple-600 transition-all"><ChevronLeft size={18} /></button>
-                  <button onClick={nextPrev} className="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md text-white hover:bg-purple-600 transition-all"><ChevronRight size={18} /></button>
+                  <button onClick={prevPrev} className="p-2.5 rounded-lg bg-black/40 border border-white/10 backdrop-blur-md text-white hover:bg-purple-600 transition-all"><ChevronLeft size={18} /></button>
+                  <button onClick={nextPrev} className="p-2.5 rounded-lg bg-black/40 border border-white/10 backdrop-blur-md text-white hover:bg-purple-600 transition-all"><ChevronRight size={18} /></button>
                 </div>
               </div>
 
-              {/* Label Preview */}
-              <div className="absolute top-8 right-8 px-4 py-2 bg-black/60 backdrop-blur-md border border-white/10 rounded-full">
-                <p className="text-[9px] font-bold text-white/70 tracking-widest uppercase">Sample Preview {activePreview + 1}</p>
+              <div className="absolute top-6 right-6 px-3 py-1.5 bg-black/40 backdrop-blur-md border border-white/10 rounded-full">
+                <p className="text-[8px] font-bold text-white/70 tracking-widest uppercase">Preview {activePreview + 1}</p>
               </div>
             </div>
 
@@ -210,9 +206,8 @@ export default function ServicesSection({ fantasyFont }: { fantasyFont: string }
         </div>
       </ScrollReveal>
 
-      {/* FOOTER TIP */}
       <div className="mt-12 text-center">
-        <p className="text-[9px] text-white/20 uppercase tracking-[0.3em] italic">Gunakan panah untuk menavigasi kategori dan preview produk</p>
+        <p className="text-[9px] text-white/20 uppercase tracking-[0.3em] italic">Navigasi kategori di atas • Navigasi preview di gambar</p>
       </div>
     </section>
   );
