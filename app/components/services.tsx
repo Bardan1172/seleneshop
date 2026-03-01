@@ -3,120 +3,158 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollReveal } from "../ScrollReveal";
-import { ChevronLeft, ChevronRight } from "lucide-react"; // Pastikan sudah install lucide-react
+import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 
-const SERVICES_DATA = [
-  // ... (Data sebelumnya tetap sama: Cosmetica, Skin, Art, Sticker, Build)
-  { 
-    title: "✦ COSMETICA FACE", 
-    tag: "*KHUSUS MINECRAFT PREMIUM", 
-    items: [
-      { label: "FACE 512px: 30K", desc: "Custom mata, alis, dan mulut sesuai request." }, 
-      { label: "FACE 1024px: 50K", desc: "lebih detail dan lebih tajam." }
-    ], 
-    btn: "ORDER FACE" 
+// Struktur Data Baru: Setiap kategori punya sub-item preview
+const MASTER_SERVICES = [
+  {
+    id: "render",
+    title: "MINECRAFT RENDER",
+    tag: "CINEMATIC GFX & SCENE",
+    details: [
+      { label: "TEMA: GFX, SCENE, MANIP", price: "25K - 45K" },
+      { label: "RATIO 1:1 / 9:16", price: "+2K" },
+      { label: "NO BACKGROUND", price: "8K - 22K" }
+    ],
+    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
+    btn: "BOOKING RENDER"
   },
-  { 
-    title: "◈ MINECRAFT SKIN", 
-    tag: "CLASSIC / SLIM MODEL", 
-    items: [
-      { label: "SIMPLE: 10K", desc: "Desain minimalis dengan shading standar." }, 
-      { label: "FULL DETAIL: 15K", desc: "Shading kompleks untuk Anime atau Fantasy." }
-    ], 
-    btn: "ORDER SKIN" 
+  {
+    id: "face",
+    title: "COSMETICA FACE",
+    tag: "*KHUSUS MINECRAFT PREMIUM",
+    details: [
+      { label: "FACE 512px", price: "30K" },
+      { label: "FACE 1024px", price: "50K" },
+      { label: "CUSTOM EXPRESSION", price: "FREE" }
+    ],
+    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
+    btn: "ORDER FACE"
   },
-  { 
-    title: "✎ ART & ILLUSTRATION", 
-    tag: "DIGITAL HAND-DRAWN", 
-    items: [
-      { label: "SIMPLE SHADE: 25K", desc: "Fanart atau OC." }, 
-      { label: "CHIBI PNGTUBER: 25K", desc: "Karakter mungil untuk konten." }, 
-      { label: "PNGTUBER: 30K", desc: "Model PNGtuber (Bust-up)." }
-    ], 
-    btn: "ORDER ART" 
+  {
+    id: "skin",
+    title: "MINECRAFT SKIN",
+    tag: "CLASSIC / SLIM MODEL",
+    details: [
+      { label: "SIMPLE SHADING", price: "10K" },
+      { label: "FULL DETAIL (ANIME/FANTASY)", price: "15K" }
+    ],
+    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
+    btn: "ORDER SKIN"
   },
-  { 
-    title: "✉ CUSTOM STICKER", 
-    tag: "DISCORD & WHATSAPP", 
-    items: [
-      { label: "PER PCS: 10K", desc: "Bust-up atau Head Only." }, 
-      { label: "PACK (6 STICKER): 50K", desc: "Lebih hemat untuk koleksi." }
-    ], 
-    btn: "ORDER STICKER" 
+  {
+    id: "art",
+    title: "ART & ILLUSTRATION",
+    tag: "DIGITAL HAND-DRAWN",
+    details: [
+      { label: "SIMPLE SHADE / CHIBI", price: "25K" },
+      { label: "PNGTUBER MODEL", price: "30K" }
+    ],
+    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
+    btn: "ORDER ART"
   },
-  { 
-    title: "🏛 MINECRAFT BUILD", 
-    tag: "STRUCTURAL & AESTHETIC", 
-    items: [
-      { label: "BASIC: 15K – 75K", desc: "Small structures." }, 
-      { label: "ADVANCED: 75K – 300K", desc: "Fantasy base." }, 
-      { label: "ELITE: 450K – 1.5JT", desc: "Complex cities." }
-    ], 
-    btn: "CUSTOM BUILD" 
+  {
+    id: "sticker",
+    title: "CUSTOM STICKER",
+    tag: "DISCORD & WHATSAPP",
+    details: [
+      { label: "PER PCS (BUST UP)", price: "10K" },
+      { label: "PACK (6 STICKERS)", price: "50K" }
+    ],
+    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
+    btn: "ORDER STICKER"
+  },
+  {
+    id: "build",
+    title: "MINECRAFT BUILD",
+    tag: "STRUCTURAL & AESTHETIC",
+    details: [
+      { label: "BASIC (SMALL)", price: "15K+" },
+      { label: "ADVANCED (FANTASY)", price: "75K+" },
+      { label: "ELITE (COMPLEX CITY)", price: "450K+" }
+    ],
+    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
+    btn: "CUSTOM BUILD"
   }
 ];
 
-// Data khusus untuk Slide Render
-const RENDER_SAMPLES = [
-  "/render1.png", // Ganti dengan path foto sample kamu di folder public
-  "/render2.png",
-  "/render3.png"
-];
-
 export default function ServicesSection({ fantasyFont }: { fantasyFont: string }) {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeCategory, setActiveCategory] = useState(0);
+  const [activePreview, setActivePreview] = useState(0);
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % RENDER_SAMPLES.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + RENDER_SAMPLES.length) % RENDER_SAMPLES.length);
+  // Navigasi Kategori (Layanan Utama)
+  const nextCat = () => {
+    setActiveCategory((prev) => (prev + 1) % MASTER_SERVICES.length);
+    setActivePreview(0);
+  };
+  const prevCat = () => {
+    setActiveCategory((prev) => (prev - 1 + MASTER_SERVICES.length) % MASTER_SERVICES.length);
+    setActivePreview(0);
+  };
+
+  // Navigasi Preview Gambar (3 Gambar per layanan)
+  const nextPrev = () => setActivePreview((prev) => (prev + 1) % 3);
+  const prevPrev = () => setActivePreview((prev) => (prev - 1 + 3) % 3);
+
+  const currentData = MASTER_SERVICES[activeCategory];
 
   return (
     <section id="layanan" className="relative z-10 py-20 md:py-32 px-4 md:px-6">
-      <div className="max-w-7xl mx-auto text-center mb-16 md:mb-24">
-        <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-6 block uppercase">COLLECTIONS</span>
-        <h2 className={`${fantasyFont} text-5xl md:text-8xl font-bold py-4 text-white`}>LAYANAN</h2>
+      <div className="max-w-7xl mx-auto text-center mb-12">
+        <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-4 block uppercase">SERVICES CATALOG</span>
+        <h2 className={`${fantasyFont} text-5xl md:text-8xl font-bold text-white uppercase`}>LAYANAN</h2>
       </div>
 
-      <div className="max-w-7xl mx-auto space-y-20">
-        
-        {/* --- SECTION MINECRAFT RENDER (SISTEM SLIDE) --- */}
-        <ScrollReveal>
-          <div className="relative bg-white/[0.02] border border-white/10 rounded-[40px] overflow-hidden backdrop-blur-md">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              
-              {/* KIRI: DETAIL HARGA */}
-              <div className="p-8 md:p-16 flex flex-col justify-center border-b lg:border-b-0 lg:border-r border-white/10">
-                <div className="mb-8">
-                  <h3 className={`${fantasyFont} text-3xl md:text-5xl font-bold text-white mb-2 uppercase tracking-tighter`}>
-                    MINECRAFT RENDER
+      {/* --- MENU NAVIGASI LAYANAN (TOP SLIDE) --- */}
+      <div className="max-w-4xl mx-auto mb-12 flex items-center justify-between bg-white/[0.02] border border-white/10 p-4 rounded-3xl backdrop-blur-xl">
+        <button onClick={prevCat} className="p-3 hover:text-purple-500 transition-colors text-white/50"><ChevronLeft /></button>
+        <div className="flex flex-col items-center">
+          <motion.p 
+            key={currentData.id}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`${fantasyFont} text-lg md:text-2xl font-bold text-purple-400 tracking-widest text-center`}
+          >
+            {activeCategory + 1} / {MASTER_SERVICES.length} — {currentData.title}
+          </motion.p>
+        </div>
+        <button onClick={nextCat} className="p-3 hover:text-purple-500 transition-colors text-white/50"><ChevronRight /></button>
+      </div>
+
+      {/* --- MAIN DISPLAY BOX --- */}
+      <ScrollReveal>
+        <div className="max-w-6xl mx-auto relative bg-white/[0.03] border border-white/10 rounded-[40px] md:rounded-[60px] overflow-hidden backdrop-blur-2xl shadow-2xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
+            
+            {/* KIRI: INFO HARGA & DETAIL */}
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={currentData.id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                className="p-8 md:p-16 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10"
+              >
+                <div>
+                  <div className="flex items-center gap-2 mb-4">
+                    <Sparkles className="text-purple-500 w-4 h-4" />
+                    <span className="text-[10px] font-black tracking-[0.3em] text-white/40 uppercase">{currentData.tag}</span>
+                  </div>
+                  <h3 className={`${fantasyFont} text-4xl md:text-6xl font-bold text-white mb-8 leading-tight`}>
+                    {currentData.title.split(' ')[0]} <br/> 
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600">
+                      {currentData.title.split(' ').slice(1).join(' ')}
+                    </span>
                   </h3>
-                  <p className="text-purple-400 text-xs font-bold tracking-[0.2em] uppercase">CINEMATIC GFX & SCENE</p>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-                  <div className="space-y-4">
-                    <h4 className="text-white text-[11px] font-black tracking-widest uppercase italic border-b border-purple-500/30 pb-2">✦ TEMA RENDER</h4>
-                    <ul className="text-[10px] text-white/50 space-y-2 font-bold uppercase tracking-widest">
-                      <li>• GFX</li>
-                      <li>• SCENE</li>
-                      <li>• MANIP</li>
-                    </ul>
+                  <div className="space-y-6">
+                    {currentData.details.map((detail, idx) => (
+                      <div key={idx} className="group border-l-2 border-white/5 hover:border-purple-500/50 pl-6 transition-all">
+                        <p className="text-[10px] text-white/30 uppercase tracking-widest mb-1 group-hover:text-white/60">{detail.label}</p>
+                        <p className="text-xl font-bold text-white tracking-tighter">{detail.price}</p>
+                      </div>
+                    ))}
                   </div>
-                  <div className="space-y-4">
-                    <h4 className="text-white text-[11px] font-black tracking-widest uppercase italic border-b border-purple-500/30 pb-2">✦ UKURAN / HARGA</h4>
-                    <ul className="text-[10px] text-white/50 space-y-2 font-bold uppercase tracking-widest">
-                      <li className="text-white">HARGA: 25K - 45K</li>
-                      <li>• RATIO 1:1 : +2K</li>
-                      <li>• RATIO 16:9 : FREE</li>
-                      <li>• RATIO 9:16 : +2K</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="bg-purple-500/5 border border-purple-500/20 p-6 rounded-3xl mb-10">
-                  <p className={`${fantasyFont} text-purple-400 text-sm mb-2 italic`}>"Khusus No Background"</p>
-                  <p className="text-[10px] text-white/40 leading-relaxed uppercase tracking-wider font-medium">
-                    Harga mulai 8k - 22k. Tambahan request (efek/lainnya) +1k.
-                  </p>
                 </div>
 
                 <motion.a 
@@ -124,80 +162,57 @@ export default function ServicesSection({ fantasyFont }: { fantasyFont: string }
                   whileTap={{ scale: 0.98 }}
                   href="https://discord.gg/muH44HDrea" 
                   target="_blank" 
-                  className="w-full text-center py-4 bg-white/5 border border-white/10 rounded-2xl font-bold text-[10px] text-white uppercase tracking-[0.3em] transition-all"
+                  className="mt-12 w-full text-center py-5 bg-white/5 border border-white/10 rounded-2xl font-black text-[11px] text-white uppercase tracking-[0.4em] shadow-lg transition-all"
                 >
-                  BOOKING RENDER
-                </motion.a>
-              </div>
-
-              {/* KANAN: SLIDE SAMPLE PRODUCT */}
-              <div className="relative h-[400px] lg:h-auto bg-black/40 group">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={currentSlide}
-                    src={RENDER_SAMPLES[currentSlide]}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -50 }}
-                    transition={{ duration: 0.5 }}
-                    className="w-full h-full object-cover"
-                    alt="Sample Render"
-                  />
-                </AnimatePresence>
-                
-                {/* Navigasi Slide */}
-                <div className="absolute inset-0 flex items-center justify-between px-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button onClick={prevSlide} className="p-2 rounded-full bg-black/50 border border-white/10 text-white hover:bg-purple-600 transition-colors">
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button onClick={nextSlide} className="p-2 rounded-full bg-black/50 border border-white/10 text-white hover:bg-purple-600 transition-colors">
-                    <ChevronRight size={20} />
-                  </button>
-                </div>
-
-                {/* Indikator Slide */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-                  {RENDER_SAMPLES.map((_, i) => (
-                    <div key={i} className={`h-1 w-8 rounded-full transition-all ${i === currentSlide ? "bg-purple-500" : "bg-white/20"}`} />
-                  ))}
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </ScrollReveal>
-
-        {/* --- GRID LAYANAN LAINNYA --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-          {SERVICES_DATA.map((s, i) => (
-            <ScrollReveal key={i}>
-              <motion.div 
-                whileHover={{ y: -12, borderColor: "rgba(168, 85, 247, 0.4)", backgroundColor: "rgba(255, 255, 255, 0.04)" }}
-                className="group relative bg-white/[0.02] border border-white/10 p-8 md:p-12 rounded-[40px] flex flex-col h-full overflow-hidden backdrop-blur-md shadow-2xl"
-              >
-                <div className="flex-grow z-10 text-left">
-                  <h3 className={`${fantasyFont} text-xl md:text-2xl font-bold text-white mb-2 transition-colors group-hover:text-purple-400`}>{s.title}</h3>
-                  <p className="text-[9px] text-purple-400 font-bold mb-8 tracking-[0.2em] uppercase">{s.tag}</p>
-                  <div className="space-y-8 mb-10">
-                    {s.items.map((item, idx) => (
-                      <div key={idx} className="border-l border-white/10 pl-4 group-hover:border-purple-500/30 transition-colors">
-                        <p className="text-[11px] font-black text-white/90 tracking-[0.1em] mb-1.5 uppercase leading-tight">{item.label}</p>
-                        <p className="text-[10px] text-white/30 leading-relaxed uppercase tracking-tighter italic">{item.desc}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <motion.a 
-                  whileHover={{ scale: 1.02, backgroundColor: "#ffffff", color: "#000000" }}
-                  href="https://discord.gg/muH44HDrea" 
-                  className="relative z-10 block w-full text-center py-4 bg-white/5 border border-white/10 rounded-2xl font-bold text-[9px] text-white uppercase tracking-[0.2em]"
-                >
-                  {s.btn}
+                  {currentData.btn}
                 </motion.a>
               </motion.div>
-            </ScrollReveal>
-          ))}
+            </AnimatePresence>
+
+            {/* KANAN: PREVIEW PRODUK (SUB-SLIDE) */}
+            <div className="relative group aspect-square lg:aspect-auto bg-black/40 overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={`${currentData.id}-${activePreview}`}
+                  src={currentData.previews[activePreview]}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.6 }}
+                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                  alt="Sample Product"
+                />
+              </AnimatePresence>
+
+              {/* Glassmorphism Navigation for Preview */}
+              <div className="absolute inset-x-6 bottom-8 flex items-center justify-between">
+                <div className="flex gap-2">
+                  {[0, 1, 2].map((i) => (
+                    <div 
+                      key={i} 
+                      className={`h-1.5 transition-all duration-300 rounded-full ${i === activePreview ? "w-8 bg-purple-500 shadow-[0_0_10px_#a855f7]" : "w-2 bg-white/20"}`} 
+                    />
+                  ))}
+                </div>
+                <div className="flex gap-2">
+                  <button onClick={prevPrev} className="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md text-white hover:bg-purple-600 transition-all"><ChevronLeft size={18} /></button>
+                  <button onClick={nextPrev} className="p-3 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md text-white hover:bg-purple-600 transition-all"><ChevronRight size={18} /></button>
+                </div>
+              </div>
+
+              {/* Label Preview */}
+              <div className="absolute top-8 right-8 px-4 py-2 bg-black/60 backdrop-blur-md border border-white/10 rounded-full">
+                <p className="text-[9px] font-bold text-white/70 tracking-widest uppercase">Sample Preview {activePreview + 1}</p>
+              </div>
+            </div>
+
+          </div>
         </div>
+      </ScrollReveal>
+
+      {/* FOOTER TIP */}
+      <div className="mt-12 text-center">
+        <p className="text-[9px] text-white/20 uppercase tracking-[0.3em] italic">Gunakan panah untuk menavigasi kategori dan preview produk</p>
       </div>
     </section>
   );
