@@ -24,8 +24,8 @@ const MASTER_SERVICES = [
     tag: "*KHUSUS MINECRAFT PREMIUM",
     details: [
       { label: "FACE 512px", price: "30K" },
-      { label: "FACE 1024px", price: "50K" },
-      { label: "CUSTOM EXPRESSION", price: "FREE" }
+      { label: "FACE 1024px", price: "65K" },
+      { label: "FACE 2048px", price: "100k" }
     ],
     previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
     btn: "ORDER FACE"
