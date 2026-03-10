@@ -27,7 +27,7 @@ const MASTER_SERVICES = [
       { label: "FACE 1024px", price: "65K" },
       { label: "FACE 2048px", price: "100k" }
     ],
-    previews: ["/face/1.png", "/face-2.png", "/face-3.png"],
+    previews: ["/face-1.png", "/face-2.png", "/face-3.png"],
     btn: "ORDER FACE"
   },
   {
