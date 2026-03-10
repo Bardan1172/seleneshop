@@ -15,7 +15,7 @@ const MASTER_SERVICES = [
       { label: "RATIO 1:1 / 9:16", price: "+2K" },
       { label: "NO BACKGROUND", price: "8K - 22K" }
     ],
-    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
+    previews: ["/render-1.png", "/render-2.png", "/comingsoon.png"],
     btn: "BOOKING RENDER"
   },
   {
@@ -27,7 +27,7 @@ const MASTER_SERVICES = [
       { label: "FACE 1024px", price: "65K" },
       { label: "FACE 2048px", price: "100k" }
     ],
-    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
+    previews: ["/face/1.png", "/face-2.png", "/face-3.png"],
     btn: "ORDER FACE"
   },
   {
@@ -38,7 +38,7 @@ const MASTER_SERVICES = [
       { label: "SIMPLE SHADING", price: "10K" },
       { label: "FULL DETAIL (ANIME/FANTASY)", price: "15K" }
     ],
-    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
+    previews: ["/skin-1.png", "/skin-2.png", "/skin-3.png"],
     btn: "ORDER SKIN"
   },
   {
@@ -49,7 +49,7 @@ const MASTER_SERVICES = [
       { label: "SIMPLE SHADE / CHIBI", price: "25K" },
       { label: "PNGTUBER MODEL", price: "30K" }
     ],
-    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
+    previews: ["/art-1.png", "/art-2.png", "/art-3.png"],
     btn: "ORDER ART"
   },
   {
