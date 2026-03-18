@@ -74,6 +74,16 @@ const MASTER_SERVICES = [
     ],
     previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
     btn: "CUSTOM BUILD"
+  },
+  {
+    id: "model",
+    title: "MINECRAFT CUSTOM MODEL",
+    tag: "3D CUSTOM ENTITY & ITEM",
+    details: [
+      { label: "COMING SOON", price: "—" }
+    ],
+    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
+    btn: "COMING SOON"
   }
 ];
 
