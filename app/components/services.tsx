@@ -7,18 +7,6 @@ import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 
 const MASTER_SERVICES = [
   {
-    id: "render",
-    title: "MINECRAFT RENDER",
-    tag: "CINEMATIC GFX & SCENE",
-    details: [
-      { label: "TEMA: GFX, SCENE, MANIP", price: "25K - 45K" },
-      { label: "RATIO 1:1 / 9:16", price: "+2K" },
-      { label: "NO BACKGROUND", price: "8K - 22K" }
-    ],
-    previews: ["/render-1.png", "/render-2.png", "/comingsoon.png"],
-    btn: "BOOKING RENDER"
-  },
-  {
     id: "face",
     title: "COSMETICA FACE",
     tag: "*KHUSUS MINECRAFT PREMIUM",
@@ -74,6 +62,18 @@ const MASTER_SERVICES = [
     ],
     previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
     btn: "CUSTOM BUILD"
+  },
+  {
+    id: "render",
+    title: "MINECRAFT RENDER",
+    tag: "CINEMATIC GFX & SCENE",
+    details: [
+      { label: "TEMA: GFX, SCENE, MANIP", price: "25K - 45K" },
+      { label: "RATIO 1:1 / 9:16", price: "+2K" },
+      { label: "NO BACKGROUND", price: "8K - 22K" }
+    ],
+    previews: ["/render-1.png", "/render-2.png", "/comingsoon.png"],
+    btn: "BOOKING RENDER"
   },
   {
     id: "model",
