@@ -52,18 +52,6 @@ const MASTER_SERVICES = [
     btn: "ORDER STICKER"
   },
   {
-    id: "build",
-    title: "MINECRAFT BUILD",
-    tag: "STRUCTURAL & AESTHETIC",
-    details: [
-      { label: "BASIC (SMALL)", price: "15K+" },
-      { label: "ADVANCED (FANTASY)", price: "75K+" },
-      { label: "ELITE (COMPLEX CITY)", price: "450K+" }
-    ],
-    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
-    btn: "CUSTOM BUILD"
-  },
-  {
     id: "render",
     title: "MINECRAFT RENDER",
     tag: "CINEMATIC GFX & SCENE",
