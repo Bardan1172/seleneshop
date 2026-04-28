@@ -5,6 +5,10 @@ import WelcomeScreen from "./WelcomeScreen";
 import MoonBackground from "./MoonBackground"; 
 import { ScrollReveal } from "./ScrollReveal"; 
 import ServicesSection from "./components/services"; 
+import FAQSection from "./components/FAQ";
+import PortfolioSection from "./components/Portfolio";
+import TestimonialsSection from "./components/Testimonials";
+import BlogSection from "./components/Blog";
 import { motion } from "framer-motion";
 
 export default function Home() {
@@ -30,8 +34,17 @@ export default function Home() {
             <div className={`${fantasyFont} text-[10px] md:text-sm font-bold tracking-[0.3em] hidden sm:block`}>SELENE<span className="text-purple-500 ml-1">✦</span></div>
           </div>
           <div className="hidden md:flex items-center gap-1">
-            {["BERANDA", "TENTANG", "LAYANAN", "CARA ORDER"].map((nav) => (
-              <a key={nav} href={`#${nav.toLowerCase().replace(" ", "")}`} className="px-4 py-2 text-[10px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-opacity duration-300 opacity-60 hover:opacity-100 uppercase">{nav}</a>
+            {[
+              { label: "BERANDA", href: "#beranda" },
+              { label: "TENTANG", href: "#tentang" },
+              { label: "LAYANAN", href: "#layanan" },
+              { label: "PORTFOLIO", href: "#portfolio" },
+              { label: "TESTIMONI", href: "#testimoni" },
+              { label: "FAQ", href: "#faq" },
+              { label: "BERITA", href: "#blog" },
+              { label: "HARGA", href: "/pricelist" },
+            ].map((nav) => (
+              <a key={nav.label} href={nav.href} className="px-3 py-2 text-[9px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-opacity duration-300 opacity-60 hover:opacity-100 uppercase">{nav.label}</a>
             ))}
           </div>
           <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] font-black tracking-[0.2em] uppercase shadow-lg">JOIN DISCORD</motion.a>
@@ -127,9 +140,12 @@ export default function Home() {
         {/* --- 5. LAYANAN --- */}
         <ServicesSection fantasyFont={fantasyFont} />
 
+        {/* --- 6. PORTFOLIO --- */}
+        <PortfolioSection fantasyFont={fantasyFont} />
+
         {/* --- 6. CARA ORDER --- */}
         <ScrollReveal>
-          <section id="caraorder" className="relative z-10 py-24 md:py-40 px-6 text-center">
+          <section id="caraorder" className="relative z-10 py-16 md:py-24 px-6 text-center">
             <h2 className={`${fantasyFont} text-4xl md:text-7xl font-bold mb-16 text-white uppercase`}>CARA ORDER</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[{ s: "01", t: "JOIN COMMUNITY", d: "Masuk ke server Discord kami." }, { s: "02", t: "CREATE TICKET", d: "Pilih kategori layanan dan konsultasi." }, { s: "03", t: "SECURE PAYMENT", d: "Scan QRIS yang tersedia di ticket order." }].map((item, idx) => (
@@ -143,7 +159,12 @@ export default function Home() {
           </section>
         </ScrollReveal>
 
-        {/* --- 7. QRIS PAYMENT --- */}
+        {/* --- 7. TESTIMONI --- */}
+        <section id="testimoni">
+          <TestimonialsSection fantasyFont={fantasyFont} />
+        </section>
+
+        {/* --- 8. QRIS PAYMENT --- */}
 <ScrollReveal>
   <section className="relative z-10 py-20 px-6 border-y border-white/5 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
     <div className="max-w-4xl mx-auto text-center">
@@ -204,7 +225,7 @@ export default function Home() {
 
         {/* 8.5 OUR TEAM */}
         <ScrollReveal>
-          <section className="relative z-10 py-24 px-4 md:px-6">
+          <section className="relative z-10 py-16 md:py-20 px-4 md:px-6">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-16">
                 <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-4 block uppercase">COLLABORATION</span>
@@ -243,6 +264,12 @@ export default function Home() {
           </section>
         </ScrollReveal>
 
+        {/* --- 9. FAQ --- */}
+        <FAQSection fantasyFont={fantasyFont} />
+
+        {/* --- 10. BLOG --- */}
+        <BlogSection fantasyFont={fantasyFont} />
+
         {/* 8. FOOTER */}
         <footer className="relative z-10 py-10 border-t border-white/5 bg-[#010108] px-6">
           <div className="max-w-7xl mx-auto flex flex-col items-center">
@@ -250,7 +277,7 @@ export default function Home() {
             <div className="flex flex-col items-center gap-2 text-center w-full">
               <p className="text-white/40 text-[9px] md:text-[11px] uppercase tracking-[0.15em]">© 2026 <span className="text-white/60">SeleneShop</span>. All rights reserved.</p>
               <div className="flex flex-wrap justify-center items-center gap-x-2 gap-y-1 text-[9px] md:text-[11px] tracking-[0.1em]">
-                <p className="text-white/40 uppercase"><span className="text-blue-400 font-bold">Atra Caeltharion</span> Visual Series</p>
+                <p className="text-white/40 uppercase"><span className="text-blue-400 font-bold">Bardan1172</span> Visual Series</p>
                 <span className="opacity-30 mx-1">—</span> 
                 <p className="text-white/40 uppercase">Powered by <span className="text-white/60">SeleneShop.</span></p>
               </div>
