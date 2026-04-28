@@ -202,6 +202,47 @@ export default function Home() {
   </section>
 </ScrollReveal>
 
+        {/* 8.5 OUR TEAM */}
+        <ScrollReveal>
+          <section className="relative z-10 py-24 px-4 md:px-6">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-16">
+                <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-4 block uppercase">COLLABORATION</span>
+                <h2 className={`${fantasyFont} text-4xl md:text-7xl font-bold text-white uppercase`}>OUR TEAM</h2>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+                {[
+                  { name: "Altra", role: "OWNER" },
+                  { name: "Gabbie", role: "OWNER & WORKER" },
+                  { name: "Aellaryn", role: "CO OWNER & WORKER" },
+                  { name: "Kuba", role: "CO OWNER & STAFF" },
+                  { name: "Nyx", role: "ADMIN & WORKER" },
+                  { name: "Chilo", role: "MODERATOR" },
+                  { name: "Alen", role: "STAFF & WORKER" },
+                  { name: "Amyy", role: "STAFF & WORKER" },
+                  { name: "Delicia", role: "STAFF & WORKER" },
+                  { name: "Kinaki", role: "STAFF & WORKER" },
+                  { name: "Lopi", role: "STAFF & WORKER" }
+                ].map((member, idx) => (
+                  <motion.div 
+                    key={idx}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    transition={smoothSpring}
+                    className="relative p-6 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-md text-center group overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-white/10 flex items-center justify-center">
+                      <span className={`${fantasyFont} text-xl md:text-2xl text-purple-400 font-bold`}>{member.name[0]}</span>
+                    </div>
+                    <h4 className={`${fantasyFont} text-sm md:text-base font-bold text-white mb-1`}>{member.name}</h4>
+                    <p className="text-[8px] md:text-[9px] text-white/30 uppercase tracking-[0.2em]">{member.role}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </ScrollReveal>
+
         {/* 8. FOOTER */}
         <footer className="relative z-10 py-10 border-t border-white/5 bg-[#010108] px-6">
           <div className="max-w-7xl mx-auto flex flex-col items-center">
