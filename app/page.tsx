@@ -250,7 +250,7 @@ export default function Home() {
             <div className="flex flex-col items-center gap-2 text-center w-full">
               <p className="text-white/40 text-[9px] md:text-[11px] uppercase tracking-[0.15em]">© 2026 <span className="text-white/60">SeleneShop</span>. All rights reserved.</p>
               <div className="flex flex-wrap justify-center items-center gap-x-2 gap-y-1 text-[9px] md:text-[11px] tracking-[0.1em]">
-                <p className="text-white/40 uppercase"><span className="text-blue-400 font-bold">Bardan1172</span> Visual Series</p>
+                <p className="text-white/40 uppercase"><span className="text-blue-400 font-bold">Atra Caeltharion</span> Visual Series</p>
                 <span className="opacity-30 mx-1">—</span> 
                 <p className="text-white/40 uppercase">Powered by <span className="text-white/60">SeleneShop.</span></p>
               </div>
