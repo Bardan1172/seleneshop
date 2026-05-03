@@ -1,212 +1,180 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
 import { ScrollReveal } from "../ScrollReveal";
-import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
-const MASTER_SERVICES = [
+const PRODUCTS = [
   {
     id: "face",
     title: "COSMETICA FACE",
-    tag: "*KHUSUS MINECRAFT PREMIUM",
-    details: [
-      { label: "FACE 512px", price: "30K" },
-      { label: "FACE 1024px", price: "65K" },
-      { label: "FACE 2048px", price: "100k" }
-    ],
-    previews: ["/face-1.png", "/face-2.png", "/face-3.png"],
-    btn: "ORDER FACE"
+    image: "/portofolio/face-512px-1.png",
+    minPrice: "30K",
   },
   {
     id: "skin",
     title: "MINECRAFT SKIN",
-    tag: "CLASSIC / SLIM MODEL",
-    details: [
-      { label: "SIMPLE SHADING", price: "10K" },
-      { label: "FULL DETAIL (ANIME/FANTASY)", price: "15K" }
-    ],
-    previews: ["/skin-1.png", "/skin-2.png", "/skin-3.png"],
-    btn: "ORDER SKIN"
+    image: "/portofolio/skin-1.png",
+    minPrice: "5K",
   },
   {
-    id: "art",
-    title: "ART & ILLUSTRATION",
-    tag: "DIGITAL HAND-DRAWN",
-    details: [
-      { label: "SIMPLE SHADE / CHIBI", price: "25K" },
-      { label: "PNGTUBER MODEL", price: "30K" }
-    ],
-    previews: ["/art-1.png", "/art-2.png", "/art-3.png"],
-    btn: "ORDER ART"
+    id: "chibi",
+    title: "CHIBI PNG TUBER",
+    image: "/portofolio/art-1.png",
+    minPrice: "15K",
+  },
+  {
+    id: "anime",
+    title: "ART ANIME STYLE",
+    image: "/portofolio/art-2.png",
+    minPrice: "15K",
+  },
+  {
+    id: "semirealis",
+    title: "ART SEMIREALIS",
+    image: "/portofolio/art-3.png",
+    minPrice: "35K",
+  },
+  {
+    id: "lineart",
+    title: "LINEART",
+    image: "/portofolio/art-4.png",
+    minPrice: "10K",
   },
   {
     id: "sticker",
     title: "CUSTOM STICKER",
-    tag: "DISCORD & WHATSAPP",
-    details: [
-      { label: "PER PCS (BUST UP)", price: "10K" },
-      { label: "PACK (6 STICKERS)", price: "50K" }
-    ],
-    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
-    btn: "ORDER STICKER"
+    image: "/portofolio/comingsoon.png",
+    minPrice: "10K",
   },
   {
     id: "render",
-    title: "MINECRAFT RENDER",
-    tag: "CINEMATIC GFX & SCENE",
-    details: [
-      { label: "TEMA: GFX, SCENE, MANIP", price: "25K - 45K" },
-      { label: "RATIO 1:1 / 9:16", price: "+2K" },
-      { label: "NO BACKGROUND", price: "8K - 22K" }
-    ],
-    previews: ["/render-1.png", "/render-2.png", "/comingsoon.png"],
-    btn: "BOOKING RENDER"
+    title: "MC RENDER",
+    image: "/portofolio/render-1.png",
+    minPrice: "25K",
   },
   {
     id: "model",
-    title: "MINECRAFT CUSTOM MODEL",
-    tag: "3D CUSTOM ENTITY & ITEM",
-    details: [
-      { label: "COMING SOON", price: "—" }
-    ],
-    previews: ["/comingsoon.png", "/comingsoon.png", "/comingsoon.png"],
-    btn: "COMING SOON"
-  }
+    title: "CUSTOM MODEL",
+    image: "/portofolio/comingsoon.png",
+    minPrice: "25K",
+  },
 ];
 
 export default function ServicesSection({ fantasyFont }: { fantasyFont: string }) {
-  const [activeCategory, setActiveCategory] = useState(0);
-  const [activePreview, setActivePreview] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const nextCat = () => {
-    setActiveCategory((prev) => (prev + 1) % MASTER_SERVICES.length);
-    setActivePreview(0);
+  const checkScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+    }
   };
-  const prevCat = () => {
-    setActiveCategory((prev) => (prev - 1 + MASTER_SERVICES.length) % MASTER_SERVICES.length);
-    setActivePreview(0);
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = 300;
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+      setTimeout(checkScroll, 100);
+    }
   };
-
-  const nextPrev = () => setActivePreview((prev) => (prev + 1) % 3);
-  const prevPrev = () => setActivePreview((prev) => (prev - 1 + 3) % 3);
-
-  const currentData = MASTER_SERVICES[activeCategory];
 
   return (
     <section id="layanan" className="relative z-10 py-20 md:py-32 px-4 md:px-6">
       <div className="max-w-7xl mx-auto text-center mb-12">
-        <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-4 block uppercase">SERVICES CATALOG</span>
-        <h2 className={`${fantasyFont} text-5xl md:text-8xl font-bold text-white uppercase`}>LAYANAN</h2>
+        <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-4 block uppercase">OUR SERVICES</span>
+        <h2 className={`${fantasyFont} text-5xl md:text-8xl font-bold text-white uppercase`}>PRODUCT LIST</h2>
       </div>
 
-      {/* --- MENU NAVIGASI LAYANAN --- */}
-      <div className="max-w-4xl mx-auto mb-12 flex items-center justify-between bg-white/[0.02] border border-white/10 p-4 rounded-3xl backdrop-blur-xl">
-        <button onClick={prevCat} className="p-3 hover:text-purple-500 transition-colors text-white/50"><ChevronLeft /></button>
-        <div className="flex flex-col items-center">
-          <motion.p 
-            key={currentData.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`${fantasyFont} text-lg md:text-2xl font-bold text-purple-400 tracking-widest text-center`}
-          >
-            {activeCategory + 1} / {MASTER_SERVICES.length} — {currentData.title}
-          </motion.p>
-        </div>
-        <button onClick={nextCat} className="p-3 hover:text-purple-500 transition-colors text-white/50"><ChevronRight /></button>
-      </div>
-
-      {/* --- MAIN DISPLAY BOX --- */}
       <ScrollReveal>
-        <div className="max-w-6xl mx-auto relative bg-white/[0.03] border border-white/10 rounded-[40px] md:rounded-[60px] overflow-hidden backdrop-blur-2xl shadow-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-[35%_65%] min-h-[500px]">
-            
-            {/* KIRI: INFO HARGA & DETAIL (Ramping) */}
-            <AnimatePresence mode="wait">
-              <motion.div 
-                key={currentData.id}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                className="p-8 md:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10"
-              >
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <Sparkles className="text-purple-500 w-3 h-3" />
-                    <span className="text-[9px] font-black tracking-[0.3em] text-white/40 uppercase">{currentData.tag}</span>
-                  </div>
-                  <h3 className={`${fantasyFont} text-3xl md:text-5xl font-bold text-white mb-8 leading-tight uppercase tracking-tighter`}>
-                    {currentData.title.split(' ')[0]} <br/> 
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-purple-600">
-                      {currentData.title.split(' ').slice(1).join(' ')}
-                    </span>
-                  </h3>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center gap-3 md:gap-4">
+            <button
+              onClick={() => scroll("left")}
+              disabled={!canScrollLeft}
+              className={`shrink-0 p-2 md:p-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl transition-all ${
+                canScrollLeft ? "hover:bg-white/10 text-white" : "text-white/20 cursor-not-allowed"
+              }`}
+            >
+              <ChevronLeft size={20} />
+            </button>
 
-                  <div className="space-y-6">
-                    {currentData.details.map((detail, idx) => (
-                      <div key={idx} className="group border-l border-white/10 hover:border-purple-500/50 pl-4 transition-all">
-                        <p className="text-[9px] text-white/30 uppercase tracking-widest mb-1 group-hover:text-white/60">{detail.label}</p>
-                        <p className="text-lg font-bold text-white tracking-tighter">{detail.price}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <motion.a 
-                  whileHover={{ scale: 1.02, backgroundColor: "#ffffff", color: "#000000" }}
-                  whileTap={{ scale: 0.98 }}
-                  href="https://discord.gg/muH44HDrea" 
-                  target="_blank" 
-                  className="mt-10 w-full text-center py-4 bg-white/5 border border-white/10 rounded-xl font-black text-[10px] text-white uppercase tracking-[0.3em] transition-all"
+            <div
+              ref={scrollRef}
+              onScroll={checkScroll}
+              className="flex gap-3 md:gap-4 overflow-x-auto scroll-smooth hide-scrollbar px-2"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
+              {PRODUCTS.map((product, idx) => (
+                <motion.div
+                  key={product.id}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="shrink-0 w-32 md:w-40 bg-white/[0.02] border border-white/10 rounded-2xl md:rounded-3xl p-3 md:p-4 backdrop-blur-xl hover:bg-white/[0.05] hover:border-purple-500/30 transition-all flex flex-col"
                 >
-                  {currentData.btn}
-                </motion.a>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* KANAN: PREVIEW PRODUK (Landscape) */}
-            <div className="relative group aspect-video lg:aspect-auto bg-black/40 overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={`${currentData.id}-${activePreview}`}
-                  src={currentData.previews[activePreview]}
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.6 }}
-                  className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
-                  alt="Sample Product"
-                />
-              </AnimatePresence>
-
-              {/* Navigation for Preview */}
-              <div className="absolute inset-x-6 bottom-8 flex items-center justify-between">
-                <div className="flex gap-2">
-                  {[0, 1, 2].map((i) => (
-                    <div 
-                      key={i} 
-                      className={`h-1 transition-all duration-300 rounded-full ${i === activePreview ? "w-8 bg-purple-500 shadow-[0_0_10px_#a855f7]" : "w-2 bg-white/20"}`} 
+                  <div className="aspect-square rounded-xl overflow-hidden mb-3 md:mb-4">
+                    <img 
+                      src={product.image} 
+                      alt={product.title} 
+                      className="w-full h-full object-cover"
                     />
-                  ))}
-                </div>
-                <div className="flex gap-2">
-                  <button onClick={prevPrev} className="p-2.5 rounded-lg bg-black/40 border border-white/10 backdrop-blur-md text-white hover:bg-purple-600 transition-all"><ChevronLeft size={18} /></button>
-                  <button onClick={nextPrev} className="p-2.5 rounded-lg bg-black/40 border border-white/10 backdrop-blur-md text-white hover:bg-purple-600 transition-all"><ChevronRight size={18} /></button>
-                </div>
-              </div>
+                  </div>
+                  
+                  <div className="flex-grow text-center">
+                    <h3 className={`${fantasyFont} text-[9px] md:text-xs font-bold text-white mb-1 uppercase leading-tight`}>
+                      {product.title}
+                    </h3>
+                    <p className={`${fantasyFont} text-xs md:text-sm font-bold text-purple-400`}>
+                      Start {product.minPrice}
+                    </p>
+                  </div>
 
-              <div className="absolute top-6 right-6 px-3 py-1.5 bg-black/40 backdrop-blur-md border border-white/10 rounded-full">
-                <p className="text-[8px] font-bold text-white/70 tracking-widest uppercase">Preview {activePreview + 1}</p>
-              </div>
+                  <motion.a
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    href="https://discord.gg/muH44HDrea"
+                    target="_blank"
+                    className="w-full flex items-center justify-center gap-1 py-2 md:py-2.5 bg-white/5 border border-white/10 rounded-lg text-[7px] md:text-[8px] font-black text-white/60 uppercase tracking-wider hover:bg-purple-600 hover:text-white hover:border-purple-600 transition-all mt-3"
+                  >
+                    ORDER
+                    <ArrowRight size={10} />
+                  </motion.a>
+                </motion.div>
+              ))}
             </div>
 
+            <button
+              onClick={() => scroll("right")}
+              disabled={!canScrollRight}
+              className={`shrink-0 p-2 md:p-3 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl transition-all ${
+                canScrollRight ? "hover:bg-white/10 text-white" : "text-white/20 cursor-not-allowed"
+              }`}
+            >
+              <ChevronRight size={20} />
+            </button>
           </div>
         </div>
       </ScrollReveal>
 
       <div className="mt-12 text-center">
-        <p className="text-[9px] text-white/20 uppercase tracking-[0.3em] italic">Navigasi kategori di atas • Navigasi preview di gambar</p>
+        <a href="#daftarharga" className="inline-block px-6 py-3 border border-white/20 bg-white/5 backdrop-blur-md rounded-full text-[10px] font-black tracking-widest uppercase hover:bg-white/10 transition-all">
+          LIHAT SEMUA HARGA
+        </a>
       </div>
+
+      <style jsx global>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
     </section>
   );
 }

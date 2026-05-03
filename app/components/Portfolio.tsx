@@ -3,131 +3,180 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollReveal } from "../ScrollReveal";
-import { ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
+import { ChevronDown, ZoomIn } from "lucide-react";
 
-const PORTFOLIO_DATA = {
-  face: {
+const PORTFOLIO_DATA = [
+  {
+    id: "face",
     title: "COSMETICA FACE",
+    tag: "PREMIUM SKIN TEXTURE",
     items: [
-      { src: "/face-1.png", alt: "Face Premium 1" },
-      { src: "/face-2.png", alt: "Face Premium 2" },
-      { src: "/face-3.png", alt: "Face Premium 3" },
-      { src: "/face-1.png", alt: "Face Premium 4" },
-      { src: "/face-2.png", alt: "Face Premium 5" },
-      { src: "/face-3.png", alt: "Face Premium 6" },
+      { src: "/portofolio/face-512px-1.png", alt: "Face 512px 1" },
+      { src: "/portofolio/face-512px-2.png", alt: "Face 512px 2" },
+      { src: "/portofolio/face-512px-3.png", alt: "Face 512px 3" },
+      { src: "/portofolio/face-512px-4.png", alt: "Face 512px 4" },
+      { src: "/portofolio/face-1024px-1.png", alt: "Face 1024px 1" },
+      { src: "/portofolio/face-1024px-2.png", alt: "Face 1024px 2" },
+      { src: "/portofolio/face-1024px-3.png", alt: "Face 1024px 3" },
+      { src: "/portofolio/face-1024px-4.png", alt: "Face 1024px 4" },
+      { src: "/portofolio/face-2048px-1.png", alt: "Face 2048px 1" },
+      { src: "/portofolio/face-2048px-2.png", alt: "Face 2048px 2" },
     ],
   },
-  skin: {
+  {
+    id: "skin",
     title: "MINECRAFT SKIN",
+    tag: "CLASSIC / SLIM MODEL",
     items: [
-      { src: "/skin-1.png", alt: "Skin Anime 1" },
-      { src: "/skin-2.png", alt: "Skin Fantasy 2" },
-      { src: "/skin-3.png", alt: "Skin Detail 3" },
-      { src: "/skin-1.png", alt: "Skin Anime 4" },
-      { src: "/skin-2.png", alt: "Skin Fantasy 5" },
-      { src: "/skin-3.png", alt: "Skin Detail 6" },
+      { src: "/portofolio/skin-1.png", alt: "Skin 1" },
+      { src: "/portofolio/skin-2.png", alt: "Skin 2" },
+      { src: "/portofolio/skin-3.png", alt: "Skin 3" },
+      { src: "/portofolio/skin-4.png", alt: "Skin 4" },
+      { src: "/portofolio/skin-5.png", alt: "Skin 5" },
+      { src: "/portofolio/skin-6.png", alt: "Skin 6" },
+      { src: "/portofolio/skin-7.png", alt: "Skin 7" },
+      { src: "/portofolio/skin-8.png", alt: "Skin 8" },
+      { src: "/portofolio/skin-9.png", alt: "Skin 9" },
+      { src: "/portofolio/skin-10.png", alt: "Skin 10" },
     ],
   },
-  art: {
+  {
+    id: "art",
     title: "ART & ILLUSTRATION",
+    tag: "DIGITAL HAND-DRAWN",
     items: [
-      { src: "/art-1.png", alt: "Art Chibi 1" },
-      { src: "/art-2.png", alt: "Art Illustration 2" },
-      { src: "/art-3.png", alt: "Art Pngtuber 3" },
-      { src: "/art-1.png", alt: "Art Chibi 4" },
-      { src: "/art-2.png", alt: "Art Illustration 5" },
-      { src: "/art-3.png", alt: "Art Pngtuber 6" },
+      { src: "/portofolio/art-1.png", alt: "Art 1" },
+      { src: "/portofolio/art-2.png", alt: "Art 2" },
+      { src: "/portofolio/art-3.png", alt: "Art 3" },
+      { src: "/portofolio/art-4.png", alt: "Art 4" },
+      { src: "/portofolio/art-5.png", alt: "Art 5" },
+      { src: "/portofolio/art-6.png", alt: "Art 6" },
+      { src: "/portofolio/art-7.png", alt: "Art 7" },
+      { src: "/portofolio/art-8.png", alt: "Art 8" },
+      { src: "/portofolio/art-9.png", alt: "Art 9" },
+      { src: "/portofolio/art-10.png", alt: "Art 10" },
     ],
   },
-  render: {
+  {
+    id: "render",
     title: "MINECRAFT RENDER",
+    tag: "GFX & SCENE",
     items: [
-      { src: "/render-1.png", alt: "Render GFX 1" },
-      { src: "/render-2.png", alt: "Render Scene 2" },
-      { src: "/render-1.png", alt: "Render Manip 3" },
-      { src: "/render-2.png", alt: "Render GFX 4" },
-      { src: "/render-1.png", alt: "Render Scene 5" },
-      { src: "/render-2.png", alt: "Render Manip 6" },
+      { src: "/portofolio/render-1.png", alt: "Render 1" },
+      { src: "/portofolio/render-2.png", alt: "Render 2" },
+      { src: "/portofolio/render-3.png", alt: "Render 3" },
+      { src: "/portofolio/render-4.png", alt: "Render 4" },
+      { src: "/portofolio/render-5.png", alt: "Render 5" },
+      { src: "/portofolio/render-6.png", alt: "Render 6" },
+      { src: "/portofolio/render-7.png", alt: "Render 7" },
+      { src: "/portofolio/render-8.png", alt: "Render 8" },
+      { src: "/portofolio/render-9.png", alt: "Render 9" },
+      { src: "/portofolio/render-10.png", alt: "Render 10" },
     ],
   },
-};
-
-const CATEGORIES = Object.keys(PORTFOLIO_DATA) as (keyof typeof PORTFOLIO_DATA)[];
+];
 
 export default function PortfolioSection({ fantasyFont }: { fantasyFont: string }) {
-  const [activeCat, setActiveCat] = useState<keyof typeof PORTFOLIO_DATA>("face");
+  const [openSections, setOpenSections] = useState<string[]>(["face"]);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [lightboxData, setLightboxData] = useState<{ items: { src: string; alt: string }[]; index: number; category: string }>({ items: [], index: 0, category: "" });
 
-  const currentData = PORTFOLIO_DATA[activeCat];
+  const toggleSection = (id: string) => {
+    setOpenSections((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  };
 
-  const openLightbox = (idx: number) => {
-    setLightboxIndex(idx);
+  const openLightbox = (items: { src: string; alt: string }[], idx: number, category: string) => {
+    setLightboxData({ items, index: idx, category });
     setLightboxOpen(true);
   };
 
-  const nextLightbox = () => setLightboxIndex((prev) => (prev + 1) % currentData.items.length);
-  const prevLightbox = () => setLightboxIndex((prev) => (prev - 1 + currentData.items.length) % currentData.items.length);
+  const nextLightbox = () =>
+    setLightboxData((prev) => ({
+      ...prev,
+      index: (prev.index + 1) % prev.items.length,
+    }));
+
+  const prevLightbox = () =>
+    setLightboxData((prev) => ({
+      ...prev,
+      index: (prev.index - 1 + prev.items.length) % prev.items.length,
+    }));
 
   return (
     <ScrollReveal>
-      <section id="portfolio" className="relative z-10 py-24 md:py-40 px-4 md:px-6">
+      <section className="relative z-10 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-4 block uppercase">OUR WORKS</span>
-            <h2 className={`${fantasyFont} text-4xl md:text-7xl font-bold text-white uppercase`}>PORTFOLIO</h2>
-            <p className="text-white/40 text-[10px] md:text-xs mt-4 uppercase tracking-widest italic">Karya-karya terbaru dari Selene Shop</p>
-          </div>
-
-          {/* Category Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCat(cat)}
-                className={`px-4 md:px-6 py-2 md:py-3 rounded-full text-[9px] md:text-xs font-black tracking-[0.2em] uppercase transition-all ${
-                  activeCat === cat
-                    ? "bg-purple-600 text-white shadow-lg"
-                    : "bg-white/[0.05] text-white/40 border border-white/10 hover:bg-white/10"
-                }`}
+          <div className="space-y-4">
+            {PORTFOLIO_DATA.map((category) => (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white/[0.02] border border-white/10 rounded-3xl overflow-hidden backdrop-blur-xl"
               >
-                {cat}
-              </button>
+                <button
+                  onClick={() => toggleSection(category.id)}
+                  className="w-full p-6 md:p-8 flex items-center justify-between"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+                      <span className={`${fantasyFont} text-sm md:text-lg text-purple-400 font-bold`}>
+                        {category.title[0]}
+                      </span>
+                    </div>
+                    <div className="text-left">
+                      <h3 className={`${fantasyFont} text-xl md:text-3xl font-bold text-white`}>{category.title}</h3>
+                      <p className="text-white/30 text-[9px] md:text-[10px] uppercase tracking-wider mt-1">{category.tag}</p>
+                    </div>
+                  </div>
+                  <motion.div
+                    animate={{ rotate: openSections.includes(category.id) ? 180 : 0 }}
+                    className="text-white/50"
+                  >
+                    <ChevronDown size={24} />
+                  </motion.div>
+                </button>
+
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: openSections.includes(category.id) ? "auto" : 0,
+                    opacity: openSections.includes(category.id) ? 1 : 0,
+                  }}
+                  className="overflow-hidden"
+                >
+                  <div className="px-6 md:px-8 pb-6 md:pb-8">
+                    <div className="border-t border-white/10 pt-6 md:pt-8">
+                      <div className="grid grid-cols-2 gap-3 md:gap-6">
+                        {category.items.map((item, idx) => (
+                          <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: idx * 0.05 }}
+                            className="relative group aspect-square md:aspect-[4/3] rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer"
+                            onClick={() => openLightbox(category.items, idx, category.id)}
+                          >
+                            <img
+                              src={item.src}
+                              alt={item.alt}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                              <ZoomIn className="text-white w-8 h-8 md:w-10 md:h-10" />
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
             ))}
           </div>
 
-          {/* Gallery Grid */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCat}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6"
-            >
-              {currentData.items.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="relative group aspect-square md:aspect-[4/3] rounded-2xl md:rounded-3xl overflow-hidden cursor-pointer"
-                  onClick={() => openLightbox(idx)}
-                >
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <ZoomIn className="text-white w-8 h-8 md:w-10 md:h-10" />
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
-
-          {/* See More Button */}
           <div className="mt-12 text-center">
             <motion.a
               whileHover={{ scale: 1.02 }}
@@ -141,7 +190,6 @@ export default function PortfolioSection({ fantasyFont }: { fantasyFont: string 
           </div>
         </div>
 
-        {/* Lightbox */}
         <AnimatePresence>
           {lightboxOpen && (
             <motion.div
@@ -164,15 +212,17 @@ export default function PortfolioSection({ fantasyFont }: { fantasyFont: string 
                 onClick={(e) => { e.stopPropagation(); prevLightbox(); }}
                 className="absolute left-4 md:left-8 text-white/50 hover:text-purple-400 p-2 md:p-4"
               >
-                <ChevronLeft size={32} />
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
               </button>
 
               <motion.img
-                key={lightboxIndex}
+                key={lightboxData.index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                src={currentData.items[lightboxIndex].src}
-                alt={currentData.items[lightboxIndex].alt}
+                src={lightboxData.items[lightboxData.index].src}
+                alt={lightboxData.items[lightboxData.index].alt}
                 className="max-w-full max-h-[80vh] object-contain rounded-2xl"
                 onClick={(e) => e.stopPropagation()}
               />
@@ -181,11 +231,13 @@ export default function PortfolioSection({ fantasyFont }: { fantasyFont: string 
                 onClick={(e) => { e.stopPropagation(); nextLightbox(); }}
                 className="absolute right-4 md:right-8 text-white/50 hover:text-purple-400 p-2 md:p-4"
               >
-                <ChevronRight size={32} />
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
               </button>
 
               <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 text-white/50 text-xs md:text-sm">
-                {lightboxIndex + 1} / {currentData.items.length}
+                {lightboxData.index + 1} / {lightboxData.items.length} • {lightboxData.category}
               </div>
             </motion.div>
           )}

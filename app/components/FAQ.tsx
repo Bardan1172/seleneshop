@@ -7,36 +7,44 @@ import { ChevronDown, MessageCircle } from "lucide-react";
 
 const FAQ_DATA = [
   {
-    q: "Berapa lama proses pesanan?",
-    a: "Untuk Face: 1-3 hari kerja, Skin: 1-2 hari kerja, Render: 2-4 hari kerja, Art: 3-5 hari kerja. Waktu bisa lebih lama jika ada revisi.",
+    q: "Selene Shop menyediakan layanan apa saja?",
+    a: "Kami melayani pembuatan aset digital berkualitas: Cosmetica Face, Skin Minecraft, Art Commission, Minecraft Render, Custom Sticker, Minecraft Custom Model.",
   },
   {
-    q: "Bagaimana cara membayar?",
-    a: "Scan QRIS yang tersedia di website kami. Setelah pembayaran, buat ticket di Discord dan upload bukti transfer. Konfirmasi otomatis via ticket Discord.",
+    q: "Apa itu Cosmetica Face?",
+    a: "Detail wajah kustom untuk skin Minecraft (makeup, mata, blush, tattoo, dll). Catatan: Ini adalah produk digital khusus Minecraft, bukan barang fisik/kosmetik asli.",
   },
   {
-    q: "Apakah bisa request revisi?",
-    a: "Ya, setiap layanan mendapat 1x free revision. Revisi tambahan dikenakan biaya tambahan sesuai kompleksitas.",
+    q: "Bagaimana cara melakukan pemesanan?",
+    a: "Silakan gunakan Template Order yang tersedia di channel khusus atau langsung Buka Ticket. Pesanan akan segera masuk antrean setelah pembayaran kami terima.",
   },
   {
-    q: "Berapa resolusi yang didapat?",
-    a: "Face: 512px/1024px/2048px, Skin: 64x32 (default Minecraft), Render: sesuai request (GFX/Scene/Manip), Art: resolusi tinggi sesuai kebutuhan.",
+    q: "Untuk pengerjaan Skin, base-nya dari siapa?",
+    a: "Base skin bisa berasal dari Buyer (Anda menyediakan file skin awal) atau Selene Shop (Kami buatkan dari nol, tergantung paket yang dipilih).",
   },
   {
-    q: "Apakah bisa buat model 3D?",
-    a: "Layanan Custom Model masih dalam pengembangan. Stay tuned untuk update-nya!",
+    q: "Berapa lama waktu pengerjaannya?",
+    a: "Estimasi waktu bergantung pada panjang antrean dan tingkat kesulitan proyek. Kami akan memberikan estimasi waktu saat Anda melakukan konfirmasi order.",
   },
   {
-    q: "Bagaimana jika ada masalah dengan pesanan?",
-    a: "Langsung hubungi admin melalui Discord. Kami siap membantu menyelesaikan setiap masalah dengan cepat.",
+    q: "Apakah saya bisa meminta revisi?",
+    a: "Bisa. Kami memberikan jatah maksimal 3x revisi minor. Revisi besar yang mengubah konsep dasar atau tambahan revisi di luar jatah akan dikenakan biaya tambahan.",
   },
   {
-    q: "Apakah melayani rush order?",
-    a: "Ya, layanan rush order tersedia dengan biaya tambahan. Hubungi kami di Discord untuk info lebih lanjut.",
+    q: "Hasil akhirnya dikirim dalam format apa?",
+    a: "Umum: Dikirim dalam format .png atau file model terkait. Cosmetica Face: Khusus layanan ini tidak diberikan file. Hasil langsung diunggah/diaplikasikan ke akun Minecraft Anda.",
   },
   {
-    q: "Bagaimana cara memesan?",
-    a: "1. Join Discord kami, 2. Buat ticket di kategori layanan yang kamu pilih, 3. Isi form order, 4. Bayar via QRIS, 5. Tunggu proses hingga selesai.",
+    q: "Apakah bisa mengajukan Refund?",
+    a: "Tidak bisa jika proses pengerjaan sudah dimulai. Bisa, hanya jika terjadi kesalahan fatal atau kendala teknis dari pihak Selene Shop.",
+  },
+  {
+    q: "Bolehkah saya menjual ulang atau klaim hasil karya?",
+    a: "Dilarang keras. Anda tidak diperbolehkan menjual ulang, mengedit tanpa izin, atau mengklaim karya kami sebagai milik pribadi. Semua karya adalah milik intelektual Selene Shop.",
+  },
+  {
+    q: "Apakah produk bisa digunakan untuk kebutuhan Komersial?",
+    a: "Bisa, namun wajib konfirmasi di awal karena akan dikenakan biaya lisensi komersial tambahan.",
   },
 ];
 
@@ -106,6 +114,8 @@ export default function FAQSection({ fantasyFont }: { fantasyFont: string }) {
               <MessageCircle size={18} />
               TANYA LEWAT DISCORD
             </motion.a>
+
+            <p className="mt-8 text-white/60 text-sm italic">🌙 Masih ada pertanyaan yang belum terjawab? Jangan ragu untuk menghubungi Admin / Customer Service kami melalui sistem ticket!</p>
           </div>
         </div>
       </section>

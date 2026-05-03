@@ -34,14 +34,8 @@ const BLOG_POSTS = [
 export default function BlogSection({ fantasyFont }: { fantasyFont: string }) {
   return (
     <ScrollReveal>
-      <section id="blog" className="relative z-10 py-24 md:py-40 px-4 md:px-6">
+      <section className="relative z-10 px-4 md:px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-4 block uppercase">LATEST NEWS</span>
-            <h2 className={`${fantasyFont} text-4xl md:text-7xl font-bold text-white uppercase`}>BERITA</h2>
-            <p className="text-white/40 text-[10px] md:text-xs mt-4 uppercase tracking-widest italic">Update terbaru dari Selene Shop</p>
-          </div>
-
           <div className="grid md:grid-cols-3 gap-6 md:gap-8">
             {BLOG_POSTS.map((post, idx) => (
               <motion.article

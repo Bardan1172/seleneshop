@@ -1,25 +1,121 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import WelcomeScreen from "./WelcomeScreen"; 
 import MoonBackground from "./MoonBackground"; 
 import { ScrollReveal } from "./ScrollReveal"; 
 import ServicesSection from "./components/services"; 
-import FAQSection from "./components/FAQ";
-import PortfolioSection from "./components/Portfolio";
 import TestimonialsSection from "./components/Testimonials";
-import BlogSection from "./components/Blog";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, Sparkles } from "lucide-react";
+import Link from "next/link";
+
+const SERVICES_DATA = [
+  {
+    id: "face",
+    title: "COSMETICA FACE",
+    tag: "KHUSUS MINECRAFT PREMIUM",
+    items: [
+      { name: "FACE 512px", price: "30.000", desc: "Resolusi standar untuk player" },
+      { name: "FACE 1024px", price: "65.000", desc: "Resolusi HD, detail lebih banyak" },
+      { name: "FACE 2048px", price: "100.000", desc: "Resolusi Ultra, kualitas premium" },
+    ],
+  },
+  {
+    id: "skin",
+    title: "MINECRAFT SKIN",
+    tag: "CLASSIC / SLIM MODEL",
+    items: [
+      { name: "SIMPLE SHADING", price: "10.000", desc: "Basic shading, cocok untuk beginner" },
+      { name: "FULL DETAIL (ANIME)", price: "15.000", desc: "Detail penuh gaya anime" },
+      { name: "FULL DETAIL (FANTASY)", price: "15.000", desc: "Detail penuh gaya fantasy" },
+    ],
+  },
+  {
+    id: "art",
+    title: "ART & ILLUSTRATION",
+    tag: "DIGITAL HAND-DRAWN",
+    items: [
+      { name: "SIMPLE SHADE / CHIBI", price: "25.000", desc: "Gaya chibi simple shading" },
+      { name: "PNGTUBER MODEL", price: "30.000", desc: "Model pngtuber full color" },
+    ],
+  },
+  {
+    id: "sticker",
+    title: "CUSTOM STICKER",
+    tag: "DISCORD & WHATSAPP",
+    items: [
+      { name: "PER PCS (BUST UP)", price: "10.000", desc: "Single sticker per karakter" },
+      { name: "PACK (6 STICKERS)", price: "50.000", desc: "6 sticker verschiedene poses" },
+    ],
+  },
+  {
+    id: "render",
+    title: "MINECRAFT RENDER",
+    tag: "CINEMATIC GFX & SCENE",
+    items: [
+      { name: "GFX (TEMA)", price: "25.000", desc: "Graphic design style" },
+      { name: "SCENE (TEMA)", price: "35.000", desc: "Landscape scene" },
+      { name: "MANIP (TEMA)", price: "45.000", desc: "Manipulation style" },
+      { name: "RATIO 1:1 / 9:16", price: "+2.000", desc: "Additional ratio" },
+      { name: "NO BACKGROUND", price: "8.000 - 22.000", desc: "Tanpa background" },
+    ],
+  },
+];
+
+const DROPDOWN_ITEMS = {
+  MENU: [
+    { label: "Daftar Harga", href: "/pricelist" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Our Team", href: "/team" },
+    { label: "Berita", href: "/berita" },
+  ],
+};
+
+const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  if (href.startsWith("/")) {
+    e.preventDefault();
+    window.location.href = href;
+    return;
+  }
+  if (href.startsWith("#")) {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+};
 
 export default function Home() {
   const fantasyFont = "font-serif italic tracking-wider uppercase";
   const [isLoading, setIsLoading] = useState(true);
+  const [openSections, setOpenSections] = useState<string[]>(["face"]);
   const smoothSpring = { type: "spring", stiffness: 300, damping: 20 };
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const toggleSection = (id: string) => {
+    setOpenSections((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
+  };
 
   if (isLoading) return <WelcomeScreen onLoadingComplete={() => setIsLoading(false)} />;
 
@@ -30,24 +126,73 @@ export default function Home() {
       <nav className="fixed top-0 left-0 w-full z-[100] px-4 md:px-6 py-4 md:py-6 pointer-events-none">
         <div className="max-w-5xl mx-auto flex justify-between items-center pointer-events-auto bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-2 pl-3 md:pl-4 pr-3 md:pr-6 shadow-2xl">
           <div className="flex items-center gap-2 group">
-            <img src="/selene_shop.png" alt="Logo" className="w-10 h-10 md:w-14 md:h-14 object-contain rounded-full mix-blend-screen transition-transform group-hover:scale-110" />
-            <div className={`${fantasyFont} text-[10px] md:text-sm font-bold tracking-[0.3em] hidden sm:block`}>SELENE<span className="text-purple-500 ml-1">✦</span></div>
+            <Link href="/" className="flex items-center gap-2 group">
+              <img src="/selene_shop.png" alt="Logo" className="w-10 h-10 md:w-14 md:h-14 object-contain rounded-full mix-blend-screen transition-transform group-hover:scale-110" />
+              <div className={`${fantasyFont} text-[10px] md:text-sm font-bold tracking-[0.3em] hidden sm:block`}>SELENE<span className="text-purple-500 ml-1">✦</span></div>
+            </Link>
           </div>
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-1" ref={dropdownRef}>
             {[
               { label: "BERANDA", href: "#beranda" },
               { label: "TENTANG", href: "#tentang" },
               { label: "LAYANAN", href: "#layanan" },
-              { label: "PORTFOLIO", href: "#portfolio" },
               { label: "TESTIMONI", href: "#testimoni" },
-              { label: "FAQ", href: "#faq" },
-              { label: "BERITA", href: "#blog" },
-              { label: "HARGA", href: "/pricelist" },
             ].map((nav) => (
-              <a key={nav.label} href={nav.href} className="px-3 py-2 text-[9px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-opacity duration-300 opacity-60 hover:opacity-100 uppercase">{nav.label}</a>
+              <Link 
+                key={nav.label} 
+                href={nav.href}
+                onClick={(e) => handleNavClick(e, nav.href)}
+                className="px-3 py-2 text-[9px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-opacity duration-300 opacity-60 hover:opacity-100 uppercase"
+              >
+                {nav.label}
+              </Link>
+            ))}
+            {["MENU"].map((label) => (
+              <div key={label} className="relative">
+                <button 
+                  onClick={() => setOpenDropdown(openDropdown === label ? null : label)}
+                  onMouseEnter={() => openDropdown && setOpenDropdown(label)}
+                  className="flex items-center gap-1 px-3 py-2 text-[9px] font-bold tracking-[0.2em] hover:bg-white/5 rounded-2xl transition-opacity duration-300 opacity-60 hover:opacity-100 uppercase"
+                >
+                  {label}
+                  <ChevronDown size={10} className={`transition-transform ${openDropdown === label ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {openDropdown === label && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full left-0 mt-2 w-48 bg-[#010108] border border-white/10 rounded-xl backdrop-blur-xl shadow-2xl overflow-hidden z-50"
+                    >
+                      {DROPDOWN_ITEMS[label as keyof typeof DROPDOWN_ITEMS].map((item) => (
+                        item.href.startsWith("/") ? (
+                          <Link 
+                            key={item.label}
+                            href={item.href}
+                            onClick={() => setOpenDropdown(null)}
+                            className="block px-4 py-2 text-[9px] text-white/60 hover:bg-white/10 hover:text-white transition-all uppercase"
+                          >
+                            {item.label}
+                          </Link>
+                        ) : (
+                          <Link 
+                            key={item.label}
+                            href={item.href}
+                            onClick={(e) => { setOpenDropdown(null); handleNavClick(e, item.href); }}
+                            className="block px-4 py-2 text-[9px] text-white/60 hover:bg-white/10 hover:text-white transition-all uppercase"
+                          >
+                            {item.label}
+                          </Link>
+                        )
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             ))}
           </div>
-          <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] font-black tracking-[0.2em] uppercase shadow-lg">JOIN DISCORD</motion.a>
+          <Link href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 md:px-6 py-2.5 md:py-3 rounded-xl md:rounded-2xl text-[9px] md:text-[10px] font-black tracking-[0.2em] uppercase shadow-lg hover:scale-105 active:scale-95 transition-transform">JOIN DISCORD</Link>
         </div>
       </nav>
 
@@ -140,22 +285,19 @@ export default function Home() {
         {/* --- 5. LAYANAN --- */}
         <ServicesSection fantasyFont={fantasyFont} />
 
-        {/* --- 6. PORTFOLIO --- */}
-        <PortfolioSection fantasyFont={fantasyFont} />
-
         {/* --- 6. CARA ORDER --- */}
         <ScrollReveal>
           <section id="caraorder" className="relative z-10 py-16 md:py-24 px-6 text-center">
             <h2 className={`${fantasyFont} text-4xl md:text-7xl font-bold mb-16 text-white uppercase`}>CARA ORDER</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {[{ s: "01", t: "JOIN COMMUNITY", d: "Masuk ke server Discord kami." }, { s: "02", t: "CREATE TICKET", d: "Pilih kategori layanan dan konsultasi." }, { s: "03", t: "SECURE PAYMENT", d: "Scan QRIS yang tersedia di ticket order." }].map((item, idx) => (
+              {[{ s: "01", t: "JOIN COMMUNITY", d: "Masuk ke server Discord kami." }, { s: "02", t: "CREATE TICKET", d: "Pilih kategori layanan dan konsultasi." }, { s: "03", t: "PAYMENT", d: "Bayar sesuai nominal di ticket." }].map((item, idx) => (
                 <motion.div key={idx} whileHover={{ scale: 1.03 }} className="relative p-10 rounded-[40px] bg-white/[0.02] border border-white/5 backdrop-blur-md">
                   <span className={`${fantasyFont} text-5xl font-black text-purple-500/10 absolute top-8 right-10`}>{item.s}</span>
                   <h4 className={`${fantasyFont} font-bold text-white text-xl mb-4 relative z-10`}>{item.t}</h4>
                   <p className="text-[10px] text-white/40 uppercase italic tracking-widest">{item.d}</p>
                 </motion.div>
               ))}
-            </div>
+</div>
           </section>
         </ScrollReveal>
 
@@ -163,112 +305,6 @@ export default function Home() {
         <section id="testimoni">
           <TestimonialsSection fantasyFont={fantasyFont} />
         </section>
-
-        {/* --- 8. QRIS PAYMENT --- */}
-<ScrollReveal>
-  <section className="relative z-10 py-20 px-6 border-y border-white/5 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent">
-    <div className="max-w-4xl mx-auto text-center">
-      <p className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-10 uppercase">OFFICIAL PAYMENT</p>
-      
-      {/* Container Utama Kartu */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-12 bg-white/[0.02] border border-white/10 p-10 md:p-16 rounded-[50px] backdrop-blur-md shadow-2xl relative overflow-hidden">
-        
-        {/* Dekorasi Cahaya di belakang QR */}
-        <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/20 blur-[100px] rounded-full" />
-
-        {/* Frame Kotak QRIS */}
-        <div className="relative group">
-          <div className="relative bg-white p-3 rounded-2xl shadow-[0_0_50px_rgba(255,255,255,0.1)] transition-transform duration-500 group-hover:scale-105">
-            {/* Image QRIS */}
-            <img 
-              src="/qris.png" 
-              alt="QRIS Selene Shop" 
-              className="w-48 h-48 md:w-56 md:h-56 object-contain rounded-lg"
-            />
-            
-            {/* Overlay Garis Pemindai (Animasi) */}
-            <div className="absolute inset-0 border-2 border-purple-500/0 group-hover:border-purple-500/50 rounded-2xl transition-all duration-500">
-               <div className="absolute top-0 left-0 w-full h-[2px] bg-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.8)] opacity-0 group-hover:opacity-100 group-hover:animate-scan" />
-            </div>
-          </div>
-        </div>
-
-        {/* Deskripsi Pembayaran */}
-        <div className="text-left space-y-6 relative z-10">
-          <h3 className={`${fantasyFont} text-4xl md:text-6xl font-bold text-white tracking-tight`}>
-            QRIS <span className="text-purple-500 italic text-2xl md:text-3xl block md:inline md:ml-2">ALL PAYMENT</span>
-          </h3>
-          
-          <div className="space-y-4">
-            <p className="text-[11px] text-white/60 tracking-[0.3em] font-bold uppercase">Mendukung Pembayaran:</p>
-            <div className="flex flex-wrap gap-x-4 gap-y-2 text-[10px] md:text-xs font-black tracking-widest text-white/40 italic uppercase">
-               <span className="hover:text-purple-400 transition-colors">DANA</span> • 
-               <span className="hover:text-purple-400 transition-colors">GOPAY</span> • 
-               <span className="hover:text-purple-400 transition-colors">OVO</span> • 
-               <span className="hover:text-purple-400 transition-colors">SHOPEEPAY</span> • 
-               <span className="hover:text-purple-400 transition-colors">BANK</span>
-            </div>
-          </div>
-
-          <div className="pt-4">
-            <div className="inline-block px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full">
-              <p className="text-[9px] text-purple-400 font-bold tracking-widest uppercase italic">
-                Scan & Konfirmasi Otomatis via Ticket
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</ScrollReveal>
-
-        {/* 8.5 OUR TEAM */}
-        <ScrollReveal>
-          <section className="relative z-10 py-16 md:py-20 px-4 md:px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                <span className="text-purple-400 text-[10px] font-bold tracking-[0.5em] mb-4 block uppercase">COLLABORATION</span>
-                <h2 className={`${fantasyFont} text-4xl md:text-7xl font-bold text-white uppercase`}>OUR TEAM</h2>
-              </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
-                {[
-                  { name: "Altra", role: "OWNER" },
-                  { name: "Gabbie", role: "OWNER & WORKER" },
-                  { name: "Aellaryn", role: "CO OWNER & WORKER" },
-                  { name: "Kuba", role: "CO OWNER & STAFF" },
-                  { name: "Nyx", role: "ADMIN & WORKER" },
-                  { name: "Chilo", role: "MODERATOR" },
-                  { name: "Alen", role: "STAFF & WORKER" },
-                  { name: "Amyy", role: "STAFF & WORKER" },
-                  { name: "Delicia", role: "STAFF & WORKER" },
-                  { name: "Kinaki", role: "STAFF & WORKER" },
-                  { name: "Lopi", role: "STAFF & WORKER" }
-                ].map((member, idx) => (
-                  <motion.div 
-                    key={idx}
-                    whileHover={{ y: -8, scale: 1.02 }}
-                    transition={smoothSpring}
-                    className="relative p-6 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-md text-center group overflow-hidden"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500/20 to-purple-600/10 border border-white/10 flex items-center justify-center">
-                      <span className={`${fantasyFont} text-xl md:text-2xl text-purple-400 font-bold`}>{member.name[0]}</span>
-                    </div>
-                    <h4 className={`${fantasyFont} text-sm md:text-base font-bold text-white mb-1`}>{member.name}</h4>
-                    <p className="text-[8px] md:text-[9px] text-white/30 uppercase tracking-[0.2em]">{member.role}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        </ScrollReveal>
-
-        {/* --- 9. FAQ --- */}
-        <FAQSection fantasyFont={fantasyFont} />
-
-        {/* --- 10. BLOG --- */}
-        <BlogSection fantasyFont={fantasyFont} />
 
         {/* 8. FOOTER */}
         <footer className="relative z-10 py-10 border-t border-white/5 bg-[#010108] px-6">
