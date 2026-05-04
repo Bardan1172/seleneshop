@@ -31,7 +31,7 @@ const TEAM_MEMBERS = [
     role: "CO-OWNER & STAFF",
     desc: "Worker Assistant",
     discord: "kuboo",
-    avatar: "chilo",
+    avatar: "kubo",
   },
   {
     name: "Kinaki",
@@ -45,7 +45,7 @@ const TEAM_MEMBERS = [
     role: "MODERATOR",
     desc: "Ticket Support",
     discord: "chilo",
-    avatar: "kinaki",
+    avatar: "chilo",
   },
   {
     name: "Lopi",
