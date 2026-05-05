@@ -106,10 +106,10 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
               </div>
             ))}
           </div>
-          <Link href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-xl text-[9px] font-black tracking-[0.2em] uppercase hover:scale-105 active:scale-95 transition-transform hidden lg:block">JOIN DISCORD</Link>
+          <Link href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-xl text-[9px] font-black tracking-[0.2em] uppercase hover:scale-105 active:scale-95 transition-transform">JOIN DISCORD</Link>
           <button 
             onClick={() => setMobileMenuOpen(true)}
-            className="flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-3 py-2 rounded-xl font-bold text-xs"
+            className="lg:hidden flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-3 py-2 rounded-xl font-bold text-xs"
           >
             <Menu size={18} />
             MENU
