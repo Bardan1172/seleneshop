@@ -123,11 +123,11 @@ export default function Home() {
 return (
     <div className="min-h-screen bg-black text-white">
       {/* Fixed Navbar - Desktop - ALWAYS VISIBLE */}
-      <nav style={{ visibility: 'visible', opacity: 1 }} className="fixed top-0 left-0 right-0 z-[9999] px-4 py-3 bg-green-600">
+      <nav style={{ visibility: 'visible', opacity: 1 }} className="fixed top-0 left-0 right-0 z-[9999] px-4 py-3 bg-white/[0.01] backdrop-blur-2xl border-b border-white/5">
         <div className="max-w-7xl mx-auto flex justify-between items-center w-full">
-          <Link href="/" className="flex items-center gap-2">
-            <img src="/selene_shop.png" alt="Logo" className="w-8 h-8 object-contain rounded-full" />
-            <span className="text-sm font-bold tracking-wider">SELENE</span>
+          <Link href="/" className="flex items-center gap-2 group">
+            <img src="/selene_shop.png" alt="Logo" className="w-8 h-8 object-contain rounded-full group-hover:scale-110 transition-transform" />
+            <span className="text-sm font-bold tracking-wider group-hover:text-purple-400 transition-colors">SELENE</span>
           </Link>
           <div className="flex items-center gap-4 text-xs">
             <Link href="/pricelist" className="hover:text-purple-400 uppercase tracking-wider">Daftar Harga</Link>

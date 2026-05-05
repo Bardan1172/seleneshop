@@ -54,7 +54,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="bg-[#010108] text-white selection:bg-purple-500/30 min-h-screen font-sans">
       <nav className="fixed top-0 left-0 w-full z-[100] px-4 md:px-6 py-4 pointer-events-none">
-        <div className="max-w-5xl mx-auto flex justify-between items-center pointer-events-auto bg-white/[0.02] backdrop-blur-2xl border border-white/10 rounded-2xl md:rounded-3xl p-2 pl-3 md:pl-4 pr-2 md:pr-6 shadow-2xl overflow-visible">
+        <div className="max-w-5xl mx-auto flex justify-between items-center pointer-events-auto bg-white/[0.01] backdrop-blur-2xl border border-white/5 rounded-2xl md:rounded-3xl p-2 pl-3 md:pl-4 pr-2 md:pr-6 shadow-2xl overflow-visible">
           <div className="flex items-center gap-2 group">
             <Link href="/" className="flex items-center gap-2 group">
               <img src="/selene_shop.png" alt="Logo" className="w-10 h-10 md:w-12 md:h-12 object-contain rounded-full mix-blend-screen transition-transform group-hover:scale-110" />
