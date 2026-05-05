@@ -52,63 +52,64 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="bg-[#010108] text-white selection:bg-purple-500/30 min-h-screen font-sans">
       <nav className="fixed top-0 left-0 w-full z-[100] px-4 md:px-6 py-4 pointer-events-none">
-        <div className="max-w-7xl mx-auto flex justify-between items-center pointer-events-auto bg-black/40 backdrop-blur-md border-b border-purple-500/20 px-6">
-          <div className="text-lg font-semibold text-purple-200">
-            Selene Shop 🌙
+        <div className="max-w-5xl mx-auto flex justify-between items-center pointer-events-auto bg-black/30 backdrop-blur-lg border-b border-white/10 rounded-2xl md:rounded-3xl p-2 pl-3 md:pl-4 pr-2 md:pr-6">
+          <div className="flex items-center gap-2 group">
+            <Link href="/" className="flex items-center gap-2 group">
+              <img src="/selene_shop.png" alt="Logo" className="w-10 h-10 md:w-12 md:h-12 object-contain rounded-full transition-transform group-hover:scale-110" />
+              <div className="text-[10px] md:text-sm font-bold tracking-[0.3em] hidden sm:block">SELENE</div>
+            </Link>
           </div>
-
-          <div className="hidden md:flex items-center gap-6 text-sm text-purple-100" ref={dropdownRef}>
+          <div className="hidden md:flex items-center gap-1" ref={dropdownRef}>
             {navItems.map((nav) => (
               <Link 
                 key={nav.label} 
                 href={nav.href}
                 onClick={(e) => handleNavClick(e, nav.href)}
-                className="hover:text-purple-300 transition uppercase"
+                className="px-3 py-2 text-xs font-medium tracking-wider rounded-xl transition-all hover:bg-white/10"
               >
                 {nav.label}
               </Link>
             ))}
-            <div className="relative">
-              <button 
-                onClick={() => setOpenDropdown(openDropdown === 'MENU' ? null : 'MENU')}
-                onMouseEnter={() => openDropdown && setOpenDropdown('MENU')}
-                className="flex items-center gap-1 hover:text-purple-300 transition uppercase"
-              >
-                Menu
-                <ChevronDown size={14} className={`transition-transform ${openDropdown === 'MENU' ? 'rotate-180' : ''}`} />
-              </button>
-              <AnimatePresence>
-                {openDropdown === 'MENU' && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full right-0 mt-2 w-48 bg-black/80 backdrop-blur-md border border-purple-500/20 rounded-xl shadow-xl overflow-hidden z-50"
-                  >
-                    {DROPDOWN_ITEMS.MENU.map((item) => (
-                      <Link 
-                        key={item.label}
-                        href={item.href}
-                        onClick={() => setOpenDropdown(null)}
-                        className="block px-4 py-2 text-sm text-purple-100 hover:text-purple-300 hover:bg-purple-500/10 transition-all uppercase"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-            <Link href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
-              Join Discord
-            </Link>
+            {["MENU"].map((label) => (
+              <div key={label} className="relative">
+                <button 
+                  onClick={() => setOpenDropdown(openDropdown === label ? null : label)}
+                  onMouseEnter={() => openDropdown && setOpenDropdown(label)}
+                  className="flex items-center gap-1 px-3 py-2 text-xs font-medium tracking-wider hover:bg-white/10 rounded-xl transition-all"
+                >
+                  {label}
+                  <ChevronDown size={12} className={`transition-transform ${openDropdown === label ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {openDropdown === label && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full right-0 mt-2 w-44 bg-black/80 backdrop-blur-lg border border-white/10 rounded-xl overflow-hidden z-50"
+                    >
+                      {DROPDOWN_ITEMS.MENU.map((item) => (
+                        <Link 
+                          key={item.label}
+                          href={item.href}
+                          onClick={() => setOpenDropdown(null)}
+                          className="block px-4 py-2 text-xs hover:bg-white/10 transition-all"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
           </div>
-          
+          <Link href="https://discord.gg/muH44HDrea" target="_blank" className="hidden md:flex bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-xl text-xs font-medium transition">JOIN DISCORD</Link>
           <button 
             onClick={() => setMobileMenuOpen(true)}
-            className="md:hidden flex items-center gap-2 text-purple-100 hover:text-purple-300"
+            className="md:hidden p-2 bg-black/30 backdrop-blur-lg rounded-lg"
           >
-            <Menu size={24} />
+            <Menu size={20} />
           </button>
         </div>
       </nav>
@@ -124,7 +125,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[150] bg-black/80"
+              className="fixed inset-0 z-[150] bg-black/70"
               onClick={() => setMobileMenuOpen(false)}
             />
             <motion.div
@@ -132,35 +133,32 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 z-[151] w-80 h-full bg-black/90 backdrop-blur-md border-l border-purple-500/20"
+              className="fixed top-0 right-0 z-[151] w-64 h-full bg-black/90 backdrop-blur-lg border-l border-white/10"
             >
-              <div className="p-6 border-b border-purple-500/20">
+              <div className="p-4 border-b border-white/10">
                 <div className="flex justify-between items-center">
-                  <h2 className="text-lg font-semibold text-purple-200">Menu</h2>
-                  <button onClick={() => setMobileMenuOpen(false)} className="text-purple-100 hover:text-purple-300">
-                    ✕
-                  </button>
+                  <h2 className="text-base font-bold">Menu</h2>
+                  <button onClick={() => setMobileMenuOpen(false)} className="text-lg">✕</button>
                 </div>
               </div>
-              <div className="p-6 flex flex-col gap-4">
+              <div className="p-4 flex flex-col gap-3">
                 {navItems.map((item) => (
                   <Link 
                     key={item.label}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-base text-purple-100 hover:text-purple-300 transition uppercase"
+                    className="text-sm"
                   >
                     {item.label}
                   </Link>
                 ))}
-                <div className="my-2 border-t border-purple-500/20" />
-                <p className="text-xs text-purple-300/60 uppercase">Menu</p>
+                <div className="my-2 border-t border-white/10" />
                 {DROPDOWN_ITEMS.MENU.map((item) => (
                   <Link 
                     key={item.label}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="text-base text-purple-100 hover:text-purple-300 transition uppercase"
+                    className="text-sm"
                   >
                     {item.label}
                   </Link>
@@ -169,7 +167,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
                   href="https://discord.gg/muH44HDrea"
                   target="_blank"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="mt-4 flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-4 py-3 rounded-lg font-medium"
+                  className="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg text-center"
                 >
                   Join Discord
                 </Link>

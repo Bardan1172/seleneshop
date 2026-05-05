@@ -123,16 +123,17 @@ export default function Home() {
 return (
     <div className="min-h-screen bg-black text-white">
       {/* Fixed Navbar - Desktop - ALWAYS VISIBLE */}
-      <nav style={{ visibility: 'visible', opacity: 1 }} className="fixed top-0 left-0 right-0 z-[9999] px-6 py-4 bg-black/40 backdrop-blur-md border-b border-purple-500/20">
+      <nav style={{ visibility: 'visible', opacity: 1 }} className="fixed top-0 left-0 right-0 z-[9999] px-4 py-3 bg-black/30 backdrop-blur-lg border-b border-white/10">
         <div className="max-w-7xl mx-auto flex justify-between items-center w-full">
-          <div className="text-lg font-semibold text-purple-200">
-            Selene Shop 🌙
-          </div>
-          <div className="hidden sm:flex items-center gap-6 text-sm text-purple-100">
-            <Link href="/#beranda" className="hover:text-purple-300 transition uppercase">Beranda</Link>
-            <Link href="/#tentang" className="hover:text-purple-300 transition uppercase">Tentang</Link>
-            <Link href="/#layanan" className="hover:text-purple-300 transition uppercase">Layanan</Link>
-            <Link href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-medium transition">Join Discord</Link>
+          <Link href="/" className="flex items-center gap-2">
+            <img src="/selene_shop.png" alt="Logo" className="w-8 h-8 object-contain rounded-full" />
+            <span className="text-sm font-bold tracking-wider">SELENE</span>
+          </Link>
+          <div className="hidden sm:flex items-center gap-6 text-sm">
+            <Link href="/pricelist" className="hover:text-purple-400 transition">Daftar Harga</Link>
+            <Link href="/portfolio" className="hover:text-purple-400 transition">Portfolio</Link>
+            <Link href="/team" className="hover:text-purple-400 transition">Team</Link>
+            <Link href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-3 py-1.5 rounded-lg">Join Discord</Link>
           </div>
         </div>
       </nav>
@@ -143,9 +144,9 @@ return (
         {/* Mobile Menu Button - Fixed Top Right */}
         <button
           onClick={() => setMobileMenuOpen(true)}
-          className="sm:hidden fixed top-4 right-4 z-50 flex items-center gap-2 text-purple-100 hover:text-purple-300"
+          className="sm:hidden fixed top-3 right-3 z-50 p-2 bg-black/30 backdrop-blur-lg rounded-lg"
         >
-          <Menu size={24} />
+          <Menu size={20} />
         </button>
 
         {/* Mobile Menu Panel */}
@@ -156,7 +157,7 @@ return (
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 z-[100] bg-black/80"
+                className="fixed inset-0 z-[100] bg-black/70"
                 onClick={() => setMobileMenuOpen(false)}
               />
               <motion.div
@@ -164,25 +165,21 @@ return (
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ type: "tween", duration: 0.3 }}
-                className="fixed top-0 right-0 z-[101] w-72 h-full bg-black/90 backdrop-blur-md border-l border-purple-500/20"
+                className="fixed top-0 right-0 z-[101] w-64 h-full bg-black/90 backdrop-blur-lg border-l border-white/10"
               >
-                <div className="p-6 border-b border-purple-500/20">
+                <div className="p-4 border-b border-white/10">
                   <div className="flex justify-between items-center">
-                    <h2 className="text-lg font-semibold text-purple-200">Menu</h2>
-                    <button onClick={() => setMobileMenuOpen(false)} className="text-purple-100 hover:text-purple-300 text-xl">✕</button>
+                    <h2 className="text-base font-bold">Menu</h2>
+                    <button onClick={() => setMobileMenuOpen(false)} className="text-lg">✕</button>
                   </div>
                 </div>
-                <div className="p-6 flex flex-col gap-4">
-                  <Link href="/#beranda" onClick={() => setMobileMenuOpen(false)} className="text-base text-purple-100 hover:text-purple-300 transition uppercase">Beranda</Link>
-                  <Link href="/#tentang" onClick={() => setMobileMenuOpen(false)} className="text-base text-purple-100 hover:text-purple-300 transition uppercase">Tentang</Link>
-                  <Link href="/#layanan" onClick={() => setMobileMenuOpen(false)} className="text-base text-purple-100 hover:text-purple-300 transition uppercase">Layanan</Link>
-                  <div className="my-2 border-t border-purple-500/20" />
-                  <Link href="/pricelist" onClick={() => setMobileMenuOpen(false)} className="text-base text-purple-100 hover:text-purple-300 transition uppercase">Daftar Harga</Link>
-                  <Link href="/portfolio" onClick={() => setMobileMenuOpen(false)} className="text-base text-purple-100 hover:text-purple-300 transition uppercase">Portfolio</Link>
-                  <Link href="/team" onClick={() => setMobileMenuOpen(false)} className="text-base text-purple-100 hover:text-purple-300 transition uppercase">Team</Link>
-                  <Link href="/faq" onClick={() => setMobileMenuOpen(false)} className="text-base text-purple-100 hover:text-purple-300 transition uppercase">FAQ</Link>
-                  <Link href="/berita" onClick={() => setMobileMenuOpen(false)} className="text-base text-purple-100 hover:text-purple-300 transition uppercase">Berita</Link>
-                  <Link href="https://discord.gg/muH44HDrea" target="_blank" onClick={() => setMobileMenuOpen(false)} className="mt-4 flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-4 py-3 rounded-lg font-medium">Join Discord</Link>
+                <div className="p-4 flex flex-col gap-3">
+                  <Link href="/pricelist" onClick={() => setMobileMenuOpen(false)} className="text-sm">Daftar Harga</Link>
+                  <Link href="/portfolio" onClick={() => setMobileMenuOpen(false)} className="text-sm">Portfolio</Link>
+                  <Link href="/team" onClick={() => setMobileMenuOpen(false)} className="text-sm">Team</Link>
+                  <Link href="/faq" onClick={() => setMobileMenuOpen(false)} className="text-sm">FAQ</Link>
+                  <Link href="/berita" onClick={() => setMobileMenuOpen(false)} className="text-sm">Berita</Link>
+                  <Link href="https://discord.gg/muH44HDrea" target="_blank" onClick={() => setMobileMenuOpen(false)} className="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg text-center">Join Discord</Link>
                 </div>
               </motion.div>
             </>
