@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import PageLayout from "./(pages)/layout";
 import WelcomeScreen from "./WelcomeScreen"; 
 import MoonBackground from "./MoonBackground"; 
 import { ScrollReveal } from "./ScrollReveal"; 
 import ServicesSection from "./components/services"; 
 import TestimonialsSection from "./components/Testimonials";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Sparkles, Menu } from "lucide-react";
+import { motion } from "framer-motion";
+import { ChevronDown, Sparkles } from "lucide-react";
 import Link from "next/link";
 
 const SERVICES_DATA = [
@@ -121,73 +122,11 @@ export default function Home() {
   if (isLoading) return <WelcomeScreen onLoadingComplete={() => setIsLoading(false)} />;
 
 return (
-    <div className="min-h-screen bg-black text-white">
-      {/* Fixed Navbar - Desktop - ALWAYS VISIBLE */}
-      <nav style={{ visibility: 'visible', opacity: 1 }} className="fixed top-0 left-0 right-0 z-[9999] px-4 py-3 bg-black/30 backdrop-blur-lg border-b border-white/10">
-        <div className="max-w-7xl mx-auto flex justify-between items-center w-full">
-          <Link href="/" className="flex items-center gap-2">
-            <img src="/selene_shop.png" alt="Logo" className="w-8 h-8 object-contain rounded-full" />
-            <span className="text-sm font-bold tracking-wider">SELENE</span>
-          </Link>
-          <div className="hidden sm:flex items-center gap-6 text-sm">
-            <Link href="/pricelist" className="hover:text-purple-400 transition">Daftar Harga</Link>
-            <Link href="/portfolio" className="hover:text-purple-400 transition">Portfolio</Link>
-            <Link href="/team" className="hover:text-purple-400 transition">Team</Link>
-            <Link href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-3 py-1.5 rounded-lg">Join Discord</Link>
-          </div>
-        </div>
-      </nav>
+    <PageLayout>
+      <MoonBackground />
 
-      <main className="relative">
-        <MoonBackground />
-
-        {/* Mobile Menu Button - Fixed Top Right */}
-        <button
-          onClick={() => setMobileMenuOpen(true)}
-          className="sm:hidden fixed top-3 right-3 z-50 p-2 bg-black/30 backdrop-blur-lg rounded-lg"
-        >
-          <Menu size={20} />
-        </button>
-
-        {/* Mobile Menu Panel */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 z-[100] bg-black/70"
-                onClick={() => setMobileMenuOpen(false)}
-              />
-              <motion.div
-                initial={{ x: "100%" }}
-                animate={{ x: 0 }}
-                exit={{ x: "100%" }}
-                transition={{ type: "tween", duration: 0.3 }}
-                className="fixed top-0 right-0 z-[101] w-64 h-full bg-black/90 backdrop-blur-lg border-l border-white/10"
-              >
-                <div className="p-4 border-b border-white/10">
-                  <div className="flex justify-between items-center">
-                    <h2 className="text-base font-bold">Menu</h2>
-                    <button onClick={() => setMobileMenuOpen(false)} className="text-lg">✕</button>
-                  </div>
-                </div>
-                <div className="p-4 flex flex-col gap-3">
-                  <Link href="/pricelist" onClick={() => setMobileMenuOpen(false)} className="text-sm">Daftar Harga</Link>
-                  <Link href="/portfolio" onClick={() => setMobileMenuOpen(false)} className="text-sm">Portfolio</Link>
-                  <Link href="/team" onClick={() => setMobileMenuOpen(false)} className="text-sm">Team</Link>
-                  <Link href="/faq" onClick={() => setMobileMenuOpen(false)} className="text-sm">FAQ</Link>
-                  <Link href="/berita" onClick={() => setMobileMenuOpen(false)} className="text-sm">Berita</Link>
-                  <Link href="https://discord.gg/muH44HDrea" target="_blank" onClick={() => setMobileMenuOpen(false)} className="mt-4 bg-purple-600 text-white px-4 py-2 rounded-lg text-center">Join Discord</Link>
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
-
-        {/* --- 1. HERO SECTION --- */}
-        <section id="beranda" className="relative z-10 min-h-screen flex flex-col items-center justify-center px-6">
+      {/* --- 1. HERO SECTION --- */}
+      <section id="beranda" className="pt-32 relative z-10 min-h-screen flex flex-col items-center justify-center px-6">
           <div className="animate-fade-in flex flex-col items-center w-full">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 mb-12">
               <div className="relative animate-float">
@@ -316,6 +255,6 @@ return (
         .animate-fade-in { animation: fade-in 1.5s ease-out forwards; }
         .animate-float { animation: float 6s ease-in-out infinite; }
       `}</style>
-    </div>
+    </PageLayout>
   );
 }
