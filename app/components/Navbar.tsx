@@ -42,12 +42,12 @@ export default function Navbar() {
             ))}
           </div>
 
-          <button
-            className="md:hidden flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-medium"
+<button
+            className="md:flex md:hidden items-center justify-center min-w-[90px] h-10 bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-medium"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <Menu size={20} />
-            <span>Menu</span>
+            <Menu size={22} />
+            <span className="ml-1">Menu</span>
           </button>
 
         </div>
