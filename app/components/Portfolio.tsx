@@ -219,7 +219,7 @@ export default function PortfolioSection({ fantasyFont }: { fantasyFont: string 
                     className="max-w-full max-h-[80vh] object-contain rounded-2xl"
                   />
                   <button
-                    className="absolute -top-3 -right-3 md:-top-4 md:-right-4 w-8 h-8 md:w-10 md:h-10 bg-black/70 hover:bg-purple-500 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                    className="absolute -top-2 -right-2 md:-top-3 md:-right-3 w-8 h-8 md:w-10 md:h-10 bg-black/70 hover:bg-purple-500 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors"
                     onClick={() => setLightboxOpen(false)}
                   >
                     <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
