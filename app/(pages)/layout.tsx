@@ -54,7 +54,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
   return (
     <div className="bg-[#010108] text-white selection:bg-purple-500/30 min-h-screen font-sans">
       <nav className="fixed top-0 left-0 w-full z-[100] px-4 md:px-6 py-4 pointer-events-none">
-        <div className="max-w-5xl mx-auto flex justify-between items-center pointer-events-auto bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-2 pl-3 md:pl-4 pr-3 md:pr-6 shadow-2xl">
+        <div className="max-w-5xl mx-auto flex justify-between items-center pointer-events-auto bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-2 pl-3 md:pl-4 pr-2 md:pr-6 shadow-2xl overflow-visible">
           <div className="flex items-center gap-2 group">
             <Link href="/" className="flex items-center gap-2 group">
               <img src="/selene_shop.png" alt="Logo" className="w-10 h-10 md:w-12 md:h-12 object-contain rounded-full mix-blend-screen transition-transform group-hover:scale-110" />
@@ -106,12 +106,13 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
               </div>
             ))}
           </div>
-          <Link href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-xl text-[9px] font-black tracking-[0.2em] uppercase hover:scale-105 active:scale-95 transition-transform hidden md:block">JOIN DISCORD</Link>
+          <Link href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-xl text-[9px] font-black tracking-[0.2em] uppercase hover:scale-105 active:scale-95 transition-transform hidden lg:block">JOIN DISCORD</Link>
           <button 
             onClick={() => setMobileMenuOpen(true)}
-            className="md:hidden flex items-center justify-center w-10 h-10 bg-purple-600 hover:bg-purple-500 text-white rounded-xl"
+            className="flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-3 py-2 rounded-xl font-bold text-xs"
           >
-            <Menu size={20} />
+            <Menu size={18} />
+            MENU
           </button>
         </div>
       </nav>
@@ -127,7 +128,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 z-[150] bg-black/90 md:hidden"
+              className="fixed inset-0 z-[150] bg-black/90"
               onClick={() => setMobileMenuOpen(false)}
             />
             <motion.div
@@ -135,7 +136,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 z-[151] w-80 h-full bg-[#010108] border-l border-white/10 md:hidden"
+              className="fixed top-0 right-0 z-[151] w-80 h-full bg-[#010108] border-l border-white/10"
             >
               <div className="p-4 border-b border-white/10">
                 <div className="flex justify-between items-center">
