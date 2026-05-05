@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 
 const fantasyFont = "font-serif italic tracking-wider uppercase";
 
@@ -31,6 +31,7 @@ const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) =>
 export default function PageLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -105,13 +106,70 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
               </div>
             ))}
           </div>
-          <Link href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-xl text-[9px] font-black tracking-[0.2em] uppercase hover:scale-105 active:scale-95 transition-transform">JOIN DISCORD</Link>
+          <Link href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-xl text-[9px] font-black tracking-[0.2em] uppercase hover:scale-105 active:scale-95 transition-transform hidden md:block">JOIN DISCORD</Link>
+          <button 
+            onClick={() => setMobileMenuOpen(true)}
+            className="md:hidden flex items-center justify-center w-10 h-10 bg-purple-600 hover:bg-purple-500 text-white rounded-xl"
+          >
+            <Menu size={20} />
+          </button>
         </div>
       </nav>
 
       <main className="pt-24 md:pt-28">
         {children}
       </main>
+
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[150] bg-black/90 md:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
+              className="fixed top-0 right-0 z-[151] w-80 h-full bg-[#010108] border-l border-white/10 md:hidden"
+            >
+              <div className="p-4 border-b border-white/10">
+                <div className="flex justify-between items-center">
+                  <h2 className="text-lg font-bold text-purple-400 uppercase tracking-widest">Menu</h2>
+                  <button onClick={() => setMobileMenuOpen(false)} className="text-white/60 hover:text-white">
+                    ✕
+                  </button>
+                </div>
+                <p className="text-xs text-white/40 mt-1">Pilih ingin kemana</p>
+              </div>
+              <div className="p-4 flex flex-col gap-2">
+                {DROPDOWN_ITEMS.MENU.map((item) => (
+                  <Link 
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block px-4 py-3 text-sm text-white/60 hover:bg-white/10 hover:text-white rounded-xl transition-all uppercase"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <Link 
+                  href="https://discord.gg/muH44HDrea"
+                  target="_blank"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="mt-4 flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-4 py-3 rounded-xl font-medium"
+                >
+                  Join Discord
+                </Link>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       <style jsx global>{`
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
