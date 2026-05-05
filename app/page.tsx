@@ -247,14 +247,6 @@ return (
             <div className="w-10 h-[1px] bg-purple-500 mt-6 opacity-30" />
           </div>
         </footer>
-      </main>
-
-      <style jsx global>{`
-        @keyframes fade-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-        .animate-fade-in { animation: fade-in 1.5s ease-out forwards; }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-      `}</style>
     </PageLayout>
   );
 }
