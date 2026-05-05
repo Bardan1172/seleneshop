@@ -109,7 +109,7 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
           <Link href="https://discord.gg/muH44HDrea" target="_blank" className="hidden md:flex bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-xl text-[9px] font-black tracking-[0.2em] uppercase hover:scale-105 active:scale-95 transition-transform">JOIN DISCORD</Link>
           <button 
             onClick={() => setMobileMenuOpen(true)}
-            className="md:hidden flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-3 py-2 rounded-xl font-bold text-xs"
+            className="md:hidden flex items-center gap-2 bg-white/[0.05] backdrop-blur-xl border border-white/10 text-white px-3 py-2 rounded-xl font-bold text-xs"
           >
             <Menu size={18} />
             Menu
@@ -148,6 +148,17 @@ export default function PageLayout({ children }: { children: React.ReactNode }) 
                 <p className="text-xs text-white/40 mt-1">Pilih ingin kemana</p>
               </div>
               <div className="p-4 flex flex-col gap-2">
+                {navItems.map((item) => (
+                  <Link 
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block px-4 py-3 text-sm text-white/60 hover:bg-white/10 hover:text-white rounded-xl transition-all uppercase"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <div className="my-2 border-t border-white/10" />
                 {DROPDOWN_ITEMS.MENU.map((item) => (
                   <Link 
                     key={item.label}
