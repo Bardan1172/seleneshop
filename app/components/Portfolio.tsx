@@ -199,42 +199,44 @@ export default function PortfolioSection({ fantasyFont }: { fantasyFont: string 
               className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-8"
               onClick={() => setLightboxOpen(false)}
             >
-              <button
-                className="absolute top-4 right-4 md:top-8 md:right-8 text-white/50 hover:text-white p-2"
-                onClick={() => setLightboxOpen(false)}
-              >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+              <div className="relative flex items-center justify-center gap-2 md:gap-4" onClick={(e) => e.stopPropagation()}>
+                <button
+                  onClick={(e) => { e.stopPropagation(); prevLightbox(); }}
+                  className="text-white/50 hover:text-purple-400 p-2 md:p-4"
+                >
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
 
-              <button
-                onClick={(e) => { e.stopPropagation(); prevLightbox(); }}
-                className="absolute left-4 md:left-8 text-white/50 hover:text-purple-400 p-2 md:p-4"
-              >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
+                <div className="relative">
+                  <motion.img
+                    key={lightboxData.index}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    src={lightboxData.items[lightboxData.index].src}
+                    alt={lightboxData.items[lightboxData.index].alt}
+                    className="max-w-full max-h-[80vh] object-contain rounded-2xl"
+                  />
+                  <button
+                    className="absolute -top-3 -right-3 md:-top-4 md:-right-4 w-8 h-8 md:w-10 md:h-10 bg-black/70 hover:bg-purple-500 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                    onClick={() => setLightboxOpen(false)}
+                  >
+                    <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
 
-              <motion.img
-                key={lightboxData.index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                src={lightboxData.items[lightboxData.index].src}
-                alt={lightboxData.items[lightboxData.index].alt}
-                className="max-w-full max-h-[80vh] object-contain rounded-2xl"
-                onClick={(e) => e.stopPropagation()}
-              />
-
-              <button
-                onClick={(e) => { e.stopPropagation(); nextLightbox(); }}
-                className="absolute right-4 md:right-8 text-white/50 hover:text-purple-400 p-2 md:p-4"
-              >
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
+                <button
+                  onClick={(e) => { e.stopPropagation(); nextLightbox(); }}
+                  className="text-white/50 hover:text-purple-400 p-2 md:p-4"
+                >
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
 
               <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 text-white/50 text-xs md:text-sm">
                 {lightboxData.index + 1} / {lightboxData.items.length} • {lightboxData.category}
