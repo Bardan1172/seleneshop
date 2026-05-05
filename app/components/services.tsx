@@ -165,7 +165,7 @@ export default function ServicesSection({ fantasyFont }: { fantasyFont: string }
       </ScrollReveal>
 
       <div className="mt-12 text-center">
-        <a href="#daftarharga" className="inline-block px-6 py-3 border border-white/20 bg-white/5 backdrop-blur-md rounded-full text-[10px] font-black tracking-widest uppercase hover:bg-white/10 transition-all">
+        <a href="/pricelist" className="inline-block px-6 py-3 border border-white/20 bg-white/5 backdrop-blur-md rounded-full text-[10px] font-black tracking-widest uppercase hover:bg-white/10 transition-all">
           LIHAT SEMUA HARGA
         </a>
       </div>
