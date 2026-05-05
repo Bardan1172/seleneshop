@@ -122,13 +122,30 @@ export default function Home() {
 
 return (
     <div className="min-h-screen bg-black text-white">
+      {/* Fixed Navbar - Desktop - ALWAYS VISIBLE */}
+      <nav style={{ visibility: 'visible', opacity: 1 }} className="fixed top-0 left-0 right-0 z-[9999] px-4 py-3 bg-green-600">
+        <div className="max-w-7xl mx-auto flex justify-between items-center w-full">
+          <Link href="/" className="flex items-center gap-2">
+            <img src="/selene_shop.png" alt="Logo" className="w-8 h-8 object-contain rounded-full" />
+            <span className="text-sm font-bold tracking-wider">SELENE</span>
+          </Link>
+          <div className="flex items-center gap-4 text-xs">
+            <Link href="/pricelist" className="hover:text-purple-400 uppercase tracking-wider">Daftar Harga</Link>
+            <Link href="/portfolio" className="hover:text-purple-400 uppercase tracking-wider">Portfolio</Link>
+            <Link href="/team" className="hover:text-purple-400 uppercase tracking-wider">Team</Link>
+            <Link href="/faq" className="hover:text-purple-400 uppercase tracking-wider">FAQ</Link>
+            <Link href="https://discord.gg/muH44HDrea" target="_blank" className="bg-purple-600 hover:bg-purple-500 text-white px-3 py-1.5 rounded-lg">Join Discord</Link>
+          </div>
+        </div>
+      </nav>
+
       <main className="relative">
         <MoonBackground />
 
         {/* Mobile Menu Button - Fixed Top Right */}
         <button
           onClick={() => setMobileMenuOpen(true)}
-          className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-3 py-2 rounded-lg text-xs font-bold md:hidden"
+          className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-3 py-2 rounded-lg text-xs font-bold sm:hidden"
         >
           <Menu size={18} />
           MENU
