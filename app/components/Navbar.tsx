@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, Package, ShoppingCart, Users, HelpCircle, FileText, MessageSquare } from "lucide-react";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -43,10 +43,11 @@ export default function Navbar() {
           </div>
 
           <button
-            className="md:hidden text-purple-200 p-2"
+            className="md:hidden flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-lg text-sm font-medium"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <Menu size={24} />
+            <Menu size={20} />
+            <span>Menu</span>
           </button>
 
         </div>
@@ -67,8 +68,13 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 z-[101] w-64 h-full bg-black border-l border-purple-500/30 pt-16 pb-8 px-6"
-            >
+className="fixed top-0 right-0 z-[101] w-80 h-full bg-black border-l border-purple-500/30 pt-16 pb-8 px-6"
+              >
+              <div className="text-center border-b border-purple-500/20 pb-4 mb-2">
+                <h2 className="text-lg font-semibold text-purple-200">Menu</h2>
+                <p className="text-sm text-purple-400">Pilih ingin kemana</p>
+              </div>
+
               <button
                 className="absolute top-4 right-4 text-purple-200 p-2"
                 onClick={() => setMobileMenuOpen(false)}
@@ -76,43 +82,59 @@ export default function Navbar() {
                 <X size={24} />
               </button>
 
-              <div className="flex flex-col gap-4 mt-4">
+              <div className="flex flex-col gap-2 mt-4">
                 {navLinks.map((link) => (
                   <button
                     key={link.href}
                     onClick={() => scrollToSection(link.href)}
-                    className="text-left text-lg text-purple-100 hover:text-purple-300 py-3 border-b border-purple-500/20"
+                    className="flex items-center gap-3 text-left text-base text-purple-100 hover:text-purple-300 py-3 px-3 rounded-lg hover:bg-purple-500/20 transition"
                   >
+                    {link.href === "#beranda" && <Home size={20} />}
+                    {link.href === "#produk" && <Package size={20} />}
+                    {link.href === "#order" && <ShoppingCart size={20} />}
                     {link.label}
                   </button>
                 ))}
                 <a
                   href="/portfolio"
-                  className="text-left text-lg text-purple-100 hover:text-purple-300 py-3 border-b border-purple-500/20"
+                  className="flex items-center gap-3 text-left text-base text-purple-100 hover:text-purple-300 py-3 px-3 rounded-lg hover:bg-purple-500/20 transition"
                   onClick={() => setMobileMenuOpen(false)}
                 >
+                  <Users size={20} />
                   Portfolio
                 </a>
                 <a
                   href="/team"
-                  className="text-left text-lg text-purple-100 hover:text-purple-300 py-3 border-b border-purple-500/20"
+                  className="flex items-center gap-3 text-left text-base text-purple-100 hover:text-purple-300 py-3 px-3 rounded-lg hover:bg-purple-500/20 transition"
                   onClick={() => setMobileMenuOpen(false)}
                 >
+                  <Users size={20} />
                   Team
                 </a>
                 <a
                   href="/faq"
-                  className="text-left text-lg text-purple-100 hover:text-purple-300 py-3 border-b border-purple-500/20"
+                  className="flex items-center gap-3 text-left text-base text-purple-100 hover:text-purple-300 py-3 px-3 rounded-lg hover:bg-purple-500/20 transition"
                   onClick={() => setMobileMenuOpen(false)}
                 >
+                  <HelpCircle size={20} />
                   FAQ
                 </a>
                 <a
                   href="/berita"
-                  className="text-left text-lg text-purple-100 hover:text-purple-300 py-3 border-b border-purple-500/20"
+                  className="flex items-center gap-3 text-left text-base text-purple-100 hover:text-purple-300 py-3 px-3 rounded-lg hover:bg-purple-500/20 transition"
                   onClick={() => setMobileMenuOpen(false)}
                 >
+                  <FileText size={20} />
                   Berita
+                </a>
+                <a
+                  href="https://discord.gg/muH44HDrea"
+                  target="_blank"
+                  className="mt-4 flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-4 py-3 rounded-xl font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <MessageSquare size={20} />
+                  Join Discord
                 </a>
               </div>
             </motion.div>
