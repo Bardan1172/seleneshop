@@ -7,52 +7,84 @@ import PageLayout from "../(pages)/layout";
 
 const SERVICES_DATA = [
   {
-    id: "face",
-    title: "COSMETICA FACE",
-    tag: "KHUSUS MINECRAFT PREMIUM",
+    id: "gabbie",
+    title: "ART BY GABBIE",
+    tag: "PNGTUBER & ART",
     items: [
-      { name: "FACE 512px", price: "30.000", desc: "Resolusi standar untuk player" },
-      { name: "FACE 1024px", price: "65.000", desc: "Resolusi HD, detail lebih banyak" },
-      { name: "FACE 2048px", price: "100.000", desc: "Resolusi Ultra, kualitas premium" },
+      { name: "CHIBI PNGTUBER", price: "35.000", desc: "Start, +detail cost" },
+      { name: "NORMAL PNGTUBER", price: "45.000", desc: "Start, +detail cost" },
+      { name: "ART SIMPLE SHADE", price: "30.000", desc: "Start, +detail cost" },
+      { name: "ART FULL RENDERING", price: "60.000", desc: "(Close)" },
+    ],
+    notes: "Detail rumit +Biaya. Max rev 3x. Ganti pose = Bayar sketsa baru.",
+  },
+  {
+    id: "stickerpack",
+    title: "CUSTOM STICKER PACK",
+    tag: "TELEGRAM/WHATSAPP",
+    items: [
+      { name: "CUSTOM STICKER (1 Sticker)", price: "10.000", desc: "Per sticker" },
+      { name: "STICKER PACK (6 Sticker)", price: "60.000", desc: "6 stickers" },
+      { name: "STICKER PACK (12 Sticker)", price: "110.000", desc: "12 stickers" },
+    ],
+    notes: "Detail rumit +Biaya. Max rev 3x. Ganti pose = Bayar sketsa baru.",
+  },
+  {
+    id: "amyy",
+    title: "ART BY AMYY CZO",
+    tag: "SEMIREALIS & ANIME STYLE",
+    items: [
+      { name: "SEMIREALIS (Full Render)", price: "45.000 - 95.000", desc: "Headshot to Knee up" },
+      { name: "ANIME STYLE", price: "20.000 - 60.000", desc: "Headshot to Knee up" },
+      { name: "CHIBI", price: "20.000 - 55.000", desc: "Depends on complexity" },
+      { name: "LINEART", price: "15.000 - 25.000", desc: "Depends on complexity" },
+    ],
+    notes: "Free BG simpel. Max rev 3x. Ganti pose = Bayar harga Lineart.",
+  },
+  {
+    id: "cosmetica",
+    title: "COSMETICA FACE",
+    tag: "MINECRAFT PREMIUM",
+    items: [
+      { name: "512px", price: "40.000", desc: "Only face" },
+      { name: "1024px", price: "75.000", desc: "Only face" },
+      { name: "2048px", price: "110.000", desc: "Only face" },
     ],
   },
   {
-    id: "skin",
+    id: "model",
+    title: "CUSTOM MODEL (BLOCKBENCH)",
+    tag: "MINECRAFT",
+    items: [
+      { name: "HEAD COSMETIC 256px", price: "35.000", desc: "Head only" },
+      { name: "HEAD COSMETIC 512px", price: "45.000", desc: "Head only" },
+      { name: "BODY (Wings/Cape) 256px", price: "60.000", desc: "Body cosmetic" },
+      { name: "BODY (Wings/Cape) 512px", price: "70.000", desc: "Body cosmetic" },
+      { name: "ITEMS (Relics/Dolls) 256px", price: "55.000", desc: "Custom items" },
+      { name: "WEAPONS SIMPLE", price: "166.000", desc: "Simple design" },
+      { name: "WEAPONS DETAIL 512px", price: "266.000", desc: "Detail design" },
+      { name: "ANIMATION", price: "10.000 - 15.000", desc: "Additional" },
+    ],
+  },
+  {
+    id: "mcskin",
     title: "MINECRAFT SKIN",
     tag: "CLASSIC / SLIM MODEL",
     items: [
-      { name: "SIMPLE SHADING", price: "10.000", desc: "Basic shading, cocok untuk beginner" },
-      { name: "FULL DETAIL (ANIME)", price: "15.000", desc: "Detail penuh gaya anime" },
-      { name: "FULL DETAIL (FANTASY)", price: "15.000", desc: "Detail penuh gaya fantasy" },
+      { name: "SIMPLE", price: "20.000 - 25.000", desc: "Basic shading" },
+      { name: "FULL DETAIL", price: "30.000 - 40.000", desc: "Detail penuh" },
+      { name: "OUTFIT ONLY", price: "15.000 - 20.000", desc: "Clothing only" },
+      { name: "HEAD ONLY", price: "10.000 - 15.000", desc: "Head only" },
     ],
   },
   {
-    id: "art",
-    title: "ART COMMISSION",
-    tag: "CUSTOM ART & SKETCH",
-    items: [
-      { name: "HEADSHOT ART", price: "25.000", desc: "Art kepala/halfbody" },
-      { name: "FULLBODY ART", price: "50.000", desc: "Art fullbody" },
-      { name: "COUPLE ART", price: "80.000", desc: "Art couple/duo" },
-    ],
-  },
-  {
-    id: "sticker",
-    title: "CUSTOM STICKER",
-    tag: "TELEGRAM/WHATSAPP STICKER",
-    items: [
-      { name: "CHIBI STICKER", price: "15.000", desc: "7-10 sticker chibi" },
-      { name: "CUSTOM STICKERPACK", price: "35.000", desc: "15-20 sticker custom" },
-    ],
-  },
-  {
-    id: "render",
-    title: "RENDER & GFX",
+    id: "mcrender",
+    title: "MINECRAFT RENDER (GFX/SCENE)",
     tag: "VISUAL EDITING",
     items: [
-      { name: "PNG TUBER", price: "20.000", desc: "PNGTuber base + edit" },
-      { name: "SCENE RENDER", price: "35.000", desc: "Custom scene render" },
-      { name: "MANIPULATION", price: "50.000", desc: "Full manip/editing" },
+      { name: "STANDARD", price: "30.000 - 55.000", desc: "With background" },
+      { name: "NO BACKGROUND", price: "15.000 - 30.000", desc: "Transparent" },
+      { name: "RATIO 1:1 / 9:16", price: "+2.000", desc: "Additional" },
     ],
   },
 ];
@@ -116,6 +148,9 @@ export default function PricelistPage() {
               >
                 <div className="px-6 pb-6 md:px-8 md:pb-8">
                   <div className="border-t border-white/10 pt-6 space-y-3">
+                    {service.notes && (
+                      <p className="text-white/40 text-[10px] italic mb-4 border-l-2 border-purple-500/50 pl-3">{service.notes}</p>
+                    )}
                     {service.items.map((item, idx) => (
                       <div
                         key={idx}
